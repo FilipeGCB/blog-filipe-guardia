@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blog do Filipe Guardia</title>
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       font-family: Arial, sans-serif;
       background: #f5f5f7;
@@ -30,6 +33,10 @@
     nav {
       background: #3b146b;
       padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
     nav ul {
       list-style: none;
@@ -52,6 +59,75 @@
       margin: 30px auto;
       padding: 0 15px 40px;
     }
+    .topics-nav {
+      background: #fff;
+      padding: 12px 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+      margin-bottom: 25px;
+      font-size: 0.95rem;
+    }
+    .topics-nav strong {
+      margin-right: 8px;
+    }
+    .topics-nav a {
+      margin-right: 12px;
+      color: #4b1b8a;
+      text-decoration: none;
+    }
+    .topics-nav a:hover {
+      text-decoration: underline;
+    }
+ 
+    /* Newsletter */
+    .newsletter {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    }
+    .newsletter h2 {
+      margin-top: 0;
+      color: #4b1b8a;
+      font-size: 1.3rem;
+    }
+    .newsletter p {
+      margin: 6px 0 14px;
+      font-size: 0.95rem;
+    }
+    .newsletter form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .newsletter input[type="email"] {
+      flex: 1;
+      min-width: 180px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 0.95rem;
+    }
+    .newsletter button {
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: none;
+      background: #4b1b8a;
+      color: #fff;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+    .newsletter button:hover {
+      filter: brightness(1.05);
+    }
+    .newsletter small {
+      font-size: 0.8rem;
+      color: #777;
+    }
+ 
+    /* Posts */
     .post {
       background: #fff;
       padding: 25px 20px;
@@ -69,6 +145,18 @@
       display: block;
       margin-bottom: 10px;
     }
+    .tags {
+      margin: 5px 0 12px;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.8rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #eee;
+      color: #555;
+      margin-right: 6px;
+    }
     .post p {
       line-height: 1.6;
       margin: 8px 0;
@@ -79,6 +167,12 @@
       color: #4b1b8a;
       font-size: 1.05rem;
     }
+    .section-title {
+      margin-top: 5px;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+      color: #444;
+    }
     footer {
       text-align: center;
       padding: 20px;
@@ -88,6 +182,7 @@
     }
   </style>
 </head>
+ 
 <body>
   <header>
     <h1>Blog do Filipe Guardia</h1>
@@ -96,74 +191,104 @@
  
   <nav>
     <ul>
-      <li><a href="index.html">Home</a></li>
+      <li><a href="#newsletter">Newsletter</a></li>
+      <li><a href="#cobranca">Cobrança & Crédito</a></li>
+      <li><a href="#tecnologia">Tecnologia & IA</a></li>
       <li><a href="sobre.html">Sobre</a></li>
-      <li><a href="#artigos">Artigos</a></li>
     </ul>
   </nav>
  
-  <main class="container" id="artigos">
-    <!-- POST MAIS RECENTE -->
-    <article class="post">
-      <h2>PIX Parcelado — Uma Transformação Possível e Profunda no Mercado de Crédito</h2>
-      <small>por: Filipe Guardia Cano Batista • Publicado em 25/11/2025</small>
+  <main class="container">
  
-      <p>O Pix Parcelado representa uma das mudanças mais interessantes e potencialmente transformadoras do sistema financeiro brasileiro. Como profissional da área de crédito e cobrança, enxergo essa mudança não apenas pelo ponto de vista financeiro e macroeconômico, mas também pelo impacto que ela pode trazer para operações que lidam diretamente com inadimplência, recuperação e recorrência de pagamentos, como é o caso das empresas de telecomunicações — setor onde atuo.</p>
+    <!-- Newsletter -->
+    <section id="newsletter" class="newsletter">
+      <h2>Newsletter do Filipe</h2>
+      <p>Receba por e-mail novos textos sobre cobrança, tecnologia, IA e mercado assim que eu publicar.</p>
  
-      <p>Trata-se de uma evolução natural do Pix, combinando instantaneidade com parcelamento, mas com uma característica central que pode alterar a lógica atual de cobrança: o risco passa do fornecedor para o banco, enquanto a empresa recebe à vista.</p>
+      <form action="https://formsfree.io/mjkdlljg" method="POST">
+        <input type="email" name="email" placeholder="Seu melhor e-mail" required />
+        <button type="submit">Quero receber</button>
+      </form>
  
-      <p>Ainda é cedo para definir o impacto completo no ecossistema, mas as primeiras movimentações indicam que essa modalidade pode ganhar força e alterar de forma relevante a dinâmica de crédito para consumidores e empresas de diversos setores — incluindo telecomunicações, varejo, serviços, utilities, educação, entre outros.</p>
+      <small>Conteúdos relevantes. Sem spam. 🙂</small>
+    </section>
  
-      <h3>A lógica por trás dessa evolução</h3>
-      <p>No Pix Parcelado: o banco paga à vista para a empresa, o cliente paga parcelado para o banco, o risco de crédito muda de lugar, o fluxo de caixa melhora e o crédito se torna mais acessível. Isso pode gerar um ciclo interessante: crédito mais barato → consumo maior → economia mais dinâmica.</p>
+    <div class="topics-nav">
+      <strong>Filtrar por assunto:</strong>
+      <a href="#cobranca">Cobrança & Crédito</a>
+      <a href="#tecnologia">Tecnologia & IA</a>
+    </div>
  
-      <h3>Efeito nas empresas — especialmente telecom</h3>
-      <p>Empresas com faturamento recorrente, venda de aparelhos ou serviços contínuos podem se beneficiar: receber à vista, reduzir risco, facilitar renegociações, aumentar ativações e vender sem depender do limite do cartão.</p>
+    <!-- SEÇÃO: COBRANÇA -->
+    <section id="cobranca">
+      <p class="section-title"><strong>Cobrança & Crédito</strong></p>
  
-      <h3>Mudança na cobrança</h3>
-      <p>Se a modalidade escalar, podemos ver redução de inadimplência direta, menos ligações, menor uso de assessorias, menos OPEX e mais estratégias digitais, uso de dados, segmentação e automação. A cobrança se torna mais inteligente e menos operacional.</p>
+      <article class="post">
+        <h2>PIX Parcelado — Uma Transformação Possível e Profunda no Mercado de Crédito</h2>
+        <small>por: Filipe Guardia Cano Batista • Publicado em 25/11/2025</small>
  
-      <h3>E para o cliente?</h3>
-      <p>A experiência tende a ser mais simples: parcelamento sem cartão, juros potencialmente menores, menos burocracia e mais flexibilidade.</p>
+        <div class="tags">
+          <span class="tag">Cobrança</span>
+          <span class="tag">Crédito</span>
+          <span class="tag">Mercado</span>
+        </div>
  
-      <h3>Conclusão</h3>
-      <p>O Pix Parcelado não deve substituir o cartão, mas pode remodelar o mercado brasileiro de crédito, reduzir riscos para empresas e modernizar processos. Setores como telecom podem sentir forte impacto. Tudo dependerá da adesão dos bancos e da evolução regulatória.</p>
+        <p>O Pix Parcelado representa uma das mudanças mais interessantes e potencialmente transformadoras...</p>
+        <p>Trata-se de uma evolução natural do Pix...</p>
+        <p>Ainda é cedo para definir o impacto...</p>
  
-      <p><strong>E você, o que acha? O Pix Parcelado realmente pode mudar o mercado dessa forma? Ou vê outro caminho?</strong></p>
-    </article>
+        <h3>A lógica por trás dessa evolução</h3>
+        <p>No Pix Parcelado: o banco paga à vista...</p>
  
-    <!-- SEGUNDO POST -->
-    <article class="post">
-      <h2>Copilot Studio — Como profissionais operacionais podem revolucionar seus departamentos usando IA</h2>
-      <small>por: Filipe Guardia Cano Batista • Publicado em 25/11/2025</small>
+        <h3>Efeito nas empresas</h3>
+        <p>Empresas com faturamento recorrente...</p>
  
-      <p>A transformação digital nas empresas sempre foi associada a grandes projetos, longos prazos e investimentos pesados em tecnologia. Para muitos setores, especialmente os operacionais, isso significava depender integralmente de TI para qualquer mudança — desde automações simples até fluxos que poderiam economizar horas de trabalho e milhares de reais por mês.</p>
+        <h3>Mudança na cobrança</h3>
+        <p>Se a modalidade escalar, podemos ver...</p>
  
-      <p>Com o avanço das ferramentas de inteligência artificial aplicadas ao ambiente corporativo, como o Microsoft Copilot Studio, profissionais que antes não tinham nenhum contato com programação passaram a ter a capacidade de criar automações, chatbots, agentes inteligentes e fluxos complexos de atendimento, usando apenas o conhecimento que já dominam: o conhecimento profundo do próprio negócio.</p>
+        <h3>E para o cliente?</h3>
+        <p>A experiência tende a ser mais simples...</p>
  
-      <h3>O poder voltou para quem vive o dia a dia operacional</h3>
-      <p>Quem está em cobrança, financeiro, atendimento, logística ou backoffice conhece muito melhor os fluxos reais, exceções e dores dos clientes. Com o Copilot Studio, esses profissionais deixam de ser apenas executores e passam a ser construtores de soluções, ajustando fluxos, testando hipóteses e inovando sem depender totalmente da TI.</p>
+        <h3>Conclusão</h3>
+        <p>O Pix Parcelado não deve substituir o cartão...</p>
  
-      <h3>O que o Copilot Studio permite fazer sem saber programar</h3>
-      <p>Com lógica básica e conhecimento de negócio, é possível criar assistentes de cobrança, chatbots internos, fluxos automáticos de atendimento, integrações com APIs internas, análises automáticas de casos e regras de decisão configuráveis — tudo guiado por interfaces amigáveis.</p>
+        <p><strong>E você, o que acha?</strong></p>
+      </article>
+    </section>
  
-      <h3>Por que isso empodera os setores operacionais</h3>
-      <p>Demandas pequenas deixam de ficar na fila da TI. Ajustes que levariam meses passam a ser feitos em dias. A inovação deixa de ser algo pontual e passa a ser contínua, nascendo dentro das próprias áreas, diretamente de quem sente os problemas na prática.</p>
+    <!-- SEÇÃO: TECNOLOGIA -->
+    <section id="tecnologia">
+      <p class="section-title"><strong>Tecnologia & IA</strong></p>
  
-      <h3>Exemplo de impacto</h3>
-      <p>Antes: meses esperando desenvolvimento, alto custo, retrabalho. Depois: fluxos criados em dias, ajustes imediatos, testes rápidos, autonomia maior para o time e TI atuando em governança e segurança, não em cada detalhe operacional.</p>
+      <article class="post">
+        <h2>Copilot Studio — Como profissionais operacionais podem revolucionar seus departamentos usando IA</h2>
+        <small>por: Filipe Guardia Cano Batista • Publicado em 25/11/2025</small>
  
-      <h3>Conclusão</h3>
-      <p>O Copilot Studio democratiza a automação dentro das empresas. Times operacionais deixam de ser apenas executores de processos e se tornam construtores de soluções, usando IA como extensão do próprio conhecimento. A transformação passa a acontecer de baixo para cima — e isso pode ser um divisor de águas na eficiência operacional.</p>
+        <div class="tags">
+          <span class="tag">Tecnologia</span>
+          <span class="tag">IA</span>
+          <span class="tag">Operações</span>
+        </div>
  
-      <p><strong>O que você acha dessa mudança? Deixe seu comentário.</strong></p>
-    </article>
+        <p>A transformação digital nas empresas sempre foi associada...</p>
  
-    <!--
-    PARA PRÓXIMOS POSTS:
-    Copie e cole o bloco <article class="post">...</article> acima,
-    alterando o conteúdo do título, texto e data.
-    -->
+        <h3>O poder voltou para quem vive o dia a dia</h3>
+        <p>Quem está em cobrança, financeiro, atendimento...</p>
+ 
+        <h3>O que o Copilot Studio permite fazer</h3>
+        <p>Com lógica básica e conhecimento de negócio...</p>
+ 
+        <h3>Por que isso empodera equipes</h3>
+        <p>Ajustes que levavam meses viram dias...</p>
+ 
+        <h3>Conclusão</h3>
+        <p>O Copilot Studio democratiza a automação...</p>
+ 
+        <p><strong>O que você acha dessa mudança?</strong></p>
+      </article>
+ 
+    </section>
+ 
   </main>
  
   <footer>
