@@ -3,619 +3,170 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Artigos de Filipe Guardia sobre cobrança, crédito, tecnologia, inteligência artificial, sistemas e mercado." />
+  <meta property="og:title" content="Blog do Filipe Guardia" />
+  <meta property="og:description" content="Cobrança, tecnologia e inteligência aplicada ao trabalho real." />
+  <meta property="og:type" content="website" />
   <title>Blog do Filipe Guardia</title>
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f7;
-      margin: 0;
-      padding: 0;
-      color: #222;
-    }
-    header {
-      background: #4b1b8a;
-      color: #fff;
-      padding: 20px 0;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-    header p {
-      margin: 5px 0 0;
-      font-size: 0.95rem;
-      opacity: 0.9;
-    }
-    nav {
-      background: #3b146b;
-      padding: 10px 0;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    }
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 0.95rem;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    .container {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 0 15px 40px;
-    }
-    .topics-nav {
-      background: #fff;
-      padding: 12px 15px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-      margin-bottom: 25px;
-      font-size: 0.95rem;
-    }
-    .topics-nav strong {
-      margin-right: 8px;
-    }
-    .topics-nav a {
-      margin-right: 12px;
-      color: #4b1b8a;
-      text-decoration: none;
-    }
-    .topics-nav a:hover {
-      text-decoration: underline;
-    }
-
-    /* Newsletter */
-    .newsletter {
-      background: #fff;
-      padding: 20px;
-      margin-bottom: 25px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-    }
-    .newsletter h2 {
-      margin-top: 0;
-      color: #4b1b8a;
-      font-size: 1.3rem;
-    }
-    .newsletter p {
-      margin: 6px 0 14px;
-      font-size: 0.95rem;
-    }
-    .newsletter form {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 6px;
-    }
-    .newsletter input[type="email"] {
-      flex: 1;
-      min-width: 180px;
-      padding: 8px 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 0.95rem;
-    }
-    .newsletter button {
-      padding: 8px 14px;
-      border-radius: 6px;
-      border: none;
-      background: #4b1b8a;
-      color: #fff;
-      font-size: 0.95rem;
-      cursor: pointer;
-    }
-    .newsletter button:hover {
-      filter: brightness(1.05);
-    }
-    .newsletter small {
-      font-size: 0.8rem;
-      color: #777;
-    }
-
-    .post {
-      background: #fff;
-      padding: 25px 20px;
-      margin-bottom: 25px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-    }
-    .post h2 {
-      margin-top: 0;
-      color: #4b1b8a;
-      font-size: 1.4rem;
-    }
-    .post small {
-      color: #666;
-      display: block;
-      margin-bottom: 10px;
-    }
-    .tags {
-      margin: 5px 0 12px;
-    }
-    .tag {
-      display: inline-block;
-      font-size: 0.8rem;
-      padding: 3px 8px;
-      border-radius: 999px;
-      background: #eee;
-      color: #555;
-      margin-right: 6px;
-    }
-    .post p {
-      line-height: 1.6;
-      margin: 8px 0;
-    }
-    .post h3 {
-      margin-top: 18px;
-      margin-bottom: 8px;
-      color: #4b1b8a;
-      font-size: 1.05rem;
-    }
-    .post h4 {
-      margin-top: 14px;
-      margin-bottom: 6px;
-      color: #4b1b8a;
-      font-size: 1rem;
-    }
-    ul {
-      padding-left: 20px;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 0.85rem;
-      color: #666;
-      background: #f0f0f3;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-  <header>
-    <h1>Blog do Filipe Guardia</h1>
-    <p>Cobrança • Tecnologia • Mercado</p>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="index.html" aria-label="Blog do Filipe Guardia — início">
+        <span class="brand-mark">FG</span>
+        <span class="brand-copy">Blog do Filipe Guardia<small>Cobrança • Tecnologia • Mercado</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Navegação principal">
+        <a href="index.html" aria-current="page">Início</a>
+        <a href="#cobranca">Cobrança</a>
+        <a href="#tecnologia">Tecnologia & IA</a>
+        <a href="sobre.html">Sobre</a>
+      </nav>
+    </div>
   </header>
 
-  <nav>
-    <ul>
-      <li><a href="#newsletter">Newsletter</a></li>
-      <li><a href="#cobranca">Cobrança & Crédito</a></li>
-      <li><a href="#tecnologia">Tecnologia & IA</a></li>
-      <li><a href="sobre.html">Sobre</a></li>
-    </ul>
-  </nav>
-
-  <main class="container">
-
-    <!-- Newsletter -->
-    <section id="newsletter" class="newsletter">
-      <h2>Newsletter do Filipe</h2>
-      <p>Receba novos conteúdos sobre cobrança, tecnologia, IA e mercado.</p>
-
-      <form action="https://formspree.io/f/mjkdlljg" method="POST">
-        <input type="email" name="email" placeholder="Seu melhor e-mail" required />
-        <button type="submit">Quero receber</button>
-      </form>
-
-      <small>Conteúdos relevantes. Sem spam. 🙂</small>
+  <main id="conteudo">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Ideias para transformar operação em decisão</p>
+          <h1>Cobrança, tecnologia e <span>inteligência aplicada</span> ao trabalho real.</h1>
+          <p class="hero-lead">Textos claros e práticos sobre crédito, dados, sistemas, inteligência artificial e desenvolvimento de soluções — sempre conectando tecnologia com conhecimento de negócio.</p>
+        </div>
+        <aside class="hero-note">
+          <strong>Conteúdo sem excesso de jargão</strong>
+          <p>Explicações progressivas, exemplos concretos e análise dos impactos para pessoas e empresas.</p>
+        </aside>
+      </div>
     </section>
 
-    <div class="topics-nav">
-      <strong>Filtrar por assunto:</strong>
-      <a href="#cobranca">Cobrança & Crédito</a>
-      <a href="#tecnologia">Tecnologia & IA</a>
-    </div>
-
-    <!-- SEÇÃO COBRANÇA -->
-    <section id="cobranca">
-      <article class="post">
-        <h2>Pix Parcelado — A Transformação Silenciosa que Pode Mudar o Crédito no Brasil</h2>
-        <small>por: Filipe Guardia Cano Batista • Publicado em 25/11/2025</small>
-
-        <div class="tags">
-          <span class="tag">Crédito</span>
-          <span class="tag">Cobrança</span>
-          <span class="tag">Mercado</span>
+    <section class="section" aria-labelledby="destaque-titulo">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Artigo mais recente</p>
+            <h2 id="destaque-titulo">Em destaque</h2>
+          </div>
+          <p>Uma reflexão sobre por que a inteligência artificial aumenta o valor de quem entende profundamente o processo.</p>
         </div>
 
-        <p>O Brasil já viveu várias revoluções financeiras: do crédito consignado ao débito automático, do cartão parcelado ao Pix. Mas agora, talvez estejamos diante de uma das mudanças mais profundas dos últimos anos: o <strong>Pix Parcelado</strong>.</p>
-
-        <p>Para muitos consumidores, ele será “um Pix que parcela”. Mas, para quem trabalha com cobrança, inadimplência, crédito, vendas e fluxo de caixa, ele pode ser <strong>uma nova lógica de mercado</strong> — muito maior que um novo meio de pagamento.</p>
-
-        <p>Este texto traz a linha de raciocínio que eu mesmo tive enquanto estudava o tema, passo a passo, exatamente como muitas pessoas vão pensar ao serem apresentadas ao assunto pela primeira vez.</p>
-
-        <h3>1. O que realmente é o Pix Parcelado?</h3>
-        <p>É simples de entender:</p>
-        <ul>
-          <li>O <strong>banco paga à vista</strong> para a empresa;</li>
-          <li>O <strong>cliente paga parcelado</strong> para o banco;</li>
-          <li>A <strong>empresa não assume risco</strong>;</li>
-          <li>O <strong>banco assume o risco de crédito</strong>.</li>
-        </ul>
-        <p>Ou seja: para a empresa, é como uma venda à vista. Para o cliente, é como fazer um parcelamento, mas sem cartão.</p>
-
-        <h3>2. Por que isso é importante?</h3>
-        <p>Porque, pela primeira vez, um pagamento parcelado:</p>
-        <ul>
-          <li>independe de cartão;</li>
-          <li>independe de limite;</li>
-          <li>não exige maquininha;</li>
-          <li>não precisa de adquirente;</li>
-          <li>funciona 24/7.</li>
-        </ul>
-        <p>E principalmente: <strong>abre crédito para milhões de pessoas que não têm cartão ou têm limite baixo</strong>.</p>
-
-        <h3>3. Quem ganha e quem perde?</h3>
-
-        <h4>Bancos grandes</h4>
-        <p>Possíveis perdas:</p>
-        <ul>
-          <li>Receita do rotativo do cartão;</li>
-          <li>Receita do parcelado tradicional;</li>
-          <li>Parte do domínio histórico sobre crédito ao consumo.</li>
-        </ul>
-        <p>Ganho potencial:</p>
-        <ul>
-          <li>Juros do parcelamento via Pix;</li>
-          <li>Acesso a clientes sem cartão;</li>
-          <li>Mais dados de comportamento de pagamento via Pix.</li>
-        </ul>
-
-        <h4>Fintechs e bancos médios</h4>
-        <p>Devem ser os protagonistas, porque não têm um grande negócio de cartão para proteger. Podem usar o Pix Parcelado como “porta de entrada” agressiva no crédito ao consumo.</p>
-
-        <h4>Consumidor final</h4>
-        <p>Ganha crédito mais barato, parcelamento sem cartão, menos burocracia e mais acesso. Mas quanto mais crédito disponível, maior o risco de inadimplência para quem não tem maturidade financeira.</p>
-
-        <h4>Varejo, serviços e telecom</h4>
-        <p>As empresas passam a ter:</p>
-        <ul>
-          <li>Venda imediata;</li>
-          <li>Recebimento à vista;</li>
-          <li>Redução de risco de não pagamento futuro;</li>
-          <li>Mais conversão, sem depender de limite de cartão.</li>
-        </ul>
-
-        <h3>4. E na cadeia de cobrança?</h3>
-        <p>Aqui começam os efeitos profundos.</p>
-        <ul>
-          <li>Redução de ligações de cobrança;</li>
-          <li>Menos uso de assessorias externas;</li>
-          <li>Menor OPEX em discador, URA, estrutura operacional;</li>
-          <li>Mais espaço para estratégia baseada em dados, clusterização e segmentação.</li>
-        </ul>
-
-        <p>A cobrança deixa de ser tão operacional e passa a ser cada vez mais analítica e estratégica.</p>
-
-        <h3>5. Impacto em empresas de telecom — B2C e B2B</h3>
-
-        <h4>B2C — planos, serviços e aparelhos</h4>
-        <p>O Pix Parcelado pode ser utilizado em:</p>
-        <ul>
-          <li>Venda de aparelhos;</li>
-          <li>Upgrades de plano;</li>
-          <li>Ofertas de fidelização;</li>
-          <li>Migração para planos mais completos;</li>
-          <li>Renegociação de faturas atrasadas;</li>
-          <li>Clientes sem cartão ou com limite comprometido.</li>
-        </ul>
-
-        <h4>B2B — pequenas, médias e grandes empresas</h4>
-        <p>Para empresas que sofrem com fluxo de caixa apertado, o Pix Parcelado ajuda a:</p>
-        <ul>
-          <li>Facilitar renegociações;</li>
-          <li>Reduzir inadimplência crônica de pequenos negócios;</li>
-          <li>Diminuir churn por motivo financeiro;</li>
-          <li>Aumentar previsibilidade da carteira.</li>
-        </ul>
-
-        <h3>6. Renegociação via Pix Parcelado (a joia da coroa)</h3>
-        <p>Aqui está um dos usos mais poderosos: usar o Pix Parcelado como ferramenta de renegociação.</p>
-        <p>Fluxo simplificado:</p>
-        <ol>
-          <li>Cliente inadimplente recebe uma oferta digital de renegociação via Pix Parcelado;</li>
-          <li>Ele escolhe o número de parcelas;</li>
-          <li>O banco paga à vista para a empresa;</li>
-          <li>A dívida original é quitada;</li>
-          <li>O cliente passa a dever ao banco, não mais à empresa.</li>
-        </ol>
-
-        <p>Resultados diretos para a empresa:</p>
-        <ul>
-          <li>Redução do aging vencido;</li>
-          <li>Redução de PDD;</li>
-          <li>Redução de provisão;</li>
-          <li>Queda no volume de acionamentos;</li>
-          <li>Menos dependência de cobrança judicial.</li>
-        </ul>
-
-        <h3>7. O argumento final</h3>
-        <p>O Pix Parcelado não é apenas “parcelar via Pix”. É uma reorganização de risco, uma expansão do acesso a crédito, uma alternativa concreta ao cartão e uma ferramenta poderosa para reduzir inadimplência e melhorar fluxo de caixa.</p>
-
-        <h3>8. Conclusão</h3>
-        <p>Se bem regulado, o Pix Parcelado beneficia:</p>
-        <ul>
-          <li>clientes com bom histórico de pagamento;</li>
-          <li>empresas que querem reduzir inadimplência e aumentar conversão;</li>
-          <li>fintechs e bancos médios que querem crescer em crédito;</li>
-          <li>setores recorrentes como telecom, varejo, utilities, educação e serviços.</li>
-        </ul>
-
-        <p>Ele não substitui cartões, boletos ou análise de crédito, mas <strong>reorganiza o mercado</strong>. E para empresas com alto volume de faturamento recorrente, o impacto pode ser enorme.</p>
-
-        <p><strong>E você, como enxerga o futuro do crédito com o Pix Parcelado?</strong></p>
-      </article>
+        <div class="card-grid">
+          <article class="article-card featured">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-category">Tecnologia & IA</span>
+                <time datetime="2026-05-22">22 maio 2026</time>
+                <span>8 min de leitura</span>
+              </div>
+              <h3>Da planilha ao agente: por que a inteligência artificial não substitui quem conhece o negócio</h3>
+              <p>Relatórios mostram o que aconteceu. Agentes podem ajudar a conduzir o próximo passo — desde que tenham regras, limites, memória e supervisão.</p>
+              <a class="card-link" href="artigos/da-planilha-ao-agente.html">Ler artigo completo</a>
+            </div>
+            <div class="card-visual" aria-hidden="true"><span class="card-symbol">IA</span></div>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <!-- SEÇÃO TECNOLOGIA -->
-    <section id="tecnologia">
-      <article class="post" id="da-planilha-ao-agente">
-        <h2>Da planilha ao agente: por que a inteligência artificial não substitui quem conhece o negócio</h2>
-        <small>por: Filipe Guardia Cano Batista • Publicado em 22/05/2026</small>
-
-        <div class="tags">
-          <span class="tag">Inteligência Artificial</span>
-          <span class="tag">Cobrança</span>
-          <span class="tag">Produto</span>
-          <span class="tag">Automação</span>
-          <span class="tag">Conhecimento de Negócio</span>
+    <section class="section" id="cobranca" aria-labelledby="cobranca-titulo">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Crédito, risco e relacionamento</p>
+            <h2 id="cobranca-titulo">Cobrança & Crédito</h2>
+          </div>
+          <p>Análises sobre recuperação, comportamento financeiro, meios de pagamento e decisões que afetam o caixa.</p>
         </div>
 
-        <p>Durante muito tempo, quando eu pensava em melhorar um processo, o caminho parecia óbvio: entender a base, cruzar informações, criar uma regra e gerar um relatório. Em áreas como cobrança e financeiro, isso já resolve muita coisa. Uma boa análise pode mostrar onde está o atraso, qual carteira piorou, quais clientes precisam de atenção e quanto a operação está custando.</p>
-
-        <p>Mas, conforme comecei a estudar inteligência artificial e desenvolvimento de sistemas, uma pergunta ficou cada vez mais presente: <strong>e se a solução não apenas mostrasse o problema, mas ajudasse a conduzir o próximo passo?</strong></p>
-
-        <p>É aqui que entram os agentes de IA. E também é aqui que surge um grande erro de interpretação: acreditar que, porque uma ferramenta consegue escrever, analisar ou executar tarefas, ela passa a substituir quem conhece o negócio.</p>
-
-        <p>Na prática, acontece o contrário. Quanto mais avançada fica a tecnologia, mais importante se torna o conhecimento real do processo.</p>
-
-        <h3>1. O que muda quando saímos de um relatório para um agente?</h3>
-        <p>Um relatório responde perguntas conhecidas. Por exemplo:</p>
-        <ul>
-          <li>Quanto está vencido?</li>
-          <li>Qual carteira cresceu mais?</li>
-          <li>Quantos clientes pagaram após uma ação?</li>
-          <li>Onde está o maior custo operacional?</li>
-        </ul>
-
-        <p>Um agente pode ir além e ajudar a interpretar uma solicitação, buscar informações, propor uma análise ou orientar uma decisão. Em vez de apenas mostrar dados, ele pode receber uma pergunta como:</p>
-
-        <p><em>“Quais clientes desta carteira deveriam receber uma ação digital antes de uma ligação?”</em></p>
-
-        <p>A diferença é grande. O relatório apresenta informação. O agente participa de um fluxo de raciocínio.</p>
-
-        <p>Mas ele não deveria fazer isso de qualquer forma. Para ser útil em um processo real, o agente precisa saber quais dados consultar, quais regras respeitar, quando pedir confirmação e o que jamais pode decidir sozinho.</p>
-
-        <h3>2. Regra fixa ou inteligência artificial: não é uma disputa</h3>
-        <p>Quando comecei a estudar esse tema, percebi uma coisa importante: usar IA em tudo não torna um sistema melhor.</p>
-
-        <p>Se uma regra é clara e estável, ela deve continuar sendo uma regra. Por exemplo:</p>
-        <ul>
-          <li>Se uma transação tem confiança menor que determinado limite, enviar para confirmação;</li>
-          <li>Se um cliente está em uma lista de bloqueio, não acionar;</li>
-          <li>Se uma fatura já foi paga, não enviar cobrança;</li>
-          <li>Se uma categoria é incompatível com o tipo da transação, impedir o registro.</li>
-        </ul>
-
-        <p>Essas situações não precisam de criatividade. Precisam de segurança, consistência e auditoria.</p>
-
-        <p>A inteligência artificial faz mais sentido onde existe ambiguidade: interpretar descrições, sugerir classificações, entender um pedido escrito em linguagem comum, resumir informações ou ajudar a formular uma análise.</p>
-
-        <p>O sistema mais inteligente não é aquele que entrega tudo para a IA. É aquele que sabe separar o que deve ser determinístico do que realmente precisa de interpretação.</p>
-
-        <h3>3. Um exemplo simples: classificar despesas</h3>
-        <p>Imagine uma pequena empresa que importa suas movimentações financeiras para organizar os gastos.</p>
-
-        <p>No começo, uma IA pode ajudar a interpretar descrições confusas, como:</p>
-        <ul>
-          <li>“PGTO MP *SERVICOS”;</li>
-          <li>“PIX RECEBIDO CLIENTE X”;</li>
-          <li>“COMPRA CARTAO POSTO Y”.</li>
-        </ul>
-
-        <p>Ela sugere se aquilo é receita ou despesa e propõe uma categoria. Quando tem dúvida, pede confirmação ao usuário.</p>
-
-        <p>Com o tempo, a empresa corrige classificações e cria padrões. Se toda movimentação parecida com “POSTO Y” já foi confirmada como combustível, o sistema não precisa chamar a IA toda vez. Ele pode transformar esse aprendizado em uma regra confiável.</p>
-
-        <p>A IA continua existindo para os casos novos ou duvidosos. Mas o custo cai, a velocidade aumenta e a confiança melhora.</p>
-
-        <p>Esse raciocínio vale para muito mais do que despesas. Vale para cobrança, atendimento, conciliação, triagem de solicitações e inúmeras rotinas empresariais.</p>
-
-        <h3>4. Na cobrança, o conhecimento do negócio é ainda mais importante</h3>
-        <p>Cobrança não é apenas enviar mensagem para quem está devendo. É decidir quem deve ser abordado, por qual canal, em que momento, com qual oferta e respeitando quais restrições.</p>
-
-        <p>Uma solução com IA pode ajudar a identificar padrões, organizar históricos, sugerir ações digitais ou resumir uma carteira. Mas somente alguém que conhece a operação consegue fazer as perguntas certas:</p>
-        <ul>
-          <li>Um contato recente foi realmente com a pessoa responsável?</li>
-          <li>Vale insistir em ligação ou migrar para canal digital?</li>
-          <li>A dívida está no nível de cliente, contrato ou fatura?</li>
-          <li>Existe alguma restrição comercial, jurídica ou regulatória?</li>
-          <li>A estratégia reduz custo sem piorar recuperação?</li>
-        </ul>
-
-        <p>Sem essas perguntas, a IA corre o risco de produzir respostas bonitas, mas inadequadas para a realidade.</p>
-
-        <h3>5. O profissional de negócio passa a ter um novo papel</h3>
-        <p>Durante muito tempo, o profissional de negócio dependia de alguém técnico para transformar suas ideias em sistemas. Agora, ferramentas de IA ajudam a reduzir essa distância.</p>
-
-        <p>Isso não significa que qualquer pessoa deva colocar uma automação crítica em produção sem segurança. Significa que quem conhece o problema pode participar muito mais da construção da solução:</p>
-        <ul>
-          <li>Descrever regras com clareza;</li>
-          <li>Criar protótipos;</li>
-          <li>Especificar necessidades;</li>
-          <li>Testar hipóteses;</li>
-          <li>Identificar riscos;</li>
-          <li>Validar se a resposta realmente faz sentido para o processo.</li>
-        </ul>
-
-        <p>O conhecimento de negócio deixa de ser apenas uma fonte de requisitos e passa a ser parte ativa do desenvolvimento.</p>
-
-        <h3>6. Agentes precisam de limite, memória e supervisão</h3>
-        <p>Um agente útil em ambiente empresarial precisa de três coisas fundamentais.</p>
-
-        <h4>Limite</h4>
-        <p>Ele precisa saber até onde pode ir. Consultar informações e preparar uma recomendação é diferente de realizar uma ação financeira ou alterar uma regra crítica.</p>
-
-        <h4>Memória</h4>
-        <p>Ele precisa registrar decisões, classificações confirmadas, regras aprovadas e aprendizados anteriores. Sem memória, repete dúvidas e erros.</p>
-
-        <h4>Supervisão</h4>
-        <p>Ele precisa permitir que uma pessoa revise decisões importantes, corrija resultados e identifique quando a automação não deve prosseguir.</p>
-
-        <p>A melhor experiência não é uma IA que “faz tudo sozinha”. É uma IA que ajuda muito, aprende com o uso e mantém o ser humano responsável pelas decisões que realmente importam.</p>
-
-        <h3>7. O que estou aprendendo com essa mudança</h3>
-        <p>Quanto mais estudo e construo soluções com IA, mais percebo que minha experiência anterior não perdeu valor. Ela ganhou uma nova utilidade.</p>
-
-        <p>Conhecer cobrança, dados, relatórios, regras, exceções e impactos financeiros é justamente o que permite imaginar agentes úteis, identificar riscos e não cair na tentação de automatizar processos mal compreendidos.</p>
-
-        <p>A tecnologia abre possibilidades novas. Mas ela não inventa o contexto do negócio. Esse contexto vem das pessoas que viveram o problema, entenderam suas consequências e sabem o que uma boa solução precisa entregar.</p>
-
-        <h3>8. Conclusão</h3>
-        <p>A inteligência artificial pode transformar a forma como empresas analisam dados, automatizam rotinas e tomam decisões. Mas ela não elimina a importância de quem conhece profundamente o trabalho.</p>
-
-        <p>O futuro não pertence apenas a quem sabe programar ou apenas a quem entende de negócio. Ele pertence a quem consegue unir os dois mundos: compreender problemas reais e usar tecnologia para resolvê-los com responsabilidade.</p>
-
-        <p>Para mim, essa é a principal mudança: sair de alguém que apenas analisa processos para alguém capaz de ajudar a construir sistemas que aprendem, orientam e melhoram esses processos ao longo do tempo.</p>
-
-        <p><strong>E você: qual conhecimento da sua rotina poderia se transformar em uma solução inteligente sem perder o controle humano?</strong></p>
-      </article>
-
-      <article class="post">
-        <h2>Copilot Studio — Como profissionais operacionais podem revolucionar suas áreas com IA (mesmo sem saber programar)</h2>
-        <small>por: Filipe Guardia Cano Batista • Publicado em 25/11/2025</small>
-
-        <div class="tags">
-          <span class="tag">Tecnologia</span>
-          <span class="tag">IA</span>
-          <span class="tag">Operações</span>
+        <div class="card-grid">
+          <article class="article-card">
+            <div class="card-visual" aria-hidden="true"><span class="card-symbol">PIX</span></div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-category">Cobrança & Crédito</span>
+                <time datetime="2025-11-25">25 nov 2025</time>
+              </div>
+              <h3>Pix Parcelado — A Transformação Silenciosa que Pode Mudar o Crédito no Brasil</h3>
+              <p>Como uma nova lógica de parcelamento pode redistribuir risco, ampliar o acesso ao crédito e transformar a renegociação.</p>
+              <a class="card-link" href="artigos/pix-parcelado.html">Ler artigo completo</a>
+            </div>
+          </article>
         </div>
-
-        <p>Nos últimos anos, muita gente falou sobre transformação digital. Mas, na prática, quase toda transformação dependia de uma área: <strong>TI</strong>. E isso criava um gargalo inevitável: projetos demorados, backlog infinito, prioridades que mudam, pequenas melhorias que nunca saem do papel.</p>
-
-        <p>Foi nesse contexto que surgiu uma das mudanças mais silenciosas — e poderosas — dentro das empresas: o <strong>Microsoft Copilot Studio</strong>.</p>
-
-        <p>Ele coloca automação, inteligência artificial e criação de fluxos complexos nas mãos de profissionais operacionais, sem exigir programação. E quando a operação ganha autonomia, tudo muda.</p>
-
-        <h3>1. O poder volta para quem está no dia a dia</h3>
-        <p>Quem trabalha em áreas como cobrança, crédito, financeiro, atendimento, backoffice, logística e operações sempre soube exatamente onde estão as falhas, exceções, dores do cliente, gargalos, tarefas repetitivas e regras “não documentadas” que regem o fluxo real.</p>
-
-        <p>Mas essas pessoas quase nunca tinham autonomia para construir soluções. Dependiam totalmente da TI.</p>
-
-        <p>Com o Copilot Studio, profissionais operacionais podem criar bots, automações, fluxos inteligentes, integrações e até agentes com IA usando apenas o conhecimento de negócio — sem escrever código, sem esperar projetos longos, sem “entrar na fila” de desenvolvimento.</p>
-
-        <h3>2. O que dá para fazer (de verdade) com o Copilot Studio</h3>
-        <ul>
-          <li>Criar assistentes inteligentes que respondem dúvidas sobre processos internos;</li>
-          <li>Automatizar tarefas repetitivas de consulta, conferência e cadastro;</li>
-          <li>Integrar sistemas sem precisar desenvolver código do zero;</li>
-          <li>Criar fluxos de aprovação com regras claras;</li>
-          <li>Consultar bases internas usando IA para interpretar textos e dados;</li>
-          <li>Construir bots que atendem clientes e colaboradores em múltiplos canais;</li>
-          <li>Criar agentes que executam tarefas baseadas em regras de negócio;</li>
-          <li>Orquestrar processos complexos que antes exigiam vários sistemas e pessoas.</li>
-        </ul>
-
-        <p>Tudo isso usando prompts, conectores, regras configuráveis e, principalmente, o conhecimento que o profissional já tem da operação.</p>
-
-        <h3>3. Por que isso empodera as equipes operacionais</h3>
-        <p>Antes, a operação era vista apenas como “usuária final”. Agora ela se torna <strong>criadora de soluções</strong>.</p>
-
-        <p>Isso significa:</p>
-        <ul>
-          <li>Pequenas automações deixam de depender da TI;</li>
-          <li>Ajustes que levavam meses passam a ser feitos em dias, às vezes horas;</li>
-          <li>O retrabalho diminui, porque quem constrói conhece o processo;</li>
-          <li>Os custos operacionais caem, já que boa parte das tarefas repetitivas é automatizada;</li>
-          <li>A TI passa a focar em temas mais estratégicos, segurança e governança.</li>
-        </ul>
-
-        <h3>4. Exemplos práticos dentro das empresas</h3>
-
-        <h4>Cobrança</h4>
-        <ul>
-          <li>Assistentes de negociação automática que apresentam propostas conforme o perfil do cliente;</li>
-          <li>Bots que explicam faturas, acordos e condições sem intervenção humana;</li>
-          <li>Fluxos inteligentes que escolhem o melhor canal e momento para contato;</li>
-          <li>Agentes que priorizam carteiras com base em probabilidade de pagamento.</li>
-        </ul>
-
-        <h4>Financeiro</h4>
-        <ul>
-          <li>Conferência automática de pagamentos;</li>
-          <li>Alertas para divergências antes que virem problemas maiores;</li>
-          <li>Fluxos de aprovação integrados ao e-mail, Teams ou outros canais.</li>
-        </ul>
-
-        <h4>Atendimento</h4>
-        <ul>
-          <li>Bots que resolvem grande parte das demandas simples (segunda via, status, dúvidas padrão);</li>
-          <li>Classificação automática de chamados por tema, urgência e sentimento;</li>
-          <li>Encaminhamento inteligente para o time certo.</li>
-        </ul>
-
-        <h4>Backoffice e operações</h4>
-        <ul>
-          <li>Automação de tarefas manuais de conferência e registro;</li>
-          <li>Classificação automática de solicitações internas;</li>
-          <li>Extração de dados de documentos.</li>
-        </ul>
-
-        <h3>5. O impacto organizacional</h3>
-        <p>Quando a operação ganha autonomia para criar, ocorre uma mudança estrutural:</p>
-        <ul>
-          <li>As empresas ficam mais ágeis;</li>
-          <li>Pequenas melhorias deixam de travar no backlog;</li>
-          <li>A inovação passa a surgir de baixo para cima;</li>
-          <li>A TI vira parceira estratégica, não gargalo;</li>
-          <li>A cultura muda: pessoas comuns passam a criar soluções extraordinárias.</li>
-        </ul>
-
-        <h3>6. Por que isso é especialmente poderoso na cobrança</h3>
-        <p>Cobrança é uma área com alto volume, alta repetição, muita variação de cenário, muitas regras e impacto direto no caixa.</p>
-
-        <p>Com Copilot Studio, é possível:</p>
-        <ul>
-          <li>Criar assistentes específicos de recuperação de crédito;</li>
-          <li>Automatizar contatos em múltiplos canais;</li>
-          <li>Montar fluxos inteligentes de renegociação;</li>
-          <li>Integrar dados de diferentes sistemas sem grandes projetos;</li>
-          <li>Identificar padrões de inadimplência e agir de forma preventiva.</li>
-        </ul>
-
-        <h3>7. A chave: conhecimento do negócio</h3>
-        <p>O Copilot Studio não é sobre tecnologia em si. É sobre dar ferramentas para quem conhece o negócio transformar esse conhecimento em automação.</p>
-
-        <p>Analistas, especialistas, supervisores e operadores experientes passam a ser capazes de desenhar fluxos, testar hipóteses, automatizar etapas e melhorar continuamente os processos.</p>
-
-        <h3>8. Conclusão — A revolução não está só na IA, mas em quem passa a controlá-la</h3>
-        <p>O Copilot Studio democratiza a inovação dentro das empresas. Ele tira o poder exclusivo da TI e distribui para a operação. Reduz dependências, elimina gargalos e acelera transformações.</p>
-
-        <p>Mais do que uma ferramenta de IA, ele é um instrumento para transformar profissionais operacionais em <strong>construtores de soluções</strong>.</p>
-
-        <p><strong>E você, já pensou quais processos da sua área poderiam ser reinventados com IA nas mãos de quem vive o dia a dia?</strong></p>
-      </article>
+      </div>
     </section>
 
+    <section class="section" id="tecnologia" aria-labelledby="tecnologia-titulo">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Sistemas, automação e trabalho</p>
+            <h2 id="tecnologia-titulo">Tecnologia & IA</h2>
+          </div>
+          <p>O que muda quando profissionais de negócio passam a construir, orientar e supervisionar soluções inteligentes.</p>
+        </div>
+
+        <div class="card-grid">
+          <article class="article-card" id="artigo-da-planilha-ao-agente">
+            <div class="card-visual" aria-hidden="true"><span class="card-symbol">IA</span></div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-category">Inteligência Artificial</span>
+                <time datetime="2026-05-22">22 maio 2026</time>
+              </div>
+              <h3>Da planilha ao agente: por que a IA não substitui quem conhece o negócio</h3>
+              <p>A melhor automação não elimina o especialista: transforma seu conhecimento em regras, decisões e sistemas melhores.</p>
+              <a class="card-link" href="artigos/da-planilha-ao-agente.html">Ler artigo completo</a>
+            </div>
+          </article>
+
+          <article class="article-card">
+            <div class="card-visual" aria-hidden="true"><span class="card-symbol">CS</span></div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-category">Tecnologia & IA</span>
+                <time datetime="2025-11-25">25 nov 2025</time>
+              </div>
+              <h3>Copilot Studio — Como profissionais operacionais podem revolucionar suas áreas com IA</h3>
+              <p>Quando quem vive o processo ganha ferramentas para criar automações, a operação deixa de ser apenas usuária e passa a construir soluções.</p>
+              <a class="card-link" href="artigos/copilot-studio.html">Ler artigo completo</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="newsletter" aria-labelledby="newsletter-titulo">
+      <div class="newsletter">
+        <div>
+          <h2 id="newsletter-titulo">Receba os próximos artigos</h2>
+          <p>Conteúdos sobre cobrança, crédito, tecnologia, inteligência artificial e mercado. Sem spam.</p>
+        </div>
+        <form action="https://formspree.io/f/mjkdlljg" method="POST">
+          <label for="email" style="position:absolute;left:-9999px;">Seu melhor e-mail</label>
+          <input id="email" type="email" name="email" placeholder="Seu melhor e-mail" autocomplete="email" required />
+          <button type="submit">Quero receber</button>
+        </form>
+      </div>
+    </section>
   </main>
 
-  <footer>
-    © 2025 • Blog Filipe Guardia
+  <footer class="site-footer">
+    <div class="footer-shell">
+      <strong>Blog do Filipe Guardia</strong>
+      <span>© 2026 • Ideias sobre cobrança, tecnologia e mercado.</span>
+    </div>
   </footer>
+
+  <script>
+    const legacyLinks = {
+      "#da-planilha-ao-agente": "artigos/da-planilha-ao-agente.html"
+    };
+    if (legacyLinks[window.location.hash]) {
+      window.location.replace(legacyLinks[window.location.hash]);
+    }
+  </script>
 </body>
 </html>
