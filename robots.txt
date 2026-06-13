@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://filipegcb.github.io/blog-filipe-guardia/sitemap.xml
