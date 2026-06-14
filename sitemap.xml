@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://filipegcb.github.io/blog-filipe-guardia/</loc></url>
+  <url><loc>https://filipegcb.github.io/blog-filipe-guardia/home.html</loc></url>
   <url><loc>https://filipegcb.github.io/blog-filipe-guardia/sobre.html</loc></url>
   <url><loc>https://filipegcb.github.io/blog-filipe-guardia/projetos.html</loc></url>
   <url><loc>https://filipegcb.github.io/blog-filipe-guardia/contato.html</loc></url>
+  <url><loc>https://filipegcb.github.io/blog-filipe-guardia/artigos/software-em-torno-de-agentes.html</loc></url>
   <url><loc>https://filipegcb.github.io/blog-filipe-guardia/artigos/ia-nao-comeca-no-prompt.html</loc></url>
   <url><loc>https://filipegcb.github.io/blog-filipe-guardia/artigos/quando-a-ia-vira-colega-de-trabalho.html</loc></url>
   <url><loc>https://filipegcb.github.io/blog-filipe-guardia/artigos/da-planilha-ao-agente.html</loc></url>
