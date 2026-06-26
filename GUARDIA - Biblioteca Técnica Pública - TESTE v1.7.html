@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Biblioteca técnica pública do GUARD.IA para apresentações HTML: layout 16:9, CSS, SVG, ELK, fluxogramas, contenção visual de texto e QA visual com Playwright.">
+<title>GUARD.IA — Biblioteca Técnica de Apresentações HTML</title>
+<style>
+:root{
+  --vivo:#660099;--vivo2:#8f1ab1;--violet:#bd4aff;--ink:#211526;--muted:#6f6374;
+  --bg:#f7f4f8;--card:#fff;--line:#e7dce9;--ok:#147a4b;--warn:#a15800;--bad:#b42318;
+  --code:#160d1b;--code-ink:#f7effa;--r:22px;--shadow:0 18px 50px rgba(62,0,83,.09)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{padding:58px 28px 46px;background:
+radial-gradient(circle at 83% 18%,rgba(189,74,255,.35),transparent 28%),
+linear-gradient(135deg,#2b003d 0%,#660099 56%,#8f1ab1 100%);color:#fff}
+.wrap{max-width:1180px;margin:auto}.eyebrow{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.82}
+h1{font-size:clamp(40px,6vw,68px);line-height:.98;letter-spacing:-.055em;margin:18px 0 18px;max-width:980px}
+.lead{font-size:21px;line-height:1.5;max-width:920px;color:#f1e8f6}.meta{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px}
+.pill{padding:9px 13px;border:1px solid rgba(255,255,255,.25);border-radius:999px;background:rgba(255,255,255,.08);font-size:13px;font-weight:700}
+main{padding:32px 28px 70px}.notice{background:#fff;border:1px solid var(--line);border-left:6px solid var(--vivo);border-radius:18px;padding:20px 22px;box-shadow:var(--shadow);margin-bottom:24px}
+.search{position:sticky;top:0;z-index:5;padding:14px 0;background:linear-gradient(var(--bg) 75%,rgba(247,244,248,0))}
+.search input{width:100%;padding:15px 18px;border-radius:16px;border:1px solid #d9cbdc;background:#fff;font-size:16px;outline:none;box-shadow:0 8px 24px rgba(62,0,83,.06)}
+.index{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:12px 0 30px}
+.index div{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;font-size:14px}
+section.recipe{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin:18px 0;box-shadow:var(--shadow)}
+section.recipe[hidden]{display:none}.id{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--vivo);font-weight:900;font-size:13px;letter-spacing:.04em}
+h2{font-size:30px;line-height:1.1;margin:8px 0 12px;letter-spacing:-.03em}h3{font-size:19px;margin:24px 0 8px}
+p,li{line-height:1.58}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.mini{border:1px solid var(--line);border-radius:16px;padding:16px;background:#fcfafc}
+.ok{border-left:5px solid var(--ok)}.warn{border-left:5px solid var(--warn)}.bad{border-left:5px solid var(--bad)}
+code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+pre{background:var(--code);color:var(--code-ink);padding:19px;border-radius:17px;overflow:auto;line-height:1.48;font-size:13px;white-space:pre}
+.tag{display:inline-block;padding:5px 9px;border-radius:999px;background:#f0e5f4;color:#5a006e;font-size:12px;font-weight:800;margin:2px 4px 2px 0}
+table{width:100%;border-collapse:collapse;margin-top:12px}th,td{text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:12px 10px}th{color:var(--vivo)}
+footer{padding:26px 28px;background:#2b003d;color:#e9dced;text-align:center;font-size:13px}
+@media(max-width:700px){header{padding-top:40px}section.recipe{padding:20px}h2{font-size:25px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Fonte pública de conhecimento técnico</div>
+    <h1>GUARD.IA — Biblioteca Técnica de Apresentações HTML</h1>
+    <p class="lead">Padrões reutilizáveis para composição 16:9, HTML/CSS, SVG, ELK, fluxogramas, contenção visual de texto e revisão visual iterativa com Playwright.</p>
+    <div class="meta">
+      <span class="pill">SOURCE_ID · GUARDIA_TECH_LIBRARY_V1_7</span>
+      <span class="pill">Referência técnica, não motor executável</span>
+      <span class="pill">Sem dados internos</span>
+      <span class="pill">HTML estático autocontido</span>
+    </div>
+  </div>
+</header>
+
+<main><div class="wrap">
+  <div class="notice">
+    <strong>Regra de autoridade.</strong> Esta página ensina técnicas e padrões. O Motor Visual anexado continua sendo a fonte oficial do código executável, da marca, dos componentes e das validações. O agente não deve reconstruir o Motor copiando trechos desta página.
+  </div>
+
+  <div class="search"><input id="q" type="search" placeholder="Filtrar por ID, técnica ou problema: ELK, overflow, setas, Playwright..."></div>
+
+  <div class="index">
+    <div><b>BASE_SLIDE_16_9_V1</b><br>Canvas, área útil, margens e grid.</div>
+    <div><b>VISUAL_HIERARCHY_V1</b><br>Título, mensagem, foco e densidade.</div>
+    <div><b>TEXT_CONTAINMENT_VISUAL_V2</b><br>Texto dentro das caixas sem validar conteúdo.</div>
+    <div><b>FLOW_SPEC_ELK_SVG_V2</b><br>Especificação, layout e desenho premium.</div>
+    <div><b>CONNECTOR_INTEGRITY_V1</b><br>Setas, portas, rótulos e loops.</div>
+    <div><b>PAGE_FIT_GATE_V2</b><br>Decisão de dividir antes de comprimir.</div>
+    <div><b>PLAYWRIGHT_VISUAL_LOOP_V2</b><br>Renderizar, criticar, corrigir e repetir.</div>
+    <div><b>VISUAL_CRITIQUE_RUBRIC_V1</b><br>Rubrica visual separada da validação textual.</div>
+  </div>
+
+  <section class="recipe" data-search="base slide 16:9 canvas grid margem viewport">
+    <div class="id">BASE_SLIDE_16_9_V1</div>
+    <h2>Base determinística para página 16:9</h2>
+    <p>Todo slide deve partir de um canvas fixo e de uma área útil explícita. Não posicione conteúdo em relação ao navegador; posicione em relação ao slide.</p>
+<pre>&lt;section class="slide" data-title="Título do slide"&gt;
+  &lt;header class="slide-header"&gt;...&lt;/header&gt;
+  &lt;main class="slide-content"&gt;...&lt;/main&gt;
+  &lt;footer class="slide-footer"&gt;...&lt;/footer&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+.slide{
+  position:relative;
+  width:1280px;
+  height:720px;
+  overflow:hidden;
+  background:#fff;
+}
+.slide-content{
+  position:absolute;
+  inset:116px 64px 54px 64px;
+  display:grid;
+  gap:20px;
+  min-width:0;
+  min-height:0;
+}
+&lt;/style&gt;</pre>
+    <div class="grid">
+      <div class="mini ok"><b>Obrigatório</b><br>Área útil explícita, alinhamentos comuns e espaçamento previsível.</div>
+      <div class="mini bad"><b>Proibido</b><br>Elementos soltos com coordenadas independentes sem sistema de grid.</div>
+    </div>
+  </section>
+
+  <section class="recipe" data-search="hierarquia visual título mensagem foco densidade executivo">
+    <div class="id">VISUAL_HIERARCHY_V1</div>
+    <h2>Hierarquia visual antes da decoração</h2>
+    <p>O slide deve responder em poucos segundos: qual é a mensagem, onde começa a leitura e qual elemento merece atenção.</p>
+    <table>
+      <tr><th>Nível</th><th>Função</th><th>Regra</th></tr>
+      <tr><td>1</td><td>Título conclusivo ou funcional</td><td>Uma linha sempre que possível.</td></tr>
+      <tr><td>2</td><td>Visual principal</td><td>Ocupa a maior área e conduz a leitura.</td></tr>
+      <tr><td>3</td><td>Contexto ou evidência</td><td>Cards, notas ou legenda curta.</td></tr>
+      <tr><td>4</td><td>Metadado</td><td>Rodapé e fonte discretos.</td></tr>
+    </table>
+    <p><span class="tag">clareza</span><span class="tag">ritmo</span><span class="tag">espaço negativo</span><span class="tag">contraste</span></p>
+  </section>
+
+  <section class="recipe" data-search="texto caixa overflow cortar line clamp shrink font containment">
+    <div class="id">TEXT_CONTAINMENT_VISUAL_V2</div>
+    <h2>Conter texto visualmente sem validar sua semântica</h2>
+    <p>Nesta etapa, o sistema verifica apenas se o texto está legível, contido e bem distribuído. Ortografia, fatos, números e redação já devem ter sido aprovados antes.</p>
+<pre>function fitTextVisual(el, options = {}) {
+  const min = options.minFontPx ?? 16;
+  const max = options.maxFontPx ?? parseFloat(getComputedStyle(el).fontSize);
+  let size = max;
+  el.style.fontSize = `${size}px`;
+  el.style.overflow = "hidden";
+  el.style.overflowWrap = "anywhere";
+
+  while (
+    size &gt; min &&
+    (el.scrollHeight &gt; el.clientHeight + 1 ||
+     el.scrollWidth &gt; el.clientWidth + 1)
+  ) {
+    size -= 0.5;
+    el.style.fontSize = `${size}px`;
+  }
+
+  const failed =
+    el.scrollHeight &gt; el.clientHeight + 1 ||
+    el.scrollWidth &gt; el.clientWidth + 1;
+
+  el.dataset.textFit = failed ? "fail" : "ok";
+  return !failed;
+}</pre>
+    <div class="grid">
+      <div class="mini ok"><b>Verificar</b><br>Overflow, corte, linha órfã, título espremido, contraste e tamanho mínimo.</div>
+      <div class="mini warn"><b>Não verificar aqui</b><br>Se o texto está correto, completo, verdadeiro ou bem redigido.</div>
+      <div class="mini bad"><b>Se falhar</b><br>Redimensionar a caixa, mudar composição ou dividir a página. Nunca reduzir indefinidamente.</div>
+    </div>
+  </section>
+
+  <section class="recipe" data-search="fluxograma elk svg mermaid flow spec nodes edges layout premium">
+    <div class="id">FLOW_SPEC_ELK_SVG_V2</div>
+    <h2>LLM define lógica; ELK posiciona; SVG Vivo desenha</h2>
+    <p>Mermaid é adequado para validar a lógica. No HTML final, o fluxo aprovado deve ser convertido em especificação estruturada. O modelo não calcula coordenadas nem desenha conectores manualmente.</p>
+<pre>&lt;script type="application/json" class="vivo-flow-spec"&gt;
+{
+  "id":"fluxo-demanda",
+  "direction":"RIGHT",
+  "availableWidth":1120,
+  "availableHeight":470,
+  "nodes":[
+    {"id":"n1","type":"step","number":"01","title":"Registrar demanda","subtitle":"Entrada unificada","phase":"entrada"},
+    {"id":"n2","type":"decision","title":"Já existe?","phase":"triagem"},
+    {"id":"n3","type":"step","title":"Vincular e comunicar","phase":"triagem"},
+    {"id":"n4","type":"step","title":"Analisar dados","phase":"analise"}
+  ],
+  "edges":[
+    {"from":"n1","to":"n2"},
+    {"from":"n2","to":"n3","label":"Sim"},
+    {"from":"n2","to":"n4","label":"Não"}
+  ]
+}
+&lt;/script&gt;</pre>
+<pre>// Responsabilidades do pipeline
+// 1. LLM: produzir nodes, edges, tipos, fases e rótulos.
+// 2. ELK: calcular x, y, largura, altura e rotas ortogonais.
+// 3. SVG renderer: aplicar cards, tipografia, cores, sombras e marcadores.
+// 4. Playwright: verificar o resultado renderizado.
+// 5. LLM: criticar screenshot e corrigir a especificação ou composição.</pre>
+    <div class="mini bad"><b>Não usar:</b> divs absolutas + linhas CSS + setas soltas + coordenadas inventadas pelo modelo.</div>
+  </section>
+
+  <section class="recipe" data-search="setas conectores portas edges labels loops cruzar texto">
+    <div class="id">CONNECTOR_INTEGRITY_V1</div>
+    <h2>Integridade visual de setas e conectores</h2>
+    <ul>
+      <li>A seta deve iniciar e terminar em portas reais do nó, nunca no vazio.</li>
+      <li>Conector não atravessa texto, ícone, número de etapa ou rótulo.</li>
+      <li>Rótulos “Sim” e “Não” ficam próximos do primeiro segmento da ramificação.</li>
+      <li>Loops retornam pela periferia do diagrama e deixam evidente o ponto de retorno.</li>
+      <li>Cruzamentos são bloqueadores; se inevitáveis, a página precisa ser recomposta ou dividida.</li>
+      <li>Espessura, cor, curvatura e ponta da seta devem ser consistentes.</li>
+    </ul>
+<pre>const edgeStyle = {
+  stroke: "#6f4a7b",
+  strokeWidth: 2.5,
+  cornerRadius: 12,
+  markerEnd: "url(#arrow-vivo)",
+  labelOffset: 10
+};</pre>
+  </section>
+
+  <section class="recipe" data-search="page fit dividir slide densidade caber 16:9 legibilidade">
+    <div class="id">PAGE_FIT_GATE_V2</div>
+    <h2>Dividir antes de comprimir</h2>
+    <p>O gate de página ocorre antes do desenho final. O objetivo não é “fazer caber”; é preservar leitura e hierarquia.</p>
+    <div class="grid">
+      <div class="mini"><b>Fluxo linear</b><br>Até 6 macroetapas por página.</div>
+      <div class="mini"><b>Fluxo detalhado</b><br>Até 8 nós e 2 decisões como referência.</div>
+      <div class="mini"><b>Ramificações</b><br>Até 4 destinos visíveis sem perda de leitura.</div>
+      <div class="mini"><b>Falha</b><br><code>data-flow-fit="fail"</code> exige nova paginação.</div>
+    </div>
+    <p>Listas, critérios, inventários e classificações devem virar cards, matriz, tabela ou legenda; não devem ser conectados como se fossem etapas.</p>
+  </section>
+
+  <section class="recipe" data-search="playwright loop visual screenshot critique correction retry browser">
+    <div class="id">PLAYWRIGHT_VISUAL_LOOP_V2</div>
+    <h2>Loop visual obrigatório: renderizar → criticar → corrigir → repetir</h2>
+    <p>Playwright não é apenas um teste final. É parte do processo de design. O HTML não pode ser chamado de final enquanto o agente não conseguir visualizar todos os slides e concluir uma revisão visual limpa.</p>
+<pre>LOOP:
+  1. Abrir o HTML no Chromium.
+  2. Aguardar fontes, scripts, ELK, SVG e animações estabilizarem.
+  3. Capturar screenshot de cada slide em 1280×720.
+  4. Comparar screenshots com o contrato visual aprovado.
+  5. Criticar somente o visual:
+     - composição, hierarquia, alinhamento e espaçamento;
+     - caixas, setas, rótulos, loops e continuidade;
+     - conteúdo visual presente e conectado conforme a estrutura aprovada;
+     - cortes, overflow, sobreposição, contraste e legibilidade;
+     - equilíbrio do canvas e consistência entre slides.
+  6. Registrar defeitos objetivos.
+  7. Corrigir HTML, CSS, SVG ou flow-spec.
+  8. Reabrir e repetir.
+  9. Encerrar apenas após 2 passagens consecutivas sem bloqueadores visuais.</pre>
+    <div class="grid">
+      <div class="mini ok"><b>Texto: validação visual</b><br>Dentro da caixa, legível, sem corte e com boa quebra.</div>
+      <div class="mini warn"><b>Texto: fora desta etapa</b><br>Fatos, ortografia, números, completude e redação.</div>
+      <div class="mini bad"><b>Playwright indisponível</b><br>Não liberar como final. Marcar <code>rascunho_sem_visualizacao</code>.</div>
+    </div>
+  </section>
+
+  <section class="recipe" data-search="rubrica crítica visual slide design arrows boxes layout completeness">
+    <div class="id">VISUAL_CRITIQUE_RUBRIC_V1</div>
+    <h2>Rubrica para a crítica visual da LLM</h2>
+    <table>
+      <tr><th>Dimensão</th><th>Pergunta visual</th><th>Bloqueador</th></tr>
+      <tr><td>Completude estrutural</td><td>Todos os elementos e relações aprovados aparecem?</td><td>Etapa, ramo, card ou conexão ausente.</td></tr>
+      <tr><td>Fluxo de leitura</td><td>O olhar entende início, sequência, decisão e saída?</td><td>Direção ambígua ou retorno obscuro.</td></tr>
+      <tr><td>Caixas</td><td>Dimensões, alinhamentos e espaçamentos são consistentes?</td><td>Caixas desalinhadas ou texto escapando.</td></tr>
+      <tr><td>Setas</td><td>Conectam as caixas corretas e sem cruzar conteúdo?</td><td>Seta no vazio, cruzamento ou rótulo solto.</td></tr>
+      <tr><td>Canvas</td><td>O conteúdo ocupa bem a página 16:9?</td><td>Corte, excesso de vazio ou miniaturização.</td></tr>
+      <tr><td>Hierarquia</td><td>Título, visual principal e apoios têm pesos corretos?</td><td>Mensagem principal sem destaque.</td></tr>
+      <tr><td>Consistência</td><td>Componentes equivalentes usam o mesmo padrão?</td><td>Variação arbitrária de fonte, raio, cor ou seta.</td></tr>
+    </table>
+  </section>
+
+  <section class="recipe" data-search="contrato visual storyboard expected elements expected edges qa">
+    <div class="id">VISUAL_CONTRACT_V1</div>
+    <h2>Contrato visual para comparar pedido e screenshot</h2>
+    <p>Antes da geração, cada slide deve ter um contrato visual curto. Ele permite verificar se o design representa a estrutura aprovada sem revalidar a redação.</p>
+<pre>{
+  "slide": 3,
+  "purpose": "Mostrar dados, classificação e priorização",
+  "expectedElements": [
+    "fluxo central com 5 nós",
+    "decisão Dados disponíveis?",
+    "card lateral com quatro frentes",
+    "painel lateral com critérios"
+  ],
+  "expectedEdges": [
+    "Verificar dados -> decisão",
+    "Não -> dependência Engenharia",
+    "Sim -> classificar e direcionar"
+  ],
+  "layoutIntent": "fluxo central + dois painéis laterais",
+  "visualPriority": "decisão e direcionamento"
+}</pre>
+  </section>
+
+  <section class="recipe" data-search="proibido anti patterns html slides">
+    <div class="id">PROHIBITED_PATTERNS_V1</div>
+    <h2>Padrões proibidos</h2>
+    <ul>
+      <li>Desenhar fluxograma complexo com caixas e setas posicionadas manualmente.</li>
+      <li>Reduzir fonte indefinidamente para evitar nova página.</li>
+      <li>Usar PNG/Base64 do Mermaid como visual final.</li>
+      <li>Declarar “final” sem conseguir abrir e visualizar cada slide.</li>
+      <li>Fazer apenas checagem de DOM e considerar o design aprovado.</li>
+      <li>Validar conteúdo textual dentro do loop visual e misturar tipos de QA.</li>
+      <li>Ignorar regressões provocadas por uma correção; toda alteração exige nova captura.</li>
+    </ul>
+  </section>
+
+  <section class="recipe" data-search="como consultar fonte agente copilot knowledge">
+    <div class="id">KNOWLEDGE_USAGE_POLICY_V1</div>
+    <h2>Como o agente deve consultar esta fonte</h2>
+    <p>Consultar quando precisar de técnica, padrão ou diagnóstico de HTML, CSS, SVG, ELK, layout, contenção visual de texto ou QA Playwright. Preferir buscas por IDs únicos, como <code>PLAYWRIGHT_VISUAL_LOOP_V2</code>.</p>
+    <p><b>Não consultar para:</b> substituir instruções permanentes, inventar componente oficial, recuperar logo/ativo interno ou copiar integralmente o Motor Visual.</p>
+  </section>
+</div></main>
+<footer>GUARD.IA · Biblioteca Técnica Pública · Versão 1.7 de teste</footer>
+<script>
+const q=document.getElementById('q');
+const sections=[...document.querySelectorAll('section.recipe')];
+q.addEventListener('input',()=>{
+  const term=q.value.trim().toLowerCase();
+  sections.forEach(s=>{
+    const hay=(s.innerText+' '+(s.dataset.search||'')).toLowerCase();
+    s.hidden=term && !hay.includes(term);
+  });
+});
+</script>
+</body>
+</html>
