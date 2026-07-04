@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Entenda por que o Model Context Protocol é novo como padrão de IA, mas nasceu de uma ideia antiga: padronizar a comunicação entre sistemas." />
+  <meta property="og:title" content="MCP: o USB-C da inteligência artificial | Blog do Filipe Guardia" />
+  <meta property="og:description" content="O MCP não torna a IA mais inteligente sozinho. Seu valor está em padronizar como agentes acessam ferramentas, dados e sistemas." />
+  <meta property="og:type" content="article" />
+  <title>MCP: o USB-C da inteligência artificial | Blog do Filipe Guardia</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body class="article-page">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="../index.html" aria-label="Blog do Filipe Guardia — início">
+        <span class="brand-mark">FG</span>
+        <span class="brand-copy">Blog do Filipe Guardia<small>Cobrança • Tecnologia • Mercado</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Navegação principal">
+        <a href="../index.html">Início</a>
+        <a href="../projetos.html">Projetos</a>
+        <a href="../index.html#artigos">Artigos</a>
+        <a href="../sobre.html">Sobre</a>
+        <a href="../contato.html">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <header class="article-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Trilha de navegação">
+          <a href="../index.html">Início</a><span>›</span><a href="../index.html#tecnologia">Tecnologia &amp; IA</a><span>›</span><span>MCP e integrações de IA</span>
+        </nav>
+        <p class="eyebrow">Produtos, Sistemas &amp; IA</p>
+        <h1>MCP: por que o “USB-C” da inteligência artificial é novo, mas a ideia por trás dele é antiga</h1>
+        <p class="article-deck">O Model Context Protocol ganhou força porque resolve um problema antigo do software: fazer sistemas diferentes conversarem de forma mais padronizada. Mas ele não é mágica, nem substitui arquitetura, segurança ou boas APIs.</p>
+        <div class="article-meta">
+          <span>Filipe Guardia Cano Batista</span>
+          <span>•</span>
+          <time datetime="2026-06-27">27 de junho de 2026</time>
+          <span>•</span>
+          <span>Leitura de 9 min</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="article-layout">
+      <article class="article-content">
+        <p>Quando surgiu o USB-C, muita gente enxergou apenas mais um conector.</p>
+
+        <p>Com o tempo, ficou claro que a ideia era maior: reduzir a bagunça de cabos, padrões e entradas diferentes. Um mesmo tipo de conexão passou a servir para carregar celular, conectar notebook, ligar monitor e integrar vários dispositivos.</p>
+
+        <p>Algo parecido está acontecendo na inteligência artificial.</p>
+
+        <p>Não estamos falando de carregar bateria. Estamos falando de conectar modelos de IA a ferramentas, bancos de dados, documentos, sistemas e serviços.</p>
+
+        <p>Esse padrão se chama <strong>Model Context Protocol</strong>, ou simplesmente <strong>MCP</strong>.</p>
+
+        <h2 id="novo-ou-antigo">1. O MCP é antigo ou novo?</h2>
+        <p>A resposta mais honesta é: <strong>o MCP é novo como protocolo, mas antigo como ideia</strong>.</p>
+
+        <p>Como tecnologia específica, ele é recente. A Anthropic anunciou o MCP publicamente em 25 de novembro de 2024 como um padrão aberto para conectar assistentes de IA aos sistemas onde os dados vivem, como repositórios de conteúdo, ferramentas de negócio e ambientes de desenvolvimento.</p>
+
+        <p>Mas a ideia de padronizar comunicação entre sistemas é muito mais antiga.</p>
+
+        <p>A internet cresceu com protocolos. Bancos de dados usam padrões. E-mails, páginas web, dispositivos, editores de código e APIs existem porque alguém definiu uma forma comum de comunicação.</p>
+
+        <p>O MCP entra nessa mesma família de ideias: em vez de cada ferramenta falar uma língua diferente com cada IA, ele propõe uma forma comum de conexão.</p>
+
+        <h2 id="problema-antes">2. O problema que existia antes</h2>
+        <p>Imagine que você desenvolve um assistente de IA.</p>
+
+        <p>Agora imagine que ele precisa acessar calendário, arquivos, GitHub, banco de dados, sistema financeiro, CRM, e-mail e ferramentas internas.</p>
+
+        <p>Sem um padrão, cada integração precisa ser construída separadamente. Cada ferramenta tem sua API, sua autenticação, seu formato de resposta, suas limitações e seus próprios detalhes técnicos.</p>
+
+        <p>Se amanhã surgir uma nova aplicação de IA, muitas dessas integrações precisam ser adaptadas ou refeitas.</p>
+
+        <p>O resultado é uma enorme quantidade de conectores diferentes, difíceis de manter e difíceis de reaproveitar.</p>
+
+        <h2 id="o-que-e">3. O que é o MCP, em linguagem simples?</h2>
+        <p>O MCP é um padrão aberto que define como uma aplicação de IA pode descobrir e usar ferramentas externas.</p>
+
+        <p>Em vez de cada sistema inventar sua própria forma de integração, todos podem seguir um protocolo comum.</p>
+
+        <p>De forma simplificada, um cliente MCP pode descobrir:</p>
+
+        <ul>
+          <li>quais ferramentas estão disponíveis;</li>
+          <li>quais parâmetros cada ferramenta recebe;</li>
+          <li>quais dados podem ser consultados;</li>
+          <li>como uma ação deve ser chamada;</li>
+          <li>qual resposta volta para o agente.</li>
+        </ul>
+
+        <p>Por isso a comparação com USB-C faz sentido como metáfora. Não é uma equivalência técnica perfeita, mas ajuda a entender o objetivo: reduzir a fragmentação.</p>
+
+        <h2 id="por-que-importa">4. Por que isso importa para quem não é desenvolvedor?</h2>
+        <p>Mesmo quem nunca escreveu código pode sentir essa mudança.</p>
+
+        <p>Hoje, muitos assistentes ainda funcionam como uma conversa isolada. Você pergunta, ele responde, e o trabalho continua fora dali.</p>
+
+        <p>Com protocolos como o MCP, um agente pode deixar de ser apenas um respondedor de perguntas e passar a trabalhar conectado a sistemas reais.</p>
+
+        <p>Ele pode consultar documentos, buscar dados atualizados, chamar uma ferramenta, organizar informações e preparar uma ação para revisão humana.</p>
+
+        <p>Isso não significa que a IA deve sair executando tudo sozinha. Significa que ela passa a ter um caminho técnico mais padronizado para acessar capacidades externas.</p>
+
+        <h2 id="nao-substitui-apis">5. MCP não substitui APIs</h2>
+        <p>Um ponto importante: o MCP não elimina APIs.</p>
+
+        <p>APIs continuam sendo fundamentais para sistemas conversarem. O MCP, na prática, costuma funcionar como uma camada que organiza como agentes de IA descobrem e usam ferramentas que, por baixo, muitas vezes continuam dependendo de APIs, bancos de dados e serviços já existentes.</p>
+
+        <p>Por isso, vender MCP como se ele fosse “a nova API” pode gerar confusão.</p>
+
+        <p>Minha forma preferida de enxergar é esta: <strong>APIs conectam sistemas; MCP ajuda agentes de IA a entender e usar essas conexões de forma padronizada</strong>.</p>
+
+        <h2 id="nao-e-magia">6. MCP não deixa a IA mais inteligente sozinho</h2>
+        <p>Outro exagero comum é tratar o MCP como se ele fosse a revolução inteira da IA.</p>
+
+        <p>Ele não melhora o raciocínio do modelo por si só. Não transforma um modelo fraco em excelente. Não resolve sozinho problemas de segurança, governança ou qualidade.</p>
+
+        <p>O que ele faz é resolver um problema enorme de engenharia: padronizar integrações.</p>
+
+        <p>Isso é menos chamativo do que dizer “a IA ficou inteligente”, mas talvez seja até mais importante para uso real em empresas.</p>
+
+        <p>Porque uma IA isolada pode até responder bem. Mas uma IA conectada, com permissões corretas, dados certos e ferramentas adequadas, pode ajudar a executar trabalho de verdade.</p>
+
+        <h2 id="seguranca">7. Quanto mais conexão, mais segurança precisa existir</h2>
+        <p>Quando um agente ganha acesso a ferramentas, o cuidado precisa aumentar.</p>
+
+        <p>Se ele consegue apenas responder perguntas, o risco é um. Se ele consegue acessar documentos, consultar dados, enviar informações ou executar ações, o risco é outro.</p>
+
+        <p>Por isso, qualquer adoção séria de MCP precisa tratar com atenção temas como autenticação, permissões, aprovação humana, registro de ações, validação de ferramentas e proteção contra instruções maliciosas escondidas em conteúdos externos.</p>
+
+        <p>A própria documentação da OpenAI sobre MCP alerta para riscos como injeção de prompt e uso de servidores MCP de terceiros sem verificação adequada.</p>
+
+        <p>Em outras palavras: conexão sem governança pode ser perigosa.</p>
+
+        <h2 id="aprendizado">8. O que estou aprendendo com esse tema</h2>
+        <p>Quanto mais estudo agentes de IA, menos acredito que a grande transformação esteja apenas nos modelos.</p>
+
+        <p>Modelos melhores importam muito. Mas o salto prático acontece quando eles conseguem operar dentro de um ambiente bem desenhado: com dados, ferramentas, regras, permissões, memória, logs e supervisão.</p>
+
+        <p>O MCP me chamou atenção porque fica exatamente nesse ponto de encontro entre IA e arquitetura de sistemas.</p>
+
+        <p>Ele mostra que o futuro dos agentes não depende só de bons prompts. Depende de bons protocolos, boas integrações e bons controles.</p>
+
+        <h2 id="conclusao">9. Conclusão</h2>
+        <p>O MCP é novo como tecnologia. Mas a necessidade que ele atende é antiga: padronizar comunicação para reduzir complexidade.</p>
+
+        <p>Foi assim com a web, com bancos de dados, com e-mail, com dispositivos e com vários outros padrões que só se tornaram óbvios depois que passaram a funcionar.</p>
+
+        <p>No caso da inteligência artificial, o MCP pode ajudar agentes a conversar melhor com o mundo real dos sistemas.</p>
+
+        <p>Mas ele não é mágica. Não substitui APIs, não elimina arquitetura e não dispensa segurança.</p>
+
+        <p>Seu valor está em criar uma ponte mais comum entre agentes, ferramentas e dados.</p>
+
+        <p>Talvez a próxima grande transformação da IA não seja apenas responder melhor. Talvez seja conectar melhor.</p>
+
+        <p class="article-question"><strong>Se um agente de IA pudesse conversar com todos os sistemas que você usa hoje, qual atividade repetitiva deixaria imediatamente de exigir tantas etapas manuais?</strong></p>
+
+        <h2 id="fontes">Fontes e leitura recomendada</h2>
+        <ul>
+          <li><a href="https://www.anthropic.com/news/model-context-protocol" target="_blank" rel="noopener noreferrer">Anthropic — Introducing the Model Context Protocol</a></li>
+          <li><a href="https://modelcontextprotocol.io/docs/getting-started/intro" target="_blank" rel="noopener noreferrer">Model Context Protocol — documentação oficial</a></li>
+          <li><a href="https://developers.openai.com/api/docs/mcp" target="_blank" rel="noopener noreferrer">OpenAI Developers — Building MCP servers for ChatGPT Apps and API integrations</a></li>
+        </ul>
+
+        <nav class="article-nav" aria-label="Navegação entre artigos">
+          <a href="quando-relatorios-viram-sistemas.html">← Artigo anterior<br />Quando relatórios viram sistemas</a>
+          <a href="../index.html#tecnologia">Todos os artigos<br />Tecnologia &amp; IA →</a>
+        </nav>
+      </article>
+
+      <aside class="article-aside" aria-label="Sumário do artigo">
+        <strong>Neste artigo</strong>
+        <nav>
+          <a href="#novo-ou-antigo">Novo ou antigo?</a>
+          <a href="#problema-antes">Problema anterior</a>
+          <a href="#o-que-e">O que é MCP</a>
+          <a href="#por-que-importa">Por que importa</a>
+          <a href="#nao-substitui-apis">MCP e APIs</a>
+          <a href="#nao-e-magia">Não é magia</a>
+          <a href="#seguranca">Segurança</a>
+          <a href="#aprendizado">Meu aprendizado</a>
+          <a href="#conclusao">Conclusão</a>
+          <a href="#fontes">Fontes</a>
+        </nav>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-shell">
+      <strong>Blog do Filipe Guardia</strong>
+      <span>© 2026 • Ideias sobre cobrança, tecnologia e mercado.</span>
+    </div>
+  </footer>
+</body>
+</html>
