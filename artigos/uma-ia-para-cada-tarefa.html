@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Entenda como roteamento, agentes especializados e modelos diferentes ajudam sistemas de IA a equilibrar qualidade, custo, velocidade, privacidade e risco." />
+  <meta property="og:title" content="Uma IA para cada tarefa | Blog do Filipe Guardia" />
+  <meta property="og:description" content="Entenda como roteamento, agentes especializados e modelos diferentes ajudam sistemas de IA a equilibrar qualidade, custo, velocidade, privacidade e risco." />
+  <meta property="og:type" content="article" />
+  <title>Uma IA para cada tarefa | Blog do Filipe Guardia</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body class="article-page">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="../index.html" aria-label="Blog do Filipe Guardia — início">
+        <span class="brand-mark">FG</span>
+        <span class="brand-copy">Blog do Filipe Guardia<small>Cobrança • Tecnologia • Mercado</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Navegação principal">
+        <a href="../index.html">Início</a>
+        <a href="../projetos.html">Projetos</a>
+        <a href="../index.html#artigos">Artigos</a>
+        <a href="../sobre.html">Sobre</a>
+        <a href="../contato.html">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <header class="article-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Trilha de navegação">
+          <a href="../index.html">Início</a><span>›</span><a href="../index.html#tecnologia">Tecnologia &amp; IA</a><span>›</span><span>Roteamento de IA</span>
+        </nav>
+        <p class="eyebrow">Arquitetura de IA</p>
+        <h1>Uma IA para cada tarefa: por que roteamento importa mais do que escolher um único modelo</h1>
+        <p class="article-deck">Sistemas inteligentes não precisam usar o mesmo modelo para tudo. O desafio é reconhecer a intenção, o risco e a complexidade de cada tarefa para escolher o melhor caminho.</p>
+        <div class="article-meta">
+          <span>Filipe Guardia Cano Batista</span>
+          <span>•</span>
+          <time datetime="2026-07-11">11 de julho de 2026</time>
+          <span>•</span>
+          <span>Leitura de 10 min</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="article-layout">
+      <article class="article-content">
+        <p>Quando alguém começa a usar inteligência artificial com frequência, é natural procurar um único modelo que faça tudo.</p>
+
+        <p>Queremos uma IA que pesquise, programe, escreva, analise documentos, converse, use ferramentas e resolva qualquer tarefa com a mesma qualidade.</p>
+
+        <p>Na prática, porém, os sistemas mais eficientes tendem a seguir outra lógica: <strong>escolher o caminho certo para cada tipo de trabalho</strong>.</p>
+
+        <p>Essa escolha pode envolver modelos diferentes, agentes especializados, ferramentas específicas ou fluxos inteiros. O nome dessa decisão é roteamento.</p>
+
+        <h2 id="o-que-e-roteamento">1. O que é roteamento em sistemas de IA?</h2>
+        <p>Roteamento é o processo de analisar uma solicitação e encaminhá-la para o recurso mais adequado.</p>
+
+        <p>Em um atendimento humano, isso já acontece o tempo todo. Uma dúvida simples vai para a triagem. Um problema técnico vai para um especialista. Uma decisão financeira pode exigir aprovação de outra área.</p>
+
+        <p>Em IA, o princípio é semelhante. O sistema pode decidir:</p>
+
+        <ul>
+          <li>qual modelo deve responder;</li>
+          <li>qual agente especializado deve assumir;</li>
+          <li>quais ferramentas precisam ser liberadas;</li>
+          <li>se a tarefa pode rodar localmente ou exige nuvem;</li>
+          <li>se é necessário pesquisar, executar código ou consultar arquivos;</li>
+          <li>quando escalar para revisão humana.</li>
+        </ul>
+
+        <p>O roteador não precisa resolver o problema inteiro. Ele precisa reconhecer que tipo de problema chegou.</p>
+
+        <h2 id="um-modelo-para-tudo">2. Por que usar um único modelo para tudo pode ser ruim?</h2>
+        <p>Modelos mais capazes costumam lidar melhor com tarefas difíceis. Mas isso não significa que devam ser usados em todas as etapas.</p>
+
+        <p>Uma classificação simples, uma extração de campo ou uma resposta padronizada pode ser executada por um modelo menor, mais rápido e mais barato.</p>
+
+        <p>Já uma análise estratégica, uma pesquisa complexa ou uma alteração grande de código pode exigir um modelo mais forte, mais contexto e mais tempo.</p>
+
+        <p>Usar sempre o modelo mais pesado é parecido com convocar o diretor da empresa para responder cada e-mail operacional. Pode funcionar, mas é caro, lento e desnecessário.</p>
+
+        <p>Usar sempre o modelo mais leve cria o problema oposto: tarefas difíceis recebem menos capacidade do que precisam.</p>
+
+        <p>O roteamento busca equilíbrio entre qualidade, custo, velocidade, privacidade e risco.</p>
+
+        <h2 id="especialistas">3. Modelo diferente não é a única forma de especialização</h2>
+        <p>É possível usar o mesmo modelo em vários agentes e ainda assim obter comportamentos diferentes.</p>
+
+        <p>Um agente pode receber instruções, ferramentas e critérios próprios para pesquisa. Outro pode ser configurado para revisar segurança. Um terceiro pode organizar a resposta final.</p>
+
+        <p>Nesse caso, a especialização não está necessariamente no modelo. Está no contexto e no papel.</p>
+
+        <p>A documentação do OpenAI Agents SDK apresenta dois padrões comuns: um agente gerente que chama especialistas como ferramentas e os handoffs, nos quais um agente de triagem transfere a conversa para o especialista mais adequado.</p>
+
+        <p>Isso mostra que “qual IA respondeu?” pode significar duas coisas diferentes: qual modelo foi usado e qual papel aquele modelo recebeu dentro do sistema.</p>
+
+        <h2 id="roteamento-por-codigo-ou-ia">4. O roteamento deve ser feito por código ou pela própria IA?</h2>
+        <p>As duas opções existem.</p>
+
+        <p><strong>Roteamento por regras ou código</strong> funciona bem quando as categorias são claras. Um pedido com determinado tipo, origem ou palavra-chave pode seguir um caminho previsível.</p>
+
+        <p><strong>Roteamento por modelo</strong> é útil quando a intenção é mais difícil de classificar. A IA interpreta o pedido e escolhe o especialista, a ferramenta ou a estratégia.</p>
+
+        <p>Também é possível combinar os dois. Regras fixas cuidam de limites e situações sensíveis; o modelo decide dentro do espaço permitido.</p>
+
+        <p>Essa combinação costuma ser mais segura do que deixar todas as decisões abertas ou tentar codificar manualmente todas as possibilidades.</p>
+
+        <h2 id="exemplo-pratico">5. Um exemplo prático de roteamento</h2>
+        <p>Imagine um assistente interno que recebe quatro pedidos:</p>
+
+        <ol>
+          <li>“Resuma este documento.”</li>
+          <li>“Compare os resultados e encontre uma possível causa.”</li>
+          <li>“Atualize o sistema e rode os testes.”</li>
+          <li>“Envie a comunicação para todos os clientes.”</li>
+        </ol>
+
+        <p>O primeiro pedido pode exigir apenas leitura e síntese. O segundo precisa de análise e talvez execução de código. O terceiro exige acesso controlado ao repositório e ambiente de testes. O quarto envolve uma ação externa de alto impacto e deve pedir aprovação humana.</p>
+
+        <p>Tratar os quatro pedidos como uma conversa genérica desperdiça capacidade e aumenta risco.</p>
+
+        <p>Um bom roteador identifica intenção, ferramentas necessárias, nível de risco e critério de conclusão antes de iniciar a execução.</p>
+
+        <h2 id="subagentes">6. Onde entram os subagentes?</h2>
+        <p>Subagentes são úteis quando uma tarefa complexa pode ser dividida em partes que exigem focos diferentes.</p>
+
+        <p>Um orquestrador pode pedir para um agente pesquisar, outro analisar riscos, outro revisar coerência e depois combinar os resultados.</p>
+
+        <p>A Anthropic descreve esse padrão como “orchestrator-workers”: um componente central divide dinamicamente o trabalho, delega partes e sintetiza as respostas.</p>
+
+        <p>Mas nem toda tarefa precisa disso. Para atividades simples, adicionar vários agentes pode apenas aumentar custo, latência e confusão.</p>
+
+        <p>O melhor roteamento também sabe quando <strong>não</strong> criar uma equipe de agentes.</p>
+
+        <h2 id="falhas">7. O roteador também pode errar</h2>
+        <p>Um sistema de roteamento cria um novo ponto de decisão. E toda decisão pode falhar.</p>
+
+        <p>O roteador pode enviar uma tarefa difícil para um modelo fraco, interpretar a intenção de forma errada, liberar ferramentas desnecessárias ou criar uma sequência longa demais.</p>
+
+        <p>Por isso, o desempenho precisa ser medido. Alguns sinais importantes são:</p>
+
+        <ul>
+          <li>taxa de encaminhamento correto;</li>
+          <li>qualidade final por categoria;</li>
+          <li>custo e tempo por tarefa;</li>
+          <li>quantidade de escalonamentos;</li>
+          <li>falhas de ferramenta;</li>
+          <li>necessidade de intervenção humana;</li>
+          <li>erros que se repetem no mesmo tipo de pedido.</li>
+        </ul>
+
+        <p>Sem telemetria, o roteamento vira uma coleção de suposições.</p>
+
+        <h2 id="local-e-nuvem">8. Roteamento também é uma decisão de privacidade</h2>
+        <p>Quando existe a opção de usar modelos locais e modelos em nuvem, o roteamento ganha outra dimensão.</p>
+
+        <p>Uma tarefa privada, repetitiva e compatível com um modelo local pode permanecer dentro do próprio ambiente. Uma tarefa muito complexa pode ser encaminhada para um serviço mais capaz, desde que as regras de segurança permitam.</p>
+
+        <p>Assim, a pergunta deixa de ser apenas “qual modelo é melhor?” e passa a incluir “qual modelo é adequado para esta informação, neste contexto e com este nível de risco?”.</p>
+
+        <p>Esse é um dos motivos pelos quais estou estudando roteamento como um ciclo de decisão, medição e ajuste — não como uma tabela fixa que nunca muda.</p>
+
+        <h2 id="aprendizado">9. O que estou aprendendo com esse desenho</h2>
+        <p>Minha percepção atual é que um bom sistema de IA não depende de encontrar um campeão absoluto.</p>
+
+        <p>Ele depende de reconhecer diferenças entre tarefas.</p>
+
+        <p>Algumas precisam de velocidade. Outras de profundidade. Algumas devem usar ferramentas. Outras devem permanecer apenas em leitura. Algumas podem ser automáticas. Outras precisam parar antes de produzir qualquer efeito externo.</p>
+
+        <p>Roteamento é a disciplina que transforma essas diferenças em caminhos operacionais.</p>
+
+        <h2 id="conclusao">10. Conclusão</h2>
+        <p>Escolher um modelo continua importante, mas escolher <strong>quando</strong> e <strong>como</strong> usá-lo pode ser ainda mais importante.</p>
+
+        <p>O roteamento permite combinar especialistas, modelos, ferramentas e regras sem exigir que uma única IA seja perfeita em tudo.</p>
+
+        <p>Quando bem desenhado, ele melhora custo, velocidade, privacidade e qualidade. Quando mal desenhado, apenas adiciona uma camada de complexidade.</p>
+
+        <p>O objetivo não é criar o maior número possível de agentes. É encaminhar cada tarefa para o caminho mais adequado e aprender com o resultado.</p>
+
+        <p class="article-question"><strong>Nas atividades que você realiza hoje, quais realmente precisam do modelo mais poderoso — e quais poderiam seguir um caminho mais simples, rápido e seguro?</strong></p>
+
+        <h2 id="fontes">Fontes e leitura recomendada</h2>
+        <ul>
+          <li><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener noreferrer">Anthropic — Building effective agents: routing, parallelização e orchestrator-workers</a></li>
+          <li><a href="https://openai.github.io/openai-agents-python/multi_agent/" target="_blank" rel="noopener noreferrer">OpenAI Agents SDK — Agent orchestration</a></li>
+          <li><a href="https://openai.github.io/openai-agents-python/" target="_blank" rel="noopener noreferrer">OpenAI Agents SDK — visão geral</a></li>
+        </ul>
+
+        <nav class="article-nav" aria-label="Navegação entre artigos">
+          <a href="o-modelo-nao-e-o-sistema.html">← Artigo anterior<br />O modelo não é o sistema</a>
+          <a href="../index.html#tecnologia">Todos os artigos<br />Tecnologia &amp; IA →</a>
+        </nav>
+      </article>
+
+      <aside class="article-aside" aria-label="Sumário do artigo">
+        <strong>Neste artigo</strong>
+        <nav>
+          <a href="#o-que-e-roteamento">O que é roteamento</a>
+          <a href="#um-modelo-para-tudo">Um modelo para tudo?</a>
+          <a href="#especialistas">Especialistas</a>
+          <a href="#roteamento-por-codigo-ou-ia">Código ou IA</a>
+          <a href="#exemplo-pratico">Exemplo prático</a>
+          <a href="#subagentes">Subagentes</a>
+          <a href="#falhas">Falhas e métricas</a>
+          <a href="#local-e-nuvem">Local e nuvem</a>
+          <a href="#aprendizado">Meu aprendizado</a>
+          <a href="#conclusao">Conclusão</a>
+          <a href="#fontes">Fontes</a>
+        </nav>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-shell">
+      <strong>Blog do Filipe Guardia</strong>
+      <span>© 2026 • Ideias sobre cobrança, tecnologia e mercado.</span>
+    </div>
+  </footer>
+</body>
+</html>
