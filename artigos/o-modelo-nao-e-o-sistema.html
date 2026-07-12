@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Entenda o que é um harness de IA e por que modelos precisam de regras, ferramentas, memória, guardrails e observabilidade para executar trabalho real." />
+  <meta property="og:title" content="O modelo não é o sistema | Blog do Filipe Guardia" />
+  <meta property="og:description" content="Entenda o que é um harness de IA e por que modelos precisam de regras, ferramentas, memória, guardrails e observabilidade para executar trabalho real." />
+  <meta property="og:type" content="article" />
+  <title>O modelo não é o sistema | Blog do Filipe Guardia</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body class="article-page">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="../index.html" aria-label="Blog do Filipe Guardia — início">
+        <span class="brand-mark">FG</span>
+        <span class="brand-copy">Blog do Filipe Guardia<small>Cobrança • Tecnologia • Mercado</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Navegação principal">
+        <a href="../index.html">Início</a>
+        <a href="../projetos.html">Projetos</a>
+        <a href="../index.html#artigos">Artigos</a>
+        <a href="../sobre.html">Sobre</a>
+        <a href="../contato.html">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <header class="article-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Trilha de navegação">
+          <a href="../index.html">Início</a><span>›</span><a href="../index.html#tecnologia">Tecnologia &amp; IA</a><span>›</span><span>Harness de IA</span>
+        </nav>
+        <p class="eyebrow">Arquitetura de IA</p>
+        <h1>O modelo não é o sistema: por que uma IA precisa de regras, ferramentas e memória</h1>
+        <p class="article-deck">Um modelo poderoso pode responder muito bem e ainda assim falhar ao executar um processo. O que transforma inteligência em sistema é a estrutura que existe ao redor dela.</p>
+        <div class="article-meta">
+          <span>Filipe Guardia Cano Batista</span>
+          <span>•</span>
+          <time datetime="2026-07-04">4 de julho de 2026</time>
+          <span>•</span>
+          <span>Leitura de 9 min</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="article-layout">
+      <article class="article-content">
+        <p>Durante muito tempo, a conversa sobre inteligência artificial ficou concentrada em uma pergunta: qual é o melhor modelo?</p>
+
+        <p>Essa pergunta continua importante. Um modelo mais capaz pode compreender melhor um pedido, escrever com mais qualidade, programar melhor e cometer menos erros.</p>
+
+        <p>Mas, quando a IA deixa de ser apenas uma tela de conversa e começa a executar trabalho, o modelo passa a ser somente uma parte do sistema.</p>
+
+        <p>É aí que aparece um termo cada vez mais útil: <strong>harness</strong>.</p>
+
+        <p>Em linguagem simples, harness é o conjunto de regras, ferramentas, memória, permissões, verificações e caminhos de execução que envolve o modelo e transforma uma capacidade genérica em um sistema utilizável.</p>
+
+        <h2 id="modelo-nao-e-sistema">1. Um bom modelo ainda não é um bom sistema</h2>
+        <p>Imagine contratar uma pessoa muito inteligente e colocá-la em uma empresa sem explicar o processo, sem dar acesso às ferramentas certas, sem informar limites e sem dizer como o resultado será conferido.</p>
+
+        <p>A inteligência dessa pessoa ajuda, mas não resolve a falta de estrutura.</p>
+
+        <p>Com modelos de IA acontece algo parecido. O modelo pode raciocinar bem, mas ainda precisa saber:</p>
+
+        <ul>
+          <li>qual objetivo deve perseguir;</li>
+          <li>quais dados pode consultar;</li>
+          <li>quais ferramentas pode usar;</li>
+          <li>o que está proibido;</li>
+          <li>quando deve pedir aprovação;</li>
+          <li>como confirmar que terminou corretamente;</li>
+          <li>o que fazer quando uma etapa falha.</li>
+        </ul>
+
+        <p>Sem isso, temos uma inteligência potente operando em um ambiente mal definido.</p>
+
+        <h2 id="o-que-e-harness">2. O que é um harness, de forma prática?</h2>
+        <p>O termo não possui uma única definição universal para todos os produtos de IA. Eu o uso em sentido amplo: é a estrutura que mantém o modelo trabalhando dentro de um processo.</p>
+
+        <p>Um harness pode incluir instruções, ferramentas, memória, roteamento, validações, logs, limites de tentativas, ambientes isolados e pontos de aprovação humana.</p>
+
+        <p>Frameworks modernos de agentes já tratam vários desses elementos como partes fundamentais. A documentação do OpenAI Agents SDK, por exemplo, apresenta agentes equipados com instruções e ferramentas, além de guardrails, sessões, handoffs, intervenção humana e rastreamento das execuções.</p>
+
+        <p>O ponto principal não é uma biblioteca específica. É perceber que o comportamento final nasce da combinação entre modelo e ambiente.</p>
+
+        <h2 id="componentes">3. Os componentes que mais fazem diferença</h2>
+        <p>Na prática, alguns componentes aparecem repetidamente quando um protótipo começa a virar sistema.</p>
+
+        <p><strong>Instruções:</strong> definem papel, objetivo, prioridades e limites. Não são apenas um prompt bonito; funcionam como parte das regras operacionais.</p>
+
+        <p><strong>Ferramentas:</strong> permitem consultar arquivos, pesquisar, executar código, acessar sistemas ou realizar ações. Uma ferramenta mal descrita pode levar até um modelo excelente a usá-la de forma errada.</p>
+
+        <p><strong>Memória e estado:</strong> evitam que cada execução comece do zero. Também exigem cuidado para não carregar informação irrelevante, antiga ou sensível.</p>
+
+        <p><strong>Guardrails:</strong> verificam entradas, saídas ou chamadas de ferramentas. Podem impedir uma ação inadequada antes que ela aconteça.</p>
+
+        <p><strong>Observabilidade:</strong> registra o que o agente tentou fazer, quais ferramentas chamou, onde falhou e quanto custou. Sem rastreamento, melhorar o sistema vira adivinhação.</p>
+
+        <p><strong>Aprovação humana:</strong> cria limites claros para ações com impacto financeiro, operacional, jurídico ou reputacional.</p>
+
+        <h2 id="exemplo-operacional">4. Um exemplo fora da programação</h2>
+        <p>Pense em um agente que prepara um relatório semanal.</p>
+
+        <p>O modelo pode saber escrever. Mas o harness precisa organizar todo o restante:</p>
+
+        <ol>
+          <li>buscar somente as bases autorizadas;</li>
+          <li>verificar se os arquivos estão atualizados;</li>
+          <li>aplicar as regras corretas de cálculo;</li>
+          <li>comparar o resultado com a semana anterior;</li>
+          <li>sinalizar números fora do padrão;</li>
+          <li>gerar o texto em um formato definido;</li>
+          <li>submeter a versão final para revisão antes do envio.</li>
+        </ol>
+
+        <p>O valor não está apenas na qualidade do texto. Está na confiabilidade do processo inteiro.</p>
+
+        <h2 id="harness-por-projeto">5. Preciso criar um harness para cada projeto?</h2>
+        <p>Minha conclusão atual é que existem duas camadas.</p>
+
+        <p>A primeira é uma camada geral: segurança, registro, padrões de ferramenta, tratamento de erros, gestão de contexto e regras básicas de aprovação.</p>
+
+        <p>A segunda é específica de cada projeto: fontes permitidas, estrutura de pastas, critérios de qualidade, etapas do fluxo, nomes corretos, exceções e regras de negócio.</p>
+
+        <p>Um agente de programação e um agente financeiro podem compartilhar princípios de segurança e observabilidade. Mas não devem operar com as mesmas permissões, ferramentas e critérios de conclusão.</p>
+
+        <p>Por isso, não vejo harness apenas como uma configuração global nem como algo totalmente reconstruído do zero para cada tarefa. Vejo como uma base comum adaptada ao contexto de cada sistema.</p>
+
+        <h2 id="complexidade">6. Mais estrutura nem sempre significa mais qualidade</h2>
+        <p>Existe também um risco: transformar o harness em uma arquitetura tão complexa que ninguém consegue entender o que está acontecendo.</p>
+
+        <p>A Anthropic, ao relatar experiências com agentes, recomenda começar pela solução mais simples e adicionar complexidade somente quando ela melhora o resultado de forma demonstrável.</p>
+
+        <p>Isso vale para memória, múltiplos agentes, verificadores, roteadores e ciclos automáticos. Cada nova camada pode aumentar controle, mas também traz custo, latência e novos pontos de falha.</p>
+
+        <p>O objetivo não é construir o sistema mais sofisticado. É construir o sistema mais simples que consiga operar com qualidade e segurança.</p>
+
+        <h2 id="avaliacao">7. Como saber se o harness está funcionando?</h2>
+        <p>Não basta observar uma demonstração bonita.</p>
+
+        <p>É preciso testar situações normais, casos extremos, dados faltantes, instruções ambíguas, ferramentas indisponíveis e tentativas de realizar ações fora do escopo.</p>
+
+        <p>Algumas perguntas úteis são:</p>
+
+        <ul>
+          <li>o agente escolhe a ferramenta correta?</li>
+          <li>ele para quando não possui informação suficiente?</li>
+          <li>os erros ficam visíveis?</li>
+          <li>uma ação sensível exige aprovação?</li>
+          <li>o resultado pode ser reproduzido e auditado?</li>
+          <li>o sistema melhora quando recebe feedback?</li>
+        </ul>
+
+        <p>Um harness bom não elimina todos os erros. Ele torna os erros mais raros, mais visíveis e menos perigosos.</p>
+
+        <h2 id="aprendizado">8. O que estou aprendendo ao construir agentes</h2>
+        <p>Quanto mais testo modelos, mais percebo que comparar apenas respostas isoladas mostra uma parte pequena do problema.</p>
+
+        <p>Um modelo um pouco menos capaz pode produzir um resultado melhor quando recebe contexto bem organizado, ferramentas claras, memória adequada e critérios objetivos.</p>
+
+        <p>Também pode acontecer o contrário: um modelo excelente pode falhar dentro de um fluxo confuso, com ferramentas mal definidas e sem verificação.</p>
+
+        <p>Por isso, a engenharia de agentes não é somente escolher modelo e escrever prompt. É desenhar o ambiente onde o modelo trabalha.</p>
+
+        <h2 id="conclusao">9. Conclusão</h2>
+        <p>O modelo é o motor de raciocínio, mas não é o veículo inteiro.</p>
+
+        <p>Para sair da conversa e entrar no trabalho real, a IA precisa de direção, instrumentos, limites, histórico e mecanismos de segurança.</p>
+
+        <p>Esse conjunto é o que estou chamando de harness.</p>
+
+        <p>Quando ele é bem construído, a inteligência do modelo encontra um caminho confiável para gerar valor. Quando ele é mal construído, até uma IA muito capaz pode se perder.</p>
+
+        <p class="article-question"><strong>Na atividade que você gostaria de automatizar, o maior desafio está na inteligência do modelo ou nas regras e ferramentas que ainda não foram organizadas?</strong></p>
+
+        <h2 id="fontes">Fontes e leitura recomendada</h2>
+        <ul>
+          <li><a href="https://openai.github.io/openai-agents-python/" target="_blank" rel="noopener noreferrer">OpenAI Agents SDK — visão geral de agentes, ferramentas, sessões, guardrails e tracing</a></li>
+          <li><a href="https://openai.github.io/openai-agents-python/guardrails/" target="_blank" rel="noopener noreferrer">OpenAI Agents SDK — documentação de guardrails</a></li>
+          <li><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener noreferrer">Anthropic — Building effective agents</a></li>
+        </ul>
+
+        <nav class="article-nav" aria-label="Navegação entre artigos">
+          <a href="mcp-usb-c-inteligencia-artificial.html">← Artigo anterior<br />MCP: o “USB-C” da inteligência artificial</a>
+          <a href="uma-ia-para-cada-tarefa.html">Próximo artigo →<br />Uma IA para cada tarefa</a>
+        </nav>
+      </article>
+
+      <aside class="article-aside" aria-label="Sumário do artigo">
+        <strong>Neste artigo</strong>
+        <nav>
+          <a href="#modelo-nao-e-sistema">Modelo e sistema</a>
+          <a href="#o-que-e-harness">O que é harness</a>
+          <a href="#componentes">Componentes</a>
+          <a href="#exemplo-operacional">Exemplo prático</a>
+          <a href="#harness-por-projeto">Camadas por projeto</a>
+          <a href="#complexidade">Complexidade</a>
+          <a href="#avaliacao">Como avaliar</a>
+          <a href="#aprendizado">Meu aprendizado</a>
+          <a href="#conclusao">Conclusão</a>
+          <a href="#fontes">Fontes</a>
+        </nav>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-shell">
+      <strong>Blog do Filipe Guardia</strong>
+      <span>© 2026 • Ideias sobre cobrança, tecnologia e mercado.</span>
+    </div>
+  </footer>
+</body>
+</html>
