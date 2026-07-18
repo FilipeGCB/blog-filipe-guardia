@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Entenda por que agentes de IA precisam de permissões limitadas, confirmações, contenção e registros para agir com segurança no trabalho." />
+  <meta property="og:title" content="A IA que sabe quando parar | Filipe Guardia" />
+  <meta property="og:description" content="Entenda por que agentes de IA precisam de permissões limitadas, confirmações, contenção e registros para agir com segurança no trabalho." />
+  <meta property="og:type" content="article" />
+  <title>A IA que sabe quando parar | Filipe Guardia</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <meta name="author" content="Filipe Guardia" />
+  <meta name="theme-color" content="#2b173d" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://filipegcb.github.io/blog-filipe-guardia/artigos/a-ia-que-sabe-quando-parar.html" />
+  <meta property="og:url" content="https://filipegcb.github.io/blog-filipe-guardia/artigos/a-ia-que-sabe-quando-parar.html" />
+  <meta property="og:site_name" content="Filipe Guardia" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%232b173d%22/><text x=%2250%22 y=%2264%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2242%22 font-weight=%22700%22 fill=%22white%22>FG</text></svg>" />
+  <link rel="stylesheet" href="../site-v2.css" />
+</head>
+<body class="article-page">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="../index.html" aria-label="Filipe Guardia — início">
+        <span class="brand-mark">FG</span>
+        <span class="brand-copy">Filipe Guardia<small>Cobrança B2B • Dados • Produtos • IA</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Navegação principal">
+        <a href="../index.html">Início</a>
+        <a href="../projetos.html">Projetos</a>
+        <a href="../index.html#artigos">Artigos</a>
+        <a href="../sobre.html">Sobre</a>
+        <a href="../contato.html">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <header class="article-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Trilha de navegação">
+          <a href="../index.html">Início</a><span>›</span><a href="../index.html#tecnologia">Tecnologia &amp; IA</a><span>›</span><span>Supervisão de agentes</span>
+        </nav>
+        <p class="eyebrow">Governança de IA</p>
+        <h1>A IA que sabe quando parar: por que o melhor agente não faz tudo sozinho</h1>
+        <p class="article-deck">Quanto mais um agente consegue acessar dados, usar ferramentas e executar ações, mais importante se torna definir limites, confirmações e responsabilidade.</p>
+        <div class="article-meta">
+          <span>Filipe Guardia Cano Batista</span>
+          <span>•</span>
+          <time datetime="2026-07-18">18 de julho de 2026</time>
+          <span>•</span>
+          <span>Leitura de 10 min</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="article-layout">
+      <article class="article-content">
+        <p>Durante muito tempo, o valor de um software era medido pelo que ele conseguia fazer.</p>
+
+        <p>Com agentes de inteligência artificial, essa pergunta continua importante, mas já não é suficiente.</p>
+
+        <p>Um agente pode ler documentos, pesquisar na internet, alterar arquivos, consultar sistemas, executar código e enviar mensagens. Quando essas capacidades são combinadas, ele deixa de ser apenas uma ferramenta de consulta e passa a participar da execução do trabalho.</p>
+
+        <p>Nesse novo cenário, uma segunda pergunta se torna essencial: <strong>o que esse agente nunca deveria fazer sozinho?</strong></p>
+
+        <h2 id="autonomia-nao-e-liberdade-total">1. Autonomia não significa liberdade total</h2>
+        <p>Autonomia é a capacidade de avançar em uma tarefa sem depender de uma instrução humana para cada pequeno passo.</p>
+
+        <p>Isso é diferente de entregar acesso irrestrito.</p>
+
+        <p>Um bom agente pode organizar informações, testar hipóteses, preparar arquivos e sugerir decisões dentro de um espaço controlado. Mas ações que afetam clientes, dinheiro, produção, dados sensíveis ou outras pessoas podem exigir uma confirmação explícita.</p>
+
+        <p>A autonomia útil, portanto, não elimina limites. Ela funciona dentro deles.</p>
+
+        <h2 id="quanto-mais-acesso-maior-o-risco">2. Quanto mais acesso, maior o impacto possível</h2>
+        <p>Um erro em uma resposta de texto pode ser inconveniente. Um erro cometido por um agente com acesso a sistemas pode produzir consequências reais.</p>
+
+        <p>Imagine a diferença entre:</p>
+        <ul>
+          <li>sugerir uma mensagem e enviá-la automaticamente;</li>
+          <li>identificar arquivos desatualizados e apagá-los;</li>
+          <li>preparar uma alteração de código e colocá-la diretamente em produção;</li>
+          <li>recomendar uma ação financeira e executá-la.</li>
+        </ul>
+
+        <p>Em cada exemplo, a primeira parte pode ser útil e relativamente segura. A segunda produz um efeito externo que talvez seja difícil de reverter.</p>
+
+        <p>A Anthropic usa a expressão <em>blast radius</em> para descrever o alcance do dano que uma falha pode causar. Quanto maior o acesso do agente, maior pode ser esse raio de impacto.</p>
+
+        <h2 id="prompt-injection">3. O agente também pode ser enganado pelo conteúdo que lê</h2>
+        <p>Nem todo risco surge porque a IA interpretou mal o pedido do usuário.</p>
+
+        <p>Um agente que navega na internet, lê e-mails ou abre documentos recebe conteúdo produzido por terceiros. Dentro desse conteúdo pode existir uma instrução maliciosa tentando convencê-lo a ignorar o objetivo original.</p>
+
+        <p>Esse ataque é chamado de <strong>prompt injection</strong>. A OpenAI o compara à engenharia social: assim como uma pessoa pode ser enganada por uma mensagem falsa, um agente pode ser induzido por instruções escondidas ou manipuladoras.</p>
+
+        <p>Por isso, não basta pedir ao modelo que “tenha cuidado”. A proteção precisa existir também na arquitetura.</p>
+
+        <h2 id="permissao-minima">4. O princípio da permissão mínima</h2>
+        <p>Uma das regras mais importantes da segurança de sistemas é oferecer apenas o acesso necessário para realizar a tarefa.</p>
+
+        <p>Se o agente precisa apenas consultar um documento, ele não deveria receber permissão para apagá-lo. Se precisa preparar um e-mail, não necessariamente precisa enviá-lo. Se precisa analisar um repositório, pode começar em modo somente leitura.</p>
+
+        <p>Essa separação reduz o impacto de erros e ataques.</p>
+
+        <p>Na prática, as permissões podem ser organizadas em níveis:</p>
+        <ol>
+          <li><strong>Leitura:</strong> consultar arquivos, páginas e dados.</li>
+          <li><strong>Preparação:</strong> gerar rascunhos, planos e alterações propostas.</li>
+          <li><strong>Execução controlada:</strong> alterar recursos dentro de um ambiente isolado.</li>
+          <li><strong>Ação externa:</strong> publicar, enviar, excluir, comprar ou mudar produção.</li>
+        </ol>
+
+        <p>Quanto maior o nível, maior deve ser o controle.</p>
+
+        <h2 id="confirmacao-humana">5. Pedir confirmação não é sinal de fraqueza</h2>
+        <p>Existe uma expectativa de que um agente realmente avançado deveria resolver tudo sem interromper o usuário.</p>
+
+        <p>Mas interromper no momento certo pode ser exatamente o comportamento mais inteligente.</p>
+
+        <p>Um agente maduro deveria conseguir dizer:</p>
+        <blockquote>
+          “Preparei a ação, verifiquei os dados e identifiquei o impacto. Antes de executá-la, preciso da sua confirmação.”
+        </blockquote>
+
+        <p>A confirmação funciona melhor quando mostra claramente:</p>
+        <ul>
+          <li>o que será feito;</li>
+          <li>quais recursos serão afetados;</li>
+          <li>quais dados serão compartilhados;</li>
+          <li>qual é o risco;</li>
+          <li>se existe possibilidade de reversão.</li>
+        </ul>
+
+        <p>Uma pergunta genérica como “tem certeza?” informa pouco. Uma boa etapa de aprovação permite que a pessoa realmente entenda a decisão.</p>
+
+        <h2 id="sandbox-e-contencao">6. O que são sandbox e contenção?</h2>
+        <p>Uma <em>sandbox</em> é um ambiente limitado onde o agente pode trabalhar sem alcançar livremente todo o sistema.</p>
+
+        <p>Em desenvolvimento de software, por exemplo, o agente pode editar uma cópia do projeto, rodar testes e apresentar o resultado antes de qualquer publicação.</p>
+
+        <p>A contenção também pode limitar:</p>
+        <ul>
+          <li>pastas acessíveis;</li>
+          <li>comandos permitidos;</li>
+          <li>conexões de rede;</li>
+          <li>tempo de execução;</li>
+          <li>quantidade de recursos utilizados;</li>
+          <li>ações que exigem aprovação.</li>
+        </ul>
+
+        <p>OpenAI e Anthropic descrevem esse tipo de limite técnico como parte importante da implantação de agentes em ambientes reais.</p>
+
+        <h2 id="registro-e-auditoria">7. Um agente precisa deixar rastros compreensíveis</h2>
+        <p>Quando uma pessoa executa uma atividade importante, normalmente existem registros: quem aprovou, quando ocorreu, qual versão foi usada e qual foi o resultado.</p>
+
+        <p>Com agentes deveria acontecer o mesmo.</p>
+
+        <p>Não basta registrar milhares de linhas técnicas. É necessário reconstruir o caminho da decisão:</p>
+        <ul>
+          <li>qual pedido iniciou a tarefa;</li>
+          <li>quais dados foram consultados;</li>
+          <li>quais ferramentas foram utilizadas;</li>
+          <li>quais mudanças foram propostas ou executadas;</li>
+          <li>onde houve intervenção humana;</li>
+          <li>qual foi o resultado final.</li>
+        </ul>
+
+        <p>Sem rastreabilidade, fica difícil aprender com erros, corrigir processos e atribuir responsabilidade.</p>
+
+        <h2 id="exemplo-pratico">8. Um exemplo prático</h2>
+        <p>Imagine um agente responsável por atualizar semanalmente um relatório.</p>
+
+        <p>Ele pode receber liberdade para buscar os dados, validar campos, calcular indicadores, gerar gráficos e preparar a nova versão.</p>
+
+        <p>Mas, se encontrar uma variação muito fora do padrão, uma fonte incompleta ou uma mudança de regra, ele deveria parar.</p>
+
+        <p>Em vez de esconder a dúvida ou inventar uma explicação, o agente poderia apresentar:</p>
+        <ol>
+          <li>o problema encontrado;</li>
+          <li>as evidências disponíveis;</li>
+          <li>as alternativas possíveis;</li>
+          <li>o impacto de cada alternativa;</li>
+          <li>a decisão que precisa de uma pessoa.</li>
+        </ol>
+
+        <p>Nesse desenho, a IA automatiza o trabalho repetitivo sem assumir silenciosamente uma decisão de negócio.</p>
+
+        <h2 id="governanca">9. Governança não deve ser uma etapa colocada no final</h2>
+        <p>É comum construir primeiro a automação e discutir segurança depois.</p>
+
+        <p>Com agentes, isso pode gerar retrabalho. Permissões, aprovações, registros, critérios de parada e formas de reversão precisam fazer parte do desenho inicial.</p>
+
+        <p>A governança não existe para impedir o uso da tecnologia. Ela existe para permitir que a autonomia cresça sem que o risco cresça na mesma proporção.</p>
+
+        <h2 id="aprendizado">10. O que estou aprendendo</h2>
+        <p>Quanto mais estudo agentes, menos acredito que a vantagem competitiva esteja apenas no modelo mais inteligente.</p>
+
+        <p>Empresas diferentes podem usar modelos semelhantes. O diferencial aparece na arquitetura construída ao redor deles: contexto, ferramentas, permissões, supervisão, telemetria e conhecimento do processo.</p>
+
+        <p>Um agente confiável não é aquele que promete fazer qualquer coisa. É aquele que entende seu espaço de atuação, produz evidências e reconhece quando a decisão deixou de ser apenas técnica.</p>
+
+        <h2 id="conclusao">11. Conclusão</h2>
+        <p>A inteligência artificial está deixando de apenas responder e começando a agir.</p>
+
+        <p>Esse movimento pode aumentar muito a produtividade, mas exige uma mudança de mentalidade. O objetivo não deve ser conceder o máximo de autonomia possível. Deve ser conceder a autonomia adequada, dentro de limites claros e observáveis.</p>
+
+        <p>Permissões mínimas, ambientes isolados, confirmação para ações relevantes e registros de auditoria não diminuem a inteligência do agente. Eles transformam capacidade em confiança.</p>
+
+        <p>No futuro, talvez o melhor agente não seja o que executa tudo sem perguntar.</p>
+
+        <p>Talvez seja aquele que sabe exatamente quando deve parar.</p>
+
+        <p class="article-question"><strong>Se um agente tivesse acesso aos sistemas que você usa todos os dias, qual seria a primeira ação que deveria exigir confirmação humana?</strong></p>
+
+        <h2 id="fontes">Fontes e leitura recomendada</h2>
+        <ul>
+          <li><a href="https://openai.com/index/designing-agents-to-resist-prompt-injection/" target="_blank" rel="noopener noreferrer">OpenAI — Designing AI agents to resist prompt injection, 11 de março de 2026</a></li>
+          <li><a href="https://openai.com/index/running-codex-safely/" target="_blank" rel="noopener noreferrer">OpenAI — Running Codex safely at OpenAI, 8 de maio de 2026</a></li>
+          <li><a href="https://www.anthropic.com/research/trustworthy-agents" target="_blank" rel="noopener noreferrer">Anthropic — Trustworthy agents in practice, 9 de abril de 2026</a></li>
+          <li><a href="https://www.anthropic.com/engineering/how-we-contain-claude" target="_blank" rel="noopener noreferrer">Anthropic — How we contain Claude across products, 25 de maio de 2026</a></li>
+        </ul>
+
+        <nav class="article-nav" aria-label="Navegação entre artigos">
+          <a href="uma-ia-para-cada-tarefa.html">← Artigo anterior<br />Uma IA para cada tarefa</a>
+          <a href="../index.html#tecnologia">Todos os artigos<br />Tecnologia &amp; IA →</a>
+        </nav>
+      </article>
+
+      <aside class="article-aside" aria-label="Sumário do artigo">
+        <strong>Neste artigo</strong>
+        <nav>
+          <a href="#autonomia-nao-e-liberdade-total">Autonomia e limites</a>
+          <a href="#quanto-mais-acesso-maior-o-risco">Acesso e impacto</a>
+          <a href="#prompt-injection">Prompt injection</a>
+          <a href="#permissao-minima">Permissão mínima</a>
+          <a href="#confirmacao-humana">Confirmação humana</a>
+          <a href="#sandbox-e-contencao">Sandbox e contenção</a>
+          <a href="#registro-e-auditoria">Registro e auditoria</a>
+          <a href="#exemplo-pratico">Exemplo prático</a>
+          <a href="#governanca">Governança</a>
+          <a href="#aprendizado">Meu aprendizado</a>
+          <a href="#conclusao">Conclusão</a>
+          <a href="#fontes">Fontes</a>
+        </nav>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-shell">
+      <strong>Filipe Guardia</strong>
+      <span>© 2026 • Cobrança B2B, dados, produtos e IA aplicada.</span>
+    </div>
+  </footer>
+  <script src="../site-config.js" defer></script>
+  <script src="../site.js" defer></script>
+</body>
+</html>
