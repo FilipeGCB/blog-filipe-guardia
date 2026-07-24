@@ -15,7 +15,7 @@ window.SITE_CONFIG = Object.freeze({
     label: "Explorar o site com IA",
     description: "Peça ao agente para localizar artigos, projetos ou informações nesta página.",
     notice: "Recurso experimental: ao ativar, o conteúdo visível da página e suas instruções podem ser processados pelo serviço externo de demonstração do PageAgent.",
-    scriptUrl: "https://cdn.jsdelivr.net/npm/page-agent@1.12.2/dist/iife/page-agent.demo.js"
+    scriptUrl: "https://cdn.jsdelivr.net/npm/page-agent@1.8.1/dist/iife/page-agent.demo.js"
   },
   projectEvidence: {
     "Transformação digital em cobrança e planejamento": { metric: "", summary: "", demoUrl: "", demoLabel: "Ver evidência" },
