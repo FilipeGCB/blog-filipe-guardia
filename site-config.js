@@ -24,3 +24,16 @@ window.SITE_CONFIG = Object.freeze({
     "Presentation Intelligence System": { metric: "", summary: "", demoUrl: "", demoLabel: "Ver demonstração" }
   }
 });
+
+(() => {
+  if (!window.SITE_CONFIG.pageAgent?.enabled || document.querySelector("script[data-site-page-agent-loader]")) return;
+
+  const currentScript = document.currentScript;
+  const loader = document.createElement("script");
+  loader.src = currentScript?.src
+    ? new URL("page-agent-loader.js", currentScript.src).href
+    : "page-agent-loader.js";
+  loader.async = false;
+  loader.dataset.sitePageAgentLoader = "true";
+  document.head.appendChild(loader);
+})();
