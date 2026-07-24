@@ -145,17 +145,6 @@
     window.dataLayer = window.dataLayer || []; window.gtag = function () { window.dataLayer.push(arguments); }; window.gtag("js", new Date()); window.gtag("config", id);
   }
 
-  function pageAgent() {
-    if (!c.pageAgent?.enabled || one('script[data-page-agent-loader]')) return;
-    const siteScript = all('script[src]').find((script) => /(?:^|\/)site\.js(?:[?#].*)?$/.test(script.src));
-    const src = new URL("page-agent-loader.js", siteScript?.src || base).href;
-    const script = document.createElement("script");
-    script.src = src;
-    script.defer = true;
-    script.dataset.pageAgentLoader = "true";
-    document.head.appendChild(script);
-  }
-
-  function init() { brand(); links(); menu(); forms(); contacts(); evidence(); articles(); metadata(); analytics(); pageAgent(); }
+  function init() { brand(); links(); menu(); forms(); contacts(); evidence(); articles(); metadata(); analytics(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true }); else init();
 })();
