@@ -117,6 +117,38 @@
     button.addEventListener("click", () => { const expanded = button.getAttribute("aria-expanded") === "true"; unique.slice(4).forEach((card) => card.classList.toggle("is-collapsed-article", expanded)); button.setAttribute("aria-expanded", String(!expanded)); button.textContent = expanded ? "Ver todos os artigos" : "Mostrar menos artigos"; });
   }
 
+  function articleNavigation() {
+    if (!location.pathname.includes("/artigos/")) return;
+    const sequence = [
+      ["pix-parcelado.html", "Pix Parcelado"],
+      ["copilot-studio.html", "Copilot Studio"],
+      ["da-planilha-ao-agente.html", "Da planilha ao agente"],
+      ["quando-a-ia-vira-colega-de-trabalho.html", "Quando a IA vira colega"],
+      ["ia-nao-comeca-no-prompt.html", "IA não começa no prompt"],
+      ["software-em-torno-de-agentes.html", "Software em torno de agentes"],
+      ["quando-relatorios-viram-sistemas.html", "Quando relatórios viram sistemas"],
+      ["mcp-usb-c-inteligencia-artificial.html", "MCP e integrações de IA"],
+      ["o-modelo-nao-e-o-sistema.html", "O modelo não é o sistema"],
+      ["uma-ia-para-cada-tarefa.html", "Uma IA para cada tarefa"],
+      ["a-ia-que-sabe-quando-parar.html", "A IA que sabe quando parar"],
+      ["curso-nao-transforma-empresa.html", "Curso não transforma empresa"]
+    ];
+    const current = location.pathname.split("/").pop();
+    const index = sequence.findIndex(([file]) => file === current);
+    const nav = one(".article-nav");
+    if (index < 0 || !nav) return;
+    nav.textContent = "";
+    const previous = index > 0 ? sequence[index - 1] : null;
+    const next = index < sequence.length - 1 ? sequence[index + 1] : null;
+    const left = document.createElement("a");
+    if (previous) { left.href = previous[0]; left.innerHTML = "← Artigo anterior<br />" + previous[1]; }
+    else { left.href = "../index.html#tecnologia"; left.innerHTML = "← Todos os artigos<br />Tecnologia &amp; IA"; }
+    const right = document.createElement("a");
+    if (next) { right.href = next[0]; right.innerHTML = "Próximo artigo<br />" + next[1] + " →"; }
+    else { right.href = "../index.html#tecnologia"; right.innerHTML = "Todos os artigos<br />Tecnologia &amp; IA →"; }
+    nav.append(left, right);
+  }
+
   function metadata() {
     const description = one('meta[name="description"]')?.content || "";
     [["twitter:title", document.title], ["twitter:description", description]].forEach(([name, value]) => {
@@ -145,6 +177,6 @@
     window.dataLayer = window.dataLayer || []; window.gtag = function () { window.dataLayer.push(arguments); }; window.gtag("js", new Date()); window.gtag("config", id);
   }
 
-  function init() { brand(); links(); menu(); forms(); contacts(); evidence(); articles(); metadata(); analytics(); }
+  function init() { brand(); links(); menu(); forms(); contacts(); evidence(); articles(); articleNavigation(); metadata(); analytics(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true }); else init();
 })();
