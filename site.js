@@ -131,7 +131,8 @@
       ["o-modelo-nao-e-o-sistema.html", "O modelo não é o sistema"],
       ["uma-ia-para-cada-tarefa.html", "Uma IA para cada tarefa"],
       ["a-ia-que-sabe-quando-parar.html", "A IA que sabe quando parar"],
-      ["curso-nao-transforma-empresa.html", "Curso não transforma empresa"]
+      ["curso-nao-transforma-empresa.html", "Curso não transforma empresa"],
+      ["sem-vocabulario-comum-a-ia-nao-entende-a-empresa.html", "Sem vocabulário comum"]
     ];
     const current = location.pathname.split("/").pop();
     const index = sequence.findIndex(([file]) => file === current);
