@@ -132,7 +132,9 @@
       ["uma-ia-para-cada-tarefa.html", "Uma IA para cada tarefa"],
       ["a-ia-que-sabe-quando-parar.html", "A IA que sabe quando parar"],
       ["curso-nao-transforma-empresa.html", "Curso não transforma empresa"],
-      ["sem-vocabulario-comum-a-ia-nao-entende-a-empresa.html", "Sem vocabulário comum"]
+      ["sem-vocabulario-comum-a-ia-nao-entende-a-empresa.html", "Sem vocabulário comum"],
+      ["documento-nao-e-base-de-conhecimento.html", "Documento não é base de conhecimento"],
+      ["a-memoria-da-empresa-nao-pode-morar-na-cabeca-das-pessoas.html", "A memória da empresa"]
     ];
     const current = location.pathname.split("/").pop();
     const index = sequence.findIndex(([file]) => file === current);
