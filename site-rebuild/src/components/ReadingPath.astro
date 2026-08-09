@@ -1,0 +1,17 @@
+---
+const steps = [
+  ['01', 'Operação real', 'O problema nasce no trabalho cotidiano: cobrança, dados, exceções, decisões e responsabilidade.'],
+  ['02', 'Estrutura', 'O conhecimento ganha nomes, regras, contexto, memória e uma forma que pode ser compartilhada.'],
+  ['03', 'Sistema', 'Processos, ferramentas e produtos transformam entendimento em execução rastreável.'],
+  ['04', 'Agente governado', 'A IA entra como participante capaz, com limites, passagem de contexto e revisão humana.']
+];
+---
+<div class="system-map" aria-label="Caminho editorial do site">
+  {steps.map(([number, title, description]) => (
+    <div class="system-step">
+      <b>{number}</b>
+      <strong>{title}</strong>
+      <span>{description}</span>
+    </div>
+  ))}
+</div>

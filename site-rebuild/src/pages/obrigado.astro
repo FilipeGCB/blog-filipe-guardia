@@ -1,0 +1,7 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+---
+<BaseLayout title="Obrigado | Filipe Guardia" description="Mensagem enviada para Filipe Guardia." currentPath="/obrigado.html">
+  <section class="not-found"><div class="page-shell"><span class="eyebrow">Mensagem recebida</span><h1>Obrigado.</h1><p>O contato foi encaminhado. Enquanto isso, você pode continuar a leitura pelo arquivo editorial.</p><div class="hero-actions"><a class="button" href={`${base}artigos.html`}>Voltar aos artigos</a><a class="button-secondary" href={base}>Ir para o início</a></div></div></section>
+</BaseLayout>

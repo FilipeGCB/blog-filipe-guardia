@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { articleSeries, getSortedArticles } from '../../data/articles';
+
+const ordered = getSortedArticles();
+---
+<BaseLayout
+  title="Artigos | Filipe Guardia"
+  description="Ensaios sobre cobrança, dados, sistemas, produtos e inteligência artificial aplicada."
+  canonicalPath="/artigos.html"
+  currentPath="/artigos.html"
+>
+  <section class="page-intro">
+    <div class="page-shell">
+      <span class="eyebrow">Arquivo editorial</span>
+      <h1>Ideias que saem da operação e chegam ao <em>sistema</em>.</h1>
+      <p class="deck">Textos sobre crédito, conhecimento, produtos, agentes e transformação — sempre a partir da pergunta: o que precisa existir ao redor da tecnologia para que ela funcione no mundo real?</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="page-shell">
+      <div class="archive-toolbar">
+        <div class="filter-group" aria-label="Filtrar artigos por série">
+          <button class="filter-button" type="button" data-filter="all" aria-pressed="true">Todos</button>
+          {articleSeries.map((series) => <button class="filter-button" type="button" data-filter={series} aria-pressed="false">{series}</button>)}
+        </div>
+        <span class="archive-count" data-archive-count>{ordered.length} artigos</span>
+      </div>
+      <div class="article-grid" data-article-grid>
+        {ordered.map((article) => <ArticleCard article={article} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+<script>
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+  const cards = [...document.querySelectorAll<HTMLElement>('[data-article-grid] .article-card')];
+  const count = document.querySelector<HTMLElement>('[data-archive-count]');
+  const params = new URLSearchParams(window.location.search);
+  const requested = params.get('serie');
+  const applyFilter = (filter: string) => {
+    let visible = 0;
+    cards.forEach((card) => {
+      const show = filter === 'all' || card.dataset.series === filter;
+      card.hidden = !show;
+      if (show) visible += 1;
+    });
+    buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.filter === filter)));
+    if (count) count.textContent = `${visible} artigo${visible === 1 ? '' : 's'}`;
+  };
+  buttons.forEach((button) => button.addEventListener('click', () => applyFilter(button.dataset.filter || 'all')));
+  applyFilter(requested && buttons.some((button) => button.dataset.filter === requested) ? requested : 'all');
+</script>

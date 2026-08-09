@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">TRANSFORMAÇÃO</title>
+  <desc id="desc">aprendizado → prática</desc>
+  <rect width="1200" height="760" fill="#f4f0e9"/>
+  <path d="M0 94H1200M0 650H1200M72 0V760M1128 0V760" stroke="#d9d1c5" stroke-width="1" opacity=".8"/>
+  <circle cx="1038" cy="100" r="180" fill="#7652a8" opacity=".08"/>
+  <circle cx="110" cy="650" r="142" fill="#bb8754" opacity=".08"/>
+  <text x="86" y="112" fill="#3d235c" font-family="Arial, sans-serif" font-size="18" font-weight="800" letter-spacing="1.5">TRANSFORMAÇÃO</text><text x="86" y="143" fill="#6c6670" font-family="Arial, sans-serif" font-size="15" font-weight="650" letter-spacing="1.5">aprendizado → prática</text><text x="86" y="708" fill="#6c6670" font-family="Arial, sans-serif" font-size="13" font-weight="650" letter-spacing="1.5">FILIPE GUARDIA · CADERNO DE SISTEMAS REAIS</text><circle cx="600" cy="365" r="190" fill="none" stroke="#d9d1c5" stroke-width="20"/><path d="M600 175a190 190 0 0 1 180 130" fill="none" stroke="#3d235c" stroke-width="20" stroke-linecap="round"/><path d="m780 305-10-52m10 52-50 12" fill="none" stroke="#3d235c" stroke-width="8"/><path d="M600 555a190 190 0 0 1-180-130" fill="none" stroke="#bb8754" stroke-width="20" stroke-linecap="round"/><path d="m420 425 10 52m-10-52 50-12" fill="none" stroke="#bb8754" stroke-width="8"/><text x="505" y="350" fill="#3d235c" font-family="Arial, sans-serif" font-size="20" font-weight="800" letter-spacing="1.5">APRENDER</text><text x="550" y="395" fill="#bb8754" font-family="Arial, sans-serif" font-size="20" font-weight="800" letter-spacing="1.5">FAZER</text><text x="500" y="450" fill="#2e7564" font-family="Arial, sans-serif" font-size="15" font-weight="650" letter-spacing="1.5">evidência → melhoria</text>
+</svg>

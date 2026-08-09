@@ -1,0 +1,17 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+  className?: string;
+  loading?: 'eager' | 'lazy';
+}
+
+const { src, alt, caption, className = '', loading = 'lazy' } = Astro.props;
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const imageSrc = `${base}${src.replace(/^\//, '')}`;
+---
+<figure class:list={['editorial-frame', className]}>
+  <img src={imageSrc} alt={alt} loading={loading} decoding="async" />
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>

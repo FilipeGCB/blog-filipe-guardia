@@ -1,0 +1,22 @@
+{
+  "name": "blog-filipe-guardia-editorial",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "node scripts/verify-content.mjs && node scripts/asset-audit.mjs && astro check",
+    "audit:routes": "node scripts/route-audit.mjs",
+    "preserve:legacy": "node scripts/preserve-legacy.mjs"
+  },
+  "dependencies": {
+    "astro": "^7.2.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "typescript": "^6.0.3"
+  }
+}
