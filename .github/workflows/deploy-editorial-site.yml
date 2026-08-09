@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
     paths:
       - 'site-rebuild/**'
       - '.github/workflows/deploy-editorial-site.yml'
@@ -13,11 +14,33 @@ permissions:
   contents: read
 
 concurrency:
-  group: pages
+  group: editorial-site-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
+  validate-pr:
+    if: github.event_name == 'pull_request' && github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: site-rebuild/package-lock.json
+      - name: Install dependencies
+        working-directory: site-rebuild
+        run: npm ci
+      - name: Validate content, assets and types
+        working-directory: site-rebuild
+        env:
+          ASTRO_TELEMETRY_DISABLED: '1'
+        run: npm run check
+
   build:
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
