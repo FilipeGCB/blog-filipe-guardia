@@ -23,9 +23,9 @@ const seriesDescriptions: Record<string, string> = {
   description="Experiência operacional transformada em processos, produtos, dados e inteligência artificial aplicada."
   currentPath="/"
 >
-  <section class="hero">
+  <section class="hero hero-home">
     <div class="page-shell hero-grid">
-      <div>
+      <div class="hero-home-copy">
         <span class="eyebrow">Cobrança B2B · Dados · Sistemas · IA</span>
         <h1>O trabalho real merece <em>estrutura</em>.</h1>
         <p class="hero-deck">Um caderno sobre como experiência operacional, conhecimento, dados e tecnologia se transformam em processos, produtos e soluções inteligentes — com clareza, limites e responsabilidade.</p>
@@ -34,10 +34,17 @@ const seriesDescriptions: Record<string, string> = {
           <a class="button-secondary" href={href('/sobre.html')}>Conhecer a trajetória</a>
         </div>
       </div>
-      <div class="hero-visual">
-        <EditorialVisual src="/assets/editorial/home-system.svg" alt="Diagrama editorial que conecta operação, estrutura, sistema e agente governado." loading="eager" />
-        <div class="editorial-note">A tecnologia entra depois que o problema já tem forma.</div>
+      <div class="hero-photo-wrap">
+        <EditorialVisual src="/assets/editorial/generated/hero-worktable.webp" alt="Mesa de trabalho com mapas de processos desenhados à mão, papéis sobrepostos e instrumentos de planejamento." loading="eager" className="hero-photo" />
+        <div class="hero-photo-caption"><span>01 / Caderno de sistemas reais</span><strong>A tecnologia entra depois que o problema já tem forma.</strong></div>
       </div>
+    </div>
+  </section>
+
+  <section class="statement-band">
+    <div class="page-shell statement-grid">
+      <span class="section-kicker">Uma publicação sobre trabalho e tecnologia</span>
+      <p>Antes do agente, existe a operação. Antes da automação, existe a estrutura que torna uma decisão possível.</p>
     </div>
   </section>
 
@@ -71,7 +78,7 @@ const seriesDescriptions: Record<string, string> = {
             <p class="prose-lead">{latest.deck}</p>
             <a class="button" href={href(`/artigos/${latest.slug}.html`)}>Ler artigo completo</a>
           </div>
-          <EditorialVisual src={latest.cover} alt={latest.coverAlt} />
+          <EditorialVisual src={latest.cover} alt={latest.coverAlt} className="feature-photo" loading="eager" />
         </div>
       </article>
     </div>
@@ -86,8 +93,8 @@ const seriesDescriptions: Record<string, string> = {
         </div>
         <p>Do crédito à governança de agentes, os temas se encontram no mesmo lugar: a tentativa de tornar o trabalho mais compreensível e executável.</p>
       </div>
-      <div class="article-grid">
-        {selected.map((article) => <ArticleCard article={article} />)}
+      <div class="article-grid article-grid-editorial">
+        {selected.map((article, index) => <ArticleCard article={article} featured={index === 0} />)}
       </div>
     </div>
   </section>

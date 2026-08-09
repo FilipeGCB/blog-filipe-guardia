@@ -17,7 +17,7 @@ for (const reference of references) {
 
 const editorialDir = new URL('./public/assets/editorial/', root);
 const figuresDir = new URL('./public/assets/editorial/figures/', root);
-const covers = (await readdir(editorialDir)).filter((file) => file.endsWith('.svg') && file !== 'home-system.svg');
+const covers = (await readdir(editorialDir)).filter((file) => /\.(svg|png|jpe?g|webp)$/i.test(file) && file !== 'home-system.svg');
 const figures = (await readdir(figuresDir)).filter((file) => file.endsWith('.svg'));
 
 if (covers.length !== 15) errors.push(`Esperava 15 capas editoriais; encontrei ${covers.length}.`);

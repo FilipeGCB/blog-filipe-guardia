@@ -12,6 +12,6 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
 const imageSrc = `${base}${src.replace(/^\//, '')}`;
 ---
 <figure class:list={['editorial-frame', className]}>
-  <img src={imageSrc} alt={alt} loading={loading} decoding="async" />
+  <img src={imageSrc} alt={alt} loading={loading} decoding={loading === 'eager' ? 'sync' : 'async'} />
   {caption && <figcaption>{caption}</figcaption>}
 </figure>
