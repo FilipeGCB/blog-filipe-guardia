@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 660" role="img" aria-labelledby="title desc">
+  <title id="title">MEMÓRIA</title>
+  <desc id="desc">dependência → memória</desc>
+  <rect width="1200" height="660" fill="#f4f0e9"/>
+  <path d="M0 94H1200M0 560H1200M72 0V660M1128 0V660" stroke="#d9d1c5" stroke-width="1" opacity=".8"/>
+  <circle cx="1038" cy="100" r="180" fill="#7652a8" opacity=".08"/>
+  <circle cx="110" cy="560" r="142" fill="#bb8754" opacity=".08"/>
+  <text x="86" y="112" fill="#3d235c" font-family="Arial, sans-serif" font-size="18" font-weight="800" letter-spacing="1.5">MEMÓRIA</text><text x="86" y="143" fill="#6c6670" font-family="Arial, sans-serif" font-size="15" font-weight="650" letter-spacing="1.5">dependência → memória</text><text x="86" y="610" fill="#6c6670" font-family="Arial, sans-serif" font-size="13" font-weight="800" letter-spacing="1.5">DIAGRAMA EDITORIAL</text><path d="M235 220L420 300" stroke="#3d235c" stroke-width="5"  fill="none"/><path d="M420 300L620 220" stroke="#3d235c" stroke-width="5"  fill="none"/><path d="M420 300L570 440" stroke="#bb8754" stroke-width="5"  fill="none"/><path d="M570 440L880 340" stroke="#2e7564" stroke-width="5"  fill="none"/><circle cx="235" cy="220" r="21" fill="#bb8754" stroke="#fffdf8" stroke-width="4"/><circle cx="420" cy="300" r="30" fill="#3d235c" stroke="#fffdf8" stroke-width="4"/><circle cx="620" cy="220" r="21" fill="#7652a8" stroke="#fffdf8" stroke-width="4"/><circle cx="570" cy="440" r="21" fill="#bb8754" stroke="#fffdf8" stroke-width="4"/><circle cx="880" cy="340" r="28" fill="#2e7564" stroke="#fffdf8" stroke-width="4"/><text x="170" y="570" fill="#6c6670" font-family="Arial, sans-serif" font-size="15" font-weight="650" letter-spacing="1.5">conhecimento individual</text><text x="760" y="430" fill="#2e7564" font-family="Arial, sans-serif" font-size="15" font-weight="650" letter-spacing="1.5">memória institucional</text>
+</svg>

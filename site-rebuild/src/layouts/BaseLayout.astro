@@ -1,0 +1,105 @@
+---
+import '../styles/global.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  currentPath?: string;
+}
+
+const {
+  title,
+  description,
+  canonicalPath = '/',
+  image,
+  type = 'website',
+  currentPath = Astro.url.pathname
+} = Astro.props;
+
+const site = Astro.site ?? new URL('https://filipegcb.github.io/blog-filipe-guardia/');
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const canonical = new URL(canonicalPath.replace(/^\//, ''), site).href;
+const imageUrl = image ? new URL(image.replace(/^\//, ''), site).href : undefined;
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#17151b" />
+    <meta name="author" content="Filipe Guardia" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Filipe Guardia" />
+    {imageUrl && <meta property="og:image" content={imageUrl} />}
+    <meta name="twitter:card" content={imageUrl ? 'summary_large_image' : 'summary'} />
+    {imageUrl && <meta name="twitter:image" content={imageUrl} />}
+    <link rel="icon" href={base + 'favicon.svg'} />
+    <title>{title}</title>
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <SiteHeader currentPath={currentPath} />
+    <main id="conteudo">
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>
+
+<script is:inline>
+  (() => {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.documentElement.classList.add('motion-ready');
+    const revealTargets = [...document.querySelectorAll('[data-motion-reveal]')];
+
+    if (reduced || !('IntersectionObserver' in window)) {
+      revealTargets.forEach((target) => target.classList.add('is-inview'));
+    } else {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-inview');
+            observer.unobserve(entry.target);
+          });
+        },
+        { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
+      );
+      revealTargets.forEach((target) => observer.observe(target));
+    }
+
+    const supportsScrollTimeline = Boolean(window.CSS?.supports?.('animation-timeline: scroll()'));
+    const hero = document.querySelector('[data-scroll-hero]');
+    const heroMedia = hero?.querySelector('.scroll-hero-media');
+
+    if (hero && heroMedia && !reduced && !supportsScrollTimeline) {
+      let frame = 0;
+      const updateHero = () => {
+        frame = 0;
+        const bounds = hero.getBoundingClientRect();
+        const travel = Math.max(bounds.height, window.innerHeight);
+        const progress = Math.min(1, Math.max(0, (window.innerHeight * 0.2 - bounds.top) / travel));
+        heroMedia.style.setProperty('--hero-progress', progress.toFixed(3));
+      };
+      const requestHeroUpdate = () => {
+        if (frame) return;
+        frame = window.requestAnimationFrame(updateHero);
+      };
+      window.addEventListener('scroll', requestHeroUpdate, { passive: true });
+      window.addEventListener('resize', requestHeroUpdate);
+      updateHero();
+    }
+  })();
+</script>

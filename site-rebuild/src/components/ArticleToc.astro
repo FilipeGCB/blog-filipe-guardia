@@ -1,0 +1,18 @@
+---
+interface Heading {
+  id: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+}
+
+const { headings } = Astro.props;
+---
+<nav aria-label="Sumário do artigo">
+  <strong>Neste artigo</strong>
+  <ol class="toc">
+    {headings.map((heading) => <li><a href={`#${heading.id}`}>{heading.text}</a></li>)}
+  </ol>
+</nav>

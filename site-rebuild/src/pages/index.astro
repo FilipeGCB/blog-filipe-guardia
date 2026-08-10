@@ -1,0 +1,178 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EditorialVisual from '../components/EditorialVisual.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import StickySystemStory from '../components/StickySystemStory.astro';
+import { articleSeries, getSortedArticles } from '../data/articles';
+
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
+const ordered = getSortedArticles();
+const latest = ordered[0];
+const selected = ordered.slice(1, 7);
+const systemScenes = [
+  {
+    id: 'operacao',
+    number: '01',
+    title: 'Operação real',
+    description: 'O problema nasce no trabalho cotidiano: cobrança, dados, exceções, decisões e responsabilidade.',
+    image: '/assets/editorial/generated/home-hero-inteligencia-material.webp',
+    alt: 'Camadas irregulares de papel e vidro atravessadas por um percurso de luz, representando o trabalho real antes de ganhar estrutura.',
+    caption: 'A tecnologia entra depois que o problema já tem forma.'
+  },
+  {
+    id: 'estrutura',
+    number: '02',
+    title: 'Estrutura',
+    description: 'O conhecimento ganha nomes, regras, contexto, memória e uma forma que pode ser compartilhada.',
+    image: '/assets/editorial/generated/home-story-estrutura.webp',
+    alt: 'As mesmas camadas de papel e vidro agora alinhadas por registros de metal, enquanto o percurso luminoso se torna contínuo.',
+    caption: 'Memória deixa de ser dependência quando ganha estrutura.'
+  },
+  {
+    id: 'sistema',
+    number: '03',
+    title: 'Sistema',
+    description: 'Processos, ferramentas e produtos transformam entendimento em execução rastreável.',
+    image: '/assets/editorial/generated/home-story-sistema.webp',
+    alt: 'Papéis, vidro e registros formam um sistema contínuo e preciso atravessado por uma única rota de luz.',
+    caption: 'Um modelo só vira produto quando existe um sistema ao redor.'
+  },
+  {
+    id: 'agente',
+    number: '04',
+    title: 'Agente governado',
+    description: 'A IA entra como participante capaz, com limites, passagem de contexto e revisão humana.',
+    image: '/assets/editorial/generated/home-story-agente-governado.webp',
+    alt: 'O percurso luminoso atravessa o sistema e encontra uma fronteira roxa com uma única passagem controlada.',
+    caption: 'Autonomia útil inclui o momento certo de parar.'
+  }
+];
+const seriesDescriptions: Record<string, string> = {
+  'Conhecimento organizacional': 'Memória, vocabulário, documentos e o contexto que torna uma empresa encontrável.',
+  'Sistemas e agentes': 'Ferramentas, arquiteturas, agentes e as novas formas de organizar o trabalho.',
+  'Governança e segurança': 'Autonomia, limites, confirmação humana e responsabilidade operacional.',
+  'Transformação e trabalho': 'Aprendizado, planejamento e mudança quando viram um sistema de execução.',
+  'Operação e crédito': 'Risco, cobrança, fluxo de caixa e as mudanças silenciosas da operação financeira.'
+};
+---
+<BaseLayout
+  title="Filipe Guardia — Caderno de Sistemas Reais"
+  description="Experiência operacional transformada em processos, produtos, dados e inteligência artificial aplicada."
+  currentPath="/"
+>
+  <section class="hero hero-home" data-scroll-hero>
+    <div class="hero-home-media">
+      <EditorialVisual src="/assets/editorial/generated/home-hero-inteligencia-material.webp" alt="Escultura editorial de papel, vidro e metal: camadas de trabalho são atravessadas por uma linha de luz que encontra uma fronteira roxa." loading="eager" className="hero-photo scroll-hero-media" />
+    </div>
+    <div class="page-shell hero-home-layout">
+      <div class="hero-home-copy">
+        <span class="eyebrow">Cobrança B2B · Dados · Sistemas · IA</span>
+        <h1>O trabalho real merece <em>estrutura</em>.</h1>
+        <p class="hero-deck">Um caderno sobre como experiência operacional, conhecimento, dados e tecnologia se transformam em processos, produtos e soluções inteligentes — com clareza, limites e responsabilidade.</p>
+        <div class="hero-actions">
+          <a class="button" href={href('/artigos.html')}>Explorar os artigos</a>
+          <a class="button-secondary" href={href('/sobre.html')}>Conhecer a trajetória</a>
+        </div>
+      </div>
+      <div class="hero-photo-caption"><span>01 / Caderno de sistemas reais</span><strong>A tecnologia entra depois que o problema já tem forma.</strong></div>
+    </div>
+  </section>
+
+  <section class="statement-band">
+    <div class="page-shell statement-grid">
+      <span class="section-kicker">Uma publicação sobre trabalho e tecnologia</span>
+      <p>Antes do agente, existe a operação. Antes da automação, existe a estrutura que torna uma decisão possível.</p>
+    </div>
+  </section>
+
+  <section class="section section-tinted">
+    <div class="page-shell">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">A tese do caderno</span>
+          <h2>Da operação à inteligência, existe um caminho.</h2>
+        </div>
+        <p>O site organiza esse caminho para que cada artigo seja uma peça de uma conversa maior — não apenas uma publicação isolada.</p>
+      </div>
+      <StickySystemStory scenes={systemScenes} />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="page-shell">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">Artigo mais recente</span>
+          <h2>Em destaque</h2>
+        </div>
+        <a class="text-link" href={href('/artigos.html')}>Ver o arquivo completo →</a>
+      </div>
+      <article class="featured-article">
+        <div class="split-copy">
+          <div>
+            <div class="article-meta"><span>{latest.series}</span><span>{latest.dateLabel}</span><span>{latest.readingTime}</span></div>
+            <h2>{latest.title}</h2>
+            <p class="prose-lead">{latest.deck}</p>
+            <a class="button" href={href(`/artigos/${latest.slug}.html`)}>Ler artigo completo</a>
+          </div>
+          <EditorialVisual src={latest.cover} alt={latest.coverAlt} className="feature-photo" loading="eager" />
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section-tinted">
+    <div class="page-shell">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">Caderno editorial</span>
+          <h2>Textos para ler como um sistema.</h2>
+        </div>
+        <p>Do crédito à governança de agentes, os temas se encontram no mesmo lugar: a tentativa de tornar o trabalho mais compreensível e executável.</p>
+      </div>
+      <div class="article-grid article-grid-editorial">
+        {selected.map((article, index) => <ArticleCard article={article} featured={index === 0} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="page-shell">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">Por onde entrar</span>
+          <h2>Escolha uma porta de entrada.</h2>
+        </div>
+        <a class="text-link" href={href('/artigos.html')}>Filtrar por série →</a>
+      </div>
+      <div class="path-grid">
+        {articleSeries.map((series) => (
+          <article class="path-card">
+            <span class="path-number">{String(articleSeries.indexOf(series) + 1).padStart(2, '0')}</span>
+            <h3>{series}</h3>
+            <p>{seriesDescriptions[series] ?? 'Ensaios sobre a conexão entre experiência, processo, tecnologia e decisão.'}</p>
+            <a href={href(`/artigos.html?serie=${encodeURIComponent(series)}`)}>Abrir esta série →</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tinted">
+    <div class="page-shell split-copy">
+      <div>
+        <span class="section-kicker">Além do blog</span>
+        <h2>Projetos, trajetória e uma biblioteca pública.</h2>
+      </div>
+      <div class="copy-stack">
+        <p>O blog mostra como penso. Os projetos mostram como transformo esse pensamento em trabalho. A biblioteca reúne métodos e fontes para tornar esse processo reutilizável.</p>
+        <div class="hero-actions">
+          <a class="button-secondary" href={href('/projetos.html')}>Ver projetos</a>
+          <a class="button-secondary" href={href('/biblioteca.html')}>Abrir biblioteca</a>
+          <a class="text-link" href={href('/contato.html')}>Conversar →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

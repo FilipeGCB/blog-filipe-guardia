@@ -1,0 +1,24 @@
+---
+import ArticleLayout from '../../components/ArticleLayout.astro';
+import { getAdjacentArticles, getSortedArticles } from '../../data/articles';
+
+export function getStaticPaths() {
+  const contentFiles = import.meta.glob<string>('../../content/articles/*.html', { query: '?raw', import: 'default', eager: true });
+  const getHeadings = (content: string) => [...content.matchAll(/<h2\s+id="([^"]+)"[^>]*>([\s\S]*?)<\/h2>/gi)].map((match) => ({
+    id: match[1],
+    text: match[2].replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').trim()
+  }));
+
+  return getSortedArticles().map((article) => {
+    const content = contentFiles[`../../content/articles/${article.slug}.html`] ?? '';
+    const adjacent = getAdjacentArticles(article.slug);
+    return {
+      params: { slug: article.slug },
+      props: { article, content, headings: getHeadings(content), ...adjacent }
+    };
+  });
+}
+
+const { article, content, headings, previous, next } = Astro.props;
+---
+<ArticleLayout article={article} content={content} headings={headings} previous={previous} next={next} />

@@ -1,0 +1,186 @@
+<p>Imagine duas equipes falando sobre o mesmo cliente.</p>
+
+        <p>Uma chama o cliente de “ativo”. Outra usa “em operação”. Uma terceira registra “vigente”. Em uma planilha, o segmento aparece como “grandes empresas”. Em outra, como “corporativo”. Em um relatório, atraso significa mais de um dia. Em outro, somente depois do vencimento de uma janela específica.</p>
+
+        <p>Para uma pessoa experiente, essas diferenças podem parecer administráveis. Ela conhece o contexto e faz a tradução mental.</p>
+
+        <p>Para um sistema — e especialmente para uma inteligência artificial — essas diferenças podem significar conceitos distintos.</p>
+
+        <p>É por isso que, antes de falar em agentes, copilotos e cérebros organizacionais, precisamos falar de algo menos chamativo: <strong>vocabulário comum</strong>.</p>
+
+        <h2 id="nomes-importam">1. Nomes não são apenas detalhes</h2>
+        <p>Dentro de uma empresa, palavras carregam regras.</p>
+
+        <p>“Cliente ativo”, “carteira”, “prioridade”, “inadimplência”, “produto”, “canal” e “resultado” podem parecer termos simples. Mas cada um pode ter critérios, exceções e responsáveis diferentes.</p>
+
+        <p>Quando esses significados não estão claros, surgem problemas conhecidos:</p>
+
+        <ul>
+          <li>relatórios que não fecham entre si;</li>
+          <li>equipes discutindo números sem perceber que usam definições diferentes;</li>
+          <li>documentos difíceis de localizar;</li>
+          <li>automação baseada em regras ambíguas;</li>
+          <li>IA recuperando conteúdo parecido, mas inadequado ao contexto.</li>
+        </ul>
+
+        <p>A tecnologia não cria essa confusão. Ela apenas torna visível uma desorganização que já existia.</p>
+
+        <h2 id="taxonomia">2. O que é taxonomia?</h2>
+        <p>Taxonomia é uma forma organizada de classificar conceitos.</p>
+
+        <p>Em vez de deixar cada pessoa escolher qualquer palavra, a organização define conjuntos de termos, relações hierárquicas, sinônimos e descrições.</p>
+
+        <p>Por exemplo:</p>
+
+        <ul>
+          <li><strong>Área:</strong> Comercial, Financeiro, Operações, Tecnologia;</li>
+          <li><strong>Tipo de conteúdo:</strong> regra, processo, decisão, indicador, evidência;</li>
+          <li><strong>Status:</strong> rascunho, em validação, aprovado, substituído;</li>
+          <li><strong>Tema:</strong> crédito, cobrança, atendimento, produto, dados.</li>
+        </ul>
+
+        <p>Esses termos podem ser organizados em grupos maiores e menores. Também podem ter nomes alternativos para que diferentes formas de busca levem ao mesmo conceito.</p>
+
+        <p>Na documentação do SharePoint, a Microsoft descreve a taxonomia como um sistema formal de classificação, formado por termos organizados em conjuntos e hierarquias. O Term Store é justamente o local onde esse vocabulário controlado pode ser administrado.</p>
+
+        <h2 id="metadados">3. Metadados são etiquetas com significado</h2>
+        <p>Depois de definir os conceitos, é preciso aplicá-los aos conteúdos.</p>
+
+        <p>É aí que entram os metadados.</p>
+
+        <p>Um documento pode conter informações como:</p>
+
+        <ul>
+          <li>qual processo descreve;</li>
+          <li>a qual área pertence;</li>
+          <li>quem é o responsável;</li>
+          <li>qual é o status de validação;</li>
+          <li>qual período está coberto;</li>
+          <li>quais regras ou indicadores estão relacionados.</li>
+        </ul>
+
+        <p>O nome do arquivo pode continuar sendo útil, mas deixa de carregar sozinho toda a responsabilidade de explicar o conteúdo.</p>
+
+        <p>Isso melhora filtros, buscas, organização e governança. No SharePoint, colunas de metadados gerenciados permitem que usuários escolham termos de conjuntos previamente definidos, em vez de criar variações livremente.</p>
+
+        <h2 id="busca-ia">4. Por que isso melhora a busca e a IA?</h2>
+        <p>Uma busca tradicional tenta localizar palavras.</p>
+
+        <p>Uma busca mais inteligente tenta compreender conceitos, contexto e relações.</p>
+
+        <p>Mas ela ainda precisa de sinais confiáveis.</p>
+
+        <p>A Microsoft informa que, quando uma consulta do Copilot é direcionada a uma biblioteca ou pasta do SharePoint, os metadados das colunas podem ser usados como sinais adicionais para restringir e ordenar os resultados.</p>
+
+        <p>Na prática, isso significa que uma pergunta como “mostre decisões aprovadas sobre cobrança” pode ser muito mais precisa quando “decisão”, “aprovado” e “cobrança” não são apenas palavras soltas no texto, mas metadados estruturados.</p>
+
+        <p>A IA continua lendo o conteúdo. Porém, passa a receber pistas melhores sobre o que aquele conteúdo representa.</p>
+
+        <h2 id="exemplo-pratico">5. Um exemplo prático</h2>
+        <p>Imagine uma biblioteca com milhares de documentos.</p>
+
+        <p>Sem organização, os arquivos podem ter nomes como:</p>
+
+        <ul>
+          <li>versao_final.docx;</li>
+          <li>final_agora_v2.docx;</li>
+          <li>novo_fluxo_atualizado.pdf;</li>
+          <li>material_reuniao.xlsx.</li>
+        </ul>
+
+        <p>Mesmo que os documentos sejam importantes, localizar a versão correta se torna uma investigação.</p>
+
+        <p>Agora imagine que cada item tenha campos padronizados:</p>
+
+        <ul>
+          <li>tipo: regra de negócio;</li>
+          <li>tema: cobrança;</li>
+          <li>status: aprovado;</li>
+          <li>validade: 2026;</li>
+          <li>responsável: área proprietária;</li>
+          <li>substitui: documento anterior.</li>
+        </ul>
+
+        <p>A busca deixa de depender apenas do título. Um agente também consegue distinguir um rascunho de uma regra vigente e uma apresentação de uma decisão formal.</p>
+
+        <h2 id="nao-basta-criar-lista">6. Não basta criar uma lista de palavras</h2>
+        <p>Uma taxonomia não é um glossário esquecido em uma pasta.</p>
+
+        <p>Ela precisa de governança.</p>
+
+        <p>Isso envolve decidir:</p>
+
+        <ul>
+          <li>quem pode criar novos termos;</li>
+          <li>quem aprova mudanças;</li>
+          <li>como sinônimos serão tratados;</li>
+          <li>quando um termo deve ser substituído;</li>
+          <li>como evitar classificações excessivas;</li>
+          <li>como revisar o vocabulário ao longo do tempo.</li>
+        </ul>
+
+        <p>Se qualquer pessoa puder alterar tudo, a padronização desaparece. Se ninguém puder alterar nada, o vocabulário envelhece.</p>
+
+        <p>O desafio é encontrar equilíbrio entre controle e evolução.</p>
+
+        <h2 id="impacto-pessoas">7. O impacto para as pessoas</h2>
+        <p>À primeira vista, classificar documentos pode parecer trabalho adicional.</p>
+
+        <p>Se o desenho for ruim, realmente será.</p>
+
+        <p>Uma boa estrutura usa poucos campos relevantes, oferece opções compreensíveis e automatiza o que puder ser inferido com segurança.</p>
+
+        <p>O benefício aparece depois:</p>
+
+        <ul>
+          <li>menos tempo procurando arquivos;</li>
+          <li>menos dúvidas sobre qual versão utilizar;</li>
+          <li>menos retrabalho explicando conceitos;</li>
+          <li>mais facilidade para novos profissionais entenderem o contexto;</li>
+          <li>respostas de IA mais consistentes e verificáveis.</li>
+        </ul>
+
+        <p>O vocabulário comum não elimina a experiência humana. Ele permite que essa experiência seja compartilhada.</p>
+
+        <h2 id="impacto-empresas">8. O impacto para as empresas</h2>
+        <p>Para a empresa, taxonomia e metadados formam uma infraestrutura de conhecimento.</p>
+
+        <p>Eles ajudam a conectar documentos, processos, decisões, indicadores e responsáveis. Também tornam mais viável aplicar retenção, segurança, pesquisa, automação e inteligência artificial de forma coerente.</p>
+
+        <p>A própria Microsoft oferece recursos de marcação por taxonomia que utilizam IA para aplicar termos do Term Store a documentos. Isso mostra uma relação importante: a IA pode ajudar a classificar conteúdo, mas precisa de uma estrutura de termos para saber quais classificações fazem sentido.</p>
+
+        <p>Organização e inteligência não são etapas concorrentes. Uma fortalece a outra.</p>
+
+        <h2 id="aprendizado">9. O que estou aprendendo</h2>
+        <p>Meu aprendizado recente é que um cérebro organizacional não começa pela tela de conversa.</p>
+
+        <p>Ele começa pela forma como a empresa nomeia o que sabe.</p>
+
+        <p>Antes de esperar que um agente encontre regras, compare decisões e explique processos, é preciso garantir que esses elementos possam ser identificados e relacionados.</p>
+
+        <p>Isso muda a ordem da construção.</p>
+
+        <p>Primeiro vem o vocabulário. Depois, os metadados. Em seguida, a organização dos conteúdos, as permissões, a busca e os agentes.</p>
+
+        <p>O chat é a parte visível. A inteligência depende da estrutura que existe por trás.</p>
+
+        <h2 id="conclusao">10. Conclusão</h2>
+        <p>Empresas não sofrem apenas por falta de informação. Muitas sofrem porque a mesma informação recebe nomes diferentes, fica espalhada e perde seu contexto.</p>
+
+        <p>A inteligência artificial pode ajudar a localizar, resumir e relacionar conteúdos. Mas ela não corrige automaticamente todas as ambiguidades de uma organização.</p>
+
+        <p>Taxonomia e metadados parecem assuntos técnicos. Na prática, são instrumentos para tornar conhecimento compreensível, encontrável e reutilizável.</p>
+
+        <p>Antes de perguntar qual agente a empresa deveria construir, talvez seja necessário responder outra pergunta:</p>
+
+        <p><strong>Quais palavras, conceitos e relações esse agente precisa compreender para não confundir o nosso trabalho?</strong></p>
+
+        <p class="article-question"><strong>Na sua empresa, duas pessoas que procuram a mesma informação usam os mesmos nomes — ou cada área ainda fala um idioma diferente?</strong></p>
+
+        <h2 id="fontes">Fontes oficiais consultadas</h2>
+        <ul>
+          <li><a href="https://learn.microsoft.com/sharepoint/managed-metadata" target="_blank" rel="noopener noreferrer">Microsoft Learn — Introduction to managed metadata</a></li>
+          <li><a href="https://learn.microsoft.com/sharepoint/open-term-store-management-tool" target="_blank" rel="noopener noreferrer">Microsoft Learn — Open the Term Store Management Tool</a></li>
+          <li><a href="https://learn.microsoft.com/microsoftsearch/semantic-index-for-copilot" target="_blank" rel="noopener noreferrer">Microsoft Learn — Semantic indexing for Microsoft 365 Copilot</a></li>
+          <li><a href="https://learn.microsoft.com/microsoft-365/syntex/taxonomy-tagging-overview" target="_blank" rel="noopener noreferrer">Microsoft Learn — Overview of taxonomy tagging</a></li>
+        </ul>
