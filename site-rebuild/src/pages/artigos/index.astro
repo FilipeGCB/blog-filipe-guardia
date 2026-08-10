@@ -28,8 +28,12 @@ const ordered = getSortedArticles();
         </div>
         <span class="archive-count" data-archive-count>{ordered.length} artigos</span>
       </div>
-      <div class="article-grid archive-grid" data-article-grid>
-        {ordered.map((article, index) => <ArticleCard article={article} featured={index === 0} />)}
+      <div class="archive-list" data-article-grid>
+        {ordered.map((article, index) => (
+          <div class:list={['archive-row', index === 0 && 'archive-row-lead', index % 2 === 1 && 'archive-row-reverse']} data-archive-row>
+            <ArticleCard article={article} featured={index === 0} />
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -45,6 +49,8 @@ const ordered = getSortedArticles();
     cards.forEach((card) => {
       const show = filter === 'all' || card.dataset.series === filter;
       card.hidden = !show;
+      const row = card.closest<HTMLElement>('[data-archive-row]');
+      if (row) row.hidden = !show;
       if (show) visible += 1;
     });
     buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.filter === filter)));
