@@ -3,23 +3,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import EditorialVisual from '../components/EditorialVisual.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import StickySystemStory from '../components/StickySystemStory.astro';
-import { articleSeries, getArticle, getSortedArticles } from '../data/articles';
+import { articleSeries, getSortedArticles } from '../data/articles';
 
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
 const ordered = getSortedArticles();
 const latest = ordered[0];
 const selected = ordered.slice(1, 7);
-const systemArticle = getArticle('software-em-torno-de-agentes')!;
-const agentArticle = getArticle('a-ia-que-sabe-quando-parar')!;
 const systemScenes = [
   {
     id: 'operacao',
     number: '01',
     title: 'Operação real',
     description: 'O problema nasce no trabalho cotidiano: cobrança, dados, exceções, decisões e responsabilidade.',
-    image: '/assets/editorial/generated/hero-worktable.webp',
-    alt: 'Mesa de trabalho com mapas de processos desenhados à mão, papéis sobrepostos e instrumentos de planejamento.',
+    image: '/assets/editorial/generated/home-hero-inteligencia-material.webp',
+    alt: 'Camadas irregulares de papel e vidro atravessadas por um percurso de luz, representando o trabalho real antes de ganhar estrutura.',
     caption: 'A tecnologia entra depois que o problema já tem forma.'
   },
   {
@@ -27,8 +25,8 @@ const systemScenes = [
     number: '02',
     title: 'Estrutura',
     description: 'O conhecimento ganha nomes, regras, contexto, memória e uma forma que pode ser compartilhada.',
-    image: latest.cover,
-    alt: latest.coverAlt,
+    image: '/assets/editorial/generated/home-story-estrutura.webp',
+    alt: 'As mesmas camadas de papel e vidro agora alinhadas por registros de metal, enquanto o percurso luminoso se torna contínuo.',
     caption: 'Memória deixa de ser dependência quando ganha estrutura.'
   },
   {
@@ -36,8 +34,8 @@ const systemScenes = [
     number: '03',
     title: 'Sistema',
     description: 'Processos, ferramentas e produtos transformam entendimento em execução rastreável.',
-    image: systemArticle.cover,
-    alt: systemArticle.coverAlt,
+    image: '/assets/editorial/generated/home-story-sistema.webp',
+    alt: 'Papéis, vidro e registros formam um sistema contínuo e preciso atravessado por uma única rota de luz.',
     caption: 'Um modelo só vira produto quando existe um sistema ao redor.'
   },
   {
@@ -45,8 +43,8 @@ const systemScenes = [
     number: '04',
     title: 'Agente governado',
     description: 'A IA entra como participante capaz, com limites, passagem de contexto e revisão humana.',
-    image: agentArticle.cover,
-    alt: agentArticle.coverAlt,
+    image: '/assets/editorial/generated/home-story-agente-governado.webp',
+    alt: 'O percurso luminoso atravessa o sistema e encontra uma fronteira roxa com uma única passagem controlada.',
     caption: 'Autonomia útil inclui o momento certo de parar.'
   }
 ];
@@ -64,7 +62,10 @@ const seriesDescriptions: Record<string, string> = {
   currentPath="/"
 >
   <section class="hero hero-home" data-scroll-hero>
-    <div class="page-shell hero-grid">
+    <div class="hero-home-media">
+      <EditorialVisual src="/assets/editorial/generated/home-hero-inteligencia-material.webp" alt="Escultura editorial de papel, vidro e metal: camadas de trabalho são atravessadas por uma linha de luz que encontra uma fronteira roxa." loading="eager" className="hero-photo scroll-hero-media" />
+    </div>
+    <div class="page-shell hero-home-layout">
       <div class="hero-home-copy">
         <span class="eyebrow">Cobrança B2B · Dados · Sistemas · IA</span>
         <h1>O trabalho real merece <em>estrutura</em>.</h1>
@@ -74,10 +75,7 @@ const seriesDescriptions: Record<string, string> = {
           <a class="button-secondary" href={href('/sobre.html')}>Conhecer a trajetória</a>
         </div>
       </div>
-      <div class="hero-photo-wrap">
-        <EditorialVisual src="/assets/editorial/generated/hero-worktable.webp" alt="Mesa de trabalho com mapas de processos desenhados à mão, papéis sobrepostos e instrumentos de planejamento." loading="eager" className="hero-photo scroll-hero-media" />
-        <div class="hero-photo-caption"><span>01 / Caderno de sistemas reais</span><strong>A tecnologia entra depois que o problema já tem forma.</strong></div>
-      </div>
+      <div class="hero-photo-caption"><span>01 / Caderno de sistemas reais</span><strong>A tecnologia entra depois que o problema já tem forma.</strong></div>
     </div>
   </section>
 
