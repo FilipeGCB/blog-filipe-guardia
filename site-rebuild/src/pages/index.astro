@@ -2,14 +2,54 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EditorialVisual from '../components/EditorialVisual.astro';
 import ArticleCard from '../components/ArticleCard.astro';
-import ReadingPath from '../components/ReadingPath.astro';
-import { articleSeries, getSortedArticles } from '../data/articles';
+import StickySystemStory from '../components/StickySystemStory.astro';
+import { articleSeries, getArticle, getSortedArticles } from '../data/articles';
 
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
 const ordered = getSortedArticles();
 const latest = ordered[0];
 const selected = ordered.slice(1, 7);
+const systemArticle = getArticle('software-em-torno-de-agentes')!;
+const agentArticle = getArticle('a-ia-que-sabe-quando-parar')!;
+const systemScenes = [
+  {
+    id: 'operacao',
+    number: '01',
+    title: 'Operação real',
+    description: 'O problema nasce no trabalho cotidiano: cobrança, dados, exceções, decisões e responsabilidade.',
+    image: '/assets/editorial/generated/hero-worktable.webp',
+    alt: 'Mesa de trabalho com mapas de processos desenhados à mão, papéis sobrepostos e instrumentos de planejamento.',
+    caption: 'A tecnologia entra depois que o problema já tem forma.'
+  },
+  {
+    id: 'estrutura',
+    number: '02',
+    title: 'Estrutura',
+    description: 'O conhecimento ganha nomes, regras, contexto, memória e uma forma que pode ser compartilhada.',
+    image: latest.cover,
+    alt: latest.coverAlt,
+    caption: 'Memória deixa de ser dependência quando ganha estrutura.'
+  },
+  {
+    id: 'sistema',
+    number: '03',
+    title: 'Sistema',
+    description: 'Processos, ferramentas e produtos transformam entendimento em execução rastreável.',
+    image: systemArticle.cover,
+    alt: systemArticle.coverAlt,
+    caption: 'Um modelo só vira produto quando existe um sistema ao redor.'
+  },
+  {
+    id: 'agente',
+    number: '04',
+    title: 'Agente governado',
+    description: 'A IA entra como participante capaz, com limites, passagem de contexto e revisão humana.',
+    image: agentArticle.cover,
+    alt: agentArticle.coverAlt,
+    caption: 'Autonomia útil inclui o momento certo de parar.'
+  }
+];
 const seriesDescriptions: Record<string, string> = {
   'Conhecimento organizacional': 'Memória, vocabulário, documentos e o contexto que torna uma empresa encontrável.',
   'Sistemas e agentes': 'Ferramentas, arquiteturas, agentes e as novas formas de organizar o trabalho.',
@@ -23,7 +63,7 @@ const seriesDescriptions: Record<string, string> = {
   description="Experiência operacional transformada em processos, produtos, dados e inteligência artificial aplicada."
   currentPath="/"
 >
-  <section class="hero hero-home">
+  <section class="hero hero-home" data-scroll-hero>
     <div class="page-shell hero-grid">
       <div class="hero-home-copy">
         <span class="eyebrow">Cobrança B2B · Dados · Sistemas · IA</span>
@@ -35,7 +75,7 @@ const seriesDescriptions: Record<string, string> = {
         </div>
       </div>
       <div class="hero-photo-wrap">
-        <EditorialVisual src="/assets/editorial/generated/hero-worktable.webp" alt="Mesa de trabalho com mapas de processos desenhados à mão, papéis sobrepostos e instrumentos de planejamento." loading="eager" className="hero-photo" />
+        <EditorialVisual src="/assets/editorial/generated/hero-worktable.webp" alt="Mesa de trabalho com mapas de processos desenhados à mão, papéis sobrepostos e instrumentos de planejamento." loading="eager" className="hero-photo scroll-hero-media" />
         <div class="hero-photo-caption"><span>01 / Caderno de sistemas reais</span><strong>A tecnologia entra depois que o problema já tem forma.</strong></div>
       </div>
     </div>
@@ -57,7 +97,7 @@ const seriesDescriptions: Record<string, string> = {
         </div>
         <p>O site organiza esse caminho para que cada artigo seja uma peça de uma conversa maior — não apenas uma publicação isolada.</p>
       </div>
-      <ReadingPath />
+      <StickySystemStory scenes={systemScenes} />
     </div>
   </section>
 
