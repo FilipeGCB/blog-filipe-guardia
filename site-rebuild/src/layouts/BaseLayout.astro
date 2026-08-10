@@ -57,3 +57,49 @@ const imageUrl = image ? new URL(image.replace(/^\//, ''), site).href : undefine
     <SiteFooter />
   </body>
 </html>
+
+<script is:inline>
+  (() => {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.documentElement.classList.add('motion-ready');
+    const revealTargets = [...document.querySelectorAll('[data-motion-reveal]')];
+
+    if (reduced || !('IntersectionObserver' in window)) {
+      revealTargets.forEach((target) => target.classList.add('is-inview'));
+    } else {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-inview');
+            observer.unobserve(entry.target);
+          });
+        },
+        { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
+      );
+      revealTargets.forEach((target) => observer.observe(target));
+    }
+
+    const supportsScrollTimeline = Boolean(window.CSS?.supports?.('animation-timeline: scroll()'));
+    const hero = document.querySelector('[data-scroll-hero]');
+    const heroMedia = hero?.querySelector('.scroll-hero-media');
+
+    if (hero && heroMedia && !reduced && !supportsScrollTimeline) {
+      let frame = 0;
+      const updateHero = () => {
+        frame = 0;
+        const bounds = hero.getBoundingClientRect();
+        const travel = Math.max(bounds.height, window.innerHeight);
+        const progress = Math.min(1, Math.max(0, (window.innerHeight * 0.2 - bounds.top) / travel));
+        heroMedia.style.setProperty('--hero-progress', progress.toFixed(3));
+      };
+      const requestHeroUpdate = () => {
+        if (frame) return;
+        frame = window.requestAnimationFrame(updateHero);
+      };
+      window.addEventListener('scroll', requestHeroUpdate, { passive: true });
+      window.addEventListener('resize', requestHeroUpdate);
+      updateHero();
+    }
+  })();
+</script>
