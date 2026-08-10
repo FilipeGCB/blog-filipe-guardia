@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EditorialVisual from './EditorialVisual.astro';
+import ArticleVisualInterlude from './ArticleVisualInterlude.astro';
 import ArticleToc from './ArticleToc.astro';
 import type { Article } from '../data/articles';
 
@@ -24,6 +25,39 @@ const beforeFigure = markerIndex >= 0 ? content.slice(0, markerIndex) : content;
 const afterFigure = markerIndex >= 0 ? content.slice(markerIndex) : '';
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
+const interludeNotes: Record<string, { kicker: string; title: string; body: string }> = {
+  'a-memoria-da-empresa-nao-pode-morar-na-cabeca-das-pessoas': {
+    kicker: 'A virada do artigo',
+    title: 'Da cabeça para o sistema',
+    body: 'A memória deixa de ser uma dependência individual quando pode ser encontrada, entendida e mantida por outras pessoas.'
+  },
+  'pix-parcelado': {
+    kicker: 'A virada do artigo',
+    title: 'O risco muda de lugar',
+    body: 'O meio de pagamento parece simples na superfície, mas reorganiza quem financia, quem cobra e onde a operação precisa enxergar risco.'
+  },
+  'o-modelo-nao-e-o-sistema': {
+    kicker: 'A virada do artigo',
+    title: 'O modelo é uma camada',
+    body: 'A resposta inteligente é só o começo. Regras, ferramentas, memória e observabilidade transformam capacidade em comportamento confiável.'
+  },
+  'a-ia-que-sabe-quando-parar': {
+    kicker: 'A virada do artigo',
+    title: 'Autonomia precisa de fronteira',
+    body: 'Um agente maduro não é o que executa tudo: é o que reconhece risco, pede confirmação e torna a responsabilidade visível.'
+  },
+  'sem-vocabulario-comum-a-ia-nao-entende-a-empresa': {
+    kicker: 'A virada do artigo',
+    title: 'Nomear é estruturar',
+    body: 'Quando a empresa alinha seus termos e relações, ela reduz a distância entre o que as áreas dizem e o que o sistema consegue compreender.'
+  },
+  'quando-relatorios-viram-sistemas': {
+    kicker: 'A virada do artigo',
+    title: 'O relatório é um ciclo',
+    body: 'O trabalho analítico ganha valor quando não termina na página: ele alimenta decisão, execução, evidência e aprendizado.'
+  }
+};
+const interlude = interludeNotes[article.slug];
 ---
 <BaseLayout
   title={`${article.title} | Filipe Guardia`}
@@ -33,7 +67,7 @@ const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
   type="article"
   currentPath={`/artigos/${article.slug}.html`}
 >
-  <header class="article-hero">
+  <header class="article-hero" data-scroll-article>
     <div class="page-shell article-hero-grid">
       <div>
         <div class="article-meta">
@@ -50,7 +84,7 @@ const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
           <span class="meta-label">{article.tags.join(' · ')}</span>
         </div>
       </div>
-      <EditorialVisual src={article.cover} alt={article.coverAlt} className="article-visual" loading="eager" />
+      <EditorialVisual src={article.cover} alt={article.coverAlt} className="article-visual article-scroll-media" loading="eager" />
     </div>
   </header>
 
@@ -60,7 +94,11 @@ const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
     </aside>
     <article class="article-content">
       <Fragment set:html={beforeFigure} />
-      <EditorialVisual src={article.figure} alt={article.figureAlt} caption={article.figureCaption} className="inline-figure" />
+      {interlude ? (
+        <ArticleVisualInterlude article={article} note={interlude} />
+      ) : (
+        <EditorialVisual src={article.figure} alt={article.figureAlt} caption={article.figureCaption} className="inline-figure" />
+      )}
       {afterFigure && <Fragment set:html={afterFigure} />}
       <footer class="article-bottom">
         {previous ? <a href={href(`/artigos/${previous.slug}.html`)}>← {previous.title}</a> : <span />}
