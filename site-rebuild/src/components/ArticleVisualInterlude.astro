@@ -1,0 +1,28 @@
+---
+import EditorialVisual from './EditorialVisual.astro';
+import type { Article } from '../data/articles';
+
+interface Note {
+  kicker: string;
+  title: string;
+  body: string;
+}
+
+interface Props {
+  article: Article;
+  note: Note;
+}
+
+const { article, note } = Astro.props;
+---
+<section class="article-visual-interlude" data-motion-reveal aria-label={`Interlúdio visual: ${note.title}`}>
+  <div class="interlude-copy">
+    <span class="section-kicker">{note.kicker}</span>
+    <h2>{note.title}</h2>
+    <p>{note.body}</p>
+    <span class="interlude-source">{article.series} <span aria-hidden="true">·</span> leitura visual</span>
+  </div>
+  <div class="interlude-media">
+    <EditorialVisual src={article.figure} alt={article.figureAlt} caption={article.figureCaption} className="interlude-visual" />
+  </div>
+</section>
