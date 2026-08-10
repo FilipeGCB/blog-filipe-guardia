@@ -1,0 +1,103 @@
+---
+interface StoryScene {
+  id: string;
+  number: string;
+  title: string;
+  description: string;
+  image: string;
+  alt: string;
+  caption?: string;
+}
+
+interface Props {
+  scenes: StoryScene[];
+  label?: string;
+}
+
+const { scenes, label = 'Percurso editorial do caderno' } = Astro.props;
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const imageSrc = (path: string) => `${base}${path.replace(/^\//, '')}`;
+---
+<div class="sticky-story" data-sticky-story>
+  <div class="sticky-story-copy">
+    {scenes.map((scene) => (
+      <article class="sticky-story-step" data-story-step={scene.id}>
+        <span class="sticky-story-number">{scene.number}</span>
+        <h3>{scene.title}</h3>
+        <p>{scene.description}</p>
+      </article>
+    ))}
+  </div>
+
+  <div class="sticky-story-media" aria-label={label}>
+    <div class="sticky-story-stage">
+      {scenes.map((scene, index) => (
+        <figure
+          class:list={['sticky-story-frame', index === 0 && 'is-active']}
+          data-story-frame={scene.id}
+          aria-hidden={index === 0 ? 'false' : 'true'}
+        >
+          <img
+            src={imageSrc(scene.image)}
+            alt={scene.alt}
+            loading={index === 0 ? 'eager' : 'lazy'}
+            decoding={index === 0 ? 'sync' : 'async'}
+          />
+          {scene.caption && <figcaption>{scene.caption}</figcaption>}
+        </figure>
+      ))}
+    </div>
+    <div class="sticky-story-status" aria-live="polite">
+      <span class="sticky-story-status-label">Percurso</span>
+      <strong data-story-progress>01 / {String(scenes.length).padStart(2, '0')}</strong>
+    </div>
+  </div>
+</div>
+
+<script>
+  const stories = document.querySelectorAll('[data-sticky-story]');
+
+  stories.forEach((story) => {
+    const steps = [...story.querySelectorAll<HTMLElement>('[data-story-step]')];
+    const frames = [...story.querySelectorAll<HTMLElement>('[data-story-frame]')];
+    const progress = story.querySelector('[data-story-progress]');
+
+    if (!steps.length || !frames.length) return;
+
+    const activate = (id: string) => {
+      const activeIndex = steps.findIndex((step) => step.dataset.storyStep === id);
+      if (activeIndex < 0) return;
+
+      steps.forEach((step, index) => {
+        const active = index === activeIndex;
+        step.classList.toggle('is-active', active);
+        step.setAttribute('aria-current', active ? 'step' : 'false');
+      });
+
+      frames.forEach((frame) => {
+        const active = frame.dataset.storyFrame === id;
+        frame.classList.toggle('is-active', active);
+        frame.setAttribute('aria-hidden', String(!active));
+      });
+
+      if (progress) progress.textContent = `${String(activeIndex + 1).padStart(2, '0')} / ${String(steps.length).padStart(2, '0')}`;
+    };
+
+    activate(steps[0].dataset.storyStep || '');
+
+    if (!('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+          .slice(0, 1)
+          .forEach((entry) => activate((entry.target as HTMLElement).dataset.storyStep || ''));
+      },
+      { rootMargin: '-35% 0px -45% 0px', threshold: [0.15, 0.35, 0.7] }
+    );
+
+    steps.forEach((step) => observer.observe(step));
+  });
+</script>
