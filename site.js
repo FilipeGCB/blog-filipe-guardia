@@ -134,7 +134,8 @@
       ["curso-nao-transforma-empresa.html", "Curso não transforma empresa"],
       ["sem-vocabulario-comum-a-ia-nao-entende-a-empresa.html", "Sem vocabulário comum"],
       ["documento-nao-e-base-de-conhecimento.html", "Documento não é base de conhecimento"],
-      ["a-memoria-da-empresa-nao-pode-morar-na-cabeca-das-pessoas.html", "A memória da empresa"]
+      ["a-memoria-da-empresa-nao-pode-morar-na-cabeca-das-pessoas.html", "A memória da empresa"],
+      ["o-modelo-pode-mudar-a-memoria-precisa-ficar.html", "O modelo pode mudar. A memória precisa ficar."]
     ];
     const current = location.pathname.split("/").pop();
     const index = sequence.findIndex(([file]) => file === current);
