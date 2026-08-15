@@ -1,13 +1,24 @@
-import { access, readdir, readFile } from 'node:fs/promises';
+import { access, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 const root = new URL('..', import.meta.url);
 const data = await readFile(new URL('./src/data/articles.ts', root), 'utf8');
 const publicDir = new URL('./public/', root);
 const errors = [];
-const references = [...data.matchAll(/(?:cover|figure):\s*'([^']+)'/g)].map((match) => match[1]);
 
-for (const reference of references) {
+const slugs = [...data.matchAll(/slug:\s*'([^']+)'/g)].map((match) => match[1]);
+const covers = [...data.matchAll(/cover:\s*'([^']+)'/g)].map((match) => match[1]);
+const figures = [...data.matchAll(/figure:\s*'([^']+)'/g)].map((match) => match[1]);
+
+if (covers.length !== slugs.length) {
+  errors.push(`Quantidade divergente de capas: ${covers.length} referências para ${slugs.length} artigos.`);
+}
+
+if (figures.length !== slugs.length) {
+  errors.push(`Quantidade divergente de figuras: ${figures.length} referências para ${slugs.length} artigos.`);
+}
+
+for (const reference of [...covers, ...figures]) {
   try {
     await access(join(new URL('.', publicDir).pathname, reference.replace(/^\//, '')));
   } catch {
@@ -15,16 +26,21 @@ for (const reference of references) {
   }
 }
 
-const editorialDir = new URL('./public/assets/editorial/', root);
-const figuresDir = new URL('./public/assets/editorial/figures/', root);
-const covers = (await readdir(editorialDir)).filter((file) => /\.(svg|png|jpe?g|webp)$/i.test(file) && file !== 'home-system.svg');
-const figures = (await readdir(figuresDir)).filter((file) => file.endsWith('.svg'));
+for (const cover of covers) {
+  if (!cover.startsWith('/assets/editorial/')) {
+    errors.push(`Capa fora da árvore editorial: ${cover}`);
+  }
+}
 
-if (covers.length !== 15) errors.push(`Esperava 15 capas editoriais; encontrei ${covers.length}.`);
-if (figures.length !== 15) errors.push(`Esperava 15 figuras internas; encontrei ${figures.length}.`);
+for (const figure of figures) {
+  if (!figure.startsWith('/assets/editorial/figures/')) {
+    errors.push(`Figura fora da pasta editorial de figuras: ${figure}`);
+  }
+}
+
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exit(1);
 }
 
-console.log(`Assets verificados: ${covers.length} capas, ${figures.length} figuras internas e referências completas.`);
+console.log(`Assets verificados: ${covers.length} capas e ${figures.length} figuras referenciadas, todos os arquivos presentes.`);
