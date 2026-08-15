@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 660" role="img" aria-labelledby="title desc">
+  <title id="title">MEMÓRIA DESACOPLADA</title>
+  <desc id="desc">modelos substituíveis consultam uma memória persistente comum</desc>
+  <rect width="1200" height="660" fill="#f4f0e9"/>
+  <path d="M0 94H1200M0 560H1200M72 0V660M1128 0V660" stroke="#d9d1c5" stroke-width="1" opacity=".8"/>
+  <circle cx="1038" cy="100" r="180" fill="#7652a8" opacity=".08"/>
+  <circle cx="110" cy="560" r="142" fill="#bb8754" opacity=".08"/>
+  <text x="86" y="112" fill="#3d235c" font-family="Arial, sans-serif" font-size="18" font-weight="800" letter-spacing="1.5">MEMÓRIA DESACOPLADA</text>
+  <text x="86" y="143" fill="#6c6670" font-family="Arial, sans-serif" font-size="15" font-weight="650" letter-spacing="1.5">trocar o modelo sem apagar a história</text>
+  <text x="86" y="610" fill="#6c6670" font-family="Arial, sans-serif" font-size="13" font-weight="800" letter-spacing="1.5">DIAGRAMA EDITORIAL</text>
+
+  <rect x="120" y="220" width="205" height="104" rx="18" fill="#fffdf8" stroke="#3d235c" stroke-width="4"/>
+  <text x="222" y="263" text-anchor="middle" fill="#3d235c" font-family="Arial, sans-serif" font-size="15" font-weight="800">MODELO A</text>
+  <text x="222" y="291" text-anchor="middle" fill="#6c6670" font-family="Arial, sans-serif" font-size="13" font-weight="650">substituível</text>
+
+  <rect x="120" y="370" width="205" height="104" rx="18" fill="#fffdf8" stroke="#7652a8" stroke-width="4"/>
+  <text x="222" y="413" text-anchor="middle" fill="#3d235c" font-family="Arial, sans-serif" font-size="15" font-weight="800">MODELO B</text>
+  <text x="222" y="441" text-anchor="middle" fill="#6c6670" font-family="Arial, sans-serif" font-size="13" font-weight="650">substituível</text>
+
+  <path d="M325 272H470" stroke="#3d235c" stroke-width="5"/>
+  <path d="M325 422H470" stroke="#7652a8" stroke-width="5"/>
+  <path d="M452 260L472 272L452 284" fill="none" stroke="#3d235c" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M452 410L472 422L452 434" fill="none" stroke="#7652a8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="472" y="180" width="305" height="334" rx="34" fill="#fffdf8" stroke="#2e7564" stroke-width="5"/>
+  <text x="624" y="224" text-anchor="middle" fill="#2e7564" font-family="Arial, sans-serif" font-size="16" font-weight="800" letter-spacing="1.1">MEMÓRIA PERSISTENTE</text>
+  <rect x="520" y="258" width="209" height="52" rx="14" fill="#2e7564" opacity=".12"/>
+  <text x="624" y="289" text-anchor="middle" fill="#2e7564" font-family="Arial, sans-serif" font-size="14" font-weight="800">FATOS + DECISÕES</text>
+  <rect x="520" y="330" width="209" height="52" rx="14" fill="#bb8754" opacity=".14"/>
+  <text x="624" y="361" text-anchor="middle" fill="#7d552f" font-family="Arial, sans-serif" font-size="14" font-weight="800">FONTES + ARTEFATOS</text>
+  <rect x="520" y="402" width="209" height="52" rx="14" fill="#7652a8" opacity=".12"/>
+  <text x="624" y="433" text-anchor="middle" fill="#3d235c" font-family="Arial, sans-serif" font-size="14" font-weight="800">HISTÓRICO + CONTEXTO</text>
+
+  <path d="M777 347H922" stroke="#2e7564" stroke-width="5"/>
+  <path d="M904 335L924 347L904 359" fill="none" stroke="#2e7564" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="924" y="288" width="156" height="118" rx="20" fill="#fffdf8" stroke="#bb8754" stroke-width="4"/>
+  <text x="1002" y="334" text-anchor="middle" fill="#7d552f" font-family="Arial, sans-serif" font-size="14" font-weight="800">AGENTE</text>
+  <text x="1002" y="363" text-anchor="middle" fill="#6c6670" font-family="Arial, sans-serif" font-size="13" font-weight="650">usa contexto</text>
+  <text x="1002" y="384" text-anchor="middle" fill="#6c6670" font-family="Arial, sans-serif" font-size="13" font-weight="650">sem possuir</text>
+
+  <text x="600" y="548" text-anchor="middle" fill="#2e7564" font-family="Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="1.1">A MEMÓRIA É INFRAESTRUTURA · O MODELO É UMA PEÇA</text>
+</svg>
