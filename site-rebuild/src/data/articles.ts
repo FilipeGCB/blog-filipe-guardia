@@ -18,6 +18,23 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'o-modelo-pode-mudar-a-memoria-precisa-ficar',
+    title: 'O modelo pode mudar. A memória precisa ficar.',
+    deck: 'Modelos evoluem, fornecedores mudam e agentes são substituídos. O conhecimento acumulado pela empresa não deveria recomeçar do zero.',
+    category: 'Arquitetura, Conhecimento & IA',
+    series: 'Conhecimento organizacional',
+    date: '2026-08-15',
+    dateLabel: '15 de agosto de 2026',
+    readingTime: 'Leitura de 10 min',
+    cover: '/assets/editorial/o-modelo-pode-mudar-a-memoria-precisa-ficar.svg',
+    coverAlt: 'Dois modelos substituíveis se conectam à mesma camada persistente de memória, que preserva a história entre as trocas.',
+    figure: '/assets/editorial/figures/o-modelo-pode-mudar-a-memoria-precisa-ficar.svg',
+    figureAlt: 'Diagrama com modelos substituíveis consultando uma memória persistente compartilhada por agentes.',
+    figureCaption: 'O modelo pode ser trocado sem reconstruir a história quando memória e inteligência são camadas separadas.',
+    figureAfterHeading: 'tres-coisas',
+    tags: ['memória', 'arquitetura', 'agentes']
+  },
+  {
     slug: 'a-memoria-da-empresa-nao-pode-morar-na-cabeca-das-pessoas',
     title: 'A memória da empresa não pode morar na cabeça das pessoas',
     deck: 'Quando o conhecimento essencial só existe na cabeça de alguém, a empresa não tem memória: tem dependência.',
