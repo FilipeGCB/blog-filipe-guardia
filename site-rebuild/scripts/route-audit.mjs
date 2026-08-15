@@ -1,9 +1,12 @@
-import { access, readdir } from 'node:fs/promises';
+import { access, readdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 const root = new URL('..', import.meta.url);
 const dist = new URL('./dist/', root);
+const data = await readFile(new URL('./src/data/articles.ts', root), 'utf8');
+const expectedSlugs = [...data.matchAll(/slug:\s*'([^']+)'/g)].map((match) => match[1]);
 const errors = [];
+
 const required = [
   'index.html',
   'artigos.html',
@@ -12,6 +15,7 @@ const required = [
   'projetos.html',
   'contato.html',
   '404.html',
+  'sitemap.xml',
   'assets/editorial/home-system.svg'
 ];
 
@@ -24,8 +28,20 @@ for (const path of required) {
 }
 
 const articlesDir = new URL('./dist/artigos/', root);
-const articleRoutes = (await readdir(articlesDir)).filter((file) => file.endsWith('.html'));
-if (articleRoutes.length !== 15) errors.push(`Esperava 15 rotas de artigo; encontrei ${articleRoutes.length}.`);
+const articleRoutes = (await readdir(articlesDir)).filter((file) => file.endsWith('.html')).sort();
+const expectedRoutes = expectedSlugs.map((slug) => `${slug}.html`).sort();
+
+if (articleRoutes.length !== expectedRoutes.length) {
+  errors.push(`Quantidade divergente de rotas: ${articleRoutes.length} geradas para ${expectedRoutes.length} artigos.`);
+}
+
+for (const route of expectedRoutes) {
+  if (!articleRoutes.includes(route)) errors.push(`Rota de artigo ausente no build: ${route}`);
+}
+
+for (const route of articleRoutes) {
+  if (!expectedRoutes.includes(route)) errors.push(`Rota de artigo sem metadado correspondente: ${route}`);
+}
 
 if (errors.length) {
   console.error(errors.join('\n'));
