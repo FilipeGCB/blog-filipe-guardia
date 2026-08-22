@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 660" role="img" aria-labelledby="title desc">
+  <title id="title">CAMADAS DO DICIONÁRIO</title>
+  <desc id="desc">metadado técnico evolui para significado, relações e governança</desc>
+  <rect width="1200" height="660" fill="#f4f0e9"/>
+  <path d="M0 94H1200M0 560H1200M72 0V660M1128 0V660" stroke="#d9d1c5" stroke-width="1" opacity=".8"/>
+  <circle cx="1040" cy="108" r="170" fill="#7652a8" opacity=".08"/>
+  <circle cx="116" cy="558" r="138" fill="#bb8754" opacity=".08"/>
+  <text x="86" y="112" fill="#3d235c" font-family="Arial, sans-serif" font-size="18" font-weight="800" letter-spacing="1.5">CAMADAS DO DICIONÁRIO</text>
+  <text x="86" y="143" fill="#6c6670" font-family="Arial, sans-serif" font-size="15" font-weight="650" letter-spacing="1.5">do catálogo técnico ao contexto de negócio</text>
+  <text x="86" y="610" fill="#6c6670" font-family="Arial, sans-serif" font-size="13" font-weight="800" letter-spacing="1.5">DIAGRAMA EDITORIAL</text>
+
+  <g transform="translate(150 210)">
+    <rect x="0" y="210" width="210" height="90" rx="18" fill="#fffdf8" stroke="#3d235c" stroke-width="4"/>
+    <text x="105" y="248" text-anchor="middle" fill="#3d235c" font-family="Arial, sans-serif" font-size="15" font-weight="800">ESTRUTURA</text>
+    <text x="105" y="273" text-anchor="middle" fill="#6c6670" font-family="Arial, sans-serif" font-size="13">tabelas · colunas · tipos</text>
+
+    <rect x="220" y="140" width="210" height="90" rx="18" fill="#fffdf8" stroke="#7652a8" stroke-width="4"/>
+    <text x="325" y="178" text-anchor="middle" fill="#3d235c" font-family="Arial, sans-serif" font-size="15" font-weight="800">SIGNIFICADO</text>
+    <text x="325" y="203" text-anchor="middle" fill="#6c6670" font-family="Arial, sans-serif" font-size="13">definições · regras</text>
+
+    <rect x="440" y="70" width="210" height="90" rx="18" fill="#fffdf8" stroke="#bb8754" stroke-width="4"/>
+    <text x="545" y="108" text-anchor="middle" fill="#3d235c" font-family="Arial, sans-serif" font-size="15" font-weight="800">RELAÇÕES</text>
+    <text x="545" y="133" text-anchor="middle" fill="#6c6670" font-family="Arial, sans-serif" font-size="13">chaves · granularidade</text>
+
+    <rect x="660" y="0" width="210" height="90" rx="18" fill="#fffdf8" stroke="#2e7564" stroke-width="4"/>
+    <text x="765" y="38" text-anchor="middle" fill="#3d235c" font-family="Arial, sans-serif" font-size="15" font-weight="800">GOVERNANÇA</text>
+    <text x="765" y="63" text-anchor="middle" fill="#6c6670" font-family="Arial, sans-serif" font-size="13">origem · dono · vigência</text>
+
+    <path d="M210 232L244 209M430 162L464 139M650 92L684 69" stroke="#6c6670" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="228" cy="220" r="7" fill="#7652a8"/>
+    <circle cx="448" cy="150" r="7" fill="#bb8754"/>
+    <circle cx="668" cy="80" r="7" fill="#2e7564"/>
+  </g>
+
+  <path d="M900 430C970 420 1008 382 1020 332" fill="none" stroke="#2e7564" stroke-width="5" stroke-linecap="round"/>
+  <path d="M1007 344L1021 326L1028 348" fill="none" stroke="#2e7564" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="938" y="462" fill="#2e7564" font-family="Arial, sans-serif" font-size="14" font-weight="800" letter-spacing="1.1">MAIS CONTEXTO</text>
+  <text x="938" y="487" fill="#6c6670" font-family="Arial, sans-serif" font-size="13">menos adivinhação</text>
+</svg>
