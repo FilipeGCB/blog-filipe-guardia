@@ -18,6 +18,23 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'antes-do-agente-de-dados-vem-o-dicionario',
+    title: 'Antes do agente de dados, vem o dicionário',
+    deck: 'Uma IA pode escrever SQL em segundos. Mas, sem um mapa confiável das tabelas, campos e relações, velocidade só faz a resposta errada chegar mais rápido.',
+    category: 'Dados, Sistemas & IA',
+    series: 'Dados e operação',
+    date: '2026-08-22',
+    dateLabel: '22 de agosto de 2026',
+    readingTime: 'Leitura de 10 min',
+    cover: '/assets/editorial/antes-do-agente-de-dados-vem-o-dicionario.svg',
+    coverAlt: 'Tabelas técnicas passam por um dicionário de dados com significado e relações antes de chegar a um agente de inteligência artificial.',
+    figure: '/assets/editorial/figures/antes-do-agente-de-dados-vem-o-dicionario.svg',
+    figureAlt: 'Quatro camadas de um dicionário de dados: estrutura, significado, relações e governança.',
+    figureCaption: 'O catálogo técnico é o começo; significado, relações e governança transformam inventário em contexto confiável.',
+    figureAfterHeading: 'metadados-primeiro-mapa',
+    tags: ['dicionário de dados', 'metadados', 'agentes']
+  },
+  {
     slug: 'o-modelo-pode-mudar-a-memoria-precisa-ficar',
     title: 'O modelo pode mudar. A memória precisa ficar.',
     deck: 'Modelos evoluem, fornecedores mudam e agentes são substituídos. O conhecimento acumulado pela empresa não deveria recomeçar do zero.',
