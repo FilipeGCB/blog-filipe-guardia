@@ -1,0 +1,97 @@
+.library-agent-entry {
+  margin-top: 32px;
+}
+
+.page-intro-night .library-agent-entry {
+  color: var(--night-text);
+}
+
+.library-collections-section { background: var(--paper); }
+
+.library-premium-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.library-card-premium {
+  display: grid;
+  min-height: 360px;
+  grid-template-columns: minmax(130px, .34fr) minmax(0, 1fr);
+  padding: 0;
+  overflow: hidden;
+}
+
+.library-card-code {
+  display: grid;
+  align-content: center;
+  gap: 10px;
+  padding: 28px 20px;
+  border-right: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(61,35,92,.05), transparent 70%),
+    var(--surface-warm);
+}
+
+.library-card-code span {
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  gap: 8px;
+  align-items: baseline;
+  color: var(--muted);
+  font-size: .72rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.library-card-code b {
+  color: var(--warm);
+  font-size: .62rem;
+  letter-spacing: .08em;
+}
+
+.library-card-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: clamp(26px, 4vw, 44px);
+}
+
+.library-card-premium h3 {
+  margin-top: 22px;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+}
+
+.library-card-premium .card-actions {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.library-card-premium .card-actions a {
+  color: var(--brand);
+  font-size: .82rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.library-violet .library-card-code { box-shadow: inset 4px 0 0 rgba(121,86,232,.55); }
+.library-warm .library-card-code { box-shadow: inset 4px 0 0 rgba(185,135,88,.62); }
+.library-green .library-card-code { box-shadow: inset 4px 0 0 rgba(46,117,100,.58); }
+.library-ink .library-card-code { box-shadow: inset 4px 0 0 rgba(23,21,27,.5); }
+
+@media (max-width: 1000px) {
+  .library-premium-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .library-card-premium { grid-template-columns: 1fr; }
+  .library-card-code {
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 8px;
+    padding: 16px 18px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .library-card-code span { grid-template-columns: 1fr; gap: 2px; }
+}

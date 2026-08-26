@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntroVisual from '../../components/PageIntroVisual.astro';
 import LibraryCard from '../../components/LibraryCard.astro';
 import PageAgentLauncher from '../../components/PageAgentLauncher.astro';
 import { libraryCollections } from '../../data/library';
@@ -8,7 +9,24 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
 const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
 ---
 <BaseLayout title="Biblioteca | Filipe Guardia" description="Métodos, fontes e estruturas públicas para trabalho com dados, processos, produtos e IA." canonicalPath="/biblioteca.html" currentPath="/biblioteca.html">
-  <section class="page-intro"><div class="page-shell"><span class="eyebrow">Biblioteca pública</span><h1>Métodos para transformar <em>contexto</em> em entrega.</h1><p class="deck">Uma camada separada do blog para reunir habilidades, fontes e artefatos reutilizáveis. O blog explica o raciocínio; a biblioteca organiza formas de fazer.</p><PageAgentLauncher /></div></section>
-  <section class="section"><div class="page-shell"><div class="section-head"><div><span class="section-kicker">Coleções</span><h2>Escolha o tipo de trabalho.</h2></div><p>As coleções funcionam como portas de entrada para o catálogo público original e para os temas que atravessam os artigos.</p></div><div class="library-grid">{libraryCollections.map((collection) => <LibraryCard collection={collection} />)}</div></div></section>
-  <section class="section section-tinted"><div class="page-shell split-copy"><div><span class="section-kicker">Fonte original</span><h2>O catálogo público continua completo.</h2></div><div class="copy-stack"><p>As 24 habilidades existentes permanecem disponíveis na estrutura pública de origem. Esta camada editorial ajuda a encontrar o caminho antes de abrir uma fonte específica.</p><a class="button" href={href('/habilidades/index.html')}>Abrir catálogo completo →</a></div></div></section>
+  <PageIntroVisual
+    eyebrow="Biblioteca pública"
+    title="Métodos para transformar <em>contexto</em> em entrega."
+    deck="Uma camada separada do blog para reunir habilidades, fontes e artefatos reutilizáveis. O blog explica o raciocínio; a biblioteca organiza formas de fazer."
+    theme="night"
+    currentLabel="Métodos · conhecimento · artefatos · dados · governança"
+  >
+    <div slot="actions" class="library-agent-entry"><PageAgentLauncher /></div>
+  </PageIntroVisual>
+
+  <section class="section library-collections-section">
+    <div class="editorial-shell">
+      <div class="section-head"><div><span class="section-kicker">Coleções</span><h2>Escolha o tipo de trabalho.</h2></div><p>As coleções funcionam como portas de entrada: cada uma combina método, fontes e caminhos públicos sem transformar a biblioteca em uma parede de cards fotográficos.</p></div>
+      <div class="library-premium-grid">{libraryCollections.map((collection) => <LibraryCard collection={collection} />)}</div>
+    </div>
+  </section>
+
+  <section class="section section-tinted">
+    <div class="editorial-shell split-copy"><div><span class="section-kicker">Fonte original</span><h2>O catálogo público continua completo.</h2></div><div class="copy-stack"><p>As 24 habilidades existentes permanecem disponíveis na estrutura pública de origem. Esta camada editorial ajuda a encontrar o caminho antes de abrir uma fonte específica.</p><a class="button" href={href('/habilidades/index.html')}>Abrir catálogo completo →</a></div></div>
+  </section>
 </BaseLayout>
