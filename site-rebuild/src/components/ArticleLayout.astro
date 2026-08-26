@@ -67,9 +67,9 @@ const interlude = interludeNotes[article.slug];
   type="article"
   currentPath={`/artigos/${article.slug}.html`}
 >
-  <header class="article-hero" data-scroll-article>
-    <div class="page-shell article-hero-grid">
-      <div>
+  <header class="article-hero article-hero-night" data-scroll-article>
+    <div class="visual-shell article-hero-grid">
+      <div class="article-hero-copy">
         <div class="article-meta">
           <span>{article.series}</span>
           <span>·</span>
@@ -88,11 +88,11 @@ const interlude = interludeNotes[article.slug];
     </div>
   </header>
 
-  <div class="page-shell article-body">
+  <div class="editorial-shell article-body-shell">
     <aside class="article-aside">
       <ArticleToc headings={headings} />
     </aside>
-    <article class="article-content">
+    <article class="article-content reading-shell">
       <Fragment set:html={beforeFigure} />
       {interlude ? (
         <ArticleVisualInterlude article={article} note={interlude} />
