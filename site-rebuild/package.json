@@ -8,7 +8,7 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "node scripts/verify-content.mjs && node scripts/asset-audit.mjs && astro check",
+    "check": "node scripts/verify-content.mjs && node scripts/asset-audit.mjs && node scripts/verify-responsive-images.mjs && astro check",
     "audit:routes": "node scripts/route-audit.mjs",
     "preserve:legacy": "node scripts/preserve-legacy.mjs"
   },
