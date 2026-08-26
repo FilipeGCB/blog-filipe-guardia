@@ -9,9 +9,16 @@ interface Props {
 
 const { src, alt, caption, className = '', loading = 'lazy' } = Astro.props;
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
-const imageSrc = `${base}${src.replace(/^\//, '')}`;
+const isHomepageHero = className.includes('hero-photo') && className.includes('scroll-hero-media');
+const effectiveSrc = isHomepageHero
+  ? '/assets/editorial/generated/filipe-guardia-hero.webp'
+  : src;
+const effectiveAlt = isHomepageHero
+  ? 'Filipe Guardia em retrato profissional e descontraído, em um ambiente contemporâneo de tecnologia, sistemas e inteligência artificial.'
+  : alt;
+const imageSrc = `${base}${effectiveSrc.replace(/^\//, '')}`;
 ---
 <figure class:list={['editorial-frame', className]}>
-  <img src={imageSrc} alt={alt} loading={loading} decoding={loading === 'eager' ? 'sync' : 'async'} />
+  <img src={imageSrc} alt={effectiveAlt} loading={loading} decoding={loading === 'eager' ? 'sync' : 'async'} />
   {caption && <figcaption>{caption}</figcaption>}
 </figure>
