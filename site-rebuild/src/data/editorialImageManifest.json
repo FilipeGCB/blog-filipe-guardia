@@ -1,0 +1,72 @@
+{
+  "portrait:filipe:home": {
+    "kind": "portrait",
+    "status": "approved",
+    "source": "assets-source/editorial/portraits/filipe/home/hero-approved-master.base64.txt",
+    "sourceEncoding": "base64-text",
+    "outputBase": "public/assets/editorial/portraits/filipe/home/hero",
+    "widths": [960, 1440, 1920, 2560, 3840],
+    "formats": ["avif", "webp"],
+    "aspectRatio": "16:9",
+    "focalPoint": "64% 48%",
+    "sizes": "(min-width: 1800px) 1760px, (min-width: 900px) calc(100vw - 2 * clamp(16px, 3vw, 64px)), 100vw",
+    "alt": "Filipe em um ambiente contemporâneo de trabalho, sentado diante de um caderno e laptop, com monitores e a cidade ao fundo.",
+    "allowUpscale": true,
+    "approvedOn": "2026-08-26",
+    "identityLocked": true,
+    "quality": { "avif": 61, "webp": 88 },
+    "mobile": {
+      "media": "(max-width: 767px)",
+      "outputBase": "public/assets/editorial/portraits/filipe/home/hero-mobile",
+      "widths": [480, 768, 960],
+      "aspectRatio": "4:5",
+      "focalPoint": "68% 46%"
+    }
+  },
+  "cover:a-memoria-da-empresa-nao-pode-morar-na-cabeca-das-pessoas": {
+    "kind": "cover",
+    "status": "legacy-adjust",
+    "publicPath": "public/assets/editorial/generated/cover-memoria-organizacional.webp",
+    "alt": "Camadas translúcidas registram e preservam um mesmo rastro de grafite, representando conhecimento que permanece além de uma pessoa."
+  },
+  "cover:sem-vocabulario-comum-a-ia-nao-entende-a-empresa": {
+    "kind": "cover",
+    "status": "legacy-adjust",
+    "publicPath": "public/assets/editorial/generated/cover-vocabulario-comum.webp",
+    "alt": "Fragmentos com marcas diferentes convergem por camadas transparentes até formar um padrão comum e estruturado."
+  },
+  "cover:a-ia-que-sabe-quando-parar": {
+    "kind": "cover",
+    "status": "legacy-adjust",
+    "publicPath": "public/assets/editorial/generated/cover-ia-sabe-quando-parar.webp",
+    "alt": "Um percurso de metal e luz para diante de uma fronteira roxa, onde uma passagem controlada exige decisão."
+  },
+  "cover:o-modelo-nao-e-o-sistema": {
+    "kind": "cover",
+    "status": "legacy-adjust",
+    "publicPath": "public/assets/editorial/generated/cover-modelo-nao-e-sistema.webp",
+    "alt": "Um núcleo roxo aparece envolvido por sucessivas camadas transparentes, registros e caminhos que formam o sistema ao redor."
+  },
+  "cover:pix-parcelado": {
+    "kind": "cover",
+    "status": "legacy-adjust",
+    "publicPath": "public/assets/editorial/generated/cover-pix-parcelado-material.webp",
+    "alt": "Faixas transparentes avançam em tempos diferentes enquanto uma linha de liquidação atravessa diretamente a composição."
+  },
+  "cover:quando-relatorios-viram-sistemas": {
+    "kind": "cover",
+    "status": "legacy-adjust",
+    "publicPath": "public/assets/editorial/generated/cover-relatorios-viram-sistemas.webp",
+    "alt": "Folhas separadas deixam uma pilha linear e passam a formar um ciclo material contínuo de informação e decisão."
+  },
+  "story:home:operacao": { "kind": "story", "status": "legacy-adjust", "publicPath": "public/assets/editorial/generated/home-hero-inteligencia-material.webp", "alt": "Camadas irregulares de papel e vidro atravessadas por um percurso de luz." },
+  "story:home:estrutura": { "kind": "story", "status": "legacy-adjust", "publicPath": "public/assets/editorial/generated/home-story-estrutura.webp", "alt": "Camadas de papel e vidro alinhadas por registros enquanto o percurso luminoso se torna contínuo." },
+  "story:home:sistema": { "kind": "story", "status": "legacy-adjust", "publicPath": "public/assets/editorial/generated/home-story-sistema.webp", "alt": "Papéis, vidro e registros formam um sistema contínuo atravessado por uma rota de luz." },
+  "story:home:agente-governado": { "kind": "story", "status": "legacy-adjust", "publicPath": "public/assets/editorial/generated/home-story-agente-governado.webp", "alt": "O percurso luminoso encontra uma fronteira roxa com uma passagem controlada." },
+  "portrait:filipe:about": { "kind": "portrait", "status": "planned", "identityLocked": true, "alt": "Retrato editorial de Filipe em luz natural e ambiente contemporâneo." },
+  "project:transformacao-cobranca": { "kind": "project", "status": "planned", "alt": "Representação editorial da transformação de uma operação de cobrança em um sistema estruturado." },
+  "project:cfo-ia": { "kind": "project", "status": "planned", "alt": "Representação editorial de um sistema financeiro organizado em dados, regras, análise e revisão humana." },
+  "project:hermes": { "kind": "project", "status": "planned", "alt": "Representação editorial de agentes, roteamento de modelos e execução governada." },
+  "project:presentation-intelligence-system": { "kind": "project", "status": "planned", "alt": "Representação editorial de um fluxo que transforma briefing em narrativa, storyboard e apresentação." },
+  "library:hero": { "kind": "library", "status": "planned", "alt": "Arquivo técnico de conhecimento estruturado em coleções, relações e métodos." }
+}
