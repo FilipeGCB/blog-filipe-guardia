@@ -13,7 +13,7 @@ const href = `${base}artigos/${article.slug}.html`;
 ---
 <article class:list={['article-card', featured && 'article-card-featured']} data-series={article.series} data-motion-reveal>
   <a class="card-visual scroll-reveal-media" href={href} aria-label={`Ler ${article.title}`}>
-    <EditorialVisual src={article.cover} alt={article.coverAlt} loading={featured ? 'eager' : 'lazy'} />
+    <EditorialVisual assetId={article.coverAssetId} src={article.coverAssetId ? undefined : article.cover} alt={article.coverAlt} loading={featured ? 'eager' : 'lazy'} />
   </a>
   <div class="card-copy">
     <div class="card-meta">

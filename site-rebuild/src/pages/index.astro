@@ -63,9 +63,9 @@ const seriesDescriptions: Record<string, string> = {
 >
   <section class="hero hero-home" data-scroll-hero>
     <div class="hero-home-media">
-      <EditorialVisual src="/assets/editorial/generated/home-hero-inteligencia-material.webp" alt="Escultura editorial de papel, vidro e metal: camadas de trabalho são atravessadas por uma linha de luz que encontra uma fronteira roxa." loading="eager" className="hero-photo scroll-hero-media" />
+      <EditorialVisual assetId="portrait:filipe:home" loading="eager" className="hero-photo scroll-hero-media" />
     </div>
-    <div class="page-shell hero-home-layout">
+    <div class="visual-shell hero-home-layout">
       <div class="hero-home-copy">
         <span class="eyebrow">Cobrança B2B · Dados · Sistemas · IA</span>
         <h1>O trabalho real merece <em>estrutura</em>.</h1>
@@ -116,7 +116,7 @@ const seriesDescriptions: Record<string, string> = {
             <p class="prose-lead">{latest.deck}</p>
             <a class="button" href={href(`/artigos/${latest.slug}.html`)}>Ler artigo completo</a>
           </div>
-          <EditorialVisual src={latest.cover} alt={latest.coverAlt} className="feature-photo" loading="eager" />
+          <EditorialVisual assetId={latest.coverAssetId} src={latest.coverAssetId ? undefined : latest.cover} alt={latest.coverAlt} className="feature-photo" loading="eager" />
         </div>
       </article>
     </div>

@@ -7,6 +7,7 @@ export interface Article {
   date: string;
   dateLabel: string;
   readingTime: string;
+  coverAssetId?: string;
   cover: string;
   coverAlt: string;
   figure: string;
@@ -60,6 +61,7 @@ export const articles: Article[] = [
     date: '2026-08-08',
     dateLabel: '8 de agosto de 2026',
     readingTime: 'Leitura de 10 min',
+    coverAssetId: 'cover:a-memoria-da-empresa-nao-pode-morar-na-cabeca-das-pessoas',
     cover: '/assets/editorial/generated/cover-memoria-organizacional.webp',
     coverAlt: 'Camadas translúcidas registram e preservam um mesmo rastro de grafite, representando conhecimento que permanece além de uma pessoa.',
     figure: '/assets/editorial/figures/a-memoria-da-empresa-nao-pode-morar-na-cabeca-das-pessoas.svg',
@@ -94,6 +96,7 @@ export const articles: Article[] = [
     date: '2026-08-01',
     dateLabel: '1º de agosto de 2026',
     readingTime: 'Leitura de 9 min',
+    coverAssetId: 'cover:sem-vocabulario-comum-a-ia-nao-entende-a-empresa',
     cover: '/assets/editorial/generated/cover-vocabulario-comum.webp',
     coverAlt: 'Fragmentos com marcas diferentes convergem por camadas transparentes até formar um padrão comum e estruturado.',
     figure: '/assets/editorial/figures/sem-vocabulario-comum-a-ia-nao-entende-a-empresa.svg',
@@ -128,6 +131,7 @@ export const articles: Article[] = [
     date: '2026-07-18',
     dateLabel: '18 de julho de 2026',
     readingTime: 'Leitura de 10 min',
+    coverAssetId: 'cover:a-ia-que-sabe-quando-parar',
     cover: '/assets/editorial/generated/cover-ia-sabe-quando-parar.webp',
     coverAlt: 'Um percurso de metal e luz para diante de uma fronteira roxa, onde uma passagem controlada exige decisão.',
     figure: '/assets/editorial/figures/a-ia-que-sabe-quando-parar.svg',
@@ -213,6 +217,7 @@ export const articles: Article[] = [
     date: '2026-07-04',
     dateLabel: '4 de julho de 2026',
     readingTime: 'Leitura de 9 min',
+    coverAssetId: 'cover:o-modelo-nao-e-o-sistema',
     cover: '/assets/editorial/generated/cover-modelo-nao-e-sistema.webp',
     coverAlt: 'Um núcleo roxo aparece envolvido por sucessivas camadas transparentes, registros e caminhos que formam o sistema ao redor.',
     figure: '/assets/editorial/figures/o-modelo-nao-e-o-sistema.svg',
@@ -230,6 +235,7 @@ export const articles: Article[] = [
     date: '2025-11-25',
     dateLabel: '25 de novembro de 2025',
     readingTime: 'Leitura de 7 min',
+    coverAssetId: 'cover:pix-parcelado',
     cover: '/assets/editorial/generated/cover-pix-parcelado-material.webp',
     coverAlt: 'Faixas transparentes avançam em tempos diferentes enquanto uma linha de liquidação atravessa diretamente a composição.',
     figure: '/assets/editorial/figures/pix-parcelado.svg',
@@ -257,13 +263,14 @@ export const articles: Article[] = [
   },
   {
     slug: 'quando-relatorios-viram-sistemas',
-    title: 'Quando relatórios viram sistemas: por que planejamento e dados estão mudando com inteligência artificial',
+    title: 'Quando relatorios viram sistemas: por que planejamento e dados estão mudando com inteligência artificial',
     deck: 'O futuro das áreas de planejamento e inteligência não está em produzir mais relatórios, mas em transformar conhecimento operacional em processos, automações e sistemas inteligentes.',
     category: 'Tecnologia & IA',
     series: 'Transformação e trabalho',
     date: '2026-06-20',
     dateLabel: '20 de junho de 2026',
     readingTime: 'Leitura de 8 min',
+    coverAssetId: 'cover:quando-relatorios-viram-sistemas',
     cover: '/assets/editorial/generated/cover-relatorios-viram-sistemas.webp',
     coverAlt: 'Folhas separadas deixam uma pilha linear e passam a formar um ciclo material contínuo de informação e decisão.',
     figure: '/assets/editorial/figures/quando-relatorios-viram-sistemas.svg',
