@@ -37,3 +37,15 @@ window.SITE_CONFIG = Object.freeze({
   loader.dataset.sitePageAgentLoader = "true";
   document.head.appendChild(loader);
 })();
+
+(() => {
+  if (document.querySelector("script[data-site-hero-portrait]")) return;
+  const currentScript = document.currentScript;
+  const portrait = document.createElement("script");
+  portrait.src = currentScript?.src
+    ? new URL("hero-portrait.js", currentScript.src).href
+    : "hero-portrait.js";
+  portrait.async = false;
+  portrait.dataset.siteHeroPortrait = "true";
+  document.head.appendChild(portrait);
+})();
