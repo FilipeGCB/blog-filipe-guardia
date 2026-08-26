@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntroVisual from '../components/PageIntroVisual.astro';
 
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
@@ -12,16 +13,16 @@ const timeline = [
 ];
 ---
 <BaseLayout title="Sobre Filipe Guardia" description="Trajetória profissional de Filipe Guardia, da cobrança B2B à construção de produtos e soluções inteligentes." canonicalPath="/sobre.html" currentPath="/sobre.html">
-  <section class="page-intro">
-    <div class="page-shell">
-      <span class="eyebrow">Filipe Guardia Cano Batista</span>
-      <h1>Da cobrança e dos dados à construção de <em>sistemas úteis</em>.</h1>
-      <p class="deck">Minha trajetória foi construída em operações financeiras complexas. Comecei entendendo a execução, evoluí para planejamento e inteligência de cobrança e hoje atuo na conexão entre negócio, dados, processos, automação e tecnologia.</p>
-    </div>
-  </section>
+  <PageIntroVisual
+    eyebrow="Filipe Guardia Cano Batista"
+    title="Da cobrança e dos dados à construção de <em>sistemas úteis</em>."
+    deck="Minha trajetória foi construída em operações financeiras complexas. Comecei entendendo a execução, evoluí para planejamento e inteligência de cobrança e hoje atuo na conexão entre negócio, dados, processos, automação e tecnologia."
+    theme="night"
+    currentLabel="Da operação para sistemas"
+  />
 
   <section class="section section-tinted">
-    <div class="page-shell split-copy">
+    <div class="editorial-shell split-copy">
       <div>
         <span class="section-kicker">Posicionamento atual</span>
         <h2>Uma ponte entre problema, processo, produto, dados e engenharia.</h2>
@@ -40,15 +41,15 @@ const timeline = [
   </section>
 
   <section class="section">
-    <div class="page-shell">
+    <div class="editorial-shell">
       <div class="section-head"><div><span class="section-kicker">Evolução de carreira</span><h2>Cada fase acrescentou uma camada.</h2></div><p>Operação, controle financeiro, planejamento, dados, processos, produtos e inteligência artificial formam a base do trabalho atual.</p></div>
-      <div class="timeline-grid">
+      <div class="timeline-grid timeline-editorial">
         {timeline.map(([period, title, description]) => <article class="timeline-card"><span>{period}</span><h3>{title}</h3><p>{description}</p></article>)}
       </div>
     </div>
   </section>
 
   <section class="section section-tinted">
-    <div class="page-shell split-copy"><div><span class="section-kicker">Próximo passo</span><h2>Se o problema é real, a conversa começa pelo contexto.</h2></div><div class="copy-stack"><p>O blog é um espaço para tornar o raciocínio público. Os projetos mostram onde esse raciocínio ganha forma. Se fizer sentido conversar sobre uma situação concreta, estou disponível.</p><a class="button" href={href('/contato.html')}>Entrar em contato</a></div></div>
+    <div class="editorial-shell split-copy"><div><span class="section-kicker">Próximo passo</span><h2>Se o problema é real, a conversa começa pelo contexto.</h2></div><div class="copy-stack"><p>O blog é um espaço para tornar o raciocínio público. Os projetos mostram onde esse raciocínio ganha forma. Se fizer sentido conversar sobre uma situação concreta, estou disponível.</p><a class="button" href={href('/contato.html')}>Entrar em contato</a></div></div>
   </section>
 </BaseLayout>
