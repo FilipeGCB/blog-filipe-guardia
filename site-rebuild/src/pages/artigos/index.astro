@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntroVisual from '../../components/PageIntroVisual.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
 import { articleSeries, getSortedArticles } from '../../data/articles';
 
@@ -11,16 +12,16 @@ const ordered = getSortedArticles();
   canonicalPath="/artigos.html"
   currentPath="/artigos.html"
 >
-  <section class="page-intro">
-    <div class="page-shell">
-      <span class="eyebrow">Arquivo editorial</span>
-      <h1>Ideias que saem da operação e chegam ao <em>sistema</em>.</h1>
-      <p class="deck">Textos sobre crédito, conhecimento, produtos, agentes e transformação — sempre a partir da pergunta: o que precisa existir ao redor da tecnologia para que ela funcione no mundo real?</p>
-    </div>
-  </section>
+  <PageIntroVisual
+    eyebrow="Arquivo editorial"
+    title="Ideias que saem da operação e chegam ao <em>sistema</em>."
+    deck="Textos sobre crédito, conhecimento, produtos, agentes e transformação — sempre a partir da pergunta: o que precisa existir ao redor da tecnologia para que ela funcione no mundo real?"
+    theme="night"
+    currentLabel={`${ordered.length} ensaios publicados`}
+  />
 
-  <section class="section">
-    <div class="page-shell">
+  <section class="section archive-section">
+    <div class="editorial-shell">
       <div class="archive-toolbar">
         <div class="filter-group" aria-label="Filtrar artigos por série">
           <button class="filter-button" type="button" data-filter="all" aria-pressed="true">Todos</button>
