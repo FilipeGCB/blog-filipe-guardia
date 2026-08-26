@@ -10,15 +10,46 @@ interface Props {
 const { src, alt, caption, className = '', loading = 'lazy' } = Astro.props;
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const isHomepageHero = className.includes('hero-photo') && className.includes('scroll-hero-media');
-const effectiveSrc = isHomepageHero
-  ? '/assets/editorial/generated/filipe-guardia-hero.webp'
+const fallbackSrc = isHomepageHero
+  ? '/assets/editorial/generated/home-hero-inteligencia-material.webp'
   : src;
 const effectiveAlt = isHomepageHero
   ? 'Filipe Guardia em retrato profissional e descontraído, em um ambiente contemporâneo de tecnologia, sistemas e inteligência artificial.'
   : alt;
-const imageSrc = `${base}${effectiveSrc.replace(/^\//, '')}`;
+const imageSrc = `${base}${fallbackSrc.replace(/^\//, '')}`;
+const portraitSource = isHomepageHero
+  ? `${base}assets/editorial/generated/filipe-guardia-hero-base64.txt`
+  : undefined;
 ---
 <figure class:list={['editorial-frame', className]}>
-  <img src={imageSrc} alt={effectiveAlt} loading={loading} decoding={loading === 'eager' ? 'sync' : 'async'} />
+  <img
+    src={imageSrc}
+    alt={effectiveAlt}
+    loading={loading}
+    decoding={loading === 'eager' ? 'sync' : 'async'}
+    data-homepage-portrait={portraitSource}
+  />
   {caption && <figcaption>{caption}</figcaption>}
 </figure>
+{isHomepageHero && (
+  <script is:inline>
+    (() => {
+      const image = document.querySelector('img[data-homepage-portrait]');
+      if (!image) return;
+      const source = image.getAttribute('data-homepage-portrait');
+      if (!source) return;
+      fetch(source, { cache: 'force-cache' })
+        .then((response) => {
+          if (!response.ok) throw new Error(`Falha ao carregar retrato: ${response.status}`);
+          return response.text();
+        })
+        .then((base64) => {
+          image.src = `data:image/webp;base64,${base64.trim()}`;
+          image.removeAttribute('data-homepage-portrait');
+        })
+        .catch((error) => {
+          console.warn('Retrato da home indisponível; mantendo arte editorial de fallback.', error);
+        });
+    })();
+  </script>
+)}
