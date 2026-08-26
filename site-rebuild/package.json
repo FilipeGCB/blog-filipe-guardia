@@ -7,8 +7,10 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
+    "prebuild": "node scripts/generate-home-hero.mjs",
     "preview": "astro preview",
-    "check": "node scripts/verify-content.mjs && node scripts/asset-audit.mjs && node scripts/verify-responsive-images.mjs && astro check",
+    "images:hero": "node scripts/generate-home-hero.mjs",
+    "check": "node scripts/verify-content.mjs && node scripts/asset-audit.mjs && node scripts/generate-home-hero.mjs && node --experimental-strip-types scripts/verify-responsive-images.mjs && astro check",
     "audit:routes": "node scripts/route-audit.mjs",
     "preserve:legacy": "node scripts/preserve-legacy.mjs"
   },
