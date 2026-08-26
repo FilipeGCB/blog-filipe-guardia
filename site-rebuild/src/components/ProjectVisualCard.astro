@@ -15,10 +15,10 @@ const steps = project.visualConcept.split('→').map((step) => step.trim()).filt
         <span class="project-visual-disclosure">Representação editorial do sistema</span>
         <div class="project-concept-flow">
           {steps.map((step, stepIndex) => (
-            <>
+            <Fragment>
               <span class="project-concept-node">{step}</span>
               {stepIndex < steps.length - 1 && <i aria-hidden="true">→</i>}
-            </>
+            </Fragment>
           ))}
         </div>
       </div>
