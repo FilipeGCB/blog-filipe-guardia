@@ -2,10 +2,10 @@ import { mkdir, readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import sharp from 'sharp';
-import manifest from '../src/data/editorialImageManifest.json' with { type: 'json' };
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
 const siteRoot = join(scriptDir, '..');
+const manifest = JSON.parse(await readFile(join(siteRoot, 'src/data/editorialImageManifest.json'), 'utf8'));
 const errors = [];
 
 const parseRatio = (value) => {
