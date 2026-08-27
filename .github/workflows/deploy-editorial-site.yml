@@ -35,11 +35,15 @@ jobs:
       - name: Install dependencies
         working-directory: site-rebuild
         run: npm ci
-      - name: Validate content, assets and types
+      - name: Validate release contracts
         working-directory: site-rebuild
         env:
           ASTRO_TELEMETRY_DISABLED: '1'
-        run: npm run check
+        run: |
+          npm run check
+          npm run build
+          npm run preserve:legacy
+          npm run audit:routes
 
   # Run the expensive browser matrix once, at the explicit final PR gate.
   visual-qa:
