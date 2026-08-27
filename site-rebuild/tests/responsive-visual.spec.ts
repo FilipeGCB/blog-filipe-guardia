@@ -38,6 +38,25 @@ const assertNoHorizontalOverflow = async (page: Page) => {
 };
 
 const assertImagesLoaded = async (page: Page) => {
+  // Archive/home cards are intentionally lazy. Force only their loading policy to eager
+  // in QA so the test validates every declared meaningful asset without depending on
+  // whether that card happened to enter the viewport during this particular run.
+  await page.locator('img[loading="lazy"]').evaluateAll((images) => {
+    images.forEach((image) => {
+      (image as HTMLImageElement).loading = 'eager';
+    });
+  });
+
+  await page.waitForFunction(() => {
+    const meaningful = Array.from(document.querySelectorAll('img:not([aria-hidden="true"])'))
+      .filter((image) => image.getAttribute('alt') !== '')
+      .filter((image) => {
+        const rect = image.getBoundingClientRect();
+        return rect.width >= 80 && rect.height >= 60;
+      }) as HTMLImageElement[];
+    return meaningful.every((image) => image.complete);
+  }, undefined, { timeout: 15_000 });
+
   const failed = await page.locator('img:not([aria-hidden="true"])').evaluateAll((images) =>
     images
       .filter((image) => image.getAttribute('alt') !== '')
