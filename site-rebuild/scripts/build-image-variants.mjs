@@ -26,6 +26,11 @@ const readSource = async (entry) => {
 
 const buildEntry = async (id, entry) => {
   if (!entry.source || !entry.outputBase || !Array.isArray(entry.widths)) return;
+  // The home portrait has a dedicated generator because it also owns the
+  // approved mobile crop. Skipping it here avoids generating desktop hero
+  // variants twice in the same check/build cycle.
+  if (id === 'portrait:filipe:home') return;
+
   const source = await readSource(entry);
   const metadata = await sharp(source).metadata();
   if (!metadata.width || !metadata.height) throw new Error(`${id}: unreadable raster source`);

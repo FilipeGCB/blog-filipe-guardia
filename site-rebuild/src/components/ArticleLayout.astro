@@ -4,6 +4,7 @@ import EditorialVisual from './EditorialVisual.astro';
 import ArticleVisualInterlude from './ArticleVisualInterlude.astro';
 import ArticleToc from './ArticleToc.astro';
 import type { Article } from '../data/articles';
+import { hasEditorialImage } from '../data/editorialImages';
 
 interface Heading {
   id: string;
@@ -25,6 +26,8 @@ const beforeFigure = markerIndex >= 0 ? content.slice(0, markerIndex) : content;
 const afterFigure = markerIndex >= 0 ? content.slice(markerIndex) : '';
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
+const candidateCoverAssetId = `cover:${article.slug}`;
+const coverAssetId = hasEditorialImage(candidateCoverAssetId) ? candidateCoverAssetId : undefined;
 const interludeNotes: Record<string, { kicker: string; title: string; body: string }> = {
   'a-memoria-da-empresa-nao-pode-morar-na-cabeca-das-pessoas': {
     kicker: 'A virada do artigo',
@@ -84,7 +87,7 @@ const interlude = interludeNotes[article.slug];
           <span class="meta-label">{article.tags.join(' · ')}</span>
         </div>
       </div>
-      <EditorialVisual src={article.cover} alt={article.coverAlt} className="article-visual article-scroll-media" loading="eager" />
+      <EditorialVisual assetId={coverAssetId} src={coverAssetId ? undefined : article.cover} alt={article.coverAlt} className="article-visual article-scroll-media" loading="eager" />
     </div>
   </header>
 
