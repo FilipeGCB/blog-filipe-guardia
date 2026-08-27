@@ -12,7 +12,7 @@
     "images:hero": "node scripts/generate-home-hero.mjs",
     "images:build": "node scripts/build-image-variants.mjs && node scripts/generate-home-hero.mjs",
     "images:verify": "node scripts/verify-image-manifest.mjs && node --experimental-strip-types scripts/verify-responsive-images.mjs",
-    "check": "node scripts/verify-content.mjs && node scripts/asset-audit.mjs && npm run images:verify && astro check",
+    "check": "node scripts/verify-content.mjs && node scripts/asset-audit.mjs && npm run images:build && npm run images:verify && astro check",
     "test:visual": "playwright test",
     "audit:routes": "node scripts/route-audit.mjs",
     "preserve:legacy": "node scripts/preserve-legacy.mjs"
