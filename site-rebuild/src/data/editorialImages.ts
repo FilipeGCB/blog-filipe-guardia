@@ -44,6 +44,15 @@ export const editorialImages: Record<string, EditorialImageAsset> = {
       variants: variants('/assets/editorial/portraits/filipe/home/hero-mobile', [480, 768, 960])
     }
   },
+  'portrait:filipe:about': {
+    id: 'portrait:filipe:about',
+    alt: 'Retrato editorial de Filipe em luz natural, camisa azul clara e ambiente contemporâneo.',
+    width: 1122,
+    height: 1402,
+    focalPoint: '50% 38%',
+    sizes: '(min-width: 1100px) 560px, (min-width: 768px) 42vw, 100vw',
+    variants: variants('/assets/editorial/portraits/filipe/about/portrait', [480, 768, 960, 1122])
+  },
   'cover:a-memoria-da-empresa-nao-pode-morar-na-cabeca-das-pessoas': {
     id: 'cover:a-memoria-da-empresa-nao-pode-morar-na-cabeca-das-pessoas',
     alt: 'Camadas translúcidas registram e preservam um mesmo rastro de grafite, representando conhecimento que permanece além de uma pessoa.',
