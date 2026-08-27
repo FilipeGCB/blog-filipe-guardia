@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, normalize } from 'node:path';
@@ -29,6 +30,14 @@ const checkDerivatives = (id, entry, outputBase, widths) => {
   }
 };
 
+const sourceDigest = (entry, sourcePath) => {
+  const raw = readFileSync(sourcePath);
+  const bytes = entry.sourceEncoding === 'base64-text'
+    ? Buffer.from(raw.toString('utf8').replace(/\s+/g, ''), 'base64')
+    : raw;
+  return createHash('sha256').update(bytes).digest('hex');
+};
+
 for (const [id, entry] of Object.entries(manifest)) {
   if (!clean(entry.kind)) errors.push(`${id}: kind is required`);
   if (!clean(entry.status)) errors.push(`${id}: status is required`);
@@ -45,8 +54,14 @@ for (const [id, entry] of Object.entries(manifest)) {
     if (!inside(entry.source, 'assets-source/editorial/')) {
       errors.push(`${id}: source must stay under assets-source/editorial/`);
     }
-    if (!existsSync(join(siteRoot, entry.source))) {
+    const sourcePath = join(siteRoot, entry.source);
+    if (!existsSync(sourcePath)) {
       errors.push(`${id}: missing source ${entry.source}`);
+    } else if (entry.sourceSha256) {
+      const digest = sourceDigest(entry, sourcePath);
+      if (digest !== entry.sourceSha256) {
+        errors.push(`${id}: source SHA-256 mismatch (expected ${entry.sourceSha256}, got ${digest})`);
+      }
     }
   }
 
