@@ -176,3 +176,11 @@ const seriesDescriptions: Record<string, string> = {
     </div>
   </section>
 </BaseLayout>
+
+<style is:global>
+  @media (min-width: 3000px) {
+    .hero-home {
+      min-height: clamp(1120px, 36vw, 1380px);
+    }
+  }
+</style>
