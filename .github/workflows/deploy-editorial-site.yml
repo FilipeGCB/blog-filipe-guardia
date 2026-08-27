@@ -18,8 +18,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Cost policy: keep redesign PRs as draft while iterating. This validation
-  # runs once when the PR is explicitly marked ready, or manually on demand.
+  # Cost policy: keep redesign PRs as draft while iterating. The final PR gate
+  # uses one runner, one npm install and one image-generation pass.
   validate-pr:
     if: github.event_name == 'pull_request' && github.event.pull_request.draft == false
     runs-on: ubuntu-latest
@@ -41,34 +41,12 @@ jobs:
           ASTRO_TELEMETRY_DISABLED: '1'
         run: |
           npm run check
-          npm run build
+          npm run build:ci
           npm run preserve:legacy
           npm run audit:routes
-
-  # Run the expensive browser matrix once, at the explicit final PR gate.
-  visual-qa:
-    if: github.event_name == 'pull_request' && github.event.pull_request.draft == false
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: npm
-          cache-dependency-path: site-rebuild/package-lock.json
-      - name: Install dependencies
-        working-directory: site-rebuild
-        run: npm ci
       - name: Install Chromium
         working-directory: site-rebuild
         run: npx playwright install --with-deps chromium
-      - name: Build editorial site
-        working-directory: site-rebuild
-        env:
-          ASTRO_TELEMETRY_DISABLED: '1'
-        run: npm run build
       - name: Run multi-viewport visual smoke gate
         working-directory: site-rebuild
         run: npm run test:visual
@@ -95,7 +73,7 @@ jobs:
           ASTRO_TELEMETRY_DISABLED: '1'
         run: |
           npm run check
-          npm run build
+          npm run build:ci
           npm run preserve:legacy
           npm run audit:routes
       - name: Configure Pages
