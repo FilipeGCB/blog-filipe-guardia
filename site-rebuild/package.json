@@ -7,6 +7,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
+    "build:ci": "astro build",
     "prebuild": "npm run images:build",
     "preview": "astro preview",
     "images:hero": "node scripts/generate-home-hero.mjs",
