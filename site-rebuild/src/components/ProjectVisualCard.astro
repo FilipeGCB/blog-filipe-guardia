@@ -1,0 +1,36 @@
+---
+import EditorialVisual from './EditorialVisual.astro';
+import type { Project } from '../data/projects';
+
+interface Props { project: Project; index: number; }
+const { project, index } = Astro.props;
+const steps = project.visualConcept.split('→').map((step) => step.trim()).filter(Boolean);
+---
+<article class:list={['project-visual-row', `project-${project.tone}`, index % 2 === 1 && 'project-visual-row-reverse']}>
+  <div class="project-visual-region">
+    {project.visualAsset ? (
+      <EditorialVisual src={project.visualAsset} alt={project.visualAlt} className="project-editorial-visual" />
+    ) : (
+      <div class="project-concept-visual" role="img" aria-label={project.visualAlt}>
+        <span class="project-visual-disclosure">Representação editorial do sistema</span>
+        <div class="project-concept-flow">
+          {steps.map((step, stepIndex) => (
+            <Fragment>
+              <span class="project-concept-node">{step}</span>
+              {stepIndex < steps.length - 1 && <i aria-hidden="true">→</i>}
+            </Fragment>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+  <div class="project-visual-copy">
+    <span class="section-kicker">{project.label}</span>
+    <h2>{project.title}</h2>
+    <p class="project-visual-description">{project.description}</p>
+    <ul>
+      {project.details.map((detail) => <li>{detail}</li>)}
+    </ul>
+    <p class="project-proof"><strong>O que demonstra:</strong> {project.proof}</p>
+  </div>
+</article>

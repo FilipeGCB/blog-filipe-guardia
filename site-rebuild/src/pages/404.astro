@@ -3,5 +3,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 <BaseLayout title="Página não encontrada | Filipe Guardia" description="A página solicitada não foi encontrada." currentPath="">
-  <section class="not-found"><div class="page-shell"><span class="eyebrow">Erro de navegação</span><h1>404</h1><p>Este caminho não existe nesta edição do caderno. O conteúdo principal continua no arquivo de artigos, nos projetos e na biblioteca.</p><div class="hero-actions"><a class="button" href={base}>Voltar ao início</a><a class="button-secondary" href={`${base}artigos.html`}>Abrir artigos</a></div></div></section>
+  <section class="utility-night utility-404">
+    <div class="editorial-shell utility-404-grid">
+      <div class="utility-404-code" aria-hidden="true">404</div>
+      <div class="utility-404-copy">
+        <span class="eyebrow">Erro de navegação</span>
+        <h1>Esse caminho não existe nesta edição do caderno.</h1>
+        <p>O conteúdo principal continua no arquivo de artigos, nos projetos e na biblioteca.</p>
+        <div class="hero-actions"><a class="button" href={base}>Voltar ao início</a><a class="button-secondary" href={`${base}artigos.html`}>Abrir artigos</a></div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
