@@ -1,0 +1,31 @@
+.page-intro-portrait .page-intro-visual-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 520px);
+}
+
+.page-intro-portrait .page-intro-media {
+  width: min(100%, 520px);
+  min-height: 0;
+  aspect-ratio: 4 / 5;
+  justify-self: end;
+}
+
+.page-intro-portrait .page-intro-media img {
+  object-position: var(--image-focal-point, 50% 38%);
+}
+
+@media (max-width: 1000px) {
+  .page-intro-portrait .page-intro-visual-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-intro-portrait .page-intro-media {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 767px) {
+  .page-intro-portrait .page-intro-media {
+    width: min(100%, 480px);
+    margin-top: 8px;
+  }
+}
