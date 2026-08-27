@@ -120,7 +120,16 @@
   "portrait:filipe:about": {
     "kind": "portrait",
     "status": "approved",
-    "source": "assets-source/editorial/portraits/filipe/about/about-approved-master.webp",
+    "sourceParts": [
+      "assets-source/editorial/portraits/filipe/about/about-approved-master.part01.b64",
+      "assets-source/editorial/portraits/filipe/about/about-approved-master.part02.b64",
+      "assets-source/editorial/portraits/filipe/about/about-approved-master.part03.b64",
+      "assets-source/editorial/portraits/filipe/about/about-approved-master.part04.b64",
+      "assets-source/editorial/portraits/filipe/about/about-approved-master.part05.b64",
+      "assets-source/editorial/portraits/filipe/about/about-approved-master.part06.b64",
+      "assets-source/editorial/portraits/filipe/about/about-approved-master.part07.b64"
+    ],
+    "sourceEncoding": "base64-parts",
     "outputBase": "public/assets/editorial/portraits/filipe/about/portrait",
     "widths": [480, 768, 960, 1122],
     "formats": ["avif", "webp"],
