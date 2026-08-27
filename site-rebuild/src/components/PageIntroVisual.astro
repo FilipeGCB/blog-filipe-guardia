@@ -18,8 +18,9 @@ const {
   assetId,
   currentLabel
 } = Astro.props;
+const isPortrait = assetId?.startsWith('portrait:') ?? false;
 ---
-<section class:list={['page-intro-visual', theme === 'night' ? 'page-intro-night' : 'page-intro-editorial']}>
+<section class:list={['page-intro-visual', theme === 'night' ? 'page-intro-night' : 'page-intro-editorial', isPortrait && 'page-intro-portrait']}>
   <div class:list={[theme === 'night' ? 'visual-shell' : 'editorial-shell', 'page-intro-visual-grid', !assetId && 'page-intro-visual-grid-type']}>
     <div class="page-intro-visual-copy">
       <span class="eyebrow">{eyebrow}</span>
