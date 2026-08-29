@@ -18,6 +18,23 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'local-first-nao-e-apenas-offline',
+    title: 'Local-first não é apenas offline: por que alguns sistemas precisam continuar funcionando sem a nuvem',
+    deck: 'Um sistema pode usar nuvem e ainda assim tratar o dispositivo local como parte real da operação. A diferença está em decidir o que continua funcionando quando a conexão desaparece.',
+    category: 'Produtos, Sistemas & Arquitetura',
+    series: 'Sistemas e continuidade',
+    date: '2026-08-29',
+    dateLabel: '29 de agosto de 2026',
+    readingTime: 'Leitura de 10 min',
+    cover: '/assets/editorial/local-first-nao-e-apenas-offline.svg',
+    coverAlt: 'Um computador mantém dados e trabalho localmente enquanto a nuvem aparece como camada de apoio e sincronização.',
+    figure: '/assets/editorial/figures/local-first-nao-e-apenas-offline.svg',
+    figureAlt: 'Diagrama com dispositivo local executando leitura, escrita e regras enquanto a nuvem fornece sincronização, backup e colaboração.',
+    figureCaption: 'Local-first muda a ordem das dependências: o núcleo trabalha localmente e a nuvem amplia a experiência quando está disponível.',
+    figureAfterHeading: 'dados-no-dispositivo',
+    tags: ['local-first', 'software', 'continuidade']
+  },
+  {
     slug: 'antes-do-agente-de-dados-vem-o-dicionario',
     title: 'Antes do agente de dados, vem o dicionário',
     deck: 'Uma IA pode escrever SQL em segundos. Mas, sem um mapa confiável das tabelas, campos e relações, velocidade só faz a resposta errada chegar mais rápido.',
