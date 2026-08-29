@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 660" role="img" aria-labelledby="title desc">
+  <title id="title">LOCAL-FIRST</title>
+  <desc id="desc">dispositivo local como base operacional e nuvem como sincronização</desc>
+  <rect width="1200" height="660" fill="#f4f0e9"/>
+  <path d="M0 94H1200M0 560H1200M72 0V660M1128 0V660" stroke="#d9d1c5" stroke-width="1" opacity=".8"/>
+  <circle cx="1040" cy="96" r="170" fill="#7652a8" opacity=".08"/>
+  <circle cx="112" cy="560" r="136" fill="#bb8754" opacity=".08"/>
+  <text x="86" y="112" fill="#3d235c" font-family="Arial, sans-serif" font-size="18" font-weight="800" letter-spacing="1.5">LOCAL-FIRST</text>
+  <text x="86" y="143" fill="#6c6670" font-family="Arial, sans-serif" font-size="15" font-weight="650" letter-spacing="1.4">local opera · nuvem sincroniza</text>
+  <text x="86" y="610" fill="#6c6670" font-family="Arial, sans-serif" font-size="13" font-weight="800" letter-spacing="1.4">DIAGRAMA EDITORIAL</text>
+
+  <g transform="translate(146 198)">
+    <rect x="0" y="0" width="300" height="248" rx="28" fill="#fffdf8" stroke="#2e7564" stroke-width="5"/>
+    <text x="150" y="48" text-anchor="middle" fill="#2e7564" font-family="Arial, sans-serif" font-size="16" font-weight="800">DISPOSITIVO</text>
+    <rect x="50" y="78" width="200" height="98" rx="14" fill="#2e7564" opacity=".10"/>
+    <path d="M80 106H220M80 136H188M80 160H212" stroke="#3d235c" stroke-width="7" stroke-linecap="round" opacity=".74"/>
+    <text x="150" y="214" text-anchor="middle" fill="#3d235c" font-family="Arial, sans-serif" font-size="14" font-weight="800">leitura · escrita · regras</text>
+  </g>
+
+  <path d="M472 320H704" stroke="#6c6670" stroke-width="4" stroke-dasharray="12 12"/>
+  <path d="M690 308L710 320L690 332" fill="none" stroke="#6c6670" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M486 352H718" stroke="#bb8754" stroke-width="4" stroke-dasharray="12 12"/>
+  <path d="M500 340L480 352L500 364" fill="none" stroke="#bb8754" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="594" y="292" text-anchor="middle" fill="#6c6670" font-family="Arial, sans-serif" font-size="13" font-weight="700">sincronização quando disponível</text>
+
+  <g transform="translate(744 210)">
+    <path d="M50 105C50 69 79 40 115 40C140 40 161 53 173 73C183 67 194 64 207 64C240 64 267 91 267 124C267 157 240 184 207 184H70C36 184 10 157 10 124C10 94 27 70 50 61" fill="#fffdf8" stroke="#7652a8" stroke-width="5"/>
+    <text x="138" y="226" text-anchor="middle" fill="#7652a8" font-family="Arial, sans-serif" font-size="16" font-weight="800">NUVEM</text>
+    <text x="138" y="256" text-anchor="middle" fill="#6c6670" font-family="Arial, sans-serif" font-size="14" font-weight="700">backup · colaboração · serviços</text>
+  </g>
+
+  <rect x="250" y="482" width="700" height="54" rx="27" fill="#3d235c" opacity=".08"/>
+  <text x="600" y="516" text-anchor="middle" fill="#3d235c" font-family="Arial, sans-serif" font-size="16" font-weight="800">se a conexão cair, o núcleo do trabalho continua disponível</text>
+</svg>
