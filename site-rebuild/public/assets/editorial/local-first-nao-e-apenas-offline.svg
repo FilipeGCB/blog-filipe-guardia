@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">LOCAL-FIRST</title>
+  <desc id="desc">o trabalho continua mesmo quando a nuvem some</desc>
+  <rect width="1200" height="760" fill="#f4f0e9"/>
+  <path d="M0 94H1200M0 650H1200M72 0V760M1128 0V760" stroke="#d9d1c5" stroke-width="1" opacity=".8"/>
+  <circle cx="1052" cy="116" r="184" fill="#7652a8" opacity=".08"/>
+  <circle cx="118" cy="642" r="146" fill="#bb8754" opacity=".08"/>
+  <text x="86" y="112" fill="#3d235c" font-family="Arial, sans-serif" font-size="18" font-weight="800" letter-spacing="1.6">LOCAL-FIRST</text>
+  <text x="86" y="143" fill="#6c6670" font-family="Arial, sans-serif" font-size="15" font-weight="650" letter-spacing="1.4">continuidade antes da dependência</text>
+  <text x="86" y="708" fill="#6c6670" font-family="Arial, sans-serif" font-size="13" font-weight="650" letter-spacing="1.5">FILIPE GUARDIA · CADERNO DE SISTEMAS REAIS</text>
+
+  <g transform="translate(132 198)">
+    <rect x="0" y="0" width="338" height="312" rx="30" fill="#fffdf8" stroke="#3d235c" stroke-width="5"/>
+    <rect x="38" y="38" width="262" height="168" rx="18" fill="#7652a8" opacity=".09"/>
+    <rect x="62" y="64" width="214" height="116" rx="12" fill="#fffdf8" stroke="#7652a8" stroke-width="3"/>
+    <path d="M88 94H248M88 126H206M88 158H232" stroke="#3d235c" stroke-width="7" stroke-linecap="round" opacity=".72"/>
+    <circle cx="80" cy="254" r="16" fill="#2e7564"/>
+    <text x="112" y="261" fill="#2e7564" font-family="Arial, sans-serif" font-size="16" font-weight="800">dados locais</text>
+  </g>
+
+  <path d="M494 356H682" stroke="#6c6670" stroke-width="4" stroke-dasharray="12 12"/>
+  <path d="M668 344L688 356L668 368" fill="none" stroke="#6c6670" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g transform="translate(706 174)">
+    <path d="M82 150C82 106 118 70 162 70C193 70 220 88 233 115C244 108 257 104 271 104C311 104 344 136 344 176C344 215 312 247 273 247H98C58 247 26 215 26 176C26 140 50 110 82 102" fill="#fffdf8" stroke="#7652a8" stroke-width="5"/>
+    <path d="M88 286H314" stroke="#bb8754" stroke-width="7" stroke-linecap="round"/>
+    <path d="M202 258V316" stroke="#bb8754" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="202" cy="176" r="24" fill="#7652a8" opacity=".16" stroke="#3d235c" stroke-width="4"/>
+    <path d="M202 135V217M161 176H243" stroke="#3d235c" stroke-width="6" stroke-linecap="round"/>
+    <text x="185" y="362" text-anchor="middle" fill="#6c6670" font-family="Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="1.2">NUVEM COMO APOIO</text>
+  </g>
+
+  <path d="M558 356L620 356" stroke="#bb8754" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="548" cy="356" r="10" fill="#2e7564"/>
+  <circle cx="632" cy="356" r="10" fill="#7652a8"/>
+  <text x="600" y="578" text-anchor="middle" fill="#3d235c" font-family="Arial, sans-serif" font-size="16" font-weight="800" letter-spacing="1.1">o sistema continua útil mesmo sem conexão</text>
+</svg>
