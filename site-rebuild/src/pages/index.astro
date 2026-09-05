@@ -15,7 +15,7 @@ const systemScenes = [
     id: 'operacao',
     number: '01',
     title: 'Operação real',
-    description: 'O problema nasce no trabalho cotidiano: cobrança, dados, exceções, decisões e responsabilidade.',
+    description: 'O problema nasce no trabalho cotidiano: cobrança B2X, dados, exceções, decisões e responsabilidade.',
     image: '/assets/editorial/generated/home-hero-inteligencia-material.webp',
     alt: 'Camadas irregulares de papel e vidro atravessadas por um percurso de luz, representando o trabalho real antes de ganhar estrutura.',
     caption: 'A tecnologia entra depois que o problema já tem forma.'
@@ -42,7 +42,7 @@ const systemScenes = [
     id: 'agente',
     number: '04',
     title: 'Agente governado',
-    description: 'A IA entra como participante capaz, com limites, passagem de contexto e revisão humana.',
+    description: 'A IA entra como parte da Transformação Digital: participante capaz, com limites, passagem de contexto e revisão humana.',
     image: '/assets/editorial/generated/home-story-agente-governado.webp',
     alt: 'O percurso luminoso atravessa o sistema e encontra uma fronteira roxa com uma única passagem controlada.',
     caption: 'Autonomia útil inclui o momento certo de parar.'
@@ -57,8 +57,8 @@ const seriesDescriptions: Record<string, string> = {
 };
 ---
 <BaseLayout
-  title="Filipe Guardia — Caderno de Sistemas Reais"
-  description="Experiência operacional transformada em processos, produtos, dados e inteligência artificial aplicada."
+  title="Filipe Guardia — Transformação Digital, Sistemas e IA"
+  description="Experiência operacional B2X transformada em processos, dados, automação, sistemas e inteligência artificial aplicada dentro de uma agenda de Transformação Digital."
   currentPath="/"
 >
   <section class="hero hero-home" data-scroll-hero>
@@ -67,9 +67,9 @@ const seriesDescriptions: Record<string, string> = {
     </div>
     <div class="visual-shell hero-home-layout">
       <div class="hero-home-copy">
-        <span class="eyebrow">Cobrança B2B · Dados · Sistemas · IA</span>
+        <span class="eyebrow">B2X · Transformação Digital · Dados · Sistemas · IA</span>
         <h1>O trabalho real merece <em>estrutura</em>.</h1>
-        <p class="hero-deck">Um caderno sobre como experiência operacional, conhecimento, dados e tecnologia se transformam em processos, produtos e soluções inteligentes — com clareza, limites e responsabilidade.</p>
+        <p class="hero-deck">Um caderno sobre como experiência operacional em B2X, conhecimento, dados, automação e tecnologia se transformam em processos, produtos, sistemas e inteligência artificial aplicada — como partes de uma transformação digital concreta.</p>
         <div class="hero-actions">
           <a class="button" href={href('/artigos.html')}>Explorar os artigos</a>
           <a class="button-secondary" href={href('/sobre.html')}>Conhecer a trajetória</a>
@@ -81,8 +81,8 @@ const seriesDescriptions: Record<string, string> = {
 
   <section class="statement-band">
     <div class="page-shell statement-grid">
-      <span class="section-kicker">Uma publicação sobre trabalho e tecnologia</span>
-      <p>Antes do agente, existe a operação. Antes da automação, existe a estrutura que torna uma decisão possível.</p>
+      <span class="section-kicker">Uma publicação sobre transformação digital e trabalho real</span>
+      <p>Antes da IA, existe a operação. Antes da automação, existe estrutura. Transformação Digital conecta processo, dados, sistemas, pessoas e inteligência artificial para mudar a forma como o trabalho acontece.</p>
     </div>
   </section>
 
@@ -93,7 +93,7 @@ const seriesDescriptions: Record<string, string> = {
           <span class="section-kicker">A tese do caderno</span>
           <h2>Da operação à inteligência, existe um caminho.</h2>
         </div>
-        <p>O site organiza esse caminho para que cada artigo seja uma peça de uma conversa maior — não apenas uma publicação isolada.</p>
+        <p>O site organiza esse caminho para que cada artigo seja uma peça de uma conversa maior sobre Transformação Digital — não apenas uma publicação isolada sobre tecnologia.</p>
       </div>
       <StickySystemStory scenes={systemScenes} />
     </div>
@@ -129,7 +129,7 @@ const seriesDescriptions: Record<string, string> = {
           <span class="section-kicker">Caderno editorial</span>
           <h2>Textos para ler como um sistema.</h2>
         </div>
-        <p>Do crédito à governança de agentes, os temas se encontram no mesmo lugar: a tentativa de tornar o trabalho mais compreensível e executável.</p>
+        <p>Do crédito à governança de agentes, os temas se encontram no mesmo lugar: transformar trabalho real por meio de processos, dados, sistemas e IA com propósito.</p>
       </div>
       <div class="article-grid article-grid-editorial">
         {selected.map((article, index) => <ArticleCard article={article} featured={index === 0} />)}
@@ -166,7 +166,7 @@ const seriesDescriptions: Record<string, string> = {
         <h2>Projetos, trajetória e uma biblioteca pública.</h2>
       </div>
       <div class="copy-stack">
-        <p>O blog mostra como penso. Os projetos mostram como transformo esse pensamento em trabalho. A biblioteca reúne métodos e fontes para tornar esse processo reutilizável.</p>
+        <p>O blog mostra como penso Transformação Digital a partir do trabalho real. Os projetos mostram como esse pensamento ganha forma em sistemas e IA. A biblioteca reúne métodos para tornar parte desse processo reutilizável.</p>
         <div class="hero-actions">
           <a class="button-secondary" href={href('/projetos.html')}>Ver projetos</a>
           <a class="button-secondary" href={href('/biblioteca.html')}>Abrir biblioteca</a>
