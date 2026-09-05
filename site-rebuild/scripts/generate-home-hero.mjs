@@ -1,4 +1,4 @@
-import { mkdir, readFile } from 'node:fs/promises';
+import { mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import sharp from 'sharp';
@@ -7,18 +7,20 @@ const scriptDir = dirname(fileURLToPath(import.meta.url));
 const siteRoot = join(scriptDir, '..');
 const sourcePath = join(
   siteRoot,
-  'assets-source/editorial/portraits/filipe/home/hero-approved-master.base64.txt'
+  'assets-source/editorial/portraits/filipe/home/hero-approved-master.webp'
 );
 const outputDir = join(siteRoot, 'public/assets/editorial/portraits/filipe/home');
-const desktopWidths = [960, 1440, 1920, 2560, 3840];
+const desktopWidths = [768, 960, 1152];
 const mobileWidths = [480, 768, 960];
 
-const encoded = (await readFile(sourcePath, 'utf8')).replace(/\s+/g, '');
-const source = Buffer.from(encoded, 'base64');
-const metadata = await sharp(source).metadata();
+const metadata = await sharp(sourcePath, { failOn: 'error' }).metadata();
 
 if (!metadata.width || !metadata.height) {
   throw new Error('Approved hero source has no readable dimensions.');
+}
+
+if (metadata.width !== 1152 || metadata.height !== 648) {
+  throw new Error(`Approved hero source must remain 1152x648; received ${metadata.width}x${metadata.height}.`);
 }
 
 const sourceRatio = metadata.width / metadata.height;
@@ -30,8 +32,9 @@ await mkdir(outputDir, { recursive: true });
 
 const desktop = async (width, format) => {
   const height = Math.round(width * 9 / 16);
-  const pipeline = sharp(source, { failOn: 'error' }).resize(width, height, {
-    fit: 'fill',
+  const pipeline = sharp(sourcePath, { failOn: 'error' }).resize(width, height, {
+    fit: 'inside',
+    withoutEnlargement: true,
     kernel: sharp.kernel.lanczos3
   });
   const file = join(outputDir, `hero-${width}.${format}`);
@@ -46,7 +49,7 @@ const cropLeft = Math.max(0, Math.min(metadata.width - cropWidth, focalX - Math.
 
 const mobile = async (width, format) => {
   const height = Math.round(width * 5 / 4);
-  const pipeline = sharp(source, { failOn: 'error' })
+  const pipeline = sharp(sourcePath, { failOn: 'error' })
     .extract({ left: cropLeft, top: 0, width: cropWidth, height: cropHeight })
     .resize(width, height, { fit: 'fill', kernel: sharp.kernel.lanczos3 });
   const file = join(outputDir, `hero-mobile-${width}.${format}`);
@@ -65,5 +68,5 @@ for (const width of mobileWidths) {
 }
 
 console.log(
-  `responsive-hero-generated: source ${metadata.width}x${metadata.height}; ${desktopWidths.length * 2 + mobileWidths.length * 2} derivatives`
+  `responsive-hero-generated: source ${metadata.width}x${metadata.height}; desktop capped at ${Math.max(...desktopWidths)}px; ${desktopWidths.length * 2 + mobileWidths.length * 2} derivatives`
 );
