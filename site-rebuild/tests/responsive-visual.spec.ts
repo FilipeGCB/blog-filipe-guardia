@@ -96,8 +96,10 @@ for (const viewport of viewports) {
           fit: style.objectFit,
           naturalRatio: image.naturalWidth / image.naturalHeight,
           boxRatio: rect.width / rect.height,
+          boxWidth: rect.width,
           naturalWidth: image.naturalWidth,
-          naturalHeight: image.naturalHeight
+          naturalHeight: image.naturalHeight,
+          currentSrc: image.currentSrc
         };
       });
       expect(metrics.naturalWidth).toBeGreaterThan(0);
@@ -107,6 +109,13 @@ for (const viewport of viewports) {
       expect(metrics.naturalRatio).toBeLessThan(2.2);
       expect(metrics.boxRatio).toBeGreaterThan(0.5);
       expect(metrics.boxRatio).toBeLessThan(3);
+
+      if (viewport.width >= 1001) {
+        expect(metrics.naturalWidth).toBeLessThanOrEqual(1152);
+        expect(metrics.boxWidth).toBeLessThanOrEqual(1154);
+        expect(metrics.boxRatio).toBeCloseTo(16 / 9, 1);
+        expect(metrics.currentSrc).not.toMatch(/hero-(1440|1920|2560|3840)\.(avif|webp)$/);
+      }
     });
 
     test('about portrait loads with portrait crop strategy', async ({ page }) => {

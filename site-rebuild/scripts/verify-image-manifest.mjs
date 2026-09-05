@@ -30,47 +30,13 @@ const checkDerivatives = (id, entry, outputBase, widths) => {
   }
 };
 
-const readSourceBytes = (entry) => {
-  if (Array.isArray(entry.sourceParts) && entry.sourceParts.length > 0) {
-    const encoded = entry.sourceParts
-      .map((part) => readFileSync(join(siteRoot, part), 'utf8'))
-      .join('')
-      .replace(/\s+/g, '');
-    return Buffer.from(encoded, 'base64');
+const validateSourcePath = (id, entry) => {
+  if (!entry.source) return;
+  if (!inside(entry.source, 'assets-source/editorial/')) {
+    errors.push(`${id}: source must stay under assets-source/editorial/`);
   }
-
-  if (!entry.source) return undefined;
-  const raw = readFileSync(join(siteRoot, entry.source));
-  return entry.sourceEncoding === 'base64-text'
-    ? Buffer.from(raw.toString('utf8').replace(/\s+/g, ''), 'base64')
-    : raw;
-};
-
-const validateSourcePaths = (id, entry) => {
-  if (entry.source) {
-    if (!inside(entry.source, 'assets-source/editorial/')) {
-      errors.push(`${id}: source must stay under assets-source/editorial/`);
-    }
-    if (!existsSync(join(siteRoot, entry.source))) {
-      errors.push(`${id}: missing source ${entry.source}`);
-    }
-  }
-
-  if (entry.sourceParts !== undefined) {
-    if (!Array.isArray(entry.sourceParts) || entry.sourceParts.length === 0) {
-      errors.push(`${id}: sourceParts must be a non-empty array`);
-      return;
-    }
-    if (entry.sourceEncoding !== 'base64-parts') {
-      errors.push(`${id}: sourceParts requires sourceEncoding=base64-parts`);
-    }
-    for (const part of entry.sourceParts) {
-      if (!clean(part) || !inside(part, 'assets-source/editorial/')) {
-        errors.push(`${id}: source part must stay under assets-source/editorial/`);
-        continue;
-      }
-      if (!existsSync(join(siteRoot, part))) errors.push(`${id}: missing source part ${part}`);
-    }
+  if (!existsSync(join(siteRoot, entry.source))) {
+    errors.push(`${id}: missing source ${entry.source}`);
   }
 };
 
@@ -82,21 +48,20 @@ for (const [id, entry] of Object.entries(manifest)) {
     errors.push(`${id}: approved meaningful image requires alt text`);
   }
 
-  const hasSource = clean(entry.source) || (Array.isArray(entry.sourceParts) && entry.sourceParts.length > 0);
-  if (entry.identityLocked && entry.status === 'approved' && !hasSource) {
-    errors.push(`${id}: approved identity-locked image requires source or sourceParts`);
+  if (entry.identityLocked && entry.status === 'approved' && !clean(entry.source)) {
+    errors.push(`${id}: approved identity-locked image requires source`);
   }
 
-  validateSourcePaths(id, entry);
+  if (entry.sourceEncoding !== undefined || entry.sourceParts !== undefined) {
+    errors.push(`${id}: base64 transport metadata is not allowed`);
+  }
 
-  const sourceFilesExist = entry.source
-    ? existsSync(join(siteRoot, entry.source))
-    : Array.isArray(entry.sourceParts) && entry.sourceParts.length > 0
-      ? entry.sourceParts.every((part) => clean(part) && existsSync(join(siteRoot, part)))
-      : false;
+  validateSourcePath(id, entry);
+
+  const sourceFilesExist = entry.source ? existsSync(join(siteRoot, entry.source)) : false;
 
   if (entry.sourceSha256 && sourceFilesExist) {
-    const bytes = readSourceBytes(entry);
+    const bytes = readFileSync(join(siteRoot, entry.source));
     const digest = createHash('sha256').update(bytes).digest('hex');
     if (digest !== entry.sourceSha256) {
       errors.push(`${id}: source SHA-256 mismatch (expected ${entry.sourceSha256}, got ${digest})`);

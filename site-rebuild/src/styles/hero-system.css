@@ -1,0 +1,62 @@
+/* Homepage hero desktop treatment.
+   The approved portrait is 1152x648. On large screens it stays inside a
+   source-sized 16:9 editorial panel instead of being stretched full-bleed. */
+@media (min-width: 1001px) {
+  .hero-home {
+    min-height: clamp(640px, 72svh, 780px);
+  }
+
+  .hero-home-media {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .hero-home .hero-photo {
+    top: 50%;
+    right: max(var(--gutter), calc((100vw - var(--visual-max)) / 2));
+    bottom: auto;
+    left: auto;
+    width: min(60vw, 1152px);
+    height: auto;
+    aspect-ratio: 16 / 9;
+    transform: translateY(-50%);
+    border: 1px solid rgba(247, 243, 236, 0.1);
+    border-radius: clamp(18px, 2vw, 30px);
+    background: var(--night-900);
+    box-shadow: 0 32px 90px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+  }
+
+  .hero-home .hero-photo picture {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-home .hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--image-focal-point, 64% 48%);
+  }
+
+  .hero-home::before {
+    background:
+      linear-gradient(90deg, rgba(9, 9, 12, 0.98) 0%, rgba(9, 9, 12, 0.9) 31%, rgba(9, 9, 12, 0.54) 49%, rgba(9, 9, 12, 0.08) 72%),
+      linear-gradient(0deg, rgba(9, 9, 12, 0.62) 0%, transparent 42%);
+  }
+
+  /* The source is only 1152px wide. Scroll drift on either the frame or the
+     image changes the rendered bounding box, so both are neutralized here. */
+  .hero-home .hero-photo.scroll-hero-media {
+    transform: translateY(-50%) !important;
+    animation: none !important;
+  }
+
+  [data-scroll-hero] .scroll-hero-media img {
+    transform: none !important;
+    animation: none !important;
+  }
+}
