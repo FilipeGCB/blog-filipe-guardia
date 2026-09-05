@@ -7,20 +7,20 @@ import { projects, workMethod } from '../data/projects';
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
 ---
-<BaseLayout title="Projetos | Filipe Guardia" description="Projetos que conectam experiência operacional, produto e inteligência artificial." canonicalPath="/projetos.html" currentPath="/projetos.html">
+<BaseLayout title="Projetos | Filipe Guardia" description="Projetos públicos e experiências aplicadas que conectam decisão, agentes, engenharia visual e inteligência artificial." canonicalPath="/projetos.html" currentPath="/projetos.html">
   <PageIntroVisual
     eyebrow="Prova de trabalho"
-    title="Projetos que conectam experiência operacional, produto e <em>inteligência</em>."
-    deck="Iniciativas que fazem parte da minha trajetória, apresentadas sem expor código comercial, infraestrutura privada ou informação confidencial."
+    title="Projetos públicos para <em>inspecionar</em>, não só ler a respeito."
+    deck="Produtos, sistemas e experimentos que mostram como eu estruturo decisões, construo com IA, verifico resultados e governo execução — com links diretos para o que é público e contexto explícito quando algo precisa permanecer privado."
     theme="night"
-    currentLabel="Contexto real · representação editorial quando não há imagem pública"
+    currentLabel="Portfólio público verificável · contexto privado claramente identificado"
   />
 
   <section class="section project-proof-section">
     <div class="editorial-shell">
       <div class="section-head">
-        <div><span class="section-kicker">Portfólio real</span><h2>Contexto, abordagem e competência.</h2></div>
-        <p>O visual ajuda a explicar a lógica do trabalho; quando não existe screenshot público, a página declara explicitamente que se trata de uma representação editorial.</p>
+        <div><span class="section-kicker">Portfólio público</span><h2>Código, método e limites que podem ser verificados.</h2></div>
+        <p>Os quatro primeiros projetos têm repositório público. Quando não existe screenshot ou artefato público adequado, a página usa uma representação editorial explícita em vez de inventar uma interface “real”.</p>
       </div>
       <div class="project-proof-list">
         {projects.map((project, index) => <ProjectVisualCard project={project} index={index} />)}
@@ -30,7 +30,7 @@ const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
 
   <section class="section section-tinted">
     <div class="editorial-shell">
-      <div class="section-head"><div><span class="section-kicker">Forma de trabalho</span><h2>Como uma necessidade vira solução.</h2></div><p>O processo parte do trabalho real e só depois define qual tecnologia faz sentido.</p></div>
+      <div class="section-head"><div><span class="section-kicker">Forma de trabalho</span><h2>Como uma necessidade vira sistema.</h2></div><p>O processo parte do contexto real, explicita decisões e só depois escolhe a tecnologia necessária para construir e validar.</p></div>
       <div class="project-method-grid">
         {workMethod.map(([number, title, description]) => <article class="path-card"><span class="path-number">{number}</span><h3>{title}</h3><p>{description}</p></article>)}
       </div>
@@ -38,6 +38,6 @@ const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
   </section>
 
   <section class="section">
-    <div class="editorial-shell split-copy"><div><span class="section-kicker">Continuidade</span><h2>Conheça também a trajetória por trás dos projetos.</h2></div><div class="copy-stack"><p>Experiência operacional não é um detalhe de contexto: é a matéria-prima para decisões melhores, produtos mais realistas e sistemas que conseguem sobreviver ao uso.</p><a class="button-secondary" href={href('/sobre.html')}>Ler sobre a trajetória →</a></div></div>
+    <div class="editorial-shell split-copy"><div><span class="section-kicker">Continuidade</span><h2>Os projetos fazem mais sentido quando vistos como uma trajetória.</h2></div><div class="copy-stack"><p>A base continua sendo operação, planejamento e dados. O que mudou foi a forma de transformar esse contexto em produtos, agentes, sistemas de decisão, controles de autoridade e processos de qualidade verificáveis.</p><a class="button-secondary" href={href('/sobre.html')}>Ler sobre a trajetória →</a></div></div>
   </section>
 </BaseLayout>
