@@ -5,7 +5,7 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
 const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
 
 const whatsapp = 'https://wa.me/5511970641955';
-const telegram: string | null = null;
+const telegram = 'https://t.me/+5511970641955?profile';
 ---
 <BaseLayout title="Contato | Filipe Guardia" description="Fale diretamente com Filipe Guardia sobre projetos, sistemas, dados e IA aplicada." canonicalPath="/contato.html" currentPath="/contato.html">
   <section class="utility-night utility-contact-intro">
@@ -16,7 +16,7 @@ const telegram: string | null = null;
         <p>Projetos, troca de experiências, tecnologia, dados, IA ou algum trabalho publicado aqui. Você pode me escrever diretamente ou usar o formulário abaixo.</p>
       </div>
       <div class="utility-intro-sequence" aria-label="Canais de contato">
-        <span>E-mail</span><i>→</i><span>WhatsApp</span><i>→</i><span>Conversa</span>
+        <span>E-mail</span><i>→</i><span>WhatsApp</span><i>→</i><span>Telegram</span>
       </div>
     </div>
   </section>
@@ -25,7 +25,7 @@ const telegram: string | null = null;
     <div class="editorial-shell">
       <div class="section-head">
         <div><span class="section-kicker">Canais diretos</span><h2>Escolha o jeito mais simples.</h2></div>
-        <p>E-mail e WhatsApp são os canais diretos publicados. O GitHub fica disponível para quem quiser conhecer os projetos antes de entrar em contato.</p>
+        <p>E-mail, WhatsApp e Telegram são os canais diretos publicados. O GitHub fica disponível para quem quiser conhecer os projetos antes de entrar em contato.</p>
       </div>
       <div class="contact-channel-grid">
         <article class="contact-channel contact-channel-primary">
@@ -42,15 +42,18 @@ const telegram: string | null = null;
         </article>
         <article class="contact-channel">
           <span class="path-number">03</span>
+          <h3>Telegram</h3>
+          <p>Mensagem direta pelo Telegram.</p>
+          <a class="button-secondary" href={telegram} target="_blank" rel="noopener noreferrer">Abrir Telegram</a>
+        </article>
+        <article class="contact-channel">
+          <span class="path-number">04</span>
           <h3>Telefone</h3>
           <p>Contato telefônico direto.</p>
           <a class="button-secondary" href="tel:+5511970641955">+55 11 97064-1955</a>
         </article>
-        {telegram && (
-          <article class="contact-channel"><span class="path-number">04</span><h3>Telegram</h3><p>Mensagem direta pelo Telegram.</p><a class="button-secondary" href={telegram} target="_blank" rel="noopener noreferrer">Abrir Telegram</a></article>
-        )}
         <article class="contact-channel">
-          <span class="path-number">04</span>
+          <span class="path-number">05</span>
           <h3>GitHub</h3>
           <p>Para conhecer os projetos públicos e o código antes de entrar em contato.</p>
           <a class="button-secondary" href="https://github.com/FilipeGCB" target="_blank" rel="noopener noreferrer">Abrir GitHub</a>
