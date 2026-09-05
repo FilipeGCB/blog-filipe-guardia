@@ -31,36 +31,51 @@ const auditFigures = async (page: Page, slug: string) => {
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
   expect(overflow, `${slug} must not create horizontal page overflow`).toBeLessThanOrEqual(1);
 
-  const figures = await page.locator('.inline-figure').evaluateAll((nodes) => nodes.map((node) => {
-    const figure = node as HTMLElement;
-    const rect = figure.getBoundingClientRect();
-    const image = figure.querySelector('img') as HTMLImageElement | null;
-    const imageRect = image?.getBoundingClientRect();
-    return {
-      left: rect.left,
-      right: rect.right,
-      width: rect.width,
-      viewport: document.documentElement.clientWidth,
-      imageLeft: imageRect?.left ?? null,
-      imageRight: imageRect?.right ?? null,
-      imageWidth: imageRect?.width ?? null,
-      imageHeight: imageRect?.height ?? null,
-      naturalWidth: image?.naturalWidth ?? null,
-      complete: image?.complete ?? null,
-      src: image?.currentSrc || image?.src || null
-    };
-  }));
+  const figureLocators = page.locator('.inline-figure');
+  const count = await figureLocators.count();
 
-  for (const [index, figure] of figures.entries()) {
-    expect(figure.width, `${slug} figure ${index + 1} must have width`).toBeGreaterThan(0);
-    expect(figure.left, `${slug} figure ${index + 1} must not clip on the left`).toBeGreaterThanOrEqual(-1);
-    expect(figure.right, `${slug} figure ${index + 1} must stay inside viewport`).toBeLessThanOrEqual(figure.viewport + 1);
-    expect(figure.complete, `${slug} figure ${index + 1} image must finish loading`).toBe(true);
-    expect(figure.naturalWidth, `${slug} figure ${index + 1} image must be valid`).toBeGreaterThan(0);
-    expect(figure.imageWidth, `${slug} figure ${index + 1} image must render`).toBeGreaterThan(0);
-    expect(figure.imageHeight, `${slug} figure ${index + 1} image must render`).toBeGreaterThan(0);
-    expect(figure.imageLeft, `${slug} figure ${index + 1} image must not clip left`).toBeGreaterThanOrEqual(figure.left - 1);
-    expect(figure.imageRight, `${slug} figure ${index + 1} image must not escape its frame`).toBeLessThanOrEqual(figure.right + 1);
+  for (let index = 0; index < count; index += 1) {
+    const figure = figureLocators.nth(index);
+    await figure.scrollIntoViewIfNeeded();
+    const image = figure.locator('img').first();
+    await expect(image, `${slug} figure ${index + 1} image must exist`).toHaveCount(1);
+    await image.evaluate((node: HTMLImageElement) => {
+      node.loading = 'eager';
+    });
+    await expect.poll(
+      () => image.evaluate((node: HTMLImageElement) => node.complete && node.naturalWidth > 0),
+      { timeout: 10_000, message: `${slug} figure ${index + 1} image must finish loading` }
+    ).toBe(true);
+
+    const metrics = await figure.evaluate((node) => {
+      const figureNode = node as HTMLElement;
+      const rect = figureNode.getBoundingClientRect();
+      const imageNode = figureNode.querySelector('img') as HTMLImageElement;
+      const imageRect = imageNode.getBoundingClientRect();
+      return {
+        left: rect.left,
+        right: rect.right,
+        width: rect.width,
+        viewport: document.documentElement.clientWidth,
+        imageLeft: imageRect.left,
+        imageRight: imageRect.right,
+        imageWidth: imageRect.width,
+        imageHeight: imageRect.height,
+        naturalWidth: imageNode.naturalWidth,
+        complete: imageNode.complete,
+        src: imageNode.currentSrc || imageNode.src
+      };
+    });
+
+    expect(metrics.width, `${slug} figure ${index + 1} must have width`).toBeGreaterThan(0);
+    expect(metrics.left, `${slug} figure ${index + 1} must not clip on the left`).toBeGreaterThanOrEqual(-1);
+    expect(metrics.right, `${slug} figure ${index + 1} must stay inside viewport`).toBeLessThanOrEqual(metrics.viewport + 1);
+    expect(metrics.complete, `${slug} figure ${index + 1} image must finish loading`).toBe(true);
+    expect(metrics.naturalWidth, `${slug} figure ${index + 1} image must be valid`).toBeGreaterThan(0);
+    expect(metrics.imageWidth, `${slug} figure ${index + 1} image must render`).toBeGreaterThan(0);
+    expect(metrics.imageHeight, `${slug} figure ${index + 1} image must render`).toBeGreaterThan(0);
+    expect(metrics.imageLeft, `${slug} figure ${index + 1} image must not clip left`).toBeGreaterThanOrEqual(metrics.left - 1);
+    expect(metrics.imageRight, `${slug} figure ${index + 1} image must not escape its frame`).toBeLessThanOrEqual(metrics.right + 1);
   }
 };
 
