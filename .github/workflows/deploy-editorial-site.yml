@@ -35,6 +35,16 @@ jobs:
       - name: Install dependencies
         working-directory: site-rebuild
         run: npm ci
+      - name: Materialize hero candidates for inspection
+        working-directory: site-rebuild
+        run: node scripts/materialize-approved-masters.mjs
+      - name: Upload hero candidate inspection
+        uses: actions/upload-artifact@v4
+        with:
+          name: hero-source-inspection
+          path: site-rebuild/.hero-inspection
+          if-no-files-found: error
+          retention-days: 1
       - name: Validate release contracts
         working-directory: site-rebuild
         env:
