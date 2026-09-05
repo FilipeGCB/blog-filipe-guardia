@@ -48,8 +48,13 @@
       linear-gradient(0deg, rgba(9, 9, 12, 0.62) 0%, transparent 42%);
   }
 
-  /* The source is only 1152px wide. Any scroll-driven scale would enlarge
-     the rendered portrait beyond its real resolution on Full HD/QHD/4K. */
+  /* The source is only 1152px wide. Scroll drift on either the frame or the
+     image changes the rendered bounding box, so both are neutralized here. */
+  .hero-home .hero-photo.scroll-hero-media {
+    transform: translateY(-50%) !important;
+    animation: none !important;
+  }
+
   [data-scroll-hero] .scroll-hero-media img {
     transform: none !important;
     animation: none !important;
