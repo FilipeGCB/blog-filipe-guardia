@@ -29,6 +29,24 @@ test('projects page is a public proof-of-work surface with direct repository lin
   assert.match(page, /repositórios públicos/i);
 });
 
+test('current positioning says B2X and places AI inside Digital Transformation', () => {
+  const home = read('src/pages/index.astro');
+  const about = read('src/pages/sobre.astro');
+
+  assert.match(home, /B2X/i, 'home must reflect the current B2B + B2C scope');
+  assert.match(home, /Transformação Digital/i, 'home must surface Digital Transformation');
+
+  assert.match(about, /B2X/i, 'about must reflect the current B2X scope');
+  assert.match(about, /Transformação Digital/i, 'about must make Digital Transformation explicit');
+  assert.match(about, /inteligência artificial|\bIA\b/i);
+  assert.match(about, /dados/i);
+  assert.match(about, /automaç/i);
+  assert.match(about, /sistemas|produtos/i);
+  assert.match(about, /agentes/i);
+  assert.doesNotMatch(about, /Atuo como consultor de planejamento e inteligência de cobrança B2B/i,
+    'about must not describe the current role as B2B-only');
+});
+
 test('editorial image audit covers all 19 current articles and the two newest slugs', () => {
   const audit = read('docs/editorial/image-audit-2026-08-26.md');
 
