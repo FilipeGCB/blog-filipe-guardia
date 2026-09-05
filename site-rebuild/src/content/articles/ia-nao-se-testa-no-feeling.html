@@ -1,0 +1,190 @@
+<p>Existe uma fase muito confortável em quase todo projeto de inteligência artificial.</p>
+<p>Alguém faz uma demonstração, a resposta parece boa, a equipe se anima e surge a frase:</p>
+<p><strong>“funcionou”.</strong></p>
+<p>O problema é que “funcionou” pode significar muitas coisas.</p>
+<p>Funcionou uma vez? Funcionou com aquela pergunta? Funcionou porque quem testou já sabia a resposta? Funcionou rápido, mas errou detalhes importantes? Funcionou até a troca do modelo, do prompt ou da base de conhecimento?</p>
+<p>Quanto mais a IA deixa de ser uma conversa e passa a participar de processos, decisões e sistemas, menos espaço existe para avaliar qualidade apenas pela sensação.</p>
+<p>É aí que entram os <strong>evals</strong>: avaliações estruturadas para medir se um sistema de IA realmente faz aquilo que deveria fazer.</p>
+
+<h2 id="demo-nao-e-evidencia">1. Uma boa demonstração não é evidência suficiente</h2>
+<p>Uma demo serve para provar possibilidade.</p>
+<p>Ela mostra que uma ideia pode funcionar.</p>
+<p>Mas produto precisa provar repetibilidade.</p>
+<p>Imagine um assistente que resume documentos. Em cinco testes escolhidos pela equipe, os resumos parecem excelentes.</p>
+<p>Depois ele encontra:</p>
+<ul>
+  <li>um documento com duas versões conflitantes;</li>
+  <li>uma tabela importante no meio do texto;</li>
+  <li>uma exceção escrita em nota de rodapé;</li>
+  <li>uma pergunta para a qual o documento não contém resposta;</li>
+  <li>um caso em que deveria dizer “não sei”.</li>
+</ul>
+<p>O sistema continua bom?</p>
+<p>Sem critérios e casos de teste, a resposta vira opinião.</p>
+
+<h2 id="o-que-e-eval">2. Eval é um teste com pergunta, critério e evidência</h2>
+<p>Um eval não precisa começar com uma plataforma sofisticada.</p>
+<p>Na forma mais simples, ele possui três elementos:</p>
+<ul>
+  <li><strong>entrada:</strong> a tarefa ou situação que o sistema precisa enfrentar;</li>
+  <li><strong>critério:</strong> o que caracteriza uma resposta aceitável;</li>
+  <li><strong>resultado:</strong> a evidência de que o sistema passou, falhou ou ficou em uma zona que exige julgamento humano.</li>
+</ul>
+<p><strong>Fato:</strong> a documentação oficial da OpenAI define evals como testes estruturados para medir desempenho e recomenda desenvolvimento orientado por avaliação: testar cedo, usar casos específicos da tarefa, registrar exemplos reais, automatizar quando possível e continuar avaliando ao longo do tempo.</p>
+<p><strong>Análise:</strong> o valor principal não está em dar uma nota para a IA. Está em transformar “parece melhor” em uma comparação que pode ser repetida.</p>
+
+<h2 id="teste-software">3. Testar IA não é igual a testar software tradicional</h2>
+<p>Em software clássico, muitas funções são determinísticas.</p>
+<p>Se uma regra diz que 2 + 2 deve retornar 4, qualquer outro resultado é falha.</p>
+<p>Modelos generativos são diferentes.</p>
+<p>A mesma pergunta pode produzir respostas escritas de maneiras diferentes e ainda assim ambas estarem corretas.</p>
+<p><strong>Fato:</strong> a OpenAI ressalta em suas práticas de avaliação que sistemas generativos possuem variabilidade e que testes tradicionais, sozinhos, não são suficientes para arquiteturas de IA.</p>
+<p>Isso não elimina teste objetivo.</p>
+<p>Só muda o que precisa ser medido.</p>
+<p>Uma resposta pode variar no texto e ainda ter que respeitar fatos, formato, fontes, limites, política e ação esperada.</p>
+
+<h2 id="criterios-negocio">4. O melhor eval começa no negócio, não no modelo</h2>
+<p>Antes de criar métricas, é preciso perguntar:</p>
+<p><strong>o que seria uma falha importante neste processo?</strong></p>
+<p>Para um chatbot de atendimento, pode ser inventar uma política.</p>
+<p>Para um agente de dados, pode ser consultar a tabela errada.</p>
+<p>Para um agente que executa ações, pode ser agir sem a confirmação necessária.</p>
+<p>Para um resumo executivo, pode ser omitir uma ressalva que muda a decisão.</p>
+<p>Do ponto de vista técnico, todos esses sistemas podem produzir texto fluente.</p>
+<p>Do ponto de vista do negócio, podem estar errados de formas completamente diferentes.</p>
+<p>Por isso, uma boa avaliação não pergunta apenas “a resposta está boa?”.</p>
+<p>Ela pergunta <strong>“boa para qual finalidade e sob qual risco?”</strong></p>
+
+<h2 id="dataset-eval">5. Um conjunto de casos vale mais do que uma pergunta favorita</h2>
+<p>Quase todo mundo que usa IA com frequência desenvolve uma pergunta favorita para testar modelos.</p>
+<p>Isso é útil para percepção rápida, mas insuficiente para produto.</p>
+<p>Um conjunto de avaliação precisa representar situações diferentes.</p>
+<p>Por exemplo:</p>
+<ul>
+  <li>casos comuns;</li>
+  <li>casos raros;</li>
+  <li>entradas ambíguas;</li>
+  <li>informação incompleta;</li>
+  <li>casos historicamente problemáticos;</li>
+  <li>situações em que o sistema deve recusar ou escalar;</li>
+  <li>erros reais encontrados em produção.</li>
+</ul>
+<p><strong>Fato:</strong> a orientação da OpenAI recomenda que os dados de avaliação reflitam a distribuição real da tarefa e cita dados de produção, históricos, curados por humanos, específicos do domínio e sintéticos como possíveis fontes.</p>
+<p><strong>Análise:</strong> cada erro importante descoberto no uso real pode virar um novo teste permanente.</p>
+
+<h2 id="placar-nao-basta">6. Um único placar pode esconder a falha que importa</h2>
+<p>Imagine que um agente acerte 94 de 100 casos.</p>
+<p>Parece excelente.</p>
+<p>Mas e se as seis falhas forem justamente os seis casos em que havia risco financeiro?</p>
+<p>A média continua 94%.</p>
+<p>O sistema continua inadequado.</p>
+<p>Por isso, avaliações úteis costumam separar dimensões.</p>
+<ul>
+  <li>correção factual;</li>
+  <li>completude;</li>
+  <li>uso correto de fontes;</li>
+  <li>respeito a permissões;</li>
+  <li>escolha correta de ferramenta;</li>
+  <li>latência e custo;</li>
+  <li>capacidade de reconhecer incerteza;</li>
+  <li>cumprimento de regras críticas.</li>
+</ul>
+<p>Um número agregado pode ajudar a acompanhar tendência.</p>
+<p>Mas o detalhe mostra <strong>onde</strong> o sistema está melhorando ou piorando.</p>
+
+<h2 id="humano-e-automatico">7. Avaliação automática e julgamento humano precisam se calibrar</h2>
+<p>Nem tudo pode ser medido com igualdade exata.</p>
+<p>Se o sistema precisa retornar uma categoria específica, comparar a resposta é simples.</p>
+<p>Se precisa escrever uma análise clara, correta e proporcional às evidências, a avaliação fica mais subjetiva.</p>
+<p>É possível usar regras, comparações, modelos avaliadores e outras formas de pontuação automática.</p>
+<p>Mas existe um cuidado.</p>
+<p><strong>Fato:</strong> a própria orientação de boas práticas da OpenAI recomenda combinar métricas com julgamento humano e calibrar avaliações automáticas usando feedback de pessoas.</p>
+<p><strong>Análise:</strong> automatizar o avaliador não elimina a necessidade de definir o que qualidade significa. Apenas torna repetível uma definição que precisa ter sido bem pensada antes.</p>
+
+<h2 id="agentes-mais-dificeis">8. Agentes são mais difíceis de avaliar porque possuem caminho, não só resposta</h2>
+<p>Um modelo que responde uma pergunta produz um resultado.</p>
+<p>Um agente pode produzir uma sequência.</p>
+<p>Ele interpreta a intenção, consulta dados, escolhe ferramentas, executa ações, recebe novos resultados e decide se continua ou para.</p>
+<p>Isso cria novas perguntas de avaliação:</p>
+<ul>
+  <li>escolheu a ferramenta correta;</li>
+  <li>usou os parâmetros corretos;</li>
+  <li>respeitou a ordem necessária;</li>
+  <li>parou quando deveria;</li>
+  <li>pediu confirmação quando o risco aumentou;</li>
+  <li>chegou ao resultado correto sem ações desnecessárias.</li>
+</ul>
+<p>A resposta final pode até estar certa por acaso.</p>
+<p>O caminho ainda pode ser perigoso.</p>
+<p>Por isso, agentes exigem avaliação do comportamento do sistema, não apenas da frase que aparece no fim.</p>
+
+<h2 id="tevv">9. A avaliação de IA está ficando mais parecida com uma disciplina de engenharia</h2>
+<p>Essa preocupação não está restrita a fornecedores de modelos.</p>
+<p><strong>Fato atual:</strong> em 7 de agosto de 2026, o NIST publicou para consulta pública o rascunho inicial do <em>TEVV-Athlon Framework for Evaluating AI Systems</em>. A proposta trata Test, Evaluation, Verification and Validation como uma forma estruturada de produzir evidência de que sistemas de IA atendem objetivos e reduzem impactos negativos. O escopo inclui modelos de linguagem, sistemas multimodais e sistemas agênticos.</p>
+<p>O documento está em consulta pública até 6 de outubro de 2026.</p>
+<p><strong>Análise:</strong> o movimento é relevante porque coloca avaliação no mesmo vocabulário de outras disciplinas de engenharia: objetivo, método, medição, evidência e contexto de uso.</p>
+<p>Não basta perguntar se a IA é “inteligente”.</p>
+<p>É preciso perguntar se o sistema é adequado para a função que recebeu.</p>
+
+<h2 id="regressao">10. Evals servem também para impedir que uma melhoria quebre outra coisa</h2>
+<p>Projetos de IA mudam o tempo todo.</p>
+<p>Troca-se o prompt.</p>
+<p>Atualiza-se a base de conhecimento.</p>
+<p>Adiciona-se uma ferramenta.</p>
+<p>Muda-se o modelo.</p>
+<p>Altera-se uma regra.</p>
+<p>Cada mudança pode melhorar uma parte e piorar outra.</p>
+<p>Um conjunto de evals funciona como proteção contra regressão.</p>
+<p>Antes de dizer que a nova versão é melhor, roda-se o mesmo conjunto de casos e compara-se o comportamento.</p>
+<p>Isso aproxima o desenvolvimento de IA de uma prática já natural em software: mudanças precisam trazer evidência de que não destruíram capacidades importantes que já funcionavam.</p>
+
+<h2 id="impacto-pessoas">11. O impacto para as pessoas</h2>
+<p>Para quem usa a IA, evals bem desenhados aparecem como confiança.</p>
+<p>A pessoa não precisa conhecer a planilha de testes que existe por trás do produto.</p>
+<p>Ela percebe que o sistema erra menos nos mesmos lugares, reconhece melhor seus limites e muda de versão sem ficar imprevisível.</p>
+<p>Para quem trabalha construindo soluções, existe outro benefício.</p>
+<p>Discussões deixam de ser apenas:</p>
+<p>“eu achei a resposta melhor”.</p>
+<p>Passam a ser:</p>
+<p>“melhoramos estes critérios, pioramos aquele caso e precisamos decidir se a troca vale a pena”.</p>
+<p>Isso melhora a conversa entre negócio e tecnologia.</p>
+
+<h2 id="impacto-empresas">12. O impacto para as empresas</h2>
+<p>Para empresas, avaliação reduz uma das maiores fragilidades da adoção de IA: não saber exatamente o que mudou.</p>
+<p>Sem evals, uma troca de modelo pode parecer ótima porque ficou mais rápida.</p>
+<p>Depois descobre-se que aumentou erro em uma tarefa crítica.</p>
+<p>Um novo prompt pode deixar as respostas mais elegantes e, ao mesmo tempo, reduzir a precisão das fontes.</p>
+<p>Um agente pode receber uma nova ferramenta e começar a chamá-la em situações desnecessárias.</p>
+<p>Quando existem avaliações permanentes, essas mudanças deixam rastros mensuráveis.</p>
+<p><strong>Minha opinião:</strong> quanto mais uma IA participa de decisões ou ações reais, menos aceitável fica tratá-la como uma caixa-preta avaliada por demonstrações ocasionais.</p>
+
+<h2 id="aprendizado">13. O que estou aprendendo</h2>
+<p>Quanto mais estudo agentes e sistemas de IA, mais percebo que escolher modelo, escrever prompt e conectar ferramenta são apenas metade do trabalho.</p>
+<p>A outra metade é responder:</p>
+<p><strong>como eu sei que isso continua funcionando?</strong></p>
+<p>Essa pergunta muda o jeito de construir.</p>
+<p>Se um bug importante aparece, ele vira teste.</p>
+<p>Se existe uma ação de risco, ela ganha um caso específico.</p>
+<p>Se uma mudança melhora custo, eu preciso verificar se não piorou qualidade.</p>
+<p>Se um avaliador automático decide o que é “bom”, eu preciso verificar se ele concorda com pessoas competentes nos casos que realmente importam.</p>
+<p>Estou começando a enxergar evals não como uma etapa de auditoria no fim.</p>
+<p>Vejo como <strong>memória operacional da qualidade</strong>: um conjunto de exemplos que registra o que o sistema aprendeu que não pode voltar a fazer errado.</p>
+
+<h2 id="conclusao">14. Conclusão</h2>
+<p>Inteligência artificial impressiona porque consegue produzir respostas que parecem novas a cada interação.</p>
+<p>Produto confiável exige o movimento contrário.</p>
+<p>Precisamos tornar repetível a forma de medir qualidade.</p>
+<p>Evals fazem essa ponte.</p>
+<p>Eles transformam expectativas em critérios, erros em casos de teste e mudanças em comparações.</p>
+<p>Não eliminam incerteza.</p>
+<p>Mas reduzem a dependência do “parece bom”.</p>
+<p><strong>Uma IA madura não é apenas a que responde melhor. É a que consegue mostrar, de forma repetível, em que situações podemos confiar mais nela — e em quais ainda não.</strong></p>
+<p class="article-question"><strong>Pergunta ao leitor:</strong> se amanhã alguém disser que a nova versão da IA da sua empresa ficou melhor, que evidência você pediria antes de acreditar?</p>
+
+<h2 id="fontes">Fontes e leitura recomendada</h2>
+<ul>
+  <li><a href="https://developers.openai.com/api/docs/guides/evaluation-best-practices" target="_blank" rel="noopener noreferrer">OpenAI — Evaluation best practices</a></li>
+  <li><a href="https://developers.openai.com/api/docs/guides/evals" target="_blank" rel="noopener noreferrer">OpenAI — Working with evals</a></li>
+  <li><a href="https://www.nist.gov/artificial-intelligence/ai-research/tevv-athlon-framework-evaluating-ai-systems" target="_blank" rel="noopener noreferrer">NIST — TEVV-Athlon Framework for Evaluating AI Systems</a></li>
+  <li><a href="https://airc.nist.gov/" target="_blank" rel="noopener noreferrer">NIST AI Resource Center — Testing, Evaluation, Verification and Validation</a></li>
+</ul>
