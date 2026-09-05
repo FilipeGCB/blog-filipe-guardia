@@ -52,7 +52,7 @@ export const libraryCollections: LibraryCollection[] = [
     links: [
       { label: 'Catálogo de dados', href: '/habilidades/index.html' },
       { label: 'Fontes para agentes', href: '/habilidades/biblioteca-completa.html' },
-      { label: 'Projeto CFO-IA', href: '/projetos.html' }
+      { label: 'Portfólio de projetos públicos', href: '/projetos.html' }
     ],
     tone: 'ink'
   },
