@@ -7,6 +7,7 @@ window.SITE_CONFIG = Object.freeze({
   linkedinUrl: "",
   email: "filipeguardia@gmail.com",
   whatsappUrl: "https://wa.me/5511970641955",
+  telegramUrl: "https://t.me/+5511970641955?profile",
   phone: "+5511970641955",
   phoneLabel: "+55 11 97064-1955",
   formspreeEndpoint: "https://formspree.io/f/mjkdlljg",
