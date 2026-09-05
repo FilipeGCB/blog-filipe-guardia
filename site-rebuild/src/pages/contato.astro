@@ -3,47 +3,81 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
+
+const whatsapp: string | null = null;
+const telegram: string | null = null;
+const phone: string | null = null;
 ---
-<BaseLayout title="Contato | Filipe Guardia" description="Converse sobre operações, dados, produtos e IA aplicada." canonicalPath="/contato.html" currentPath="/contato.html">
+<BaseLayout title="Contato | Filipe Guardia" description="Fale diretamente com Filipe Guardia sobre projetos, sistemas, dados e IA aplicada." canonicalPath="/contato.html" currentPath="/contato.html">
   <section class="utility-night utility-contact-intro">
     <div class="editorial-shell utility-intro-grid">
       <div class="utility-intro-copy">
-        <span class="eyebrow">Contato profissional</span>
-        <h1>Vamos começar pelo <em>contexto</em>.</h1>
-        <p>Propostas profissionais, troca de experiências, projetos ou conversas sobre os temas do blog. A melhor primeira mensagem explica o problema, o objetivo e o que já foi tentado.</p>
+        <span class="eyebrow">Contato direto</span>
+        <h1>Quer conversar? <em>Fale comigo.</em></h1>
+        <p>Projetos, troca de experiências, tecnologia, dados, IA ou algum trabalho publicado aqui. Você pode me escrever diretamente ou usar o formulário abaixo.</p>
       </div>
-      <div class="utility-intro-sequence" aria-label="Boa conversa começa por três pontos">
-        <span>Problema</span><i>→</i><span>Contexto</span><i>→</i><span>Próxima pergunta</span>
+      <div class="utility-intro-sequence" aria-label="Canais de contato">
+        <span>E-mail</span><i>→</i><span>Mensagem direta</span><i>→</i><span>Conversa</span>
       </div>
     </div>
   </section>
 
-  <section class="section utility-contact-section">
+  <section class="section direct-contact-section">
+    <div class="editorial-shell">
+      <div class="section-head">
+        <div><span class="section-kicker">Canais diretos</span><h2>Escolha o jeito mais simples.</h2></div>
+        <p>O e-mail pessoal é o canal principal. Outros canais só aparecem quando o endereço público estiver confirmado.</p>
+      </div>
+      <div class="contact-channel-grid">
+        <article class="contact-channel contact-channel-primary">
+          <span class="path-number">01</span>
+          <h3>E-mail</h3>
+          <p>Para conversas, propostas, dúvidas ou troca sobre os projetos do blog.</p>
+          <a class="button" href="mailto:filipeguardia@gmail.com">filipeguardia@gmail.com</a>
+        </article>
+        {whatsapp && (
+          <article class="contact-channel"><span class="path-number">02</span><h3>WhatsApp</h3><p>Mensagem direta pelo WhatsApp.</p><a class="button-secondary" href={whatsapp} target="_blank" rel="noopener noreferrer">Abrir WhatsApp</a></article>
+        )}
+        {telegram && (
+          <article class="contact-channel"><span class="path-number">03</span><h3>Telegram</h3><p>Mensagem direta pelo Telegram.</p><a class="button-secondary" href={telegram} target="_blank" rel="noopener noreferrer">Abrir Telegram</a></article>
+        )}
+        {phone && (
+          <article class="contact-channel"><span class="path-number">04</span><h3>Telefone</h3><p>Contato telefônico.</p><a class="button-secondary" href={`tel:${phone}`}>{phone}</a></article>
+        )}
+        <article class="contact-channel">
+          <span class="path-number">02</span>
+          <h3>GitHub</h3>
+          <p>Para conhecer os projetos públicos e o código antes de entrar em contato.</p>
+          <a class="button-secondary" href="https://github.com/FilipeGCB" target="_blank" rel="noopener noreferrer">Abrir GitHub</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tinted utility-contact-section">
     <div class="editorial-shell split-copy contact-layout">
       <div>
-        <span class="section-kicker">Envie uma mensagem</span>
-        <h2>Conte brevemente o problema e o objetivo da conversa.</h2>
-        <p class="prose-lead">Quanto mais contexto você compartilhar, melhor consigo entender se há uma boa próxima pergunta.</p>
+        <span class="section-kicker">Se preferir</span>
+        <h2>Envie pelo formulário.</h2>
+        <p class="prose-lead">Descreva brevemente o problema, o objetivo e o contexto. Evite incluir dados confidenciais.</p>
       </div>
       <form class="contact-form" action="https://formspree.io/f/mjkdlljg" method="POST">
         <div class="field"><label for="name">Nome</label><input id="name" name="name" autocomplete="name" required /></div>
-        <div class="field"><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email" required /></div>
-        <div class="field"><label for="company">Empresa ou função (opcional)</label><input id="company" name="company" autocomplete="organization" /></div>
+        <div class="field"><label for="email">Seu e-mail</label><input id="email" name="email" type="email" autocomplete="email" required /></div>
         <div class="field"><label for="subject">Assunto</label><input id="subject" name="subject" required /></div>
         <div class="field"><label for="message">Mensagem</label><textarea id="message" name="message" required></textarea></div>
         <button class="button" type="submit">Enviar mensagem</button>
-        <p class="status-note">O formulário usa o endpoint público já configurado no site. Não inclua dados confidenciais de clientes ou operação.</p>
       </form>
     </div>
   </section>
 
-  <section class="section section-tinted">
+  <section class="section">
     <div class="editorial-shell">
-      <div class="section-head"><div><span class="section-kicker">Antes de escrever</span><h2>Veja o trabalho e escolha o melhor ponto de partida.</h2></div><p>Projetos, trajetória e código público ajudam a dar contexto à conversa.</p></div>
+      <div class="section-head"><div><span class="section-kicker">Antes de escrever</span><h2>Veja o trabalho.</h2></div><p>Projetos e trajetória ajudam a dar contexto para a conversa.</p></div>
       <div class="path-grid">
-        <article class="path-card"><span class="path-number">01</span><h3>GitHub</h3><p>Repositórios e projetos públicos.</p><a href="https://github.com/FilipeGCB" target="_blank" rel="noopener noreferrer">Abrir GitHub →</a></article>
-        <article class="path-card"><span class="path-number">02</span><h3>Projetos</h3><p>Portfólio profissional em construção.</p><a href={href('/projetos.html')}>Ver projetos →</a></article>
-        <article class="path-card"><span class="path-number">03</span><h3>Trajetória</h3><p>Experiência, competências e direção de carreira.</p><a href={href('/sobre.html')}>Conhecer trajetória →</a></article>
+        <article class="path-card"><span class="path-number">01</span><h3>Projetos</h3><p>Portfólio público e sistemas em construção.</p><a href={href('/projetos.html')}>Ver projetos →</a></article>
+        <article class="path-card"><span class="path-number">02</span><h3>Trajetória</h3><p>Experiência, competências e direção profissional.</p><a href={href('/sobre.html')}>Conhecer trajetória →</a></article>
+        <article class="path-card"><span class="path-number">03</span><h3>Biblioteca</h3><p>Guias portáteis para trabalhar melhor com assistentes de IA.</p><a href={href('/biblioteca.html')}>Abrir biblioteca →</a></article>
       </div>
     </div>
   </section>
