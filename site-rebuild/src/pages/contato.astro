@@ -4,9 +4,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
 
-const whatsapp: string | null = null;
+const whatsapp = 'https://wa.me/5511970641955';
+const phoneHref = '+5511970641955';
+const phoneLabel = '+55 11 97064-1955';
 const telegram: string | null = null;
-const phone: string | null = null;
 ---
 <BaseLayout title="Contato | Filipe Guardia" description="Fale diretamente com Filipe Guardia sobre projetos, sistemas, dados e IA aplicada." canonicalPath="/contato.html" currentPath="/contato.html">
   <section class="utility-night utility-contact-intro">
@@ -17,7 +18,7 @@ const phone: string | null = null;
         <p>Projetos, troca de experiências, tecnologia, dados, IA ou algum trabalho publicado aqui. Você pode me escrever diretamente ou usar o formulário abaixo.</p>
       </div>
       <div class="utility-intro-sequence" aria-label="Canais de contato">
-        <span>E-mail</span><i>→</i><span>Mensagem direta</span><i>→</i><span>Conversa</span>
+        <span>E-mail</span><i>→</i><span>WhatsApp</span><i>→</i><span>Conversa</span>
       </div>
     </div>
   </section>
@@ -26,7 +27,7 @@ const phone: string | null = null;
     <div class="editorial-shell">
       <div class="section-head">
         <div><span class="section-kicker">Canais diretos</span><h2>Escolha o jeito mais simples.</h2></div>
-        <p>O e-mail pessoal é o canal principal. Outros canais só aparecem quando o endereço público estiver confirmado.</p>
+        <p>E-mail e WhatsApp são os canais diretos publicados. O GitHub fica disponível para quem quiser conhecer os projetos antes de entrar em contato.</p>
       </div>
       <div class="contact-channel-grid">
         <article class="contact-channel contact-channel-primary">
@@ -35,17 +36,23 @@ const phone: string | null = null;
           <p>Para conversas, propostas, dúvidas ou troca sobre os projetos do blog.</p>
           <a class="button" href="mailto:filipeguardia@gmail.com">filipeguardia@gmail.com</a>
         </article>
-        {whatsapp && (
-          <article class="contact-channel"><span class="path-number">02</span><h3>WhatsApp</h3><p>Mensagem direta pelo WhatsApp.</p><a class="button-secondary" href={whatsapp} target="_blank" rel="noopener noreferrer">Abrir WhatsApp</a></article>
-        )}
-        {telegram && (
-          <article class="contact-channel"><span class="path-number">03</span><h3>Telegram</h3><p>Mensagem direta pelo Telegram.</p><a class="button-secondary" href={telegram} target="_blank" rel="noopener noreferrer">Abrir Telegram</a></article>
-        )}
-        {phone && (
-          <article class="contact-channel"><span class="path-number">04</span><h3>Telefone</h3><p>Contato telefônico.</p><a class="button-secondary" href={`tel:${phone}`}>{phone}</a></article>
-        )}
         <article class="contact-channel">
           <span class="path-number">02</span>
+          <h3>WhatsApp</h3>
+          <p>Mensagem direta pelo WhatsApp.</p>
+          <a class="button-secondary" href={whatsapp} target="_blank" rel="noopener noreferrer">Abrir WhatsApp</a>
+        </article>
+        <article class="contact-channel">
+          <span class="path-number">03</span>
+          <h3>Telefone</h3>
+          <p>Contato telefônico direto.</p>
+          <a class="button-secondary" href={`tel:${phoneHref}`}>{phoneLabel}</a>
+        </article>
+        {telegram && (
+          <article class="contact-channel"><span class="path-number">04</span><h3>Telegram</h3><p>Mensagem direta pelo Telegram.</p><a class="button-secondary" href={telegram} target="_blank" rel="noopener noreferrer">Abrir Telegram</a></article>
+        )}
+        <article class="contact-channel">
+          <span class="path-number">04</span>
           <h3>GitHub</h3>
           <p>Para conhecer os projetos públicos e o código antes de entrar em contato.</p>
           <a class="button-secondary" href="https://github.com/FilipeGCB" target="_blank" rel="noopener noreferrer">Abrir GitHub</a>
