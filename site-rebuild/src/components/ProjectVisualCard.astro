@@ -32,5 +32,8 @@ const steps = project.visualConcept.split('→').map((step) => step.trim()).filt
       {project.details.map((detail) => <li>{detail}</li>)}
     </ul>
     <p class="project-proof"><strong>O que demonstra:</strong> {project.proof}</p>
+    <div class="project-actions">
+      <a class="button-secondary" href={project.repoUrl} target="_blank" rel="noopener noreferrer">Abrir repositório →</a>
+    </div>
   </div>
 </article>
