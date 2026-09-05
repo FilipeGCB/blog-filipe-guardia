@@ -1,0 +1,65 @@
+.direct-contact-section {
+  background: var(--paper);
+}
+
+.contact-channel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.contact-channel {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  min-height: 250px;
+  padding: clamp(24px, 4vw, 38px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.contact-channel-primary {
+  background:
+    linear-gradient(145deg, rgba(121, 86, 232, .1), transparent 64%),
+    var(--surface);
+}
+
+.contact-channel h3 {
+  margin: 20px 0 10px;
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 500;
+  letter-spacing: -.045em;
+}
+
+.contact-channel p {
+  max-width: 520px;
+  margin: 0 0 26px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.contact-channel a {
+  align-self: flex-start;
+  margin-top: auto;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 780px) {
+  .contact-channel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-channel {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-channel a.button,
+  .contact-channel a.button-secondary {
+    width: 100%;
+  }
+}
