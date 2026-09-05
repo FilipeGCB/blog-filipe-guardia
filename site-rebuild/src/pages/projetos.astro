@@ -7,20 +7,20 @@ import { projects, workMethod } from '../data/projects';
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
 ---
-<BaseLayout title="Projetos | Filipe Guardia" description="Projetos que conectam experiência operacional, produto e inteligência artificial." canonicalPath="/projetos.html" currentPath="/projetos.html">
+<BaseLayout title="Projetos | Filipe Guardia" description="Repositórios públicos de Filipe Guardia sobre agentes, decisões, sistemas visuais e IA aplicada." canonicalPath="/projetos.html" currentPath="/projetos.html">
   <PageIntroVisual
-    eyebrow="Prova de trabalho"
-    title="Projetos que conectam experiência operacional, produto e <em>inteligência</em>."
-    deck="Iniciativas que fazem parte da minha trajetória, apresentadas sem expor código comercial, infraestrutura privada ou informação confidencial."
+    eyebrow="Prova de trabalho · Código público"
+    title="Quatro projetos públicos. <em>Quatro problemas diferentes.</em>"
+    deck="Esta página é a porta de entrada para os repositórios públicos que melhor representam o que estou construindo hoje. Cada projeto explica o problema que resolve, o que demonstra e leva diretamente ao código no GitHub."
     theme="night"
-    currentLabel="Contexto real · representação editorial quando não há imagem pública"
+    currentLabel="Agentes · decisão · autoridade · experiência visual · IA local"
   />
 
   <section class="section project-proof-section">
     <div class="editorial-shell">
       <div class="section-head">
-        <div><span class="section-kicker">Portfólio real</span><h2>Contexto, abordagem e competência.</h2></div>
-        <p>O visual ajuda a explicar a lógica do trabalho; quando não existe screenshot público, a página declara explicitamente que se trata de uma representação editorial.</p>
+        <div><span class="section-kicker">Repositórios públicos</span><h2>Entenda primeiro. Abra o código depois.</h2></div>
+        <p>Os diagramas abaixo são representações editoriais para explicar a lógica de cada sistema rapidamente. O botão de cada projeto leva ao repositório público real, com README, documentação e código.</p>
       </div>
       <div class="project-proof-list">
         {projects.map((project, index) => <ProjectVisualCard project={project} index={index} />)}
@@ -30,7 +30,7 @@ const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
 
   <section class="section section-tinted">
     <div class="editorial-shell">
-      <div class="section-head"><div><span class="section-kicker">Forma de trabalho</span><h2>Como uma necessidade vira solução.</h2></div><p>O processo parte do trabalho real e só depois define qual tecnologia faz sentido.</p></div>
+      <div class="section-head"><div><span class="section-kicker">Forma de trabalho</span><h2>O padrão por trás dos projetos.</h2></div><p>Os produtos mudam, mas o processo é parecido: começar pelo problema real, estruturar restrições, construir de forma incremental e validar a saída concreta.</p></div>
       <div class="project-method-grid">
         {workMethod.map(([number, title, description]) => <article class="path-card"><span class="path-number">{number}</span><h3>{title}</h3><p>{description}</p></article>)}
       </div>
@@ -38,6 +38,16 @@ const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
   </section>
 
   <section class="section">
-    <div class="editorial-shell split-copy"><div><span class="section-kicker">Continuidade</span><h2>Conheça também a trajetória por trás dos projetos.</h2></div><div class="copy-stack"><p>Experiência operacional não é um detalhe de contexto: é a matéria-prima para decisões melhores, produtos mais realistas e sistemas que conseguem sobreviver ao uso.</p><a class="button-secondary" href={href('/sobre.html')}>Ler sobre a trajetória →</a></div></div>
+    <div class="editorial-shell split-copy">
+      <div><span class="section-kicker">Mais contexto</span><h2>O código mostra o que construo. O blog mostra como penso.</h2></div>
+      <div class="copy-stack">
+        <p>Os artigos conectam decisões de arquitetura, trabalho real, agentes, memória, segurança, operação e produto. A página Sobre organiza a trajetória que levou a esses projetos.</p>
+        <div class="hero-actions">
+          <a class="button-secondary" href={href('/artigos.html')}>Ler os artigos</a>
+          <a class="button-secondary" href={href('/sobre.html')}>Conhecer a trajetória</a>
+          <a class="text-link" href="https://github.com/FilipeGCB" target="_blank" rel="noopener noreferrer">GitHub completo →</a>
+        </div>
+      </div>
+    </div>
   </section>
 </BaseLayout>
