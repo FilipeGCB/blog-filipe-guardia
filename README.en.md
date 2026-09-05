@@ -47,4 +47,4 @@ Some of my work remains private because it involves commercial products, infrast
 
 ## Repository status
 
-The site is under continuous development. The next visual phase consolidates a responsive foundation, a consistent editorial system, and a project presentation aligned with the current public portfolio.
+The site already uses the **responsive foundation and editorial visual system v1**, validated across multiple viewports. Current work focuses on aligning the Projects page and the site's public narrative with the verifiable repositories in the portfolio.
