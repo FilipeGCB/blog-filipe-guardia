@@ -5,7 +5,7 @@ window.SITE_CONFIG = Object.freeze({
   baseUrl: "https://filipegcb.github.io/blog-filipe-guardia/",
   githubUrl: "https://github.com/FilipeGCB",
   linkedinUrl: "",
-  email: "",
+  email: "filipeguardia@gmail.com",
   formspreeEndpoint: "https://formspree.io/f/mjkdlljg",
   socialImage: "",
   analyticsId: "",
