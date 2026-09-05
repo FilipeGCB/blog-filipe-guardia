@@ -10,24 +10,22 @@ on:
       - '.github/workflows/deploy-editorial-site.yml'
   workflow_dispatch:
 
-# TEMPORARY migration permission. Restored to read-only after the approved
-# WebP masters are committed to the PR branch.
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: editorial-site-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
+  # Cost policy: keep redesign PRs as draft while iterating. The final PR gate
+  # uses one runner, one npm install and one image-generation pass.
   validate-pr:
     if: github.event_name == 'pull_request' && github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout PR head for one-time master migration
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -37,16 +35,6 @@ jobs:
       - name: Install dependencies
         working-directory: site-rebuild
         run: npm ci
-      - name: Materialize approved WebP masters
-        working-directory: site-rebuild
-        run: node scripts/materialize-approved-masters.mjs
-      - name: Commit binary masters and remove base64 wrappers
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A site-rebuild/assets-source/editorial/portraits/filipe
-          git diff --cached --quiet || git commit -m "chore: store approved portrait masters as WebP"
-          git push origin HEAD:${{ github.event.pull_request.head.ref }}
       - name: Validate release contracts
         working-directory: site-rebuild
         env:
@@ -63,6 +51,7 @@ jobs:
         working-directory: site-rebuild
         run: npm run test:visual
 
+  # Build/deploy only after code reaches main. No branch push builds.
   build:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
