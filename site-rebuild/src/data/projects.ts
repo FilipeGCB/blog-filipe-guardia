@@ -8,48 +8,69 @@ export interface Project {
   visualAsset?: string;
   visualAlt: string;
   visualConcept: string;
+  repoUrl: string;
 }
 
 export const projects: Project[] = [
   {
-    label: 'Experiência aplicada',
-    title: 'Transformação digital em cobrança e planejamento',
-    description: 'Aplicação de dados, automação e inteligência artificial a processos de cobrança, planejamento operacional, indicadores e rotinas recorrentes.',
-    details: ['Entendimento do processo e das exceções', 'Mapeamento de regras e responsabilidades', 'Construção progressiva de automações e soluções'],
-    proof: 'Conhecimento de domínio, visão operacional, análise, governança e tradução entre negócio, liderança e tecnologia.',
+    label: 'Agent Skill · Público · v1.4',
+    title: 'Cognitive OS',
+    description: 'Skill portátil para amadurecer decisões antes de ações consequentes. Reconstrói contexto, separa evidência de hipótese, escolhe pesquisa proporcional, desafia a conclusão dominante e identifica a próxima prova que realmente vale obter.',
+    details: [
+      'Entrevista adaptativa somente quando a ambiguidade muda a decisão',
+      'Disciplina de evidência, diagnóstico, red team e Value of Information',
+      'Capacidades abstratas para funcionar sem prender o método a um fornecedor'
+    ],
+    proof: 'Design de Agent Skills, arquitetura de decisão, avaliação comportamental, integração de capacidades e disciplina para saber quando continuar — ou parar.',
     tone: 'violet',
-    visualAlt: 'Representação editorial da transformação de uma operação de cobrança em um sistema estruturado.',
-    visualConcept: 'Operação → regras → dados → decisão'
+    visualAlt: 'Representação editorial do Cognitive OS transformando contexto em evidência, desafio e decisão.',
+    visualConcept: 'Contexto → evidência → desafio → decisão',
+    repoUrl: 'https://github.com/FilipeGCB/cognitive-os'
   },
   {
-    label: 'Produto comercial · Código privado',
-    title: 'CFO-IA',
-    description: 'Software próprio de inteligência financeira, criado para organizar informações, apoiar análises e transformar dados financeiros em decisões mais claras e rastreáveis.',
-    details: ['Visão de produto e fluxos financeiros', 'Automação com agentes e revisão humana', 'Segurança e evolução por etapas'],
-    proof: 'Concepção de produto, arquitetura de solução, especificação funcional e coordenação de desenvolvimento assistido por IA.',
-    tone: 'warm',
-    visualAlt: 'Representação editorial de um sistema financeiro organizado em dados, regras, análise e revisão humana.',
-    visualConcept: 'Dados → análise → confirmação → ação'
-  },
-  {
-    label: 'Projeto pessoal · Privado',
-    title: 'Hermes',
-    description: 'Assistente local e ambiente pessoal de agentes, criado para pesquisar, organizar informações, operar ferramentas e coordenar modelos locais e remotos com controles de segurança.',
-    details: ['Roteamento entre modelos', 'Separação de permissões e confirmação humana', 'Registro de ações, memória e execução controlada'],
-    proof: 'Arquitetura de agentes, modelos locais, integração de ferramentas, segurança, governança e experimentação aplicada.',
-    tone: 'green',
-    visualAlt: 'Representação editorial de agentes, roteamento de modelos e execução governada.',
-    visualConcept: 'Intenção → roteamento → ferramenta → gate'
-  },
-  {
-    label: 'Protótipo em evolução',
-    title: 'Presentation Intelligence System',
-    description: 'Sistema para transformar uma necessidade de comunicação em briefing, tese, argumentos, evidências, narrativa, storyboard e apresentação executiva.',
-    details: ['Fluxo estruturado de raciocínio', 'Revisão e desafio da narrativa', 'Geração de apresentações em HTML'],
-    proof: 'Produto digital, experiência do usuário, comunicação executiva e arquitetura de fluxos com IA.',
+    label: 'Controle de agentes · Público',
+    title: 'Fil-Harness',
+    description: 'Control plane local-first e independente de fornecedor para execução de agentes de código. O agente pode produzir mudanças, mas não pode transformar a própria afirmação de sucesso em autoridade para aprová-las.',
+    details: [
+      'Execução separada da verificação independente',
+      'Evidência vinculada ao candidato, tarefa e estado verificado',
+      'Política determinística ALLOW / HUMAN / DENY com comportamento fail-closed'
+    ],
+    proof: 'Governança de agentes, separação entre capacidade e autoridade, verificação confiável, persistência de execução e desenho de gates determinísticos.',
     tone: 'ink',
-    visualAlt: 'Representação editorial de um fluxo que transforma briefing em narrativa, storyboard e apresentação.',
-    visualConcept: 'Briefing → tese → narrativa → apresentação'
+    visualAlt: 'Representação editorial do Fil-Harness separando tarefa, candidato, evidência e gate de autoridade.',
+    visualConcept: 'Tarefa → candidato → evidência → gate',
+    repoUrl: 'https://github.com/FilipeGCB/fil-harness'
+  },
+  {
+    label: 'Engenharia visual · Público',
+    title: 'Visual Presentation Studio',
+    description: 'Sistema local-first para projetar, construir, renderizar, inspecionar e validar apresentações HTML e narrativas visuais de alta qualidade com fluxos assistidos por IA.',
+    details: [
+      'Briefing, tese e narrativa congelados antes da construção',
+      'Render real, inspeção e correção antes da aprovação final',
+      'QA de conteúdo, narrativa, visual, experiência e superfície técnica'
+    ],
+    proof: 'Engenharia de apresentações, sistemas visuais, workflows com IA, qualidade observável e produção orientada por evidência em vez de aceitar o primeiro output do modelo.',
+    tone: 'warm',
+    visualAlt: 'Representação editorial do Visual Presentation Studio indo de briefing a construção, render e QA.',
+    visualConcept: 'Brief → construção → render → QA',
+    repoUrl: 'https://github.com/FilipeGCB/visual-presentation-studio-public'
+  },
+  {
+    label: 'Copiloto de reuniões · Público',
+    title: 'Guard.IA Live',
+    description: 'Extensão de navegador experimental para acompanhar reuniões em tempo real: captura legendas visíveis, mantém transcript e histórico local e oferece um copiloto no painel lateral.',
+    details: [
+      'Captura de captions do Microsoft Teams Web com deduplicação',
+      'Histórico, estado da reunião e insights mantidos no navegador',
+      'Ollama local como provider padrão; provedores externos são opt-in'
+    ],
+    proof: 'Extensões WebExtension MV3, IA local, contexto em tempo real, privacidade por padrão e integração entre captura de interface e assistência conversacional.',
+    tone: 'green',
+    visualAlt: 'Representação editorial do Guard.IA Live transformando legendas em contexto, copiloto e histórico local.',
+    visualConcept: 'Legenda → contexto → copiloto → histórico',
+    repoUrl: 'https://github.com/FilipeGCB/guardia-live'
   }
 ];
 

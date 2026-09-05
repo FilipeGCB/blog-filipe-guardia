@@ -1,7 +1,7 @@
 /* Complete apenas os campos desejados. Campos vazios não aparecem no site. */
 window.SITE_CONFIG = Object.freeze({
   siteName: "Filipe Guardia",
-  tagline: "Cobrança B2B • Dados • Produtos • IA",
+  tagline: "Operação real • Dados • Sistemas • IA",
   baseUrl: "https://filipegcb.github.io/blog-filipe-guardia/",
   githubUrl: "https://github.com/FilipeGCB",
   linkedinUrl: "",
@@ -22,10 +22,30 @@ window.SITE_CONFIG = Object.freeze({
     scriptUrl: "https://cdn.jsdelivr.net/npm/page-agent@1.8.1/dist/iife/page-agent.demo.js"
   },
   projectEvidence: {
-    "Transformação digital em cobrança e planejamento": { metric: "", summary: "", demoUrl: "", demoLabel: "Ver evidência" },
-    "CFO-IA": { metric: "", summary: "", demoUrl: "", demoLabel: "Conhecer demonstração" },
-    "Hermes": { metric: "", summary: "", demoUrl: "", demoLabel: "Conhecer arquitetura" },
-    "Presentation Intelligence System": { metric: "", summary: "", demoUrl: "", demoLabel: "Ver demonstração" }
+    "Cognitive OS": {
+      metric: "Agent Skill público · v1.4",
+      summary: "Decisão estruturada antes da execução.",
+      demoUrl: "https://github.com/FilipeGCB/cognitive-os",
+      demoLabel: "Abrir repositório"
+    },
+    "Fil-Harness": {
+      metric: "Control plane público",
+      summary: "Agentes executam; política e evidência controlam autoridade.",
+      demoUrl: "https://github.com/FilipeGCB/fil-harness",
+      demoLabel: "Abrir repositório"
+    },
+    "Visual Presentation Studio": {
+      metric: "Sistema visual público",
+      summary: "Construção, render, inspeção e QA de narrativas visuais.",
+      demoUrl: "https://github.com/FilipeGCB/visual-presentation-studio-public",
+      demoLabel: "Abrir repositório"
+    },
+    "Guard.IA Live": {
+      metric: "Copiloto de reuniões público",
+      summary: "Captions, contexto local e assistência em tempo real.",
+      demoUrl: "https://github.com/FilipeGCB/guardia-live",
+      demoLabel: "Abrir repositório"
+    }
   }
 });
 

@@ -129,6 +129,13 @@
   color: var(--ink);
 }
 
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
 .project-method-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -154,5 +161,6 @@
   }
   .project-concept-node { min-height: 62px; }
   .project-concept-flow i { align-self: center; transform: rotate(90deg); }
+  .project-actions .button-secondary { width: 100%; }
   .project-method-grid { grid-template-columns: 1fr; }
 }

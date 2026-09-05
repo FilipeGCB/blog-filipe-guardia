@@ -17,7 +17,8 @@
     "test:image-policy": "node --test tests/image-source-policy.test.mjs",
     "test:library": "node --test tests/library-public-contract.test.mjs",
     "test:figures": "node --test tests/technical-figure-contract.test.mjs",
-    "check": "node scripts/verify-content.mjs && node scripts/asset-audit.mjs && npm run test:image-policy && npm run guides:build && npm run test:library && npm run test:figures && npm run images:build && npm run images:verify && astro check",
+    "test:public-readiness": "node --test tests/public-readiness-contract.test.mjs",
+    "check": "node scripts/verify-content.mjs && node scripts/asset-audit.mjs && npm run test:image-policy && npm run guides:build && npm run test:library && npm run test:figures && npm run test:public-readiness && npm run images:build && npm run images:verify && astro check",
     "test:visual": "playwright test",
     "audit:routes": "node scripts/route-audit.mjs",
     "preserve:legacy": "node scripts/preserve-legacy.mjs"
