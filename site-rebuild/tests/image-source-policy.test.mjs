@@ -24,3 +24,13 @@ test('approved raster masters use real binary source files instead of base64 tra
 
   assert.deepEqual(violations, []);
 });
+
+test('home hero desktop derivatives never exceed the approved source resolution', () => {
+  const home = manifest['portrait:filipe:home'];
+  assert.ok(home, 'portrait:filipe:home must exist');
+  assert.equal(home.source, 'assets-source/editorial/portraits/filipe/home/hero-approved-master.webp');
+  assert.equal(home.allowUpscale, false);
+  assert.equal(home.sourceSha256, '12266b14dce58b50c1606c0d4d8a22944f691c8ca538e29566a0d41b654d3713');
+  assert.deepEqual(home.widths, [768, 960, 1152]);
+  assert.ok(Math.max(...home.widths) <= 1152, 'desktop derivative must not exceed the 1152 px source width');
+});
