@@ -42,6 +42,7 @@ test('contact exposes confirmed direct channels with no placeholders', () => {
   assert.match(source, /filipeguardia@gmail\.com/i);
   assert.match(source, /mailto:filipeguardia@gmail\.com/i);
   assert.match(source, /wa\.me\/5511970641955/i);
+  assert.match(source, /t\.me\/\+5511970641955\?profile/i);
   assert.match(source, /tel:\+5511970641955/i);
   assert.match(source, /\+55 11 97064-1955/i);
   assert.doesNotMatch(source, /wa\.me\/0+|t\.me\/(?:placeholder|username|seu)/i);
