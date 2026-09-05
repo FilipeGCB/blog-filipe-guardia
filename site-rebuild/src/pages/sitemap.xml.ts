@@ -10,7 +10,6 @@ export function GET() {
     '/sobre.html',
     '/projetos.html',
     '/contato.html',
-    '/habilidades/',
     ...getSortedArticles().map((article) => `/artigos/${article.slug}.html`)
   ];
   const body = pages.map((path) => `  <url><loc>${site}${path}</loc></url>`).join('\n');
