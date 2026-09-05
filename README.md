@@ -47,4 +47,4 @@ Parte do meu trabalho permanece privada por envolver produto comercial, infraest
 
 ## Estado do repositório
 
-O site está em evolução contínua. A próxima etapa visual em desenvolvimento consolida uma fundação responsiva, um sistema editorial consistente e uma apresentação de projetos alinhada ao portfólio público atual.
+O site já utiliza a **fundação responsiva e o sistema visual editorial v1**, validados em múltiplos viewports. A evolução atual concentra-se em alinhar a página de Projetos e a narrativa pública do site aos repositórios verificáveis do portfólio.
