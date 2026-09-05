@@ -27,9 +27,9 @@ test('MCP connector lines are painted behind the central MCP node', () => {
     const svg = read(path);
     const centralNode = svg.indexOf('<circle cx="600" cy="360" r="85"');
     const centralLabel = svg.indexOf('>MCP</text>', centralNode);
-    const connectors = [...svg.matchAll(/<path d="M600 360L[^\"]+"/g)].map((match) => match.index ?? -1);
+    const connectors = [...svg.matchAll(/<path class="mcp-connector"/g)].map((match) => match.index ?? -1);
 
-    assert.ok(connectors.length >= 4, `${path} must keep all four MCP connectors`);
+    assert.equal(connectors.length, 4, `${path} must keep exactly four MCP connectors`);
     assert.ok(centralNode > -1 && centralLabel > centralNode, `${path} must keep the central MCP node and label`);
     assert.ok(Math.max(...connectors) < centralNode, `${path} connectors must be behind, not painted over, the MCP label`);
   }
