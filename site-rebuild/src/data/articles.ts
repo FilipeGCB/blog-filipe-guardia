@@ -18,6 +18,23 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'ia-nao-se-testa-no-feeling',
+    title: 'IA não se testa no feeling: por que evals viraram parte do produto',
+    deck: 'Uma demonstração pode impressionar. Um produto precisa mostrar, de forma repetível, quando a IA acerta, onde falha e se uma mudança realmente melhorou o sistema.',
+    category: 'Produtos, Sistemas & IA',
+    series: 'Qualidade e engenharia de IA',
+    date: '2026-09-05',
+    dateLabel: '5 de setembro de 2026',
+    readingTime: 'Leitura de 11 min',
+    cover: '/assets/editorial/ia-nao-se-testa-no-feeling.svg',
+    coverAlt: 'Casos de teste passam por critérios estruturados e se transformam em evidências mensuráveis sobre a qualidade de um sistema de inteligência artificial.',
+    figure: '/assets/editorial/figures/ia-nao-se-testa-no-feeling.svg',
+    figureAlt: 'Ciclo de avaliação conectando casos, sistema de IA, medição e aprendizado contínuo.',
+    figureCaption: 'Evals transformam erros e expectativas em casos repetíveis que acompanham a evolução do sistema.',
+    figureAfterHeading: 'o-que-e-eval',
+    tags: ['evals', 'qualidade', 'agentes']
+  },
+  {
     slug: 'local-first-nao-e-apenas-offline',
     title: 'Local-first não é apenas offline: por que alguns sistemas precisam continuar funcionando sem a nuvem',
     deck: 'Um sistema pode usar nuvem e ainda assim tratar o dispositivo local como parte real da operação. A diferença está em decidir o que continua funcionando quando a conexão desaparece.',
