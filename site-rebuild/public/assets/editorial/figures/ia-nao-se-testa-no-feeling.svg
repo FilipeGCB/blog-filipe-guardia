@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 660" role="img" aria-labelledby="title desc">
+  <title id="title">EVALS</title>
+  <desc id="desc">ciclo entre casos, execução, medição e aprendizado</desc>
+  <rect width="1200" height="660" fill="#f4f0e9"/>
+  <path d="M0 94H1200M0 560H1200M72 0V660M1128 0V660" stroke="#d9d1c5" stroke-width="1" opacity=".8"/>
+  <circle cx="1040" cy="96" r="170" fill="#7652a8" opacity=".08"/>
+  <circle cx="112" cy="560" r="136" fill="#bb8754" opacity=".08"/>
+  <text x="86" y="112" fill="#3d235c" font-family="Arial, sans-serif" font-size="18" font-weight="800" letter-spacing="1.5">EVALS</text>
+  <text x="86" y="143" fill="#6c6670" font-family="Arial, sans-serif" font-size="15" font-weight="650" letter-spacing="1.4">casos → medição → aprendizado</text>
+  <text x="86" y="610" fill="#6c6670" font-family="Arial, sans-serif" font-size="13" font-weight="800" letter-spacing="1.4">DIAGRAMA EDITORIAL</text>
+  <g transform="translate(170 224)">
+    <rect x="0" y="0" width="190" height="132" rx="24" fill="#fffdf8" stroke="#bb8754" stroke-width="5"/>
+    <text x="95" y="54" text-anchor="middle" fill="#bb8754" font-family="Arial, sans-serif" font-size="16" font-weight="800">CASOS</text>
+    <text x="95" y="86" text-anchor="middle" fill="#6c6670" font-family="Arial, sans-serif" font-size="13" font-weight="700">reais · raros · críticos</text>
+  </g>
+  <path d="M382 290H494" stroke="#6c6670" stroke-width="4" stroke-dasharray="11 11"/><path d="M480 278L500 290L480 302" fill="none" stroke="#6c6670" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(520 200)">
+    <rect x="0" y="0" width="200" height="180" rx="26" fill="#fffdf8" stroke="#7652a8" stroke-width="5"/>
+    <circle cx="100" cy="66" r="28" fill="#7652a8" opacity=".14" stroke="#7652a8" stroke-width="4"/>
+    <text x="100" y="126" text-anchor="middle" fill="#3d235c" font-family="Arial, sans-serif" font-size="16" font-weight="800">SISTEMA</text>
+    <text x="100" y="153" text-anchor="middle" fill="#6c6670" font-family="Arial, sans-serif" font-size="13" font-weight="700">modelo · dados · ferramentas</text>
+  </g>
+  <path d="M744 290H856" stroke="#6c6670" stroke-width="4" stroke-dasharray="11 11"/><path d="M842 278L862 290L842 302" fill="none" stroke="#6c6670" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(884 224)">
+    <rect x="0" y="0" width="170" height="132" rx="24" fill="#fffdf8" stroke="#2e7564" stroke-width="5"/>
+    <text x="85" y="54" text-anchor="middle" fill="#2e7564" font-family="Arial, sans-serif" font-size="16" font-weight="800">MEDIÇÃO</text>
+    <text x="85" y="86" text-anchor="middle" fill="#6c6670" font-family="Arial, sans-serif" font-size="13" font-weight="700">passa · falha · revisar</text>
+  </g>
+  <path d="M968 380C908 482 748 506 612 472C482 440 344 456 264 390" fill="none" stroke="#3d235c" stroke-width="5" stroke-linecap="round" opacity=".78"/>
+  <path d="M276 374L254 392L282 400" fill="none" stroke="#3d235c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="610" y="516" text-anchor="middle" fill="#3d235c" font-family="Arial, sans-serif" font-size="16" font-weight="800">cada erro relevante vira um caso que não deveria voltar</text>
+</svg>
