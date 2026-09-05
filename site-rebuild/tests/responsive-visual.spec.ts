@@ -142,3 +142,36 @@ test.describe('navigation basics', () => {
     await expect(page).toHaveURL(/\/blog-filipe-guardia\/artigos\.html/);
   });
 });
+
+test.describe('public project portfolio', () => {
+  test('projects page leads with the current public portfolio', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await waitForPage(page, 'projetos.html');
+
+    for (const project of ['Cognitive OS', 'Fil-Harness', 'Visual Presentation Studio', 'Guard.IA Live']) {
+      await expect(page.getByRole('heading', { name: project })).toBeVisible();
+    }
+
+    await expect(page.getByRole('heading', { name: 'CFO-IA' })).toHaveCount(0);
+    await expect(page.getByRole('heading', { name: 'Hermes' })).toHaveCount(0);
+    await expect(page.getByRole('heading', { name: 'Presentation Intelligence System' })).toHaveCount(0);
+    await expect(page.getByRole('heading', { name: 'Transformação digital em cobrança e planejamento' })).toBeVisible();
+  });
+
+  test('public projects link to their public repositories', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await waitForPage(page, 'projetos.html');
+
+    const expected = new Map([
+      ['Cognitive OS', 'https://github.com/FilipeGCB/cognitive-os'],
+      ['Fil-Harness', 'https://github.com/FilipeGCB/fil-harness'],
+      ['Visual Presentation Studio', 'https://github.com/FilipeGCB/visual-presentation-studio-public'],
+      ['Guard.IA Live', 'https://github.com/FilipeGCB/guardia-live']
+    ]);
+
+    for (const [name, href] of expected) {
+      const row = page.locator('.project-visual-row').filter({ has: page.getByRole('heading', { name }) });
+      await expect(row.getByRole('link', { name: /GitHub|repositório/i })).toHaveAttribute('href', href);
+    }
+  });
+});

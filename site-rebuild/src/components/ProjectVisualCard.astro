@@ -32,5 +32,10 @@ const steps = project.visualConcept.split('→').map((step) => step.trim()).filt
       {project.details.map((detail) => <li>{detail}</li>)}
     </ul>
     <p class="project-proof"><strong>O que demonstra:</strong> {project.proof}</p>
+    {project.href && (
+      <a class="button-secondary project-repo-link" href={project.href} target="_blank" rel="noreferrer">
+        {project.linkLabel ?? 'Abrir repositório no GitHub ↗'}
+      </a>
+    )}
   </div>
 </article>
