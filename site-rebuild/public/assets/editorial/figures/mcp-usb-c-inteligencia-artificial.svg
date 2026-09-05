@@ -9,11 +9,10 @@
   <text x="86" y="143" fill="#6c6670" font-family="Arial, sans-serif" font-size="15" font-weight="650" letter-spacing="1.5">um contrato para conectar</text>
   <text x="86" y="610" fill="#6c6670" font-family="Arial, sans-serif" font-size="13" font-weight="800" letter-spacing="1.5">DIAGRAMA EDITORIAL</text>
 
-  <!-- Connectors are painted first and stop at the edge of the central node. -->
-  <path d="M520.6 329.6L255.5 227.9" stroke="#bb8754" stroke-width="5" fill="none"/>
-  <path d="M671.7 314.4L801.4 231.8" stroke="#2e7564" stroke-width="5" fill="none"/>
-  <path d="M520.6 390.4L255.5 492.1" stroke="#7652a8" stroke-width="5" fill="none"/>
-  <path d="M671.7 405.6L801.4 488.2" stroke="#9c5856" stroke-width="5" fill="none"/>
+  <path class="mcp-connector" d="M520.6 329.6L255.5 227.9" stroke="#bb8754" stroke-width="5" fill="none"/>
+  <path class="mcp-connector" d="M671.7 314.4L801.4 231.8" stroke="#2e7564" stroke-width="5" fill="none"/>
+  <path class="mcp-connector" d="M520.6 390.4L255.5 492.1" stroke="#7652a8" stroke-width="5" fill="none"/>
+  <path class="mcp-connector" d="M671.7 405.6L801.4 488.2" stroke="#9c5856" stroke-width="5" fill="none"/>
 
   <circle cx="235" cy="220" r="22" fill="#bb8754" stroke="#fffdf8" stroke-width="4"/>
   <text x="183" y="278" fill="#bb8754" font-family="Arial, sans-serif" font-size="15" font-weight="650" letter-spacing="1.5">DADOS</text>
@@ -24,7 +23,6 @@
   <circle cx="820" cy="500" r="22" fill="#9c5856" stroke="#fffdf8" stroke-width="4"/>
   <text x="768" y="558" fill="#9c5856" font-family="Arial, sans-serif" font-size="15" font-weight="650" letter-spacing="1.5">PERMISSÃO</text>
 
-  <!-- Central node is deliberately painted after connectors. -->
   <circle cx="600" cy="360" r="85" fill="#3d235c" stroke="#fffdf8" stroke-width="4"/>
   <text x="554" y="368" fill="#fffdf8" font-family="Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="1.5">MCP</text>
   <text x="335" y="605" fill="#6c6670" font-family="Arial, sans-serif" font-size="15" font-weight="650" letter-spacing="1.5">um contrato comum — não uma arquitetura pronta</text>
