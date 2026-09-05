@@ -15,36 +15,19 @@ const parseRatio = (value) => {
   return w / h;
 };
 
-const readSource = async (entry) => {
-  if (Array.isArray(entry.sourceParts) && entry.sourceParts.length > 0) {
-    if (entry.sourceEncoding !== 'base64-parts') {
-      throw new Error(`sourceParts requires sourceEncoding=base64-parts`);
-    }
-    const parts = await Promise.all(
-      entry.sourceParts.map((part) => readFile(join(siteRoot, part), 'utf8'))
-    );
-    const encoded = parts.join('').replace(/\s+/g, '');
-    return Buffer.from(encoded, 'base64');
-  }
-
-  if (!entry.source) throw new Error('raster entry requires source or sourceParts');
-  const sourcePath = join(siteRoot, entry.source);
-  if (entry.sourceEncoding === 'base64-text') {
-    const encoded = (await readFile(sourcePath, 'utf8')).replace(/\s+/g, '');
-    return Buffer.from(encoded, 'base64');
-  }
-  return sourcePath;
+const readSource = (entry) => {
+  if (!entry.source) throw new Error('raster entry requires source');
+  return join(siteRoot, entry.source);
 };
 
 const buildEntry = async (id, entry) => {
-  const hasSource = Boolean(entry.source) || (Array.isArray(entry.sourceParts) && entry.sourceParts.length > 0);
-  if (!hasSource || !entry.outputBase || !Array.isArray(entry.widths)) return;
+  if (!entry.source || !entry.outputBase || !Array.isArray(entry.widths)) return;
   // The home portrait has a dedicated generator because it also owns the
   // approved mobile crop. Skipping it here avoids generating desktop hero
   // variants twice in the same check/build cycle.
   if (id === 'portrait:filipe:home') return;
 
-  const source = await readSource(entry);
+  const source = readSource(entry);
   const metadata = await sharp(source).metadata();
   if (!metadata.width || !metadata.height) throw new Error(`${id}: unreadable raster source`);
 
