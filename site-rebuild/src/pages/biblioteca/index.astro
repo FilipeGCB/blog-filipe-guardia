@@ -1,32 +1,97 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageIntroVisual from '../../components/PageIntroVisual.astro';
-import LibraryCard from '../../components/LibraryCard.astro';
-import PageAgentLauncher from '../../components/PageAgentLauncher.astro';
-import { libraryCollections } from '../../data/library';
+import { guideCategories, guideCompatibility, portableGuides } from '../../data/guides';
 
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
 ---
-<BaseLayout title="Biblioteca | Filipe Guardia" description="Métodos, fontes e estruturas públicas para trabalho com dados, processos, produtos e IA." canonicalPath="/biblioteca.html" currentPath="/biblioteca.html">
+<BaseLayout
+  title="Biblioteca de Guias | Filipe Guardia"
+  description="Guias em Markdown que funcionam como skills portáteis para ChatGPT, Copilot, Claude e outros assistentes de IA."
+  canonicalPath="/biblioteca.html"
+  currentPath="/biblioteca.html"
+>
   <PageIntroVisual
-    eyebrow="Biblioteca pública"
-    title="Métodos para transformar <em>contexto</em> em entrega."
-    deck="Uma camada separada do blog para reunir habilidades, fontes e artefatos reutilizáveis. O blog explica o raciocínio; a biblioteca organiza formas de fazer."
+    eyebrow="Biblioteca de guias"
+    title="Dê um <em>método</em> ao seu assistente."
+    deck="Cada guia é um prompt estruturado em Markdown que funciona como uma skill portátil: você fornece o arquivo ao assistente e ele passa a seguir aquele método para uma classe específica de tarefas."
     theme="night"
-    currentLabel="Métodos · conhecimento · artefatos · dados · governança"
-  >
-    <div slot="actions" class="library-agent-entry"><PageAgentLauncher /></div>
-  </PageIntroVisual>
+    currentLabel="24 guias · Markdown · uso portátil"
+  />
 
-  <section class="section library-collections-section">
+  <section class="section guide-explainer-section">
     <div class="editorial-shell">
-      <div class="section-head"><div><span class="section-kicker">Coleções</span><h2>Escolha o tipo de trabalho.</h2></div><p>As coleções funcionam como portas de entrada: cada uma combina método, fontes e caminhos públicos sem transformar a biblioteca em uma parede de cards fotográficos.</p></div>
-      <div class="library-premium-grid">{libraryCollections.map((collection) => <LibraryCard collection={collection} />)}</div>
+      <div class="guide-definition-grid">
+        <div>
+          <span class="section-kicker">O que é isso?</span>
+          <h2>Não é uma ferramenta nova. É uma instrução especializada.</h2>
+        </div>
+        <div class="copy-stack guide-definition-copy">
+          <p>Um guia organiza objetivo, entradas, processo, critérios de qualidade e limites. Ele <strong>não instala capacidades novas</strong> no modelo. Em vez disso, dá ao assistente um modo de trabalho mais específico e repetível.</p>
+          <p>Você pode usar o mesmo arquivo no <strong>ChatGPT, Copilot, Claude</strong> ou em outro assistente que aceite contexto ou instruções em Markdown.</p>
+        </div>
+      </div>
+
+      <ol class="guide-howto" aria-label="Como usar um guia">
+        <li><span>01</span><div><strong>Baixe e forneça o guia</strong><p>Anexe o arquivo .md ao chat ou cole o conteúdo nas instruções/contexto do assistente.</p></div></li>
+        <li><span>02</span><div><strong>Faça o pedido normalmente</strong><p>Ex.: “analise esta planilha”, “crie um PRD” ou “revise este código”.</p></div></li>
+        <li><span>03</span><div><strong>O assistente segue o método</strong><p>O guia define como trabalhar, quais evidências pedir, o que entregar e quais limites respeitar.</p></div></li>
+      </ol>
+
+      <p class="guide-compatibility"><strong>Compatibilidade:</strong> {guideCompatibility.join(' · ')}</p>
     </div>
   </section>
 
-  <section class="section section-tinted">
-    <div class="editorial-shell split-copy"><div><span class="section-kicker">Fonte original</span><h2>O catálogo público continua completo.</h2></div><div class="copy-stack"><p>As 24 habilidades existentes permanecem disponíveis na estrutura pública de origem. Esta camada editorial ajuda a encontrar o caminho antes de abrir uma fonte específica.</p><a class="button" href={href('/habilidades/index.html')}>Abrir catálogo completo →</a></div></div>
+  <section class="section section-tinted guide-catalog-section" id="guias">
+    <div class="editorial-shell">
+      <div class="section-head guide-section-head">
+        <div>
+          <span class="section-kicker">Escolha o método</span>
+          <h2>24 guias. Cada um resolve uma classe de problema.</h2>
+        </div>
+        <p>Não precisa instalar nada. Escolha o guia mais próximo da tarefa, baixe o Markdown e forneça ao assistente junto com o seu pedido.</p>
+      </div>
+
+      {guideCategories.map((category) => (
+        <section class="guide-category" aria-labelledby={`guide-category-${category.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}`}>
+          <h3 id={`guide-category-${category.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}`}>{category}</h3>
+          <div class="guide-grid">
+            {portableGuides.filter((guide) => guide.category === category).map((guide) => {
+              const download = href(`/guias/${guide.slug}.md`);
+              return (
+                <article class="guide-card" data-guide-id={guide.id}>
+                  <div class="guide-card-head">
+                    <span class="guide-id">{guide.id}</span>
+                    <h4>{guide.title}</h4>
+                  </div>
+                  <p class="guide-summary">{guide.summary}</p>
+                  <div class="guide-activation">
+                    <strong>Use quando</strong>
+                    <p>{guide.activateWhen}</p>
+                  </div>
+                  <div class="guide-example">
+                    <strong>Exemplo</strong>
+                    <p>“{guide.examples[0]}”</p>
+                  </div>
+                  <div class="guide-card-actions">
+                    <a class="button guide-download" href={download} download>Baixar guia (.md)</a>
+                    <a class="text-link" href={download} target="_blank" rel="noopener noreferrer">Ver Markdown →</a>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      ))}
+    </div>
+  </section>
+
+  <section class="section guide-footer-note">
+    <div class="reading-shell">
+      <span class="section-kicker">Como escolher</span>
+      <h2>Comece por um guia principal.</h2>
+      <p class="prose-lead">Se o pedido mistura vários assuntos, escolha primeiro o método que define o entregável principal. Só combine outro guia quando ele realmente mudar o resultado. Isso reduz instruções conflitantes e deixa a execução mais previsível.</p>
+    </div>
   </section>
 </BaseLayout>
