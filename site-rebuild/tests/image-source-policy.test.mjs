@@ -3,9 +3,9 @@ import { readFile } from 'node:fs/promises';
 import { test } from 'node:test';
 
 const manifestUrl = new URL('../src/data/editorialImageManifest.json', import.meta.url);
-const visualCssUrl = new URL('../src/styles/visual-system.css', import.meta.url);
+const heroCssUrl = new URL('../src/styles/hero-system.css', import.meta.url);
 const manifest = JSON.parse(await readFile(manifestUrl, 'utf8'));
-const visualCss = await readFile(visualCssUrl, 'utf8');
+const heroCss = await readFile(heroCssUrl, 'utf8');
 
 test('approved raster masters use real binary source files instead of base64 transport wrappers', () => {
   const violations = [];
@@ -38,7 +38,8 @@ test('home hero desktop derivatives never exceed the approved source resolution'
 });
 
 test('desktop hero constrains the approved portrait instead of stretching it across the viewport', () => {
-  assert.match(visualCss, /@media \(min-width: 1001px\)/);
-  assert.match(visualCss, /width:\s*min\(60vw, 1152px\)/);
-  assert.match(visualCss, /right:\s*max\(var\(--gutter\), calc\(\(100vw - var\(--visual-max\)\) \/ 2\)\)/);
+  assert.match(heroCss, /@media \(min-width: 1001px\)/);
+  assert.match(heroCss, /width:\s*min\(60vw, 1152px\)/);
+  assert.match(heroCss, /right:\s*max\(var\(--gutter\), calc\(\(100vw - var\(--visual-max\)\) \/ 2\)\)/);
+  assert.match(heroCss, /aspect-ratio:\s*16\s*\/\s*9/);
 });
