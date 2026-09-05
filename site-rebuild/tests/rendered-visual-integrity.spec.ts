@@ -37,6 +37,56 @@ const waitForPage = async (page: Page, path: string) => {
   expect(response, `${path} should return a response`).not.toBeNull();
 };
 
+const findSvgCollisions = async (page: Page, path: string) => {
+  const response = await page.goto(path, { waitUntil: 'networkidle' });
+  if (!response || response.status() >= 400) return [];
+
+  return page.evaluate(() => {
+    const svg = document.querySelector('svg');
+    if (!svg) return [];
+
+    const labels = [...svg.querySelectorAll('text')].map((node) => {
+      const box = (node as SVGGraphicsElement).getBBox();
+      return {
+        text: node.textContent?.trim() ?? '',
+        box: { x: box.x - 3, y: box.y - 3, width: box.width + 6, height: box.height + 6 }
+      };
+    }).filter((entry) => entry.text.length > 0);
+
+    const connectors = [...svg.querySelectorAll('path, line, polyline')].filter((node) => {
+      const style = getComputedStyle(node);
+      const attrWidth = Number(node.getAttribute('stroke-width') ?? 0);
+      const cssWidth = Number.parseFloat(style.strokeWidth || '0');
+      const width = Math.max(attrWidth, cssWidth);
+      const stroke = node.getAttribute('stroke') ?? style.stroke;
+      const fill = node.getAttribute('fill') ?? style.fill;
+      return stroke !== 'none' && width >= 3 && (fill === 'none' || fill === '' || fill === 'rgba(0, 0, 0, 0)');
+    });
+
+    const hits: { text: string; connector: string }[] = [];
+    for (const connector of connectors) {
+      if (!(connector instanceof SVGGeometryElement)) continue;
+      const length = connector.getTotalLength();
+      const samples = Math.max(30, Math.ceil(length / 4));
+      for (const label of labels) {
+        let collides = false;
+        for (let i = 0; i <= samples; i += 1) {
+          const point = connector.getPointAtLength((length * i) / samples);
+          const b = label.box;
+          if (point.x >= b.x && point.x <= b.x + b.width && point.y >= b.y && point.y <= b.y + b.height) {
+            collides = true;
+            break;
+          }
+        }
+        if (collides) {
+          hits.push({ text: label.text, connector: connector.getAttribute('d') ?? connector.tagName });
+        }
+      }
+    }
+    return hits;
+  });
+};
+
 test.describe('rendered project diagrams never clip their internal nodes', () => {
   test.setTimeout(180_000);
 
@@ -85,64 +135,18 @@ test.describe('rendered project diagrams never clip their internal nodes', () =>
   }
 });
 
-test('technical SVG connectors never cross readable labels', async ({ page }) => {
-  test.setTimeout(180_000);
+test('technical SVG connectors never cross readable labels in covers or article figures', async ({ page }) => {
+  test.setTimeout(240_000);
   await page.setViewportSize({ width: 1200, height: 760 });
 
   const failures: string[] = [];
 
   for (const slug of articleSlugs) {
-    const path = `assets/editorial/figures/${slug}.svg`;
-    await waitForPage(page, path);
-
-    const collisions = await page.evaluate(() => {
-      const svg = document.querySelector('svg');
-      if (!svg) return [{ text: '(missing svg)', connector: 'none' }];
-
-      const labels = [...svg.querySelectorAll('text')].map((node) => {
-        const box = (node as SVGGraphicsElement).getBBox();
-        return {
-          node,
-          text: node.textContent?.trim() ?? '',
-          box: { x: box.x - 3, y: box.y - 3, width: box.width + 6, height: box.height + 6 }
-        };
-      }).filter((entry) => entry.text.length > 0);
-
-      const connectors = [...svg.querySelectorAll('path, line, polyline')].filter((node) => {
-        const style = getComputedStyle(node);
-        const attrWidth = Number(node.getAttribute('stroke-width') ?? 0);
-        const cssWidth = Number.parseFloat(style.strokeWidth || '0');
-        const width = Math.max(attrWidth, cssWidth);
-        const stroke = node.getAttribute('stroke') ?? style.stroke;
-        const fill = node.getAttribute('fill') ?? style.fill;
-        return stroke !== 'none' && width >= 3 && (fill === 'none' || fill === '' || fill === 'rgba(0, 0, 0, 0)');
-      });
-
-      const hits: { text: string; connector: string }[] = [];
-      for (const connector of connectors) {
-        if (!(connector instanceof SVGGeometryElement)) continue;
-        const length = connector.getTotalLength();
-        const samples = Math.max(30, Math.ceil(length / 4));
-        for (const label of labels) {
-          let collides = false;
-          for (let i = 0; i <= samples; i += 1) {
-            const point = connector.getPointAtLength((length * i) / samples);
-            const b = label.box;
-            if (point.x >= b.x && point.x <= b.x + b.width && point.y >= b.y && point.y <= b.y + b.height) {
-              collides = true;
-              break;
-            }
-          }
-          if (collides) {
-            hits.push({ text: label.text, connector: connector.getAttribute('d') ?? connector.tagName });
-          }
-        }
+    for (const path of [`assets/editorial/${slug}.svg`, `assets/editorial/figures/${slug}.svg`]) {
+      const collisions = await findSvgCollisions(page, path);
+      for (const collision of collisions) {
+        failures.push(`${path}: connector crosses “${collision.text}” (${collision.connector})`);
       }
-      return hits;
-    });
-
-    for (const collision of collisions) {
-      failures.push(`${slug}: connector crosses “${collision.text}” (${collision.connector})`);
     }
   }
 
