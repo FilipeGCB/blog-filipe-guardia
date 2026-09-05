@@ -45,13 +45,32 @@ const findSvgCollisions = async (page: Page, path: string) => {
     const svg = document.querySelector('svg');
     if (!svg) return [];
 
-    const labels = [...svg.querySelectorAll('text')].map((node) => {
-      const box = (node as SVGGraphicsElement).getBBox();
-      return {
-        text: node.textContent?.trim() ?? '',
-        box: { x: box.x - 3, y: box.y - 3, width: box.width + 6, height: box.height + 6 }
-      };
-    }).filter((entry) => entry.text.length > 0);
+    const rootBox = (node: SVGGraphicsElement) => {
+      const box = node.getBBox();
+      const matrix = node.getCTM();
+      if (!matrix) return null;
+
+      const corners = [
+        new DOMPoint(box.x, box.y),
+        new DOMPoint(box.x + box.width, box.y),
+        new DOMPoint(box.x, box.y + box.height),
+        new DOMPoint(box.x + box.width, box.y + box.height)
+      ].map((point) => point.matrixTransform(matrix));
+
+      const xs = corners.map((point) => point.x);
+      const ys = corners.map((point) => point.y);
+      const left = Math.min(...xs) - 3;
+      const right = Math.max(...xs) + 3;
+      const top = Math.min(...ys) - 3;
+      const bottom = Math.max(...ys) + 3;
+
+      return { left, right, top, bottom };
+    };
+
+    const labels = [...svg.querySelectorAll('text')].map((node) => ({
+      text: node.textContent?.trim() ?? '',
+      box: rootBox(node as SVGGraphicsElement)
+    })).filter((entry) => entry.text.length > 0 && entry.box !== null);
 
     const connectors = [...svg.querySelectorAll('path, line, polyline')].filter((node) => {
       const style = getComputedStyle(node);
@@ -66,14 +85,19 @@ const findSvgCollisions = async (page: Page, path: string) => {
     const hits: { text: string; connector: string }[] = [];
     for (const connector of connectors) {
       if (!(connector instanceof SVGGeometryElement)) continue;
+      const matrix = connector.getCTM();
+      if (!matrix) continue;
+
       const length = connector.getTotalLength();
       const samples = Math.max(30, Math.ceil(length / 4));
       for (const label of labels) {
+        if (!label.box) continue;
         let collides = false;
         for (let i = 0; i <= samples; i += 1) {
-          const point = connector.getPointAtLength((length * i) / samples);
+          const localPoint = connector.getPointAtLength((length * i) / samples);
+          const point = new DOMPoint(localPoint.x, localPoint.y).matrixTransform(matrix);
           const b = label.box;
-          if (point.x >= b.x && point.x <= b.x + b.width && point.y >= b.y && point.y <= b.y + b.height) {
+          if (point.x >= b.left && point.x <= b.right && point.y >= b.top && point.y <= b.bottom) {
             collides = true;
             break;
           }
