@@ -36,10 +36,13 @@ test('legacy habilidades surface stays deployable but leaves editorial sitemap',
   assert.doesNotMatch(sitemap, /['\"]\/habilidades\//);
 });
 
-test('contact exposes the confirmed personal email and no placeholder channels', () => {
+test('contact exposes confirmed direct channels with no placeholders', () => {
   const source = read('src/pages/contato.astro');
 
   assert.match(source, /filipeguardia@gmail\.com/i);
   assert.match(source, /mailto:filipeguardia@gmail\.com/i);
+  assert.match(source, /wa\.me\/5511970641955/i);
+  assert.match(source, /tel:\+5511970641955/i);
+  assert.match(source, /\+55 11 97064-1955/i);
   assert.doesNotMatch(source, /wa\.me\/0+|t\.me\/(?:placeholder|username|seu)/i);
 });
