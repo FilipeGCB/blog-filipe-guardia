@@ -10,7 +10,7 @@ const sourcePath = join(
   'assets-source/editorial/portraits/filipe/home/hero-approved-master.webp'
 );
 const outputDir = join(siteRoot, 'public/assets/editorial/portraits/filipe/home');
-const desktopWidths = [768, 960, 1152];
+const desktopWidths = [960, 1440, 1920, 2560, 3840];
 const mobileWidths = [480, 768, 960];
 
 const metadata = await sharp(sourcePath, { failOn: 'error' }).metadata();
@@ -19,8 +19,8 @@ if (!metadata.width || !metadata.height) {
   throw new Error('Approved hero source has no readable dimensions.');
 }
 
-if (metadata.width !== 1152 || metadata.height !== 648) {
-  throw new Error(`Approved hero source must remain 1152x648; received ${metadata.width}x${metadata.height}.`);
+if (metadata.width !== 3840 || metadata.height !== 2160) {
+  throw new Error(`Approved hero source must be the canonical 3840x2160 master; received ${metadata.width}x${metadata.height}.`);
 }
 
 const sourceRatio = metadata.width / metadata.height;
@@ -32,14 +32,17 @@ await mkdir(outputDir, { recursive: true });
 
 const desktop = async (width, format) => {
   const height = Math.round(width * 9 / 16);
-  const pipeline = sharp(sourcePath, { failOn: 'error' }).resize(width, height, {
-    fit: 'inside',
-    withoutEnlargement: true,
-    kernel: sharp.kernel.lanczos3
-  });
+  const pipeline = sharp(sourcePath, { failOn: 'error' })
+    .resize(width, height, {
+      fit: 'inside',
+      withoutEnlargement: true,
+      kernel: sharp.kernel.lanczos3
+    })
+    .sharpen({ sigma: 0.35, m1: 0.45, m2: 0.2 });
+
   const file = join(outputDir, `hero-${width}.${format}`);
-  if (format === 'avif') await pipeline.avif({ quality: 61, effort: 5 }).toFile(file);
-  else await pipeline.webp({ quality: 88, effort: 5, smartSubsample: true }).toFile(file);
+  if (format === 'avif') await pipeline.avif({ quality: 76, effort: 6 }).toFile(file);
+  else await pipeline.webp({ quality: 94, effort: 6, smartSubsample: true }).toFile(file);
 };
 
 const cropHeight = metadata.height;
@@ -51,10 +54,16 @@ const mobile = async (width, format) => {
   const height = Math.round(width * 5 / 4);
   const pipeline = sharp(sourcePath, { failOn: 'error' })
     .extract({ left: cropLeft, top: 0, width: cropWidth, height: cropHeight })
-    .resize(width, height, { fit: 'fill', kernel: sharp.kernel.lanczos3 });
+    .resize(width, height, {
+      fit: 'fill',
+      withoutEnlargement: true,
+      kernel: sharp.kernel.lanczos3
+    })
+    .sharpen({ sigma: 0.3, m1: 0.4, m2: 0.18 });
+
   const file = join(outputDir, `hero-mobile-${width}.${format}`);
-  if (format === 'avif') await pipeline.avif({ quality: 61, effort: 5 }).toFile(file);
-  else await pipeline.webp({ quality: 88, effort: 5, smartSubsample: true }).toFile(file);
+  if (format === 'avif') await pipeline.avif({ quality: 72, effort: 6 }).toFile(file);
+  else await pipeline.webp({ quality: 92, effort: 6, smartSubsample: true }).toFile(file);
 };
 
 for (const width of desktopWidths) {
@@ -68,5 +77,5 @@ for (const width of mobileWidths) {
 }
 
 console.log(
-  `responsive-hero-generated: source ${metadata.width}x${metadata.height}; desktop capped at ${Math.max(...desktopWidths)}px; ${desktopWidths.length * 2 + mobileWidths.length * 2} derivatives`
+  `responsive-hero-generated: source ${metadata.width}x${metadata.height}; desktop up to ${Math.max(...desktopWidths)}px; ${desktopWidths.length * 2 + mobileWidths.length * 2} derivatives`
 );
