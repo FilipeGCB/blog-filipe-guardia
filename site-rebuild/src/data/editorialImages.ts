@@ -33,11 +33,11 @@ export const editorialImages: Record<string, EditorialImageAsset> = {
   'portrait:filipe:home': {
     id: 'portrait:filipe:home',
     alt: 'Filipe em um ambiente contemporâneo de trabalho, sentado diante de um caderno e laptop, com monitores e a cidade ao fundo.',
-    width: 1152,
-    height: 648,
+    width: 3840,
+    height: 2160,
     focalPoint: '64% 48%',
-    sizes: '(min-width: 1920px) 1152px, (min-width: 1000px) 60vw, (min-width: 768px) 100vw, 100vw',
-    variants: variants('/assets/editorial/portraits/filipe/home/hero', [768, 960, 1152]),
+    sizes: '(min-width: 1600px) 1760px, (min-width: 1000px) 60vw, (min-width: 768px) 100vw, 100vw',
+    variants: variants('/assets/editorial/portraits/filipe/home/hero', [960, 1440, 1920, 2560, 3840]),
     mobile: {
       media: '(max-width: 767px)',
       focalPoint: '68% 46%',
