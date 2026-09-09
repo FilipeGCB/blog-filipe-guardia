@@ -6,9 +6,11 @@ import sharp from 'sharp';
 
 const manifestUrl = new URL('../src/data/editorialImageManifest.json', import.meta.url);
 const heroCssUrl = new URL('../src/styles/hero-system.css', import.meta.url);
-const heroMasterUrl = new URL('../assets-source/editorial/portraits/filipe/home/hero-approved-master.png', import.meta.url);
+const heroMasterUrl = new URL('../assets-source/editorial/portraits/filipe/home/hero-approved-master.webp', import.meta.url);
 const manifest = JSON.parse(await readFile(manifestUrl, 'utf8'));
 const heroCss = await readFile(heroCssUrl, 'utf8');
+const expectedHeroSha = 'd61311519543dbc1774d49746d0a10b3f83b9eede45ce1fa0e6fe96321bde88e';
+const expectedHeroBytes = 218440;
 
 test('approved raster masters use real binary source files instead of base64 transport wrappers', () => {
   const violations = [];
@@ -30,22 +32,23 @@ test('approved raster masters use real binary source files instead of base64 tra
   assert.deepEqual(violations, []);
 });
 
-test('home hero preserves the authoritative uploaded source and never fabricates higher source density', async () => {
+test('home hero preserves the authoritative source normalization and never fabricates higher source density', async () => {
   const home = manifest['portrait:filipe:home'];
   assert.ok(home, 'portrait:filipe:home must exist');
-  assert.equal(home.source, 'assets-source/editorial/portraits/filipe/home/hero-approved-master.png');
-  assert.equal(home.allowUpscale, false, 'responsive derivatives must only downscale deterministic crops of the uploaded source');
+  assert.equal(home.source, 'assets-source/editorial/portraits/filipe/home/hero-approved-master.webp');
+  assert.equal(home.allowUpscale, false, 'responsive derivatives must only downscale deterministic crops of the authoritative source');
   assert.deepEqual(home.widths, [960, 1440, 1536]);
   assert.deepEqual(home.mobile?.widths, [480, 768, 819]);
+  assert.equal(home.sourceSha256, expectedHeroSha);
 
   const master = await readFile(heroMasterUrl);
   const metadata = await sharp(master).metadata();
   const sha256 = createHash('sha256').update(master).digest('hex');
 
-  assert.equal(metadata.width, 1536, 'authoritative hero upload must be 1536 px wide');
-  assert.equal(metadata.height, 1024, 'authoritative hero upload must be 1024 px high');
-  assert.ok(master.byteLength >= 300_000, `authoritative hero source is suspiciously small (${master.byteLength} bytes)`);
-  assert.equal(sha256, home.sourceSha256, 'manifest must pin the real canonical hero SHA-256');
+  assert.equal(metadata.width, 1536, 'canonical hero must remain 1536 px wide');
+  assert.equal(metadata.height, 1024, 'canonical hero must remain 1024 px high');
+  assert.equal(master.byteLength, expectedHeroBytes, 'canonical hero byte size must match the normalized authoritative source');
+  assert.equal(sha256, expectedHeroSha, 'canonical hero SHA-256 must match the normalized authoritative source');
 });
 
 test('desktop hero stays within the authoritative source density and the visual shell', () => {
