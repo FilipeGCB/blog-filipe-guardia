@@ -1,7 +1,7 @@
 /* Homepage hero desktop treatment.
-   The approved canonical portrait is 3840x2160. Large screens render it inside
-   the visual shell with enough source density for Full HD, QHD, 4K and zoom,
-   while preserving the exact approved face, pose and central composition. */
+   The authoritative portrait is the exact 1536x1024 image supplied in chat.
+   Desktop uses a deterministic 16:9 crop and never upscales source detail;
+   face, pose and central composition remain locked. */
 @media (min-width: 1001px) {
   .hero-home {
     min-height: clamp(680px, 88svh, 980px);
@@ -18,7 +18,7 @@
     right: max(var(--gutter), calc((100vw - var(--visual-max)) / 2));
     bottom: auto;
     left: auto;
-    width: min(60vw, 1760px);
+    width: min(60vw, 1536px);
     height: auto;
     aspect-ratio: 16 / 9;
     transform: translateY(-50%);
