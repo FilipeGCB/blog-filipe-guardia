@@ -7,12 +7,12 @@ const scriptDir = dirname(fileURLToPath(import.meta.url));
 const siteRoot = join(scriptDir, '..');
 const sourcePath = join(
   siteRoot,
-  'assets-source/editorial/portraits/filipe/home/hero-approved-master.png'
+  'assets-source/editorial/portraits/filipe/home/hero-approved-master.webp'
 );
 const outputDir = join(siteRoot, 'public/assets/editorial/portraits/filipe/home');
 
-// The uploaded authoritative source is 1536x1024 (3:2). Derivatives are only
-// downscaled from deterministic crops; the pipeline never invents source detail.
+// The visually authoritative upload is 1536x1024 (3:2). The canonical WebP is
+// a storage normalization only; derivatives are deterministic crops/downscales.
 const desktopWidths = [960, 1440, 1536];
 const mobileWidths = [480, 768, 819];
 
@@ -23,13 +23,11 @@ if (!metadata.width || !metadata.height) {
 }
 
 if (metadata.width !== 1536 || metadata.height !== 1024) {
-  throw new Error(`Approved hero source must be the authoritative 1536x1024 upload; received ${metadata.width}x${metadata.height}.`);
+  throw new Error(`Approved hero source must be the authoritative 1536x1024 image; received ${metadata.width}x${metadata.height}.`);
 }
 
 await mkdir(outputDir, { recursive: true });
 
-// Desktop keeps a 16:9 presentation crop around the approved focal point while
-// preserving the original face, pose and central composition.
 const desktopCropWidth = metadata.width;
 const desktopCropHeight = Math.round(desktopCropWidth * 9 / 16);
 const focalY = Math.round(metadata.height * 0.48);
