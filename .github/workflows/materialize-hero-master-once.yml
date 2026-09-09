@@ -2,14 +2,14 @@ name: Materialize authoritative hero master once
 
 on:
   pull_request:
-    types: [ready_for_review]
+    types: [synchronize, ready_for_review]
 
 permissions:
   contents: write
 
 jobs:
   materialize:
-    if: github.event.pull_request.head.ref == 'feat/public-qa-positioning-fix-v1'
+    if: github.event.pull_request.head.ref == 'feat/public-qa-positioning-fix-v1' && hashFiles('.hero-ingest/part-001.bin') != ''
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout PR head
@@ -29,36 +29,27 @@ jobs:
         working-directory: site-rebuild
         run: npm ci
 
-      - name: Materialize and validate authoritative upload
-        env:
-          HERO_URL: "https://media.canva.com/v2/image-resize/format:PNG/height:1024/quality:100/uri:ifs%3A%2F%2FM%2F3475f3d1-762e-4f6c-8c23-e81162f9cf33/watermark:F/width:1536?csig=AAAAAAAAAAAAAAAAAAAAAFmYF1IvUpniDFWfaRwwOo47IxXBCT2Nny_IA0sUQwb0&exp=1788937959&osig=AAAAAAAAAAAAAAAAAAAAABoO3dvsFh7o5KgDokNIB_EFuzMPJ53Yidgqav0dMGN5&signer=media-rpc&x-canva-quality=thumbnail"
+      - name: Materialize and validate authoritative source
         run: |
           set -euo pipefail
-          target="site-rebuild/assets-source/editorial/portraits/filipe/home/hero-approved-master.png"
-          curl --fail --location --silent --show-error "$HERO_URL" --output "$target"
+          target="site-rebuild/assets-source/editorial/portraits/filipe/home/hero-approved-master.webp"
+          cat .hero-ingest/part-*.bin > "$target"
           node --input-type=module <<'NODE'
           import sharp from './site-rebuild/node_modules/sharp/lib/index.js';
-          import { readFileSync, writeFileSync } from 'node:fs';
+          import { readFileSync } from 'node:fs';
           import { createHash } from 'node:crypto';
 
-          const target = 'site-rebuild/assets-source/editorial/portraits/filipe/home/hero-approved-master.png';
+          const target = 'site-rebuild/assets-source/editorial/portraits/filipe/home/hero-approved-master.webp';
+          const expectedSha = 'd61311519543dbc1774d49746d0a10b3f83b9eede45ce1fa0e6fe96321bde88e';
+          const expectedBytes = 218440;
           const metadata = await sharp(target).metadata();
-          if (metadata.width !== 1536 || metadata.height !== 1024) {
-            throw new Error(`Expected authoritative 1536x1024 upload, got ${metadata.width}x${metadata.height}`);
-          }
           const bytes = readFileSync(target);
-          if (bytes.length < 300000) throw new Error(`Suspiciously small authoritative master: ${bytes.length} bytes`);
           const sha = createHash('sha256').update(bytes).digest('hex');
-
-          const manifestPath = 'site-rebuild/src/data/editorialImageManifest.json';
-          const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
-          manifest['portrait:filipe:home'].sourceSha256 = sha;
-          writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
-
-          const readmePath = 'site-rebuild/assets-source/editorial/portraits/filipe/home/README.md';
-          let readme = readFileSync(readmePath, 'utf8');
-          readme = readme.replace(/Canonical SHA-256:.*\n/, `Canonical SHA-256: \`${sha}\`  \n`);
-          writeFileSync(readmePath, readme);
+          if (metadata.width !== 1536 || metadata.height !== 1024) {
+            throw new Error(`Expected authoritative 1536x1024 source, got ${metadata.width}x${metadata.height}`);
+          }
+          if (bytes.length !== expectedBytes) throw new Error(`Expected ${expectedBytes} bytes, got ${bytes.length}`);
+          if (sha !== expectedSha) throw new Error(`Expected sha256=${expectedSha}, got ${sha}`);
           console.log(`hero-master: ${metadata.width}x${metadata.height}; ${bytes.length} bytes; sha256=${sha}`);
           NODE
 
@@ -70,16 +61,22 @@ jobs:
           npm run images:verify
           npm run test:image-policy
 
+      - name: Run deterministic release gates before cleanup
+        working-directory: site-rebuild
+        run: npm run check
+
       - name: Remove all hero transport workarounds
         run: |
           set -euo pipefail
+          rm -rf .hero-ingest
           rm -rf .hero-transfer
           rm -rf assets/hero
           rm -f hero-portrait.js
-          rm -f site-rebuild/assets-source/editorial/portraits/filipe/home/hero-approved-master.webp
+          rm -f site-rebuild/assets-source/editorial/portraits/filipe/home/hero-approved-master.png
           find site-rebuild -type f \( -name '*.b64' -o -name '*hero*base64*.txt' -o -name '*hero-approved.part*.txt' \) -delete
           rm .github/workflows/materialize-hero-master-once.yml
 
+          test ! -e .hero-ingest
           test ! -e .hero-transfer
           test ! -e assets/hero
           test ! -e hero-portrait.js
