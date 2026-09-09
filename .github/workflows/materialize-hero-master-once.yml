@@ -1,4 +1,4 @@
-name: Materialize approved hero master once
+name: Materialize authoritative hero master once
 
 on:
   pull_request:
@@ -29,25 +29,25 @@ jobs:
         working-directory: site-rebuild
         run: npm ci
 
-      - name: Download and validate approved 4K master
+      - name: Materialize and validate authoritative upload
         env:
-          HERO_URL: "https://media.canva.com/v2/image-resize/format:WEBP/height:2160/quality:94/uri:ifs%3A%2F%2FM%2F127b0dc3-5131-4309-b672-2fcc3ac3daed/watermark:F/width:3840?csig=AAAAAAAAAAAAAAAAAAAAAMGtCho74EJGOR2tlGXih5XJI-vVGlZJzUXgZRf7uBZl&exp=1788844316&osig=AAAAAAAAAAAAAAAAAAAAAHziMmnRtZopngc85XtsypXcVdrG_e7OdLcpuQlC6RaU&signer=media-rpc"
+          HERO_URL: "https://media.canva.com/v2/image-resize/format:PNG/height:1024/quality:100/uri:ifs%3A%2F%2FM%2F3475f3d1-762e-4f6c-8c23-e81162f9cf33/watermark:F/width:1536?csig=AAAAAAAAAAAAAAAAAAAAAFmYF1IvUpniDFWfaRwwOo47IxXBCT2Nny_IA0sUQwb0&exp=1788937959&osig=AAAAAAAAAAAAAAAAAAAAABoO3dvsFh7o5KgDokNIB_EFuzMPJ53Yidgqav0dMGN5&signer=media-rpc&x-canva-quality=thumbnail"
         run: |
           set -euo pipefail
-          target="site-rebuild/assets-source/editorial/portraits/filipe/home/hero-approved-master.webp"
+          target="site-rebuild/assets-source/editorial/portraits/filipe/home/hero-approved-master.png"
           curl --fail --location --silent --show-error "$HERO_URL" --output "$target"
           node --input-type=module <<'NODE'
           import sharp from './site-rebuild/node_modules/sharp/lib/index.js';
           import { readFileSync, writeFileSync } from 'node:fs';
           import { createHash } from 'node:crypto';
 
-          const target = 'site-rebuild/assets-source/editorial/portraits/filipe/home/hero-approved-master.webp';
+          const target = 'site-rebuild/assets-source/editorial/portraits/filipe/home/hero-approved-master.png';
           const metadata = await sharp(target).metadata();
-          if (metadata.width !== 3840 || metadata.height !== 2160) {
-            throw new Error(`Expected 3840x2160, got ${metadata.width}x${metadata.height}`);
+          if (metadata.width !== 1536 || metadata.height !== 1024) {
+            throw new Error(`Expected authoritative 1536x1024 upload, got ${metadata.width}x${metadata.height}`);
           }
           const bytes = readFileSync(target);
-          if (bytes.length < 100000) throw new Error(`Suspiciously small master: ${bytes.length} bytes`);
+          if (bytes.length < 300000) throw new Error(`Suspiciously small authoritative master: ${bytes.length} bytes`);
           const sha = createHash('sha256').update(bytes).digest('hex');
 
           const manifestPath = 'site-rebuild/src/data/editorialImageManifest.json';
@@ -57,18 +57,40 @@ jobs:
 
           const readmePath = 'site-rebuild/assets-source/editorial/portraits/filipe/home/README.md';
           let readme = readFileSync(readmePath, 'utf8');
-          readme = readme.replace(/SHA-256:.*\n/g, '');
-          readme = readme.replace('Canonical target: 3840 × 2160 (16:9)  \n', `Canonical target: 3840 × 2160 (16:9)  \nSHA-256: \`${sha}\`  \n`);
+          readme = readme.replace(/Canonical SHA-256:.*\n/, `Canonical SHA-256: \`${sha}\`  \n`);
           writeFileSync(readmePath, readme);
           console.log(`hero-master: ${metadata.width}x${metadata.height}; ${bytes.length} bytes; sha256=${sha}`);
           NODE
 
-      - name: Commit binary master and remove one-shot workflow
+      - name: Generate and verify responsive hero derivatives
+        working-directory: site-rebuild
         run: |
           set -euo pipefail
+          npm run images:build
+          npm run images:verify
+          npm run test:image-policy
+
+      - name: Remove all hero transport workarounds
+        run: |
+          set -euo pipefail
+          rm -rf .hero-transfer
+          rm -rf assets/hero
+          rm -f hero-portrait.js
+          rm -f site-rebuild/assets-source/editorial/portraits/filipe/home/hero-approved-master.webp
+          find site-rebuild -type f \( -name '*.b64' -o -name '*hero*base64*.txt' -o -name '*hero-approved.part*.txt' \) -delete
           rm .github/workflows/materialize-hero-master-once.yml
+
+          test ! -e .hero-transfer
+          test ! -e assets/hero
+          test ! -e hero-portrait.js
+          test ! -e .github/workflows/materialize-hero-master-once.yml
+          ! find . -type f \( -name '*.b64' -o -path './assets/hero/filipe-home-*.txt' \) -print -quit | grep -q .
+
+      - name: Commit canonical source and cleanup
+        run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "fix: restore approved high-density hero master"
+          git commit -m "fix: materialize authoritative hero and remove transport workarounds"
           git push origin "HEAD:${{ github.event.pull_request.head.ref }}"
