@@ -3,8 +3,8 @@
   <desc id="desc">arquivo → contexto</desc>
   <rect width="1200" height="660" fill="#f4f0e9"/>
   <path d="M0 94H1200M0 560H1200M72 0V660M1128 0V660" stroke="#d9d1c5" stroke-width="1" opacity=".8"/>
-  <circle cx="1038" cy="100" r="180" fill="#7652a8" opacity=".08"/>
-  <circle cx="110" cy="560" r="142" fill="#bb8754" opacity=".08"/>
+  <circle cx="1020" cy="180" r="180" fill="#7652a8" opacity=".08"/>
+  <circle cx="142" cy="518" r="142" fill="#bb8754" opacity=".08"/>
   <text x="86" y="112" fill="#3d235c" font-family="Arial, sans-serif" font-size="18" font-weight="800" letter-spacing="1.5">DOCUMENTO</text>
   <text x="86" y="143" fill="#6c6670" font-family="Arial, sans-serif" font-size="15" font-weight="650" letter-spacing="1.5">arquivo → contexto</text>
   <text x="86" y="610" fill="#6c6670" font-family="Arial, sans-serif" font-size="13" font-weight="800" letter-spacing="1.5">DIAGRAMA EDITORIAL</text>

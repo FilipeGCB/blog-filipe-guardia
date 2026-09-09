@@ -9,8 +9,8 @@ const heroCssUrl = new URL('../src/styles/hero-system.css', import.meta.url);
 const heroMasterUrl = new URL('../assets-source/editorial/portraits/filipe/home/hero-approved-master.webp', import.meta.url);
 const manifest = JSON.parse(await readFile(manifestUrl, 'utf8'));
 const heroCss = await readFile(heroCssUrl, 'utf8');
-const expectedHeroSha = '1be2843f635080c44386b1bc3b95f891107707c1f410eb3053503b557d6c804c';
-const expectedHeroBytes = 208714;
+const expectedHeroSha = 'd61311519543dbc1774d49746d0a10b3f83b9eede45ce1fa0e6fe96321bde88e';
+const expectedHeroBytes = 218440;
 
 test('approved raster masters use real binary source files instead of base64 transport wrappers', () => {
   const violations = [];

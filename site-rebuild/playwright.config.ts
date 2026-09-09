@@ -18,6 +18,9 @@ export default defineConfig({
     command: 'npm run preview -- --host 127.0.0.1',
     url: baseURL,
     reuseExistingServer: !process.env.CI,
-    timeout: 120_000
+    timeout: 120_000,
+    env: {
+      ASTRO_PREVIEW_BACKGROUND: 'false'
+    }
   }
 });

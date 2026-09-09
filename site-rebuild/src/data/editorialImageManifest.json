@@ -3,7 +3,7 @@
     "kind": "portrait",
     "status": "approved",
     "source": "assets-source/editorial/portraits/filipe/home/hero-approved-master.webp",
-    "sourceSha256": "1be2843f635080c44386b1bc3b95f891107707c1f410eb3053503b557d6c804c",
+    "sourceSha256": "d61311519543dbc1774d49746d0a10b3f83b9eede45ce1fa0e6fe96321bde88e",
     "outputBase": "public/assets/editorial/portraits/filipe/home/hero",
     "widths": [960, 1440, 1536],
     "formats": ["avif", "webp"],

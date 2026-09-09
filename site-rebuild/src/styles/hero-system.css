@@ -49,13 +49,21 @@
       linear-gradient(0deg, rgba(9, 9, 12, 0.62) 0%, transparent 42%);
   }
 
-  /* Keep the approved composition stable while the page scrolls. */
+  /* Keep the approved composition stable while the page scrolls on desktop. */
   .hero-home .hero-photo.scroll-hero-media {
     transform: translateY(-50%) !important;
     animation: none !important;
   }
+}
 
-  [data-scroll-hero] .scroll-hero-media img {
+/* Keep the approved composition stable across all viewports. */
+[data-scroll-hero] .scroll-hero-media img {
+  transform: none !important;
+  animation: none !important;
+}
+
+@media (max-width: 1000px) and (min-width: 768px) {
+  .hero-home .hero-photo.scroll-hero-media {
     transform: none !important;
     animation: none !important;
   }

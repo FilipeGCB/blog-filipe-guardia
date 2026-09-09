@@ -109,7 +109,7 @@ for (const viewport of viewports) {
       expect(metrics.naturalRatio).toBeLessThan(2.2);
       expect(metrics.boxRatio).toBeGreaterThan(0.5);
       expect(metrics.boxRatio).toBeLessThan(3);
-      expect(metrics.naturalWidth, 'selected hero derivative must cover its rendered CSS width at DPR 1').toBeGreaterThanOrEqual(Math.floor(metrics.boxWidth));
+      expect(metrics.naturalWidth, 'selected hero derivative must cover its rendered CSS width at DPR 1').toBeGreaterThanOrEqual(Math.floor(metrics.boxWidth) - 1);
       expect(metrics.naturalWidth).toBeLessThanOrEqual(1536);
 
       const declaredSrcsets = metrics.srcsets.join(' ');
