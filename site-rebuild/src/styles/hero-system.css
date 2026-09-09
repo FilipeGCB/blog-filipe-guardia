@@ -1,9 +1,10 @@
 /* Homepage hero desktop treatment.
-   The approved portrait is 1152x648. On large screens it stays inside a
-   source-sized 16:9 editorial panel instead of being stretched full-bleed. */
+   The authoritative portrait is the exact 1536x1024 image supplied in chat.
+   Desktop uses a deterministic 16:9 crop and never upscales source detail;
+   face, pose and central composition remain locked. */
 @media (min-width: 1001px) {
   .hero-home {
-    min-height: clamp(640px, 72svh, 780px);
+    min-height: clamp(680px, 88svh, 980px);
   }
 
   .hero-home-media {
@@ -17,7 +18,7 @@
     right: max(var(--gutter), calc((100vw - var(--visual-max)) / 2));
     bottom: auto;
     left: auto;
-    width: min(60vw, 1152px);
+    width: min(60vw, 1536px);
     height: auto;
     aspect-ratio: 16 / 9;
     transform: translateY(-50%);
@@ -48,14 +49,21 @@
       linear-gradient(0deg, rgba(9, 9, 12, 0.62) 0%, transparent 42%);
   }
 
-  /* The source is only 1152px wide. Scroll drift on either the frame or the
-     image changes the rendered bounding box, so both are neutralized here. */
+  /* Keep the approved composition stable while the page scrolls on desktop. */
   .hero-home .hero-photo.scroll-hero-media {
     transform: translateY(-50%) !important;
     animation: none !important;
   }
+}
 
-  [data-scroll-hero] .scroll-hero-media img {
+/* Keep the approved composition stable across all viewports. */
+[data-scroll-hero] .scroll-hero-media img {
+  transform: none !important;
+  animation: none !important;
+}
+
+@media (max-width: 1000px) and (min-width: 768px) {
+  .hero-home .hero-photo.scroll-hero-media {
     transform: none !important;
     animation: none !important;
   }

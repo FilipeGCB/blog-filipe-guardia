@@ -32,16 +32,16 @@ const coverWidths = [480, 768, 960, 1280, 1672];
 export const editorialImages: Record<string, EditorialImageAsset> = {
   'portrait:filipe:home': {
     id: 'portrait:filipe:home',
-    alt: 'Filipe em um ambiente contemporâneo de trabalho, sentado diante de um caderno e laptop, com monitores e a cidade ao fundo.',
-    width: 1152,
-    height: 648,
+    alt: 'Filipe em escritório contemporâneo, diante de um laptop, com estante, iluminação quente e palavras sobre visão, sistemas, automação, dados, pessoas e execução ao fundo.',
+    width: 1536,
+    height: 864,
     focalPoint: '64% 48%',
-    sizes: '(min-width: 1920px) 1152px, (min-width: 1000px) 60vw, (min-width: 768px) 100vw, 100vw',
-    variants: variants('/assets/editorial/portraits/filipe/home/hero', [768, 960, 1152]),
+    sizes: '(min-width: 1600px) 1536px, (min-width: 1000px) 60vw, (min-width: 768px) 100vw, 100vw',
+    variants: variants('/assets/editorial/portraits/filipe/home/hero', [960, 1440, 1536]),
     mobile: {
       media: '(max-width: 767px)',
       focalPoint: '68% 46%',
-      variants: variants('/assets/editorial/portraits/filipe/home/hero-mobile', [480, 768, 960])
+      variants: variants('/assets/editorial/portraits/filipe/home/hero-mobile', [480, 768, 819])
     }
   },
   'portrait:filipe:about': {

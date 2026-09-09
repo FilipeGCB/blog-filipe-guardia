@@ -38,9 +38,6 @@ const assertNoHorizontalOverflow = async (page: Page) => {
 };
 
 const assertImagesLoaded = async (page: Page) => {
-  // Archive/home cards are intentionally lazy. Force only their loading policy to eager
-  // in QA so the test validates every declared meaningful asset without depending on
-  // whether that card happened to enter the viewport during this particular run.
   await page.locator('img[loading="lazy"]').evaluateAll((images) => {
     images.forEach((image) => {
       (image as HTMLImageElement).loading = 'eager';
@@ -85,13 +82,14 @@ for (const viewport of viewports) {
       });
     }
 
-    test('home hero keeps cover crop without distortion', async ({ page }) => {
+    test('home hero keeps approved crop and selects a source-faithful responsive derivative', async ({ page }) => {
       await waitForPage(page, './');
       const hero = page.locator('.hero-home .hero-photo img').first();
       await expect(hero).toBeVisible();
       const metrics = await hero.evaluate((image: HTMLImageElement) => {
         const style = getComputedStyle(image);
         const rect = image.getBoundingClientRect();
+        const picture = image.closest('picture');
         return {
           fit: style.objectFit,
           naturalRatio: image.naturalWidth / image.naturalHeight,
@@ -99,9 +97,11 @@ for (const viewport of viewports) {
           boxWidth: rect.width,
           naturalWidth: image.naturalWidth,
           naturalHeight: image.naturalHeight,
-          currentSrc: image.currentSrc
+          currentSrc: image.currentSrc,
+          srcsets: picture ? [...picture.querySelectorAll('source')].map((source) => source.getAttribute('srcset') ?? '') : []
         };
       });
+
       expect(metrics.naturalWidth).toBeGreaterThan(0);
       expect(metrics.naturalHeight).toBeGreaterThan(0);
       expect(metrics.fit).toBe('cover');
@@ -109,12 +109,27 @@ for (const viewport of viewports) {
       expect(metrics.naturalRatio).toBeLessThan(2.2);
       expect(metrics.boxRatio).toBeGreaterThan(0.5);
       expect(metrics.boxRatio).toBeLessThan(3);
+      expect(metrics.naturalWidth, 'selected hero derivative must cover its rendered CSS width at DPR 1').toBeGreaterThanOrEqual(Math.floor(metrics.boxWidth) - 1);
+      expect(metrics.naturalWidth).toBeLessThanOrEqual(1536);
+
+      const declaredSrcsets = metrics.srcsets.join(' ');
+      expect(declaredSrcsets).toMatch(/hero-1536\.(avif|webp)/);
+      expect(declaredSrcsets).toMatch(/hero-mobile-819\.(avif|webp)/);
+      expect(declaredSrcsets).not.toMatch(/hero-(1920|2560|3840)\.(avif|webp)/);
+
+      if (viewport.width <= 767) {
+        expect(metrics.currentSrc).toMatch(/hero-mobile-(480|768|819)\.(avif|webp)$/);
+      } else {
+        expect(metrics.currentSrc).toMatch(/hero-(960|1440|1536)\.(avif|webp)$/);
+      }
 
       if (viewport.width >= 1001) {
-        expect(metrics.naturalWidth).toBeLessThanOrEqual(1152);
-        expect(metrics.boxWidth).toBeLessThanOrEqual(1154);
+        expect(metrics.boxWidth).toBeLessThanOrEqual(1537);
         expect(metrics.boxRatio).toBeCloseTo(16 / 9, 1);
-        expect(metrics.currentSrc).not.toMatch(/hero-(1440|1920|2560|3840)\.(avif|webp)$/);
+      }
+
+      if (viewport.width >= 1920) {
+        expect(metrics.naturalWidth, 'large layouts must use the highest useful source-faithful hero density').toBeGreaterThanOrEqual(1440);
       }
     });
 

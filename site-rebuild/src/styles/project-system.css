@@ -58,35 +58,47 @@
 }
 
 .project-concept-flow {
-  display: flex;
+  display: grid;
   width: 100%;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(10px, 2vw, 24px);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
+  gap: clamp(10px, 1.4vw, 18px);
 }
 
 .project-concept-node {
+  position: relative;
   display: grid;
   min-width: 0;
   min-height: 96px;
-  flex: 1 1 0;
   place-items: center;
-  padding: 18px 12px;
+  padding: 18px 10px;
   border: 1px solid rgba(61,35,92,.18);
   border-radius: 18px;
   background: rgba(255,253,248,.76);
   color: var(--ink);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1rem, 1.5vw, 1.45rem);
+  font-size: clamp(.92rem, 1.25vw, 1.35rem);
   line-height: 1.1;
+  overflow-wrap: anywhere;
   text-align: center;
 }
 
 .project-concept-flow i {
-  flex: 0 0 auto;
+  display: none;
+}
+
+.project-concept-node:not(:last-child)::after {
+  content: '→';
+  position: absolute;
+  top: 50%;
+  right: calc(clamp(10px, 1.4vw, 18px) * -.72);
+  z-index: 2;
   color: var(--warm);
-  font-size: 1.4rem;
-  font-style: normal;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  transform: translate(50%, -50%);
 }
 
 .project-violet .project-concept-node { border-color: rgba(121,86,232,.25); }
@@ -154,13 +166,25 @@
 
 @media (max-width: 700px) {
   .project-editorial-visual,
-  .project-concept-visual { min-height: 320px; }
+  .project-concept-visual { min-height: 390px; }
+  .project-concept-visual { padding-inline: clamp(22px, 7vw, 34px); }
   .project-concept-flow {
+    display: flex;
     flex-direction: column;
     align-items: stretch;
+    gap: 10px;
   }
-  .project-concept-node { min-height: 62px; }
-  .project-concept-flow i { align-self: center; transform: rotate(90deg); }
+  .project-concept-node { min-height: 62px; font-size: 1rem; }
+  .project-concept-node:not(:last-child)::after { display: none; }
+  .project-concept-flow i {
+    display: block;
+    align-self: center;
+    color: var(--warm);
+    font-size: 1.1rem;
+    font-style: normal;
+    line-height: 1;
+    transform: rotate(90deg);
+  }
   .project-actions .button-secondary { width: 100%; }
   .project-method-grid { grid-template-columns: 1fr; }
 }

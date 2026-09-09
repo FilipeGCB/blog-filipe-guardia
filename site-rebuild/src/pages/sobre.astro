@@ -8,34 +8,48 @@ const timeline = [
   ['2011–2012', 'Fundação operacional', 'Entrada no setor de telecomunicações e entendimento de como contratos, faturamento, atendimento e processos internos protegem a receita.'],
   ['2012–2016', 'Cobrança e contas a receber', 'Especialização em inadimplência, carteira vencida, aging, provisão, recuperação, acordos e impacto financeiro.'],
   ['2016–2023', 'Planejamento e inteligência', 'Evolução para segmentação, dimensionamento, indicadores, canais, custos operacionais e governança.'],
-  ['2023–2026', 'Consultoria e transformação', 'Integração entre negócio, dados, processos, discovery, MVPs, backlogs e validação com áreas técnicas.'],
-  ['2025–atual', 'IA, produtos e software', 'Construção de produtos, automações e agentes com segurança, supervisão e rastreabilidade.']
+  ['2023–2026', 'B2X, consultoria e transformação', 'Ampliação da atuação para B2B + B2C, integrando negócio, dados, processos, discovery, MVPs, backlogs e validação com áreas técnicas.'],
+  ['2025–atual', 'Transformação Digital e IA aplicada', 'Construção de automações, produtos, sistemas e agentes com segurança, supervisão, rastreabilidade e foco em mudança real do trabalho.']
+];
+const transformationLayers = [
+  ['01', 'Processo', 'Entender o trabalho real, as exceções, os responsáveis e o que precisa mudar antes de automatizar.'],
+  ['02', 'Dados', 'Transformar sinais operacionais em contexto, indicadores, decisão e memória confiável.'],
+  ['03', 'Automação', 'Retirar esforço repetitivo sem apagar regras, controles, responsabilidade ou capacidade de revisão.'],
+  ['04', 'Sistemas', 'Materializar processos e decisões em produtos, integrações e experiências utilizáveis.'],
+  ['05', 'IA e agentes', 'Adicionar inteligência quando ela realmente amplia decisão e execução — com limites, evidência e supervisão.']
 ];
 ---
-<BaseLayout title="Sobre Filipe Guardia" description="Trajetória profissional de Filipe Guardia, da cobrança B2B à construção de produtos e soluções inteligentes." canonicalPath="/sobre.html" currentPath="/sobre.html">
+<BaseLayout
+  title="Sobre Filipe Guardia — B2X, Transformação Digital e IA"
+  description="Trajetória profissional de Filipe Guardia em operações B2X, planejamento, dados, processos e Transformação Digital, incluindo automação, sistemas, inteligência artificial e agentes."
+  canonicalPath="/sobre.html"
+  currentPath="/sobre.html"
+>
   <PageIntroVisual
     eyebrow="Filipe Guardia Cano Batista"
-    title="Da cobrança e dos dados à construção de <em>sistemas úteis</em>."
-    deck="Minha trajetória foi construída em operações financeiras complexas. Comecei entendendo a execução, evoluí para planejamento e inteligência de cobrança e hoje atuo na conexão entre negócio, dados, processos, automação e tecnologia."
+    title="Da operação à <em>Transformação Digital</em>."
+    deck="Minha trajetória começou no trabalho operacional e financeiro, passou por planejamento e inteligência e hoje conecta B2X, dados, processos, automação, sistemas e IA para transformar a forma como o trabalho acontece."
     theme="night"
     assetId="portrait:filipe:about"
-    currentLabel="Da operação para sistemas"
+    currentLabel="B2X · Transformação Digital · IA"
   />
 
   <section class="section section-tinted">
     <div class="editorial-shell split-copy">
       <div>
         <span class="section-kicker">Posicionamento atual</span>
-        <h2>Uma ponte entre problema, processo, produto, dados e engenharia.</h2>
+        <h2>Transformação Digital é o eixo. IA é uma das camadas.</h2>
       </div>
       <div class="copy-stack">
-        <p>Atuo como consultor de planejamento e inteligência de cobrança B2B, conectando dados, processos, automação e inteligência artificial.</p>
-        <p>Não busco uma carreira puramente técnica. Busco ser a ponte qualificada entre a realidade do negócio e a solução que pode ser construída — com visão de MVP, governança, segurança e medição desde o desenho.</p>
+        <p>Atuo na conexão entre planejamento e inteligência de cobrança <strong>B2X — B2B + B2C</strong>, dados, processos e Transformação Digital.</p>
+        <p>Para mim, Transformação Digital não é “colocar IA” em cima de um processo antigo. É repensar como o trabalho funciona, organizar conhecimento e dados, redesenhar fluxos, automatizar o que faz sentido, construir sistemas úteis e só então usar inteligência artificial e agentes onde eles realmente ampliam capacidade.</p>
+        <p>É por isso que meu foco não é uma carreira puramente técnica nem apenas operacional. Meu papel é fazer a ponte entre problema real, decisão, processo, produto, dados e engenharia — da descoberta à validação.</p>
         <ul>
-          <li>Conhecimento profundo de cobrança B2B e operações financeiras.</li>
-          <li>Capacidade de transformar regras dispersas em processos estruturados.</li>
-          <li>Tradução entre linguagem operacional, executiva e técnica.</li>
-          <li>Atuação da análise inicial ao protótipo e à validação.</li>
+          <li>Visão integrada de cobrança e planejamento B2X.</li>
+          <li>Transformação Digital orientada a problema, processo e resultado.</li>
+          <li>Dados e automação como infraestrutura da mudança.</li>
+          <li>Sistemas, produtos e integrações como materialização do novo modo de trabalho.</li>
+          <li>IA e agentes como capacidade aplicada, com governança, segurança e medição.</li>
         </ul>
       </div>
     </div>
@@ -43,14 +57,61 @@ const timeline = [
 
   <section class="section">
     <div class="editorial-shell">
-      <div class="section-head"><div><span class="section-kicker">Evolução de carreira</span><h2>Cada fase acrescentou uma camada.</h2></div><p>Operação, controle financeiro, planejamento, dados, processos, produtos e inteligência artificial formam a base do trabalho atual.</p></div>
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">O que significa Transformação Digital</span>
+          <h2>Não é uma ferramenta. É uma mudança de sistema.</h2>
+        </div>
+        <p>A tecnologia importa quando reorganiza como pessoas, processos, dados e decisões trabalham juntos. IA entra nessa arquitetura — não substitui o restante dela.</p>
+      </div>
+      <div class="path-grid">
+        {transformationLayers.map(([number, title, description]) => (
+          <article class="path-card">
+            <span class="path-number">{number}</span>
+            <h3>{title}</h3>
+            <p>{description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tinted">
+    <div class="editorial-shell">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">Evolução de carreira</span>
+          <h2>Cada fase acrescentou uma camada.</h2>
+        </div>
+        <p>Operação, controle financeiro, B2X, planejamento, dados, processos e tecnologia formam a base da atuação atual em Transformação Digital.</p>
+      </div>
       <div class="timeline-grid timeline-editorial">
         {timeline.map(([period, title, description]) => <article class="timeline-card"><span>{period}</span><h3>{title}</h3><p>{description}</p></article>)}
       </div>
     </div>
   </section>
 
+  <section class="section">
+    <div class="editorial-shell split-copy">
+      <div>
+        <span class="section-kicker">Como isso aparece na prática</span>
+        <h2>Do diagnóstico à solução, sem pular a realidade.</h2>
+      </div>
+      <div class="copy-stack">
+        <p>Meu ponto de partida continua sendo a operação real: clientes, jornadas, indicadores, exceções, risco, cobrança, decisões e responsabilidades. A diferença é que hoje enxergo esse contexto como matéria-prima para transformação.</p>
+        <p>Uma iniciativa pode terminar em um novo processo, automação, dashboard, produto, integração, base de conhecimento, agente ou combinação dessas coisas. A solução vem depois de entender o sistema que precisa mudar.</p>
+        <p>É essa abordagem que conecta minha experiência histórica em cobrança e planejamento ao trabalho atual com sistemas e IA.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="section section-tinted">
-    <div class="editorial-shell split-copy"><div><span class="section-kicker">Próximo passo</span><h2>Se o problema é real, a conversa começa pelo contexto.</h2></div><div class="copy-stack"><p>O blog é um espaço para tornar o raciocínio público. Os projetos mostram onde esse raciocínio ganha forma. Se fizer sentido conversar sobre uma situação concreta, estou disponível.</p><a class="button" href={href('/contato.html')}>Entrar em contato</a></div></div>
+    <div class="editorial-shell split-copy">
+      <div><span class="section-kicker">Próximo passo</span><h2>Se o problema é real, a conversa começa pelo contexto.</h2></div>
+      <div class="copy-stack">
+        <p>O blog é um espaço para tornar esse raciocínio público. Os projetos mostram onde ele ganha forma em produtos e sistemas. Se fizer sentido conversar sobre uma situação concreta de B2X, Transformação Digital, dados, automação ou IA, estou disponível.</p>
+        <a class="button" href={href('/contato.html')}>Entrar em contato</a>
+      </div>
+    </div>
   </section>
 </BaseLayout>

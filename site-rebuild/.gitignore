@@ -4,3 +4,6 @@ dist/
 .env
 .env.*
 !.env.example
+test-results/
+public/assets/editorial/portraits/
+public/guias/
