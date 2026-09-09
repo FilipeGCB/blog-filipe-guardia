@@ -1,27 +1,20 @@
-name: Build and deploy editorial site
+name: Manual source validation
 
+# The source repository is designed to become private. Routine validation,
+# builds and releases run locally so normal blog edits consume zero private
+# GitHub Actions minutes. Keep this workflow only as an explicit emergency gate.
 on:
-  push:
-    branches: [main]
-  pull_request:
-    types: [opened, synchronize, reopened, ready_for_review]
-    paths:
-      - 'site-rebuild/**'
-      - '.github/workflows/deploy-editorial-site.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: editorial-site-${{ github.workflow }}-${{ github.ref }}
+  group: editorial-source-manual-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  # Cost policy: keep redesign PRs as draft while iterating. The final PR gate
-  # uses one runner, one npm install and one image-generation pass.
-  validate-pr:
-    if: github.event_name == 'pull_request' && github.event.pull_request.draft == false
+  validate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -35,7 +28,7 @@ jobs:
       - name: Install dependencies
         working-directory: site-rebuild
         run: npm ci
-      - name: Validate release contracts
+      - name: Run deterministic release gates
         working-directory: site-rebuild
         env:
           ASTRO_TELEMETRY_DISABLED: '1'
@@ -47,53 +40,6 @@ jobs:
       - name: Install Chromium
         working-directory: site-rebuild
         run: npx playwright install --with-deps chromium
-      - name: Run multi-viewport visual smoke gate
+      - name: Run multi-viewport visual gate
         working-directory: site-rebuild
         run: npm run test:visual
-
-  # Build/deploy only after code reaches main. No branch push builds.
-  build:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: npm
-          cache-dependency-path: site-rebuild/package-lock.json
-      - name: Install dependencies
-        working-directory: site-rebuild
-        run: npm ci
-      - name: Verify content and build
-        working-directory: site-rebuild
-        env:
-          ASTRO_TELEMETRY_DISABLED: '1'
-        run: |
-          npm run check
-          npm run build:ci
-          npm run preserve:legacy
-          npm run audit:routes
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: site-rebuild/dist
-
-  deploy:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
