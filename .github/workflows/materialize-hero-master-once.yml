@@ -22,7 +22,7 @@ jobs:
         run: |
           set -euo pipefail
           test -f .hero-ingest/part-001.bin
-          test -f .hero-ingest/part-010.bin
+          test -f .hero-ingest/part-011.bin
 
       - name: Setup Node
         uses: actions/setup-node@v4
