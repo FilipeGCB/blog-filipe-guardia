@@ -85,13 +85,14 @@ for (const viewport of viewports) {
       });
     }
 
-    test('home hero keeps cover crop without distortion', async ({ page }) => {
+    test('home hero keeps cover crop and selects a density-appropriate responsive derivative', async ({ page }) => {
       await waitForPage(page, './');
       const hero = page.locator('.hero-home .hero-photo img').first();
       await expect(hero).toBeVisible();
       const metrics = await hero.evaluate((image: HTMLImageElement) => {
         const style = getComputedStyle(image);
         const rect = image.getBoundingClientRect();
+        const picture = image.closest('picture');
         return {
           fit: style.objectFit,
           naturalRatio: image.naturalWidth / image.naturalHeight,
@@ -99,7 +100,8 @@ for (const viewport of viewports) {
           boxWidth: rect.width,
           naturalWidth: image.naturalWidth,
           naturalHeight: image.naturalHeight,
-          currentSrc: image.currentSrc
+          currentSrc: image.currentSrc,
+          srcsets: picture ? [...picture.querySelectorAll('source')].map((source) => source.getAttribute('srcset') ?? '') : []
         };
       });
       expect(metrics.naturalWidth).toBeGreaterThan(0);
@@ -109,12 +111,26 @@ for (const viewport of viewports) {
       expect(metrics.naturalRatio).toBeLessThan(2.2);
       expect(metrics.boxRatio).toBeGreaterThan(0.5);
       expect(metrics.boxRatio).toBeLessThan(3);
+      expect(metrics.naturalWidth, 'selected hero derivative must cover its rendered CSS width at DPR 1').toBeGreaterThanOrEqual(Math.floor(metrics.boxWidth));
+      expect(metrics.naturalWidth).toBeLessThanOrEqual(3840);
+
+      const declaredSrcsets = metrics.srcsets.join(' ');
+      expect(declaredSrcsets).toMatch(/hero-3840\.(avif|webp)/);
+      expect(declaredSrcsets).toMatch(/hero-mobile-960\.(avif|webp)/);
+
+      if (viewport.width <= 767) {
+        expect(metrics.currentSrc).toMatch(/hero-mobile-(480|768|960)\.(avif|webp)$/);
+      } else {
+        expect(metrics.currentSrc).toMatch(/hero-(960|1440|1920|2560|3840)\.(avif|webp)$/);
+      }
 
       if (viewport.width >= 1001) {
-        expect(metrics.naturalWidth).toBeLessThanOrEqual(1152);
-        expect(metrics.boxWidth).toBeLessThanOrEqual(1154);
+        expect(metrics.boxWidth).toBeLessThanOrEqual(1761);
         expect(metrics.boxRatio).toBeCloseTo(16 / 9, 1);
-        expect(metrics.currentSrc).not.toMatch(/hero-(1440|1920|2560|3840)\.(avif|webp)$/);
+      }
+
+      if (viewport.width >= 1920) {
+        expect(metrics.naturalWidth, 'Full HD/QHD/4K layouts must not fall back to a low-density hero').toBeGreaterThanOrEqual(1920);
       }
     });
 
