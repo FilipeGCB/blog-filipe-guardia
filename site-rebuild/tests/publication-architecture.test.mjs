@@ -11,10 +11,13 @@ const architectureDocUrl = new URL('../docs/editorial/deployment-architecture.md
 const packageJson = JSON.parse(await readFile(packageUrl, 'utf8'));
 const workflow = await readFile(workflowUrl, 'utf8');
 
-test('private source workflow is manual-only so routine edits consume no private Actions minutes', () => {
+test('temporary public-source hotfix keeps the Astro dist deploy authoritative until private cutover', () => {
   assert.match(workflow, /workflow_dispatch:/);
-  assert.doesNotMatch(workflow, /\n\s+push:/);
-  assert.doesNotMatch(workflow, /\n\s+pull_request:/);
+  assert.match(workflow, /\n\s+push:/);
+  assert.match(workflow, /branches:\s*\[main\]/);
+  assert.match(workflow, /\n\s+pull_request:/);
+  assert.match(workflow, /path:\s*site-rebuild\/dist/);
+  assert.match(workflow, /actions\/deploy-pages@/);
 });
 
 test('local public release runs the full release gates before publishing generated dist only', async () => {
