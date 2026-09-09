@@ -2130,13 +2130,13 @@ body {
 
 .card-visual {
   border: 0;
-  background: var(--surface);
+  background: transparent;
 }
 
 .card-visual img,
 .card-visual svg {
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
 }
 
 .card-copy {
@@ -2162,16 +2162,19 @@ body {
 
 .article-card-featured .card-visual {
   order: 2;
-  align-self: stretch;
-  height: 100%;
+  align-self: start;
+  height: auto;
   min-height: 0;
+  background: transparent;
 }
 
 .article-card-featured .card-visual img,
 .article-card-featured .card-visual svg {
   display: block;
-  height: 100%;
-  aspect-ratio: auto;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
 }
 
 .article-card-featured .card-copy {
@@ -2518,8 +2521,10 @@ body {
 
   .article-card-featured .card-visual img,
   .article-card-featured .card-visual svg {
+    width: 100%;
     height: auto;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 10;
+    object-fit: contain;
   }
 
   .feature-photo {
