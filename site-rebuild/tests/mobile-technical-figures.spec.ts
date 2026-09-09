@@ -22,6 +22,16 @@ const articleSlugs = [
   'pix-parcelado'
 ];
 
+const figureViewports = [
+  { name: 'mobile-390', width: 390, height: 844 },
+  { name: 'tablet-768', width: 768, height: 1024 },
+  { name: 'desktop-1366', width: 1366, height: 768 },
+  { name: 'desktop-1440', width: 1440, height: 900 },
+  { name: 'fullhd-1920', width: 1920, height: 1080 },
+  { name: 'qhd-2560', width: 2560, height: 1440 },
+  { name: 'uhd-3840', width: 3840, height: 2160 }
+];
+
 const waitForArticle = async (page: Page, slug: string) => {
   const response = await page.goto(`artigos/${slug}.html`, { waitUntil: 'networkidle' });
   expect(response, `${slug} should return a response`).not.toBeNull();
@@ -79,13 +89,10 @@ const auditFigures = async (page: Page, slug: string) => {
   }
 };
 
-test.describe('all technical figures remain readable inside mobile layout bounds', () => {
-  test.setTimeout(240_000);
+test.describe('all technical figures remain readable and complete at every release viewport', () => {
+  test.setTimeout(480_000);
 
-  for (const viewport of [
-    { name: 'mobile-390', width: 390, height: 844 },
-    { name: 'tablet-768', width: 768, height: 1024 }
-  ]) {
+  for (const viewport of figureViewports) {
     test(viewport.name, async ({ page }) => {
       await page.setViewportSize({ width: viewport.width, height: viewport.height });
       for (const slug of articleSlugs) {
