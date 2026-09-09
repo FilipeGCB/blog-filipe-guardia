@@ -37,13 +37,14 @@ const waitForPage = async (page: Page, path: string) => {
   expect(response, `${path} should return a response`).not.toBeNull();
 };
 
-const findSvgCollisions = async (page: Page, path: string) => {
+const auditTechnicalSvg = async (page: Page, path: string) => {
   const response = await page.goto(path, { waitUntil: 'networkidle' });
-  if (!response || response.status() >= 400) return [];
+  const status = response?.status() ?? 0;
+  if (!response || status >= 400) return { status, collisions: [], clipped: null };
 
-  return page.evaluate(() => {
+  const result = await page.evaluate(() => {
     const svg = document.querySelector('svg');
-    if (!svg) return [];
+    if (!svg) return { collisions: [] as { text: string; connector: string }[], clipped: 'missing svg' };
 
     const rootBox = (node: SVGGraphicsElement) => {
       const box = node.getBBox();
@@ -82,7 +83,7 @@ const findSvgCollisions = async (page: Page, path: string) => {
       return stroke !== 'none' && width >= 3 && (fill === 'none' || fill === '' || fill === 'rgba(0, 0, 0, 0)');
     });
 
-    const hits: { text: string; connector: string }[] = [];
+    const collisions: { text: string; connector: string }[] = [];
     for (const connector of connectors) {
       if (!(connector instanceof SVGGeometryElement)) continue;
       const matrix = connector.getCTM();
@@ -103,12 +104,26 @@ const findSvgCollisions = async (page: Page, path: string) => {
           }
         }
         if (collides) {
-          hits.push({ text: label.text, connector: connector.getAttribute('d') ?? connector.tagName });
+          collisions.push({ text: label.text, connector: connector.getAttribute('d') ?? connector.tagName });
         }
       }
     }
-    return hits;
+
+    const viewBox = svg.viewBox.baseVal;
+    const content = (svg as SVGGraphicsElement).getBBox();
+    const tolerance = 4;
+    const clipped =
+      content.x < viewBox.x - tolerance ||
+      content.y < viewBox.y - tolerance ||
+      content.x + content.width > viewBox.x + viewBox.width + tolerance ||
+      content.y + content.height > viewBox.y + viewBox.height + tolerance
+        ? `content bbox ${content.x.toFixed(1)},${content.y.toFixed(1)} ${content.width.toFixed(1)}x${content.height.toFixed(1)} escapes viewBox ${viewBox.x},${viewBox.y} ${viewBox.width}x${viewBox.height}`
+        : null;
+
+    return { collisions, clipped };
   });
+
+  return { status, ...result };
 };
 
 test.describe('rendered project diagrams never clip their internal nodes', () => {
@@ -159,16 +174,21 @@ test.describe('rendered project diagrams never clip their internal nodes', () =>
   }
 });
 
-test('technical SVG connectors never cross readable labels in covers or article figures', async ({ page }) => {
-  test.setTimeout(240_000);
+test('technical SVGs stay inside their viewBox and connectors never cross readable labels', async ({ page }) => {
+  test.setTimeout(300_000);
   await page.setViewportSize({ width: 1200, height: 760 });
 
   const failures: string[] = [];
 
   for (const slug of articleSlugs) {
     for (const path of [`assets/editorial/${slug}.svg`, `assets/editorial/figures/${slug}.svg`]) {
-      const collisions = await findSvgCollisions(page, path);
-      for (const collision of collisions) {
+      const audit = await auditTechnicalSvg(page, path);
+      if (audit.status >= 400 || audit.status === 0) {
+        failures.push(`${path}: missing or returned HTTP ${audit.status}`);
+        continue;
+      }
+      if (audit.clipped) failures.push(`${path}: ${audit.clipped}`);
+      for (const collision of audit.collisions) {
         failures.push(`${path}: connector crosses “${collision.text}” (${collision.connector})`);
       }
     }
