@@ -2,8 +2,8 @@
   "portrait:filipe:home": {
     "kind": "portrait",
     "status": "approved",
-    "source": "assets-source/editorial/portraits/filipe/home/hero-approved-master.png",
-    "sourceSha256": "78d7575f2a5ebba92acc5328fc8856daf22c1286073eacca901c51c70bbff6a5",
+    "source": "assets-source/editorial/portraits/filipe/home/hero-approved-master.webp",
+    "sourceSha256": "d61311519543dbc1774d49746d0a10b3f83b9eede45ce1fa0e6fe96321bde88e",
     "outputBase": "public/assets/editorial/portraits/filipe/home/hero",
     "widths": [960, 1440, 1536],
     "formats": ["avif", "webp"],
