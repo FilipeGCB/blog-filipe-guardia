@@ -8,9 +8,9 @@ Authoritative upload bytes: 2,779,842
 Authoritative upload SHA-256: `78d7575f2a5ebba92acc5328fc8856daf22c1286073eacca901c51c70bbff6a5`  
 Canonical repository file: `hero-approved-master.webp`  
 Canonical normalization dimensions: 1536 × 1024  
-Canonical normalization bytes: 218,440  
-Canonical normalization SHA-256: `d61311519543dbc1774d49746d0a10b3f83b9eede45ce1fa0e6fe96321bde88e`  
-Normalization validation against the PNG upload: PSNR 41.16 dB; SSIM 0.9683  
+Canonical normalization bytes: 208,714  
+Canonical normalization SHA-256: `1be2843f635080c44386b1bc3b95f891107707c1f410eb3053503b557d6c804c`  
+Normalization: same-dimension WebP storage conversion only; no resize, crop, face regeneration or geometric modification  
 Allowed: storage-format normalization, deterministic responsive crop, format conversion and downscale-only derivative generation  
 Forbidden: face regeneration, face restoration, pose change, expression change, scenario replacement, background extension, source-detail upscaling or non-uniform scaling  
 Desktop focal point: 64% 48%  
