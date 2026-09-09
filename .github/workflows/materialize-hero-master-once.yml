@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   materialize:
-    if: github.event.pull_request.head.ref == 'feat/public-qa-positioning-fix-v1' && hashFiles('.hero-ingest/part-001.bin') != ''
+    if: github.event.pull_request.head.ref == 'feat/public-qa-positioning-fix-v1'
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout PR head
@@ -17,6 +17,12 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 1
+
+      - name: Require complete transient hero ingest
+        run: |
+          set -euo pipefail
+          test -f .hero-ingest/part-001.bin
+          test -f .hero-ingest/part-010.bin
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -57,6 +63,8 @@ jobs:
         working-directory: site-rebuild
         run: |
           set -euo pipefail
+          hero_dir="public/assets/editorial/portraits/filipe/home"
+          rm -f "$hero_dir"/hero-1920.* "$hero_dir"/hero-2560.* "$hero_dir"/hero-3840.* "$hero_dir"/hero-mobile-960.*
           npm run images:build
           npm run images:verify
           npm run test:image-policy
