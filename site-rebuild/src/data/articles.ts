@@ -18,6 +18,23 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'o-primeiro-teste-pode-usar-ia-o-centesimo-nao-precisa',
+    title: 'O primeiro teste pode usar IA. O centésimo não precisa.',
+    deck: 'IA é excelente para explorar o desconhecido. Depois que o comportamento esperado foi descoberto, boa parte da homologação pode virar regressão determinística, mais barata e repetível.',
+    category: 'Produtos, Qualidade & IA',
+    series: 'Qualidade e engenharia de IA',
+    date: '2026-09-12',
+    dateLabel: '12 de setembro de 2026',
+    readingTime: 'Leitura de 10 min',
+    cover: '/assets/editorial/o-primeiro-teste-pode-usar-ia-o-centesimo-nao-precisa.svg',
+    coverAlt: 'Um agente de inteligência artificial explora um fluxo e transforma o aprendizado em uma sequência de testes determinísticos de regressão.',
+    figure: '/assets/editorial/figures/o-primeiro-teste-pode-usar-ia-o-centesimo-nao-precisa.svg',
+    figureAlt: 'Fluxo editorial em três etapas: explorar com IA, formalizar o aprendizado e repetir com testes determinísticos.',
+    figureCaption: 'A inteligência explora onde existe incerteza; a automação preserva o que já foi aprendido.',
+    figureAfterHeading: 'descoberta-vira-regressao',
+    tags: ['homologação', 'regressão', 'automação']
+  },
+  {
     slug: 'ia-nao-se-testa-no-feeling',
     title: 'IA não se testa no feeling: por que evals viraram parte do produto',
     deck: 'Uma demonstração pode impressionar. Um produto precisa mostrar, de forma repetível, quando a IA acerta, onde falha e se uma mudança realmente melhorou o sistema.',
