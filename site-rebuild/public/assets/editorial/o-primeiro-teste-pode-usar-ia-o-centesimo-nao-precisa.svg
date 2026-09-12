@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">TESTE INTELIGENTE</title>
+  <desc id="desc">descoberta com IA se transforma em regressão determinística</desc>
+  <rect width="1200" height="760" fill="#f4f0e9"/>
+  <path d="M0 94H1200M0 650H1200M72 0V760M1128 0V760" stroke="#d9d1c5" stroke-width="1" opacity=".8"/>
+  <circle cx="1024" cy="170" r="184" fill="#7652a8" opacity=".08"/>
+  <circle cx="130" cy="622" r="146" fill="#bb8754" opacity=".08"/>
+  <text x="86" y="112" fill="#3d235c" font-family="Arial, sans-serif" font-size="18" font-weight="800" letter-spacing="1.6">TESTE INTELIGENTE</text>
+  <text x="86" y="143" fill="#6c6670" font-family="Arial, sans-serif" font-size="15" font-weight="650" letter-spacing="1.4">descobrir uma vez · repetir barato</text>
+  <text x="86" y="708" fill="#6c6670" font-family="Arial, sans-serif" font-size="13" font-weight="650" letter-spacing="1.5">FILIPE GUARDIA · CADERNO DE SISTEMAS REAIS</text>
+  <g transform="translate(118 220)">
+    <circle cx="138" cy="128" r="102" fill="#fffdf8" stroke="#7652a8" stroke-width="5"/>
+    <path d="M84 128C104 78 174 78 194 128C174 178 104 178 84 128Z" fill="#7652a8" opacity=".12" stroke="#7652a8" stroke-width="4"/>
+    <circle cx="139" cy="128" r="27" fill="#3d235c"/>
+    <path d="M102 214C124 188 154 188 176 214" fill="none" stroke="#bb8754" stroke-width="8" stroke-linecap="round"/>
+    <text x="138" y="272" text-anchor="middle" fill="#3d235c" font-family="Arial, sans-serif" font-size="16" font-weight="800">IA EXPLORA</text>
+  </g>
+  <path d="M390 348H520" stroke="#6c6670" stroke-width="4" stroke-dasharray="12 12"/>
+  <path d="M506 336L526 348L506 360" fill="none" stroke="#6c6670" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(548 206)">
+    <rect x="0" y="0" width="254" height="286" rx="30" fill="#fffdf8" stroke="#bb8754" stroke-width="5"/>
+    <text x="127" y="48" text-anchor="middle" fill="#bb8754" font-family="Arial, sans-serif" font-size="16" font-weight="800">APRENDIZADO</text>
+    <path d="M54 96H198M54 136H176M54 176H210" stroke="#3d235c" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="64" cy="226" r="16" fill="#2e7564"/>
+    <path d="M94 226H196" stroke="#2e7564" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <path d="M824 348H912" stroke="#6c6670" stroke-width="4" stroke-dasharray="12 12"/>
+  <path d="M898 336L918 348L898 360" fill="none" stroke="#6c6670" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(940 230)">
+    <rect x="0" y="0" width="150" height="240" rx="26" fill="#fffdf8" stroke="#2e7564" stroke-width="5"/>
+    <path d="M38 70L58 90L98 50" fill="none" stroke="#2e7564" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M38 126L58 146L98 106" fill="none" stroke="#2e7564" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M38 182L58 202L98 162" fill="none" stroke="#2e7564" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="75" y="226" text-anchor="middle" fill="#2e7564" font-family="Arial, sans-serif" font-size="13" font-weight="800">REGRESSÃO</text>
+  </g>
+  <text x="600" y="586" text-anchor="middle" fill="#3d235c" font-family="Arial, sans-serif" font-size="16" font-weight="800" letter-spacing="1.1">a inteligência descobre · a automação preserva</text>
+</svg>
