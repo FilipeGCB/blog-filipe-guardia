@@ -1,0 +1,171 @@
+<p>Existe uma forma cara de usar inteligência artificial para testar software.</p>
+<p>Ela funciona assim: a cada nova versão, um agente abre o sistema, olha a tela, decide onde clicar, interpreta o que aconteceu, tira evidências e raciocina novamente sobre cada passo.</p>
+<p>Na primeira vez, isso pode ser excelente.</p>
+<p>Na centésima, talvez seja desperdício.</p>
+<p>Quanto mais tenho estudado homologação de software com IA, mais uma ideia tem ficado clara para mim:</p>
+<p><strong>a inteligência artificial é muito valiosa para descobrir o teste. Depois que o comportamento esperado ficou conhecido, boa parte dele pode virar automação determinística.</strong></p>
+<p>Isso não reduz o papel da IA.</p>
+<p>Coloca a IA onde ela produz mais valor.</p>
+
+<h2 id="explorar-e-repetir">1. Explorar e repetir são problemas diferentes</h2>
+<p>Na primeira homologação de uma funcionalidade, existe incerteza.</p>
+<p>O botão está no lugar certo? O fluxo faz sentido? Existe uma mensagem confusa? Uma janela inesperada aparece? O usuário consegue concluir a tarefa?</p>
+<p>Nesse momento, um agente com capacidade visual e de raciocínio pode ser muito útil porque consegue lidar com situações que não foram previstas em um roteiro rígido.</p>
+<p>Mas imagine que o fluxo foi aprovado:</p>
+<ul>
+  <li>abrir o cadastro;</li>
+  <li>preencher três campos;</li>
+  <li>salvar;</li>
+  <li>confirmar que o registro aparece na lista;</li>
+  <li>verificar que o total foi atualizado.</li>
+</ul>
+<p>Na próxima versão, eu ainda preciso que uma IA redescubra cada botão?</p>
+<p>Talvez não.</p>
+<p>O problema deixou de ser descoberta e passou a ser repetição.</p>
+
+<h2 id="descoberta-vira-regressao">2. O melhor resultado de um teste inteligente pode ser um teste barato</h2>
+<p>Quando um agente encontra um caminho válido, aquele caminho pode virar um ativo.</p>
+<p>Seletores podem ser registrados. Estados esperados podem ser descritos. Imagens de referência podem ser preservadas. Dados de entrada podem ser fixados. Regras de aprovação podem ser transformadas em asserções.</p>
+<p>A partir daí, o sistema não precisa raciocinar novamente sobre tudo.</p>
+<p>Ele pode executar:</p>
+<ul>
+  <li>ações conhecidas;</li>
+  <li>comparações objetivas;</li>
+  <li>validações de estado;</li>
+  <li>testes de regressão;</li>
+  <li>captura de evidência apenas quando algo divergir.</li>
+</ul>
+<p><strong>Análise:</strong> a primeira execução produz conhecimento. Uma boa engenharia transforma esse conhecimento em automação reutilizável.</p>
+
+<h2 id="visual-nao-significa-ia-sempre">3. Teste visual não significa chamar um modelo a cada tela</h2>
+<p>Existe uma confusão comum entre teste visual e teste feito por inteligência artificial.</p>
+<p>Uma imagem pode ser validada de forma completamente determinística.</p>
+<p><strong>Fato:</strong> o Playwright possui comparação visual nativa. Na primeira execução, ele pode gerar uma imagem de referência. Nas seguintes, compara a captura atual com essa referência e permite configurar tolerâncias de diferença.</p>
+<p>A própria documentação alerta que renderização pode variar entre sistema operacional, versão, hardware e configurações, razão pela qual recomenda manter consistente o ambiente em que as imagens de referência são produzidas e comparadas.</p>
+<p>Isso é importante porque transforma uma pergunta subjetiva — “a tela ainda parece igual?” — em uma comparação repetível.</p>
+<p>A IA pode entrar depois, se a diferença realmente precisar de interpretação.</p>
+
+<h2 id="evidencia-sob-demanda">4. Evidência também pode ser produzida sob demanda</h2>
+<p>Outro custo escondido em homologações automatizadas é registrar tudo o tempo todo.</p>
+<p>Vídeo, screenshot, log, trace, análise visual e explicação detalhada de cada passo parecem seguros.</p>
+<p>Mas evidência excessiva também custa processamento, armazenamento e tempo de análise.</p>
+<p><strong>Fato:</strong> a documentação do Playwright recomenda, para integração contínua, capturar trace na primeira repetição de um teste que falhou. O modo de trace permanente é explicitamente descrito como pesado em desempenho.</p>
+<p>Existe uma lógica interessante aí.</p>
+<p>Se o teste passou, talvez baste guardar o resultado.</p>
+<p>Se falhou, aí sim vale abrir a caixa-preta: screenshots, snapshots, chamadas, rede e sequência de ações.</p>
+<p><strong>Minha leitura:</strong> observabilidade útil não é registrar o máximo possível. É conseguir aumentar a evidência quando aparece uma anomalia.</p>
+
+<h2 id="windows-tambem-tem-estrutura">5. Aplicações Windows também podem expor uma estrutura para automação</h2>
+<p>Quando pensamos em um programa <code>.exe</code>, é fácil imaginar que um robô só consegue operá-lo olhando pixels e simulando o mouse.</p>
+<p>Não precisa ser assim.</p>
+<p>O Windows possui há anos a camada UI Automation, ou UIA, que permite inspecionar elementos da interface e interagir com controles de forma estruturada.</p>
+<p><strong>Fato atual:</strong> a documentação recente da Microsoft para o <code>winapp ui</code> descreve comandos para inspecionar e automatizar interfaces Windows e diz explicitamente que eles podem ser usados por agentes de IA e desenvolvedores para teste, depuração e automação. O recurso trabalha com WPF, WinForms, Win32, Electron e WinUI 3.</p>
+<p>Isso muda a economia do teste.</p>
+<p>Em vez de perguntar a um modelo visual “onde está o botão Salvar?” toda vez, um teste pode localizar um elemento por propriedades estruturadas e acioná-lo diretamente.</p>
+
+<h2 id="quando-pixel-importa">6. Ainda existem situações em que o pixel importa</h2>
+<p>Automação estruturada não substitui completamente a visão.</p>
+<p>Um botão pode existir na árvore de acessibilidade e ainda estar visualmente cortado.</p>
+<p>Um texto pode estar correto e aparecer sobre outro componente.</p>
+<p>Uma janela pode abrir no tamanho errado.</p>
+<p>Um gráfico pode carregar os dados certos e ficar ilegível.</p>
+<p>Por isso, uma estratégia madura combina camadas.</p>
+<ul>
+  <li><strong>estrutura:</strong> o elemento existe e responde;</li>
+  <li><strong>regra:</strong> o resultado funcional está correto;</li>
+  <li><strong>visual:</strong> a apresentação permanece aceitável;</li>
+  <li><strong>IA:</strong> situações novas, ambíguas ou difíceis de codificar recebem interpretação.</li>
+</ul>
+<p>O erro é usar a camada mais cara para resolver todas as perguntas.</p>
+
+<h2 id="piramide-homologacao">7. Uma pirâmide simples ajuda a decidir onde gastar inteligência</h2>
+<p>Eu gosto de imaginar a homologação em quatro níveis.</p>
+<p>Na base estão os testes baratos e repetíveis: regras, funções, APIs, banco, contratos e estados conhecidos.</p>
+<p>Acima deles ficam os fluxos automatizados de interface.</p>
+<p>Depois vêm comparações visuais e cenários menos previsíveis.</p>
+<p>No topo entra a exploração inteligente: um agente navegando como usuário, descobrindo problemas novos e fazendo julgamento contextual.</p>
+<p>Quanto mais alto o nível, menor deveria ser a quantidade de casos executados o tempo todo.</p>
+<p>Não porque o topo seja menos importante.</p>
+<p>Porque ele é mais caro e mais valioso justamente quando investiga aquilo que a base ainda não sabe testar.</p>
+
+<h2 id="erro-vira-teste">8. Um erro encontrado pela IA deveria poder virar memória de regressão</h2>
+<p>Imagine que um agente descubra um problema estranho.</p>
+<p>Ao editar um lançamento e voltar para a tela anterior, o total não é recalculado.</p>
+<p>Na primeira vez, talvez tenha sido necessário raciocínio visual para perceber a inconsistência.</p>
+<p>Depois de entender o defeito, a equipe já sabe:</p>
+<ul>
+  <li>qual sequência provoca o erro;</li>
+  <li>qual estado deveria aparecer;</li>
+  <li>qual número precisa mudar;</li>
+  <li>qual evidência confirma a correção.</li>
+</ul>
+<p>Esse caso pode virar um teste de regressão.</p>
+<p>Se ele continuar dependendo de uma IA generalista para ser redescoberto a cada versão, a organização está pagando repetidamente para reaprender o mesmo problema.</p>
+<p><strong>O bug corrigido deveria deixar duas coisas: código melhor e um teste que impeça sua volta.</strong></p>
+
+<h2 id="humanos-e-ia">9. A homologação humana também muda</h2>
+<p>Automatizar mais não significa remover pessoas da homologação.</p>
+<p>Significa parar de gastar atenção humana com repetição mecânica.</p>
+<p>Um usuário real continua sendo excelente para perceber:</p>
+<ul>
+  <li>fluxos confusos;</li>
+  <li>fricção que o teste não mede;</li>
+  <li>linguagem pouco natural;</li>
+  <li>necessidades que não estavam na especificação;</li>
+  <li>problemas de confiança.</li>
+</ul>
+<p>O agente pode explorar antes e depois.</p>
+<p>Os testes determinísticos protegem o que já foi aprendido.</p>
+<p>E a pessoa usa seu tempo no que ainda exige julgamento de produto.</p>
+
+<h2 id="impacto-custo">10. O impacto no custo pode ser maior do que parece</h2>
+<p>Em testes com agentes, token é apenas uma parte do custo.</p>
+<p>Também existem tempo de máquina, ambiente Windows, screenshots, vídeos, transferência de arquivos, armazenamento de evidências, reexecuções e análise de falhas.</p>
+<p>Se cada teste simples exigir que um modelo observe cinco telas e decida cinco ações, um conjunto grande cresce rapidamente.</p>
+<p>Quando os fluxos estáveis migram para automação convencional, a IA pode ser reservada para:</p>
+<ul>
+  <li>novas funcionalidades;</li>
+  <li>exploração livre;</li>
+  <li>mudanças visuais relevantes;</li>
+  <li>falhas que os testes existentes não explicam;</li>
+  <li>triagem de evidências depois de uma quebra.</li>
+</ul>
+<p><strong>Análise:</strong> economizar em homologação não é simplesmente usar um modelo menor. É reduzir a quantidade de raciocínio que precisa acontecer de novo.</p>
+
+<h2 id="impacto-produto">11. O impacto para o produto é ainda mais importante</h2>
+<p>Existe um ganho que vai além de custo.</p>
+<p>Quando descobertas viram testes, o produto começa a acumular memória sobre seus próprios comportamentos.</p>
+<p>A equipe passa a saber quais fluxos são críticos, quais bugs já aconteceram, quais telas são sensíveis, quais invariantes precisam permanecer e quais evidências demonstram que uma versão está saudável.</p>
+<p>Isso reduz a dependência da memória de quem homologou a versão anterior.</p>
+<p>Também permite fazer mudanças maiores com mais segurança.</p>
+<p>O conjunto de testes funciona como uma descrição executável de parte do que o produto promete fazer.</p>
+
+<h2 id="aprendizado">12. O que estou aprendendo</h2>
+<p>Eu costumava olhar para agentes de homologação pensando principalmente em uma pergunta: qual modelo consegue testar melhor?</p>
+<p>Hoje acho que a pergunta mais útil é outra:</p>
+<p><strong>qual parte deste teste ainda precisa de inteligência?</strong></p>
+<p>Se o agente já descobriu o caminho, talvez o caminho possa virar script.</p>
+<p>Se uma imagem já foi aprovada, talvez ela possa virar baseline.</p>
+<p>Se um erro já foi explicado, talvez ele possa virar regressão.</p>
+<p>Se um fluxo só falha em casos imprevisíveis, aí sim faz sentido manter exploração inteligente.</p>
+<p>Essa mudança de mentalidade aproxima IA de engenharia.</p>
+<p>O objetivo deixa de ser mostrar que um agente consegue clicar em tudo.</p>
+<p>Passa a ser construir um sistema de qualidade que <strong>aprende uma vez e reaproveita o aprendizado</strong>.</p>
+
+<h2 id="conclusao">13. Conclusão</h2>
+<p>A inteligência artificial abriu uma possibilidade poderosa: testar software sem precisar antecipar cada passo do usuário em um roteiro rígido.</p>
+<p>Mas isso não significa que todo teste precise permanecer inteligente para sempre.</p>
+<p>Exploração e regressão cumprem papéis diferentes.</p>
+<p>A IA é excelente para navegar o desconhecido, interpretar exceções e encontrar padrões que ainda não viraram regra.</p>
+<p>A automação determinística é excelente para repetir aquilo que já sabemos que não pode quebrar.</p>
+<p>Os dois lados se completam.</p>
+<p><strong>O primeiro teste pode usar IA para descobrir como validar o produto. O centésimo deveria aproveitar tudo o que os noventa e nove anteriores já ensinaram.</strong></p>
+<p class="article-question"><strong>Pergunta ao leitor:</strong> quantos testes da sua empresa ainda usam inteligência, tempo humano ou processamento caro para redescobrir comportamentos que já poderiam ter virado regressões automáticas?</p>
+
+<h2 id="fontes">Fontes e leitura recomendada</h2>
+<ul>
+  <li><a href="https://playwright.dev/docs/test-snapshots" target="_blank" rel="noopener noreferrer">Playwright — Visual comparisons</a></li>
+  <li><a href="https://playwright.dev/docs/trace-viewer" target="_blank" rel="noopener noreferrer">Playwright — Trace Viewer</a></li>
+  <li><a href="https://learn.microsoft.com/en-us/windows/apps/dev-tools/winapp-cli/ui-automation" target="_blank" rel="noopener noreferrer">Microsoft Learn — WinApp CLI UI automation</a></li>
+  <li><a href="https://learn.microsoft.com/en-us/windows/apps/develop/testing/" target="_blank" rel="noopener noreferrer">Microsoft Learn — Testing Windows App SDK and WinUI 3 apps</a></li>
+</ul>
