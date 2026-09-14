@@ -41,7 +41,7 @@ jobs:
           ASTRO_TELEMETRY_DISABLED: '1'
         run: |
           npm run check
-          npm run build:ci
+          npm run build
           npm run preserve:legacy
           npm run audit:routes
       - name: Install Chromium
@@ -72,7 +72,7 @@ jobs:
           ASTRO_TELEMETRY_DISABLED: '1'
         run: |
           npm run check
-          npm run build:ci
+          npm run build
           npm run preserve:legacy
           npm run audit:routes
       - name: Configure Pages

@@ -18,6 +18,23 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'agentes-estao-virando-infraestrutura',
+    title: 'Agentes estão virando infraestrutura: por que o harness importa tanto quanto o modelo',
+    deck: 'A nova geração de plataformas está tirando do código da aplicação tarefas como sessões, contexto, ferramentas, aprovações e execução longa. Isso muda onde está o valor de um produto com IA.',
+    category: 'Arquitetura de IA',
+    series: 'Sistemas e agentes',
+    date: '2026-09-14',
+    dateLabel: '14 de setembro de 2026',
+    readingTime: 'Leitura de 10 min',
+    cover: '/assets/editorial/agentes-estao-virando-infraestrutura.svg',
+    coverAlt: 'Um modelo se conecta a uma camada de harness que organiza sessão, contexto, ferramentas, aprovações e execução antes de alcançar o trabalho real.',
+    figure: '/assets/editorial/figures/agentes-estao-virando-infraestrutura.svg',
+    figureAlt: 'Quatro camadas de um agente operacional: modelo, harness, produto e governança, e trabalho real.',
+    figureCaption: 'O modelo raciocina; o harness sustenta a execução; o produto define regras; o trabalho produz efeitos reais.',
+    figureAfterHeading: 'harness-vira-camada',
+    tags: ['agentes', 'harness', 'arquitetura']
+  },
+  {
     slug: 'o-primeiro-teste-pode-usar-ia-o-centesimo-nao-precisa',
     title: 'O primeiro teste pode usar IA. O centésimo não precisa.',
     deck: 'IA é excelente para explorar o desconhecido. Depois que o comportamento esperado foi descoberto, boa parte da homologação pode virar regressão determinística, mais barata e repetível.',

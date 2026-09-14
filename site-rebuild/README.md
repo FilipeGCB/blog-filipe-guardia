@@ -1,6 +1,6 @@
 # Reformulação editorial — Filipe Guardia
 
-Esta pasta contém a nova camada estática do site: Astro, HTML semântico, CSS local e SVGs editoriais autorais. O conteúdo dos 15 artigos é mantido em `src/content/articles/` como HTML integral; metadados, séries e estratégia visual ficam em `src/data/articles.ts`.
+Esta pasta contém a nova camada estática do site: Astro, HTML semântico, CSS local e SVGs editoriais autorais. O conteúdo dos artigos é mantido em `src/content/articles/` como HTML integral; metadados, séries e estratégia visual ficam em `src/data/articles.ts`.
 
 ## Desenvolvimento
 
@@ -14,10 +14,19 @@ npm run dev
 ```bash
 npm run check
 npm run build
+npm run preserve:legacy
 npm run audit:routes
 ```
 
 O build usa `format: file` para preservar as URLs dos artigos em `/artigos/*.html` e as páginas institucionais em `.html`. A navegação do arquivo e da biblioteca também usa arquivos explícitos (`artigos.html` e `biblioteca.html`) por compatibilidade com GitHub Pages estático.
+
+## Publicação editorial
+
+Cada artigo é uma unidade atômica de publicação. O fragmento HTML, o bloco correspondente em `src/data/articles.ts`, a capa e a figura interna devem entrar no **mesmo commit**.
+
+Não publique essas quatro partes em commits separados. `npm run check` valida deliberadamente a paridade entre fragmentos e metadados, a existência dos assets e a âncora de `figureAfterHeading`; portanto, um commit parcial deve falhar e nunca chegar ao deploy.
+
+Antes de enviar para `main`, valide o conjunto completo com os quatro comandos da seção anterior.
 
 ## Princípios
 

@@ -1,0 +1,95 @@
+<p>Durante muito tempo, construir um agente de inteligência artificial parecia significar juntar três coisas: um modelo, um prompt e algumas ferramentas.</p>
+<p>Essa visão está ficando pequena.</p>
+<p>Em 10 de setembro de 2026, a OpenAI colocou em beta público uma Agents API que trata o <em>harness</em> — a camada que coordena contexto, ferramentas, sessões e execução — como infraestrutura gerenciada. Poucas semanas antes, a Microsoft reorganizou seu Agent Framework em torno de conceitos parecidos: agentes, workflows e um <em>agent harness</em> para tarefas longas.</p>
+<p>O detalhe técnico importa menos do que o movimento.</p>
+<p><strong>O agente está deixando de ser apenas um loop escrito dentro da aplicação. Ele está virando uma camada de infraestrutura.</strong></p>
+
+<h2 id="modelo-nao-carrega-o-trabalho">1. O modelo não carrega o trabalho sozinho</h2>
+<p>Um modelo recebe contexto, produz uma resposta e pode decidir chamar uma ferramenta. Isso é poderoso, mas não resolve sozinho o problema de executar trabalho real por vários minutos, horas ou até dias.</p>
+<p>Quem mantém o estado da tarefa? Quem compacta o contexto quando ele cresce? Quem registra o que já foi feito? Quem decide se uma ferramenta precisa de aprovação? Quem recupera uma execução interrompida? Quem disponibiliza arquivos e ambiente de código?</p>
+<p>Essas perguntas não são sobre inteligência do modelo. São sobre engenharia de execução.</p>
+<p>É exatamente aí que aparece o <em>harness</em>: a estrutura que envolve o modelo e transforma chamadas isoladas em um processo que consegue continuar trabalhando.</p>
+
+<h2 id="harness-vira-camada">2. O harness está virando uma camada própria</h2>
+<p><strong>Fato:</strong> ao anunciar a Agents API, a OpenAI descreveu uma infraestrutura que gerencia orquestração de sessões, compactação de contexto e recuperação, além de permitir sessões duráveis e ambientes onde agentes podem trabalhar com arquivos e executar código.</p>
+<p>A Microsoft usa uma definição muito semelhante em seu Agent Framework. Na documentação, o <em>agent harness</em> é a estrutura de runtime que conduz chamadas de modelo e de ferramentas, mantém estado e contexto, aplica políticas de aprovação e ajuda o agente a avançar em tarefas de várias etapas.</p>
+<p>Isso muda a arquitetura mental.</p>
+<p>Antes, era comum pensar:</p>
+<ul>
+  <li>minha aplicação chama o modelo;</li>
+  <li>o modelo escolhe uma ferramenta;</li>
+  <li>meu código executa;</li>
+  <li>o ciclo se repete.</li>
+</ul>
+<p>Agora existe uma camada intermediária cada vez mais explícita que pode assumir boa parte desse ciclo.</p>
+
+<h2 id="infraestrutura-nao-significa-caixa-preta">3. Infraestrutura não deveria significar caixa-preta</h2>
+<p>Ter um harness pronto não elimina a necessidade de entender o que acontece dentro dele.</p>
+<p>Na verdade, quanto mais trabalho um agente executa, mais importantes ficam quatro perguntas: o que ele viu, por que tomou uma decisão, qual ferramenta usou e qual estado deixou para a próxima etapa.</p>
+<p>Um harness útil precisa facilitar observabilidade, não escondê-la.</p>
+<p><strong>Minha leitura:</strong> o mercado tende a separar duas coisas que antes ficavam misturadas. A infraestrutura genérica cuida de sessão, contexto, execução e recuperação. O produto continua responsável por regras, permissões, dados, critérios de sucesso e experiência do usuário.</p>
+<p>Essa separação é saudável porque evita que cada equipe reconstrua do zero a mesma máquina de orquestração.</p>
+
+<h2 id="workflow-e-agente-nao-sao-a-mesma-coisa">4. Workflow e agente não são a mesma coisa</h2>
+<p>Outra consequência dessa evolução é ficar mais claro quando uma etapa precisa de autonomia e quando deveria ser determinística.</p>
+<p>A documentação do Microsoft Agent Framework define workflows como caminhos explícitos e inspecionáveis que coordenam código, agentes, estado, eventos e entrada humana. Eles podem usar grafos, checkpoints e etapas bem definidas.</p>
+<p>Isso é diferente de entregar todo o processo para um modelo decidir dinamicamente.</p>
+<p>Se uma regra é conhecida, ela pode continuar sendo regra. Se uma aprovação é obrigatória, ela pode continuar sendo uma fronteira explícita. Se uma sequência precisa ser auditável, um workflow pode expressá-la melhor do que um agente livre.</p>
+<p><strong>Um sistema maduro não tenta transformar tudo em agente. Ele combina autonomia onde existe incerteza com fluxo determinístico onde existe obrigação.</strong></p>
+
+<h2 id="onde-fica-o-valor">5. Se o loop vira commodity, onde fica o valor?</h2>
+<p>Quando fornecedores começam a oferecer sessões, memória operacional, ferramentas, sandboxes e execução longa como infraestrutura, escrever o loop básico do agente deixa de ser um grande diferencial.</p>
+<p>O valor sobe uma camada.</p>
+<ul>
+  <li><strong>contexto:</strong> quais dados o agente recebe e com qual qualidade;</li>
+  <li><strong>ferramentas:</strong> quais ações ele realmente consegue executar;</li>
+  <li><strong>governança:</strong> o que pode fazer sozinho e o que exige confirmação;</li>
+  <li><strong>conhecimento:</strong> quais regras e conceitos do domínio ele entende;</li>
+  <li><strong>avaliação:</strong> como sabemos se o resultado foi bom;</li>
+  <li><strong>produto:</strong> como a pessoa acompanha, corrige e confia no trabalho.</li>
+</ul>
+<p>É aí que empresas diferentes continuam produzindo sistemas muito diferentes mesmo quando usam o mesmo modelo e o mesmo runtime.</p>
+
+<h2 id="lock-in-muda-de-lugar">6. O risco de lock-in também muda de lugar</h2>
+<p>Infraestrutura gerenciada reduz trabalho, mas cria uma pergunta arquitetural importante: quanto do comportamento do agente está preso ao runtime escolhido?</p>
+<p>Se memória, políticas de aprovação, arquivos, estados de sessão e formato das ferramentas só existem dentro de uma plataforma, trocar de fornecedor pode ficar mais difícil do que trocar apenas de modelo.</p>
+<p>Por isso, vale separar o que é conhecimento do negócio do que é mecanismo de execução.</p>
+<p>Instruções críticas, políticas, contratos de ferramentas, dados persistentes e evidências deveriam ter representação clara fora da memória efêmera de um agente.</p>
+<p><strong>Análise:</strong> a portabilidade do futuro não será apenas “consigo trocar de LLM?”. Será também “consigo trocar de harness sem perder meu processo?”.</p>
+
+<h2 id="agentes-longos-exigem-operacao">7. Agentes longos exigem pensamento operacional</h2>
+<p>Uma tarefa que dura dois segundos pode simplesmente falhar e ser repetida.</p>
+<p>Uma tarefa que trabalha por uma hora, altera arquivos, chama sistemas externos e acumula estado precisa de outra disciplina.</p>
+<p>Ela precisa lidar com retomada, idempotência, limites de custo, expiração de credenciais, cancelamento, isolamento, logs e artefatos intermediários.</p>
+<p>O anúncio da OpenAI chama atenção justamente para tarefas longas e para ambientes de execução gerenciados ou conectados pelo desenvolvedor. A Microsoft, por sua vez, coloca checkpoints, estado, observabilidade e interação humana entre as capacidades de workflows.</p>
+<p>O agente começa a se parecer menos com uma chamada de API e mais com um pequeno processo operacional.</p>
+
+<h2 id="o-que-eu-faria-hoje">8. O que eu faria ao desenhar um agente hoje</h2>
+<p>Eu começaria menos pelo modelo e mais por cinco decisões.</p>
+<ol>
+  <li><strong>Qual trabalho precisa continuar entre etapas?</strong> Isso define sessão e estado.</li>
+  <li><strong>Quais ações têm efeito real?</strong> Isso define ferramentas, permissões e aprovações.</li>
+  <li><strong>O que deve ser determinístico?</strong> Isso define workflows, regras e validações.</li>
+  <li><strong>Que evidência precisa sobreviver à execução?</strong> Isso define logs, checkpoints e artefatos.</li>
+  <li><strong>O que precisa permanecer portátil?</strong> Isso define onde guardar conhecimento, memória e contratos.</li>
+</ol>
+<p>Só depois eu escolheria até onde delegar a infraestrutura para um harness gerenciado.</p>
+<p>Esse raciocínio evita dois extremos: reconstruir tudo por conta própria sem necessidade ou terceirizar tanto que ninguém mais entende o sistema.</p>
+
+<h2 id="conclusao">9. Conclusão</h2>
+<p>Os modelos continuam evoluindo rapidamente, mas a engenharia ao redor deles está amadurecendo de forma igualmente importante.</p>
+<p>A chegada de runtimes de agentes mais completos mostra que o setor está transformando em infraestrutura aquilo que antes cada equipe implementava manualmente: sessões, contexto, ferramentas, execução, recuperação e supervisão.</p>
+<p>Isso tende a acelerar o desenvolvimento.</p>
+<p>Também muda a pergunta central.</p>
+<p>Em vez de perguntar apenas “qual modelo devo usar?”, passa a fazer sentido perguntar:</p>
+<p><strong>qual parte do meu sistema é inteligência, qual parte é infraestrutura e qual parte é conhecimento do negócio que eu não posso perder?</strong></p>
+<p>Talvez essa separação seja uma das etapas necessárias para agentes deixarem de ser demonstrações impressionantes e virarem software operacional de verdade.</p>
+<p class="article-question"><strong>Pergunta ao leitor:</strong> se você trocasse hoje o modelo e o runtime do seu agente, quanto do conhecimento e do processo continuaria sendo seu?</p>
+
+<h2 id="fontes">Fontes e leitura recomendada</h2>
+<ul>
+  <li><a href="https://openai.com/index/introducing-the-agents-api/" target="_blank" rel="noopener noreferrer">OpenAI — Introducing the Agents API (10 set. 2026)</a></li>
+  <li><a href="https://learn.microsoft.com/en-us/agent-framework/concepts/harness" target="_blank" rel="noopener noreferrer">Microsoft Learn — Agent Harness</a></li>
+  <li><a href="https://learn.microsoft.com/en-us/agent-framework/concepts/workflows/" target="_blank" rel="noopener noreferrer">Microsoft Learn — Workflow concepts</a></li>
+  <li><a href="https://learn.microsoft.com/en-us/agent-framework/overview/" target="_blank" rel="noopener noreferrer">Microsoft Learn — Microsoft Agent Framework overview</a></li>
+</ul>
