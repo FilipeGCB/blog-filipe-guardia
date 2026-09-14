@@ -54,6 +54,8 @@ jobs:
   build:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    outputs:
+      smoke_route: ${{ steps.smoke.outputs.route }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -75,6 +77,12 @@ jobs:
           npm run build
           npm run preserve:legacy
           npm run audit:routes
+      - name: Select live smoke route
+        id: smoke
+        working-directory: site-rebuild
+        run: |
+          route="$(node --experimental-strip-types --input-type=module -e "import('./src/data/articles.ts').then(({ getSortedArticles }) => process.stdout.write('/artigos/' + getSortedArticles()[0].slug + '.html'))")"
+          echo "route=$route" >> "$GITHUB_OUTPUT"
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
@@ -96,3 +104,13 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Verify published route
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+          ROUTE: ${{ needs.build.outputs.smoke_route }}
+        run: |
+          base="${PAGE_URL%/}"
+          url="${base}${ROUTE}?deploy=${GITHUB_SHA}"
+          curl --fail --silent --show-error --location --retry 12 --retry-delay 5 --retry-all-errors "$url" --output /tmp/published.html
+          grep -Fq '<article' /tmp/published.html
+          echo "Published route verified: ${base}${ROUTE}"
