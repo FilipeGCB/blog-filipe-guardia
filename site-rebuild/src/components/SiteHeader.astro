@@ -20,7 +20,7 @@ const normalized = currentPath.replace(/\/$/, '') || '/';
   <div class="nav-shell">
     <a class="brand" href={href('/')} aria-label="Filipe Guardia — início">
       <span class="brand-mark guardia-brand-mark" aria-hidden="true">
-        <img src={href('/assets/brand/guardia-g.png')} alt="" width="40" height="40" />
+        <img src={href('/assets/brand/guardia-g.png')} alt="" width="192" height="214" />
       </span>
       <span class="brand-copy">
         <span>Filipe Guardia</span>
@@ -61,16 +61,47 @@ const normalized = currentPath.replace(/\/$/, '') || '/';
   });
 </script>
 <style>
+  .nav-shell {
+    min-height: 94px;
+  }
+
+  .brand {
+    gap: 14px;
+  }
+
   .guardia-brand-mark {
+    width: 64px;
+    height: 72px;
     background: transparent;
     color: inherit;
     letter-spacing: normal;
     overflow: visible;
+    flex: 0 0 auto;
   }
 
   .guardia-brand-mark img {
-    width: 40px;
-    height: 40px;
+    width: 64px;
+    height: 72px;
     object-fit: contain;
+  }
+
+  @media (max-width: 720px) {
+    .nav-shell {
+      min-height: 84px;
+    }
+
+    .brand {
+      gap: 10px;
+    }
+
+    .guardia-brand-mark {
+      width: 54px;
+      height: 60px;
+    }
+
+    .guardia-brand-mark img {
+      width: 54px;
+      height: 60px;
+    }
   }
 </style>
