@@ -50,7 +50,7 @@ const imageUrl = image ? new URL(image.replace(/^\//, ''), site).href : undefine
     {imageUrl && <meta property="og:image" content={imageUrl} />}
     <meta name="twitter:card" content={imageUrl ? 'summary_large_image' : 'summary'} />
     {imageUrl && <meta name="twitter:image" content={imageUrl} />}
-    <link rel="icon" href={base + 'favicon.svg'} />
+    <link rel="icon" type="image/png" href={base + 'favicon.png'} />
     <title>{title}</title>
     <slot name="head" />
   </head>

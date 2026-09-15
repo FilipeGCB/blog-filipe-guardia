@@ -19,7 +19,9 @@ const normalized = currentPath.replace(/\/$/, '') || '/';
 <header class="site-header">
   <div class="nav-shell">
     <a class="brand" href={href('/')} aria-label="Filipe Guardia — início">
-      <span class="brand-mark" aria-hidden="true">FG</span>
+      <span class="brand-mark guardia-brand-mark" aria-hidden="true">
+        <img src={href('/assets/brand/guardia-g.png')} alt="" width="40" height="40" />
+      </span>
       <span class="brand-copy">
         <span>Filipe Guardia</span>
         <small>B2X · Transformação Digital · IA</small>
@@ -58,3 +60,17 @@ const normalized = currentPath.replace(/\/$/, '') || '/';
     if (event.key === 'Escape') close();
   });
 </script>
+<style>
+  .guardia-brand-mark {
+    background: transparent;
+    color: inherit;
+    letter-spacing: normal;
+    overflow: visible;
+  }
+
+  .guardia-brand-mark img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+</style>
