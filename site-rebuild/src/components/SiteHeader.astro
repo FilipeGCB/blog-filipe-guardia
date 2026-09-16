@@ -22,22 +22,22 @@ const normalized = currentPath.replace(/\/$/, '') || '/';
       <span class="brand-mark guardia-brand-mark" aria-hidden="true">
         <img
           class="guardia-brand-static"
-          src={href('/assets/brand/guardia-g.jpg')}
+          src={href('/assets/brand/guardia-g-hq.webp')}
           alt=""
-          width="192"
-          height="216"
+          width="160"
+          height="211"
         />
+        <video
+          class="guardia-brand-intro"
+          autoplay
+          muted
+          playsinline
+          preload="auto"
+          aria-hidden="true"
+        >
+          <source src={href('/assets/brand/guardia-lockup-intro-hq.webm')} type="video/webm" />
+        </video>
       </span>
-      <video
-        class="guardia-brand-intro"
-        autoplay
-        muted
-        playsinline
-        preload="auto"
-        aria-hidden="true"
-      >
-        <source src={href('/assets/brand/guardia-lockup-intro.webm')} type="video/webm" />
-      </video>
       <span class="brand-copy">
         <span>Filipe Guardia</span>
         <small>B2X · Transformação Digital · IA</small>
@@ -105,14 +105,14 @@ const normalized = currentPath.replace(/\/$/, '') || '/';
   };
 
   intro?.addEventListener('timeupdate', () => {
-    if (intro.currentTime >= 1.65) brand?.classList.add('brand-intro-settling');
+    if (intro.currentTime >= 3.3) brand?.classList.add('brand-intro-settling');
   });
   intro?.addEventListener('ended', settleBrand);
   intro?.addEventListener('error', settleBrand);
   reducedMotion.addEventListener?.('change', (event) => {
     if (event.matches) settleBrand();
   });
-  window.setTimeout(settleBrand, 3500);
+  window.setTimeout(settleBrand, 6200);
   void startBrandIntro();
 </script>
 <style>
@@ -124,80 +124,93 @@ const normalized = currentPath.replace(/\/$/, '') || '/';
     position: relative;
     isolation: isolate;
     gap: 14px;
+    min-width: 0;
   }
 
   .guardia-brand-mark {
+    position: relative;
+    display: block;
     width: 64px;
     height: 72px;
+    flex: 0 0 auto;
+    overflow: hidden;
+    border-radius: 0;
     background: transparent;
     color: inherit;
     letter-spacing: normal;
-    overflow: visible;
-    flex: 0 0 auto;
+    transition:
+      width 760ms cubic-bezier(0.2, 0.78, 0.22, 1),
+      height 760ms cubic-bezier(0.2, 0.78, 0.22, 1);
   }
 
   .guardia-brand-static {
+    position: absolute;
+    inset: 0;
     width: 64px;
     height: 72px;
     object-fit: contain;
-    transform-origin: center;
+    opacity: 1;
     transition: opacity 180ms ease;
   }
 
   .guardia-brand-intro {
     position: absolute;
-    z-index: 3;
+    z-index: 2;
     top: 50%;
-    left: -24px;
-    width: min(270px, calc(100vw - 120px));
-    height: auto;
+    left: 0;
+    width: 240px;
+    height: 90px;
+    max-width: none;
+    object-fit: contain;
     transform: translate3d(0, -50%, 0);
     opacity: 0;
     pointer-events: none;
     transition:
       opacity 180ms ease,
-      transform 900ms cubic-bezier(0.2, 0.78, 0.22, 1);
+      transform 760ms cubic-bezier(0.2, 0.78, 0.22, 1);
   }
 
-  .brand-copy {
-    transition: opacity 280ms ease, transform 420ms ease;
+  .brand-intro-active .guardia-brand-mark {
+    width: 240px;
+    height: 90px;
   }
 
-  .brand-intro-active .brand-copy {
+  .brand-intro-active .guardia-brand-static {
     opacity: 0;
-    transform: translateX(8px);
   }
 
   .brand-intro-active .guardia-brand-intro {
     opacity: 1;
   }
 
-  .brand-intro-active:not(.brand-intro-settling) .guardia-brand-static {
-    opacity: 0;
+  .brand-intro-settling .guardia-brand-mark,
+  .brand-intro-settled .guardia-brand-mark {
+    width: 64px;
+    height: 72px;
   }
 
   .brand-intro-settling .guardia-brand-intro,
   .brand-intro-settled .guardia-brand-intro {
-    transform: translate3d(-70px, -50%, 0);
+    transform: translate3d(-54px, -50%, 0);
   }
 
   .brand-intro-settled .guardia-brand-intro {
     opacity: 0;
   }
 
-  .brand-intro-settled .brand-copy,
   .brand-intro-settled .guardia-brand-static {
     opacity: 1;
-    transform: none;
   }
 
-  @media (max-width: 720px) {
+  @media (max-width: 660px) {
     .nav-shell {
       min-height: 84px;
+      gap: 12px;
     }
 
     .brand {
       gap: 10px;
+      min-width: 0;
     }
 
     .guardia-brand-mark {
@@ -211,13 +224,24 @@ const normalized = currentPath.replace(/\/$/, '') || '/';
     }
 
     .guardia-brand-intro {
-      left: -20px;
-      width: min(240px, calc(100vw - 92px));
+      width: 160px;
+      height: 60px;
+    }
+
+    .brand-intro-active .guardia-brand-mark {
+      width: 160px;
+      height: 60px;
+    }
+
+    .brand-intro-settling .guardia-brand-mark,
+    .brand-intro-settled .guardia-brand-mark {
+      width: 54px;
+      height: 60px;
     }
 
     .brand-intro-settling .guardia-brand-intro,
     .brand-intro-settled .guardia-brand-intro {
-      transform: translate3d(-65px, -50%, 0);
+      transform: translate3d(-36px, -50%, 0);
     }
   }
 
@@ -226,8 +250,8 @@ const normalized = currentPath.replace(/\/$/, '') || '/';
       display: none;
     }
 
-    .guardia-brand-static,
-    .brand-copy {
+    .guardia-brand-mark,
+    .guardia-brand-static {
       transition: none;
       animation: none;
     }
