@@ -20,8 +20,24 @@ const normalized = currentPath.replace(/\/$/, '') || '/';
   <div class="nav-shell">
     <a class="brand" href={href('/')} aria-label="Filipe Guardia — início">
       <span class="brand-mark guardia-brand-mark" aria-hidden="true">
-        <img src={href('/assets/brand/guardia-g.jpg')} alt="" width="192" height="216" />
+        <img
+          class="guardia-brand-static"
+          src={href('/assets/brand/guardia-g.jpg')}
+          alt=""
+          width="192"
+          height="216"
+        />
       </span>
+      <video
+        class="guardia-brand-intro"
+        autoplay
+        muted
+        playsinline
+        preload="auto"
+        aria-hidden="true"
+      >
+        <source src={href('/assets/brand/guardia-lockup-intro.webm')} type="video/webm" />
+      </video>
       <span class="brand-copy">
         <span>Filipe Guardia</span>
         <small>B2X · Transformação Digital · IA</small>
@@ -42,6 +58,10 @@ const normalized = currentPath.replace(/\/$/, '') || '/';
   const header = document.querySelector('.site-header');
   const toggle = header?.querySelector('.nav-toggle');
   const nav = header?.querySelector('.site-nav');
+  const brand = header?.querySelector<HTMLElement>('.brand');
+  const intro = brand?.querySelector<HTMLVideoElement>('.guardia-brand-intro');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
   const close = () => {
     toggle?.setAttribute('aria-expanded', 'false');
     nav?.classList.remove('is-open');
@@ -59,6 +79,41 @@ const normalized = currentPath.replace(/\/$/, '') || '/';
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') close();
   });
+
+  let introSettled = false;
+  const settleBrand = () => {
+    if (introSettled) return;
+    introSettled = true;
+    brand?.classList.add('brand-intro-settled');
+    brand?.classList.remove('brand-intro-active', 'brand-intro-settling');
+    intro?.pause();
+  };
+
+  const startBrandIntro = async () => {
+    if (!brand || !intro || reducedMotion.matches) {
+      settleBrand();
+      return;
+    }
+
+    brand.classList.add('brand-intro-active');
+    intro.currentTime = 0;
+    try {
+      await intro.play();
+    } catch {
+      settleBrand();
+    }
+  };
+
+  intro?.addEventListener('timeupdate', () => {
+    if (intro.currentTime >= 1.65) brand?.classList.add('brand-intro-settling');
+  });
+  intro?.addEventListener('ended', settleBrand);
+  intro?.addEventListener('error', settleBrand);
+  reducedMotion.addEventListener?.('change', (event) => {
+    if (event.matches) settleBrand();
+  });
+  window.setTimeout(settleBrand, 3500);
+  void startBrandIntro();
 </script>
 <style>
   .nav-shell {
@@ -66,6 +121,8 @@ const normalized = currentPath.replace(/\/$/, '') || '/';
   }
 
   .brand {
+    position: relative;
+    isolation: isolate;
     gap: 14px;
   }
 
@@ -79,10 +136,59 @@ const normalized = currentPath.replace(/\/$/, '') || '/';
     flex: 0 0 auto;
   }
 
-  .guardia-brand-mark img {
+  .guardia-brand-static {
     width: 64px;
     height: 72px;
     object-fit: contain;
+    transform-origin: center;
+    transition: opacity 180ms ease;
+  }
+
+  .guardia-brand-intro {
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    left: -24px;
+    width: min(270px, calc(100vw - 120px));
+    height: auto;
+    transform: translate3d(0, -50%, 0);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity 180ms ease,
+      transform 900ms cubic-bezier(0.2, 0.78, 0.22, 1);
+  }
+
+  .brand-copy {
+    transition: opacity 280ms ease, transform 420ms ease;
+  }
+
+  .brand-intro-active .brand-copy {
+    opacity: 0;
+    transform: translateX(8px);
+  }
+
+  .brand-intro-active .guardia-brand-intro {
+    opacity: 1;
+  }
+
+  .brand-intro-active:not(.brand-intro-settling) .guardia-brand-static {
+    opacity: 0;
+  }
+
+  .brand-intro-settling .guardia-brand-intro,
+  .brand-intro-settled .guardia-brand-intro {
+    transform: translate3d(-70px, -50%, 0);
+  }
+
+  .brand-intro-settled .guardia-brand-intro {
+    opacity: 0;
+  }
+
+  .brand-intro-settled .brand-copy,
+  .brand-intro-settled .guardia-brand-static {
+    opacity: 1;
+    transform: none;
   }
 
   @media (max-width: 720px) {
@@ -99,9 +205,31 @@ const normalized = currentPath.replace(/\/$/, '') || '/';
       height: 60px;
     }
 
-    .guardia-brand-mark img {
+    .guardia-brand-static {
       width: 54px;
       height: 60px;
+    }
+
+    .guardia-brand-intro {
+      left: -20px;
+      width: min(240px, calc(100vw - 92px));
+    }
+
+    .brand-intro-settling .guardia-brand-intro,
+    .brand-intro-settled .guardia-brand-intro {
+      transform: translate3d(-65px, -50%, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .guardia-brand-intro {
+      display: none;
+    }
+
+    .guardia-brand-static,
+    .brand-copy {
+      transition: none;
+      animation: none;
     }
   }
 </style>
