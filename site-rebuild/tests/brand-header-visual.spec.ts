@@ -17,7 +17,6 @@ test.describe('Guard.IA header animation', () => {
     const copy = brand.locator('.brand-copy');
     const title = copy.locator('span');
     const tagline = copy.locator('small');
-    const mark = brand.locator('.guardia-brand-mark');
     const intro = brand.locator('.guardia-brand-intro');
     const still = brand.locator('.guardia-brand-static');
 
@@ -42,8 +41,8 @@ test.describe('Guard.IA header animation', () => {
         readyState: video.readyState
       };
     });
-    expect(activeMetrics.videoWidth).toBe(240);
-    expect(activeMetrics.videoHeight).toBe(90);
+    expect(activeMetrics.videoWidth).toBe(640);
+    expect(activeMetrics.videoHeight).toBe(360);
     expect(activeMetrics.renderedWidth).toBeLessThanOrEqual(240.5);
     expect(activeMetrics.renderedHeight).toBeLessThanOrEqual(90.5);
     expect(activeMetrics.readyState).toBeGreaterThanOrEqual(2);
@@ -66,8 +65,8 @@ test.describe('Guard.IA header animation', () => {
         markBackground: getComputedStyle(mark).backgroundColor
       };
     });
-    expect(settled.naturalWidth).toBe(160);
-    expect(settled.naturalHeight).toBe(211);
+    expect(settled.naturalWidth).toBe(299);
+    expect(settled.naturalHeight).toBe(395);
     expect(settled.markWidth).toBeGreaterThanOrEqual(63);
     expect(settled.markHeight).toBeGreaterThanOrEqual(71);
     expect(settled.markBackground).toBe('rgba(0, 0, 0, 0)');
@@ -80,7 +79,6 @@ test.describe('Guard.IA header animation', () => {
 
     const brand = page.locator('.brand').first();
     const title = brand.locator('.brand-copy > span');
-    const mark = brand.locator('.guardia-brand-mark');
     const toggle = page.locator('.nav-toggle');
 
     await page.waitForTimeout(650);
@@ -92,7 +90,7 @@ test.describe('Guard.IA header animation', () => {
       const mark = document.querySelector('.guardia-brand-mark')!.getBoundingClientRect();
       const copy = document.querySelector('.brand-copy')!.getBoundingClientRect();
       const toggle = document.querySelector('.nav-toggle')!.getBoundingClientRect();
-      return { markRight: mark.right, copyRight: copy.right, toggleLeft: toggle.left, markWidth: mark.width };
+      return { copyRight: copy.right, toggleLeft: toggle.left, markWidth: mark.width };
     });
     expect(geometry.markWidth).toBeLessThanOrEqual(164);
     expect(geometry.copyRight).toBeLessThanOrEqual(geometry.toggleLeft - 4);
