@@ -11,46 +11,21 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: editorial-site-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
+  # Temporary hotfix while Pages still publishes repository root from main.
+  # Keep Astro dist authoritative until the private-source/public-deploy cutover.
   validate-pr:
     if: github.event_name == 'pull_request' && github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout PR head
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          fetch-depth: 0
-      - name: Materialize canonical Guard.IA binaries once
-        env:
-          STATIC_URL: 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-6140-820e-af7b-3c8ba59a7f35/raw?se=2026-09-17T02%3A15%3A09Z&sp=r&sv=2026-02-06&sr=b&scid=379fa38b-9967-57d8-96c0-e70b0ec80d7e&skoid=86ad43b0-1afa-4d46-a6d6-9e67f7cdc5bc&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-16T20%3A07%3A14Z&ske=2026-09-17T20%3A07%3A14Z&sks=b&skv=2026-02-06&sig=DRX5tvMUwPd7jFVWQbpU2X8fOgTxGCkWWgxii340AkQ%3D'
-          VIDEO_URL: 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-5d6c-820e-9510-2975ccdee386/raw?se=2026-09-17T02%3A15%3A49Z&sp=r&sv=2026-02-06&sr=b&scid=a2e27136-4855-52aa-b685-ff2260b2dfa1&skoid=86ad43b0-1afa-4d46-a6d6-9e67f7cdc5bc&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-16T20%3A02%3A14Z&ske=2026-09-17T20%3A02%3A14Z&sks=b&skv=2026-02-06&sig=MAOZqpEzlUdkgnnMfHXRVGpYpKIj6k1WTUJnpQZ2CHo%3D'
-        run: |
-          set -euo pipefail
-          static='site-rebuild/public/assets/brand/guardia-g-hq.webp'
-          video='site-rebuild/public/assets/brand/guardia-lockup-intro-hq.webm'
-          if [ -f "$static" ] && [ -f "$video" ]; then
-            echo 'Canonical Guard.IA assets already materialized.'
-            exit 0
-          fi
-          mkdir -p "$(dirname "$static")"
-          curl --fail --silent --show-error --location --retry 3 "$STATIC_URL" -o "$static"
-          curl --fail --silent --show-error --location --retry 3 "$VIDEO_URL" -o "$video"
-          echo '1b3961dfb3d73e546651979f5dc143073812c48552d71521711ed3bf43b25fd3  site-rebuild/public/assets/brand/guardia-g-hq.webp' | sha256sum -c -
-          echo '0e97b3d4808e8b537360bf6beab56c134befad8267c8d6922c4960bf1b91a4ca  site-rebuild/public/assets/brand/guardia-lockup-intro-hq.webm' | sha256sum -c -
-          rm -rf .transport
-          rm -f site-rebuild/public/assets/brand/guardia-g.jpg site-rebuild/public/assets/brand/guardia-lockup-intro.webm .probe-ignore.txt
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A
-          git commit -m 'fix: materialize full-quality Guard.IA header assets'
-          git push origin HEAD:${{ github.event.pull_request.head.ref }}
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
