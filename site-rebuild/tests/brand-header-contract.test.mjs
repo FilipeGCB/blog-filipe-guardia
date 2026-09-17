@@ -24,14 +24,14 @@ function webpCanvas(buffer) {
 test('Guard.IA header assets keep exact HQ transparent masters', () => {
   const asset = fs.readFileSync(assetPath);
   const canvas = webpCanvas(asset);
-  assert.deepEqual(canvas, { width: 160, height: 211, hasAlpha: true });
-  assert.equal(asset.length, 27_358);
-  assert.equal(sha256(asset), 'a3d3cfa213d91fd8d904885dc4017554125e7635ac1f10410989cf02c72f517d');
+  assert.deepEqual(canvas, { width: 299, height: 395, hasAlpha: true });
+  assert.equal(asset.length, 54_258);
+  assert.equal(sha256(asset), '1b3961dfb3d73e546651979f5dc143073812c48552d71521711ed3bf43b25fd3');
 
   const intro = fs.readFileSync(introPath);
-  assert.equal(intro.length, 86_474, 'HQ transparent WebM intro size changed unexpectedly');
+  assert.equal(intro.length, 175_379, 'HQ transparent WebM intro size changed unexpectedly');
   assert.equal(intro.subarray(0, 4).toString('hex'), '1a45dfa3', 'missing WebM EBML signature');
-  assert.equal(sha256(intro), 'e933ef915fa36390eaf9a2316da455099faaab494d83430a7cd8a558c04e307d');
+  assert.equal(sha256(intro), '0e97b3d4808e8b537360bf6beab56c134befad8267c8d6922c4960bf1b91a4ca');
 });
 
 test('Guard.IA intro animates only the mark and never hides Filipe header copy', () => {
