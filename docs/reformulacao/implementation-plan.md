@@ -1,5 +1,7 @@
 # Reformulação editorial do site Filipe Guardia — Implementation Plan
 
+> **STATUS HISTÓRICO — NÃO É DOCUMENTAÇÃO OPERACIONAL ATUAL.** A reformulação descrita abaixo já foi implementada e evoluiu. Para editar ou publicar hoje, use `site-rebuild/README.md` e `site-rebuild/docs/AUTOMATED_ARTICLE_PUBLICATION.md`. Regras, contagens de artigos, branches e caminhos deste plano podem estar desatualizados.
+
 > For agentic workers: REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox syntax for tracking.
 
 Goal: transformar o site estático do Filipe em uma publicação editorial visual, com fonte única de conteúdo, capas/diagramas por artigo, arquivo navegável e páginas internas coerentes, preservando URLs e publicação no GitHub Pages.
