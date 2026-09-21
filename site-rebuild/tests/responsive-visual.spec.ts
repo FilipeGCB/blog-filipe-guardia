@@ -122,6 +122,8 @@ for (const viewport of viewports) {
 
       if (viewport.width <= 767) {
         expect(metrics.currentSrc).toMatch(/hero-mobile-(480|768|819)\.(avif|webp)$/);
+        expect(metrics.naturalRatio, 'mobile derivative must preserve the complete 3:2 source').toBeCloseTo(3 / 2, 2);
+        expect(metrics.boxRatio, 'mobile hero frame must preserve the complete 3:2 photograph').toBeCloseTo(3 / 2, 1);
       } else {
         expect(metrics.currentSrc).toMatch(/hero-(960|1440|1536)\.(avif|webp)$/);
       }
