@@ -166,8 +166,25 @@
 
 @media (max-width: 700px) {
   .project-editorial-visual,
-  .project-concept-visual { min-height: 390px; }
-  .project-concept-visual { padding-inline: clamp(22px, 7vw, 34px); }
+  .project-concept-visual {
+    min-height: 0;
+    height: auto;
+  }
+  .project-editorial-visual img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  .project-concept-visual {
+    padding: 72px clamp(18px, 5vw, 24px) 24px;
+  }
+  .project-visual-disclosure {
+    top: 18px;
+    right: 18px;
+    max-width: calc(100% - 36px);
+    line-height: 1.25;
+    white-space: normal;
+  }
   .project-concept-flow {
     display: flex;
     flex-direction: column;

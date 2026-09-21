@@ -319,6 +319,8 @@
   color: var(--night-text);
 }
 
+.utility-night .eyebrow { color: #d9ab72; }
+
 .utility-intro-grid {
   display: grid;
   min-height: clamp(500px, 64svh, 760px);
