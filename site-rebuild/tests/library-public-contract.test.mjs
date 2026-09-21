@@ -5,30 +5,70 @@ import test from 'node:test';
 
 const root = process.cwd();
 const read = (path) => readFileSync(join(root, path), 'utf8');
+const registry = read('src/data/guides.ts');
+const expectedGuides = [...registry.matchAll(/slug:\s*'([^']+)'/g)]
+  .map((match) => match[1] + '.md')
+  .sort();
 
-test('public library ships exactly 24 portable Markdown guides', () => {
-  const dir = join(root, 'public', 'guias');
-  const guides = existsSync(dir)
-    ? readdirSync(dir).filter((name) => name.endsWith('.md')).sort()
+test('public library is backed by exactly 24 canonical Obsidian guide snapshots', () => {
+  const sourceDir = join(root, 'src', 'content', 'public-guides');
+  const publicDir = join(root, 'public', 'guias');
+  const sourceGuides = existsSync(sourceDir)
+    ? readdirSync(sourceDir).filter((name) => name.endsWith('.md') && name !== '00-KERNEL-EXECUCAO.md').sort()
+    : [];
+  const publicGuides = existsSync(publicDir)
+    ? readdirSync(publicDir).filter((name) => name.endsWith('.md') && name !== '00-KERNEL-EXECUCAO.md').sort()
     : [];
 
-  assert.equal(guides.length, 24, `expected 24 Markdown guides, found ${guides.length}`);
+  assert.equal(expectedGuides.length, 24);
+  assert.deepEqual(sourceGuides, expectedGuides);
+  assert.deepEqual(publicGuides, expectedGuides);
+  assert.ok(existsSync(join(sourceDir, '00-KERNEL-EXECUCAO.md')));
+  assert.ok(existsSync(join(publicDir, '00-KERNEL-EXECUCAO.md')));
 });
 
-test('downloadable guides are self-contained executable prompts, not summaries', () => {
-  const dir = join(root, 'public', 'guias');
-  const guides = readdirSync(dir).filter((name) => name.endsWith('.md')).sort();
+test('downloadable guides are byte-for-byte canonical public snapshots, not generated boilerplate', () => {
+  for (const name of expectedGuides) {
+    const source = readFileSync(join(root, 'src', 'content', 'public-guides', name), 'utf8');
+    const published = readFileSync(join(root, 'public', 'guias', name), 'utf8');
 
-  for (const name of guides) {
-    const markdown = readFileSync(join(dir, name), 'utf8');
-    assert.ok(markdown.length >= 1800, `${name} is too short to be a self-contained guide`);
-    assert.match(markdown, /## Instruções para o assistente/i, `${name} must contain an executable instruction block`);
-    assert.match(markdown, /## Processo obrigatório/i, `${name} must contain a mandatory method`);
-    assert.match(markdown, /## Gate final/i, `${name} must contain a final verification gate`);
-    assert.match(markdown, /Você deve|Ao receber este guia/i, `${name} must directly instruct the assistant`);
-    assert.doesNotMatch(markdown, /00-KERNEL-EXECUCAO|source_method|Vivo|data:image|\.\.\/09_GUIAS/i,
-      `${name} must not depend on private/corporate execution material`);
+    assert.equal(published, source, name + ' differs from its canonical public snapshot');
+    assert.match(source, /^---\nid:\s*[A-Z0-9]+\ntitle:/);
+    assert.match(source, /\nversion:\s*v\d/);
+    assert.match(source, /## Quando ativar/i);
+    assert.match(source, /## Quando não ativar/i);
+    assert.match(source, /## Entradas mínimas/i);
+    assert.match(source, /## Processo obrigatório/i);
+    assert.match(source, /## Entrega esperada/i);
+    assert.match(source, /## QA e limites/i);
+    assert.match(source, /## Regra de execução/i);
+    assert.match(source, /00-KERNEL-EXECUCAO\.md/);
+    assert.match(source, /## Exemplos de pedidos/i);
+    assert.match(source, /## Ajuste da auditoria/i);
+
+    assert.doesNotMatch(source, /## Instruções para o assistente|Este Markdown é o \*\*guia em si\*\*|## Gate final/i,
+      name + ' still contains the generic blog-generated template');
+    assert.doesNotMatch(source, /Vivo Habilidades|PERFIL-PRIVADO|data:image|vivo-logo/i,
+      name + ' leaked the explicitly private corporate overlay');
   }
+});
+
+test('public execution kernel matches the checked-in canonical snapshot and is public-safe', () => {
+  const source = read('src/content/public-guides/00-KERNEL-EXECUCAO.md');
+  const published = read('public/guias/00-KERNEL-EXECUCAO.md');
+  assert.equal(published, source);
+  assert.match(source, /# Kernel Transversal de Execução/);
+  assert.match(source, /Handshake silencioso de capacidade/);
+  assert.match(source, /Evidência de teste/);
+  assert.doesNotMatch(source, /Vivo Habilidades|PERFIL-PRIVADO|data:image|vivo-logo/i);
+});
+
+test('guide provenance pins the Obsidian source used for public snapshots', () => {
+  const provenance = JSON.parse(read('src/content/public-guides/PROVENANCE.json'));
+  assert.equal(provenance.source_repository, 'FilipeGCB/obsidian-notes');
+  assert.equal(provenance.public_guides, 24);
+  assert.match(provenance.source_commit, /^[0-9a-f]{40}$/);
+  assert.match(provenance.source_root, /12_BIBLIOTECA_HABILIDADES_COPILOT/);
 });
 
 test('library explains portable-skill usage and offers Markdown downloads', () => {
@@ -39,6 +79,7 @@ test('library explains portable-skill usage and offers Markdown downloads', () =
   assert.match(source, /Copilot/i);
   assert.match(source, /Claude/i);
   assert.match(source, /Baixar guia \(\.md\)/i);
+  assert.match(source, /00-KERNEL-EXECUCAO\.md/);
   assert.doesNotMatch(source, /PageAgentLauncher/);
   assert.doesNotMatch(source, /habilidades\/index\.html/);
   assert.doesNotMatch(source, /habilidades\/biblioteca-completa\.html/);

@@ -78,11 +78,12 @@ const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
       <aside class="guide-download-panel" aria-label="Baixar o guia completo">
         <div>
           <strong>Guia completo em Markdown</strong>
-          <p>O arquivo contém as instruções executáveis completas para fornecer ao ChatGPT, Copilot, Claude ou outro assistente compatível com contexto Markdown.</p>
+          <p>Este é o guia canônico público, preservado a partir da biblioteca original. Para executar o método completo fora deste site, forneça também o Kernel Transversal de Execução.</p>
           <small>{guideCompatibility.join(' · ')}</small>
         </div>
         <div class="guide-download-panel-actions">
           <a class="button" href={href(`/guias/${guide.slug}.md`)} download>Baixar guia (.md)</a>
+          <a class="button-secondary" href={href('/guias/00-KERNEL-EXECUCAO.md')} download>Baixar kernel (.md)</a>
           <a class="button-secondary" href={href('/biblioteca.html')}>Voltar à biblioteca</a>
         </div>
       </aside>

@@ -1,21 +1,27 @@
-import { mkdir, readdir, rm, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, readdir, rm } from 'node:fs/promises';
 import { join } from 'node:path';
-import { guideCompatibility, portableGuides } from '../src/data/guides.ts';
+import { portableGuides } from '../src/data/guides.ts';
 
+const sourceDir = join(process.cwd(), 'src', 'content', 'public-guides');
 const outputDir = join(process.cwd(), 'public', 'guias');
+const expected = portableGuides.map((guide) => guide.slug + '.md').sort();
+const sourceFiles = (await readdir(sourceDir)).filter((name) => name.endsWith('.md') && name !== '00-KERNEL-EXECUCAO.md').sort();
 
-const render = (guide) => `# ${guide.title}\n\n> **${guide.id} · Guia executável portátil para assistentes de IA**\n>\n> Compatível com: ${guideCompatibility.join(', ')}.\n\n## O que este guia ativa\n\n${guide.summary}\n\nEste Markdown é o **guia em si**, não apenas uma descrição. Ao anexá-lo, colá-lo nas instruções ou fornecê-lo como contexto, o assistente deve adotar o método abaixo para esta classe de tarefa. O arquivo não instala ferramentas nem concede acessos; ele organiza comportamento, processo, critérios de qualidade, evidências e limites.\n\n## Instruções para o assistente\n\nAo receber este guia, você deve:\n\n1. **Tratar este documento como um contrato de execução para a tarefa atual.** Use-o como método principal quando o pedido estiver dentro do escopo descrito abaixo.\n2. **Classificar silenciosamente o ambiente real** antes de prometer ações: conversa apenas, workspace com arquivos/repositório, ou agente com terminal/navegador/ferramentas. Nunca afirme que abriu, executou, testou, publicou ou validou algo sem evidência real.\n3. **Reconstruir o objetivo e o contexto disponível antes de produzir a solução.** Aproveite arquivos e informações já fornecidos; não peça ao usuário para repetir o que pode ser lido diretamente.\n4. **Perguntar somente quando uma lacuna muda materialmente a execução.** Se a ambiguidade puder ser tratada com uma hipótese explícita e reversível, registre a hipótese e prossiga.\n5. **Separar confirmado, inferido, hipótese, não encontrado e não validado.** Ausência de evidência não prova inexistência.\n6. **Executar o processo obrigatório deste guia na ordem adequada**, adaptando profundidade e formato ao pedido sem remover os gates de qualidade.\n7. **Não inventar capacidades, dados, fontes, integrações, testes, resultados ou permissões.** Quando faltar capacidade, entregue a melhor alternativa possível e declare a limitação.\n8. **Produzir a entrega esperada**, priorizando artefatos utilizáveis, rastreabilidade e clareza sobre o que está concluído versus pendente.\n9. **Aplicar o gate final** antes de encerrar. Se um critério não puder ser comprovado, marque-o como não validado em vez de tratá-lo como aprovado.\n\n## Quando ativar\n\n${guide.activateWhen}\n\n## Quando não ativar\n\nNão use este guia como método principal quando o entregável central pertencer claramente a outra classe de problema. Não force o método apenas porque há alguma sobreposição temática. Se outro método define melhor a verdade do conteúdo ou o formato principal, ele deve ser dominante.\n\n## Entradas mínimas\n\n${guide.inputs}\n\nSe alguma entrada crítica estiver ausente e impedir uma decisão segura, solicite apenas essa informação. Caso contrário, declare a hipótese de trabalho e avance.\n\n## Processo obrigatório\n\n${guide.process.map((step, index) => `${index + 1}. ${step}`).join('\n')}\n\nDurante o processo, preserve decisões importantes, exceções, riscos e evidências. Não esconda inconsistências encontradas para produzir uma saída aparentemente mais limpa.\n\n## Entrega esperada\n\n${guide.delivery}\n\nA entrega deve distinguir claramente:\n\n- o que foi produzido;\n- o que foi efetivamente verificado;\n- o que depende de validação humana, ambiente, dado ou acesso adicional;\n- riscos, limitações e próxima ação recomendada quando houver.\n\n## Qualidade e limites\n\n${guide.quality}\n\nAlém da regra específica acima:\n\n- não declarar teste sem comando, relatório, screenshot, log ou matriz manual equivalente;\n- não declarar publicação/deploy sem verificar o estado publicado;\n- não apresentar inferência como fato;\n- não transformar uma entrega dependente de pessoas em “validada” sem uso/piloto real;\n- não expor dados confidenciais, credenciais ou material privado para completar a tarefa;\n- preferir a menor complexidade que atenda o objetivo com segurança e evidência.\n\n## Gate final\n\nAntes de responder, confirme:\n\n- [ ] o objetivo do pedido foi atendido;\n- [ ] o método deste guia foi aplicado de forma coerente;\n- [ ] o formato ou artefato prometido existe de fato;\n- [ ] afirmações materiais têm evidência ou limitação explícita;\n- [ ] testes e validações citados possuem evidência;\n- [ ] riscos, exceções e itens não validados estão visíveis;\n- [ ] não houve promessa de capacidade, acesso ou resultado inexistente;\n- [ ] a próxima ação está clara quando o trabalho ainda não terminou.\n\n## Exemplos de pedido\n\n${guide.examples.map((example) => `- ${example}`).join('\n')}\n\n---\n\n## Como usar\n\n1. Baixe este arquivo .md.\n2. Anexe-o ao ChatGPT, Copilot, Claude ou outro assistente que aceite contexto Markdown — ou cole seu conteúdo nas instruções da conversa/agente.\n3. Faça o pedido normalmente e forneça os arquivos/dados necessários.\n4. O assistente deve seguir este contrato durante a execução.\n\nVocê pode combinar este guia com **no máximo um método complementar** quando isso mudar materialmente o resultado. Evite carregar vários guias sem necessidade, porque instruções concorrentes reduzem previsibilidade.\n`;
+if (JSON.stringify(sourceFiles) !== JSON.stringify(expected)) {
+  throw new Error('Canonical public guide snapshots do not match the 24-guide registry.');
+}
 
 await rm(outputDir, { recursive: true, force: true });
 await mkdir(outputDir, { recursive: true });
 
-for (const guide of portableGuides) {
-  await writeFile(join(outputDir, `${guide.slug}.md`), render(guide), 'utf8');
+for (const name of expected) {
+  await copyFile(join(sourceDir, name), join(outputDir, name));
+}
+await copyFile(join(sourceDir, '00-KERNEL-EXECUCAO.md'), join(outputDir, '00-KERNEL-EXECUCAO.md'));
+
+const published = (await readdir(outputDir)).filter((name) => name.endsWith('.md')).sort();
+if (published.length !== expected.length + 1) {
+  throw new Error('Expected 24 canonical guides plus the execution kernel, found ' + published.length);
 }
 
-const files = (await readdir(outputDir)).filter((name) => name.endsWith('.md'));
-if (files.length !== portableGuides.length) {
-  throw new Error(`Expected ${portableGuides.length} generated guides, found ${files.length}`);
-}
-
-console.log(`public-guides: generated ${files.length} executable Markdown guides`);
+console.log('public-guides: published 24 canonical Obsidian guides + execution kernel');

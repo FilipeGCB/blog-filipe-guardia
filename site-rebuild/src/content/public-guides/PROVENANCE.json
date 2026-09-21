@@ -1,0 +1,12 @@
+{
+  "source_repository": "FilipeGCB/obsidian-notes",
+  "source_branch": "feat/cognitive-os-audit-hardening-v1-3",
+  "source_commit": "9b6c3beb6848b45dd7a5d67f3654288fb31db566",
+  "source_root": "Projetos/formacao-transformacao-digital-ia/12_BIBLIOTECA_HABILIDADES_COPILOT",
+  "public_guides": 24,
+  "transformation": [
+    "remove explicitly private Vivo HTML/profile overlay",
+    "rewrite kernel link for the standalone public directory",
+    "preserve all remaining canonical guide content"
+  ]
+}

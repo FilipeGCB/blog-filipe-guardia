@@ -10,6 +10,7 @@
     "build:ci": "astro build",
     "prebuild": "npm run guides:build && npm run images:build",
     "preview": "astro preview",
+    "guides:import": "node --experimental-strip-types scripts/import-public-guides-from-obsidian.mjs",
     "guides:build": "node --experimental-strip-types scripts/build-public-guides.mjs",
     "images:hero": "node scripts/generate-home-hero.mjs",
     "images:build": "node scripts/build-image-variants.mjs && node scripts/generate-home-hero.mjs",

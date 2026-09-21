@@ -30,11 +30,12 @@ const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
         <div class="copy-stack guide-definition-copy">
           <p>Um guia organiza objetivo, entradas, processo, critérios de qualidade e limites. Ele <strong>não instala capacidades novas</strong> no modelo. Em vez disso, dá ao assistente um modo de trabalho mais específico e repetível.</p>
           <p>Você pode usar o mesmo arquivo no <strong>ChatGPT, Copilot, Claude</strong> ou em outro assistente que aceite contexto ou instruções em Markdown.</p>
+          <p>Os downloads são as versões públicas dos <strong>guias canônicos</strong>, preservando o método original. Para executar exatamente a arquitetura da biblioteca, use o guia escolhido junto com o <a class="text-link" href={href('/guias/00-KERNEL-EXECUCAO.md')} download>Kernel Transversal de Execução</a>.</p>
         </div>
       </div>
 
       <ol class="guide-howto" aria-label="Como usar um guia">
-        <li><span>01</span><div><strong>Baixe e forneça o guia</strong><p>Anexe o arquivo .md ao chat ou cole o conteúdo nas instruções/contexto do assistente.</p></div></li>
+        <li><span>01</span><div><strong>Baixe o guia e o kernel</strong><p>Anexe o guia .md e o Kernel Transversal ao chat, ou cole ambos nas instruções/contexto do assistente.</p></div></li>
         <li><span>02</span><div><strong>Faça o pedido normalmente</strong><p>Ex.: “analise esta planilha”, “crie um PRD” ou “revise este código”.</p></div></li>
         <li><span>03</span><div><strong>O assistente segue o método</strong><p>O guia define como trabalhar, quais evidências pedir, o que entregar e quais limites respeitar.</p></div></li>
       </ol>
