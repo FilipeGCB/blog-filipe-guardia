@@ -143,14 +143,20 @@
   line-height: 1.55;
 }
 
+.guide-card-fact,
 .guide-activation,
+.guide-delivery,
+.guide-where,
 .guide-example {
   margin-top: 18px;
   padding-top: 16px;
   border-top: 1px solid var(--line);
 }
 
+.guide-card-fact strong,
 .guide-activation strong,
+.guide-delivery strong,
+.guide-where strong,
 .guide-example strong {
   display: block;
   margin-bottom: 6px;
@@ -161,7 +167,10 @@
   text-transform: uppercase;
 }
 
+.guide-card-fact p,
 .guide-activation p,
+.guide-delivery p,
+.guide-where p,
 .guide-example p {
   margin: 0;
   color: var(--muted);
@@ -171,6 +180,23 @@
 
 .guide-example p {
   color: var(--brand-deep);
+}
+
+.guide-card-fact p {
+  color: var(--ink);
+}
+
+.guide-delivery p {
+  color: var(--brand-deep);
+}
+
+.guide-skill-available {
+  color: var(--brand-deep);
+  font-weight: 800;
+}
+
+.guide-agent-download {
+  min-height: 44px;
 }
 
 .guide-card-actions {

@@ -10,11 +10,24 @@ export interface PortableGuide {
   delivery: string;
   quality: string;
   examples: string[];
+  skillUrl?: string;
 }
 
-export const guideCompatibility = ['ChatGPT', 'Copilot', 'Claude', 'outros assistentes com contexto Markdown'] as const;
+export const guideCompatibility = ['Copilot Chat básico', 'ChatGPT', 'Claude', 'Codex', 'outros assistentes com contexto Markdown'] as const;
 
 export const portableGuides: PortableGuide[] = [
+  {
+    id: 'O17', slug: 'cognitive-os', category: 'Pesquisa, decisão & estratégia',
+    title: 'Cognitive OS — Pesquisa, Diagnóstico e Decisão',
+    summary: 'Ajuda a formular a pergunta real, pesquisar só o que pode mudar a decisão, desafiar conclusões e saber quando parar.',
+    activateWhen: 'A pergunta exige enquadramento, evidência, diagnóstico, comparação ou decisão — especialmente quando pesquisar mais nem sempre significa decidir melhor.',
+    inputs: 'Pergunta ou decisão, contexto, restrições, evidências/fontes disponíveis e alternativas conhecidas.',
+    process: ['Reconstruir contexto e formular a pergunta real.', 'Separar evidência, inferência, hipótese e desconhecido.', 'Escolher profundidade, fontes e capacidades proporcionais.', 'Comparar alternativas e desafiar a conclusão.', 'Definir a próxima prova e a condição de parada.'],
+    delivery: 'Decision brief: conclusão, evidências que realmente importam, condições/incertezas e próximo movimento.',
+    quality: 'Não pesquisar por ritual, não inventar capacidade ou fonte e não continuar investigando quando um teste pequeno for mais informativo.',
+    examples: ['Pesquise este mercado e me diga quais evidências realmente mudam a decisão.', 'Antes de automatizar este processo, descubra onde está o gargalo e qual é a menor prova útil.'],
+    skillUrl: 'https://github.com/FilipeGCB/cognitive-os'
+  },
   {
     id: 'A01', slug: 'plataforma-aprendizagem', category: 'Aprendizagem & experiências',
     title: 'Plataformas de Aprendizagem Interativa',
@@ -283,6 +296,27 @@ export const portableGuides: PortableGuide[] = [
 
 export const guideCategories = [...new Set(portableGuides.map((guide) => guide.category))];
 
-if (portableGuides.length !== 24) {
-  throw new Error(`Portable guide catalog must contain 24 guides, found ${portableGuides.length}`);
+export const featuredGuideSlugs = [
+  'cognitive-os',
+  'data-stories',
+  'artefatos-web',
+  'dados-analytics',
+  'comparacao-historias',
+  'engenharia-cursos',
+  'plataforma-aprendizagem',
+  'agentes-apis-mcp',
+  'grafo-organizacional',
+  'operacoes-riscos'
+] as const;
+
+export const featuredGuides = featuredGuideSlugs
+  .map((slug) => portableGuides.find((guide) => guide.slug === slug))
+  .filter((guide): guide is PortableGuide => Boolean(guide));
+
+if (portableGuides.length !== 25) {
+  throw new Error(`Portable guide catalog must contain 25 guides, found ${portableGuides.length}`);
+}
+
+if (featuredGuides.length !== 10) {
+  throw new Error(`Featured guide catalog must contain 10 guides, found ${featuredGuides.length}`);
 }

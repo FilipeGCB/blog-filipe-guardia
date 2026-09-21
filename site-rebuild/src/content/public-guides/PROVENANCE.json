@@ -1,155 +1,197 @@
 {
   "source_repository": "FilipeGCB/obsidian-notes",
-  "source_branch": "feat/cognitive-os-audit-hardening-v1-3",
-  "source_commit": "9b6c3beb6848b45dd7a5d67f3654288fb31db566",
+  "source_branch": "feat/public-portable-agents-library-20260921",
+  "source_commit": "71ff242f9b23215a97745a92ffe3393c1d4d50ed",
   "source_root": "Projetos/formacao-transformacao-digital-ia",
-  "public_entries": 24,
-  "unique_source_methods": 23,
+  "public_entries": 25,
+  "unique_source_methods": 24,
   "publication_rule": "byte-for-byte copy of each shareable master guide referenced by source_method",
+  "portable_agent_rule": "generated chat bundle = portable agent standard + optional artifact delivery contract + untouched master guide",
+  "contracts": {
+    "portable_agent_standard": {
+      "source": "12_BIBLIOTECA_HABILIDADES_COPILOT/00-PADRAO-AGENTE-PORTATIL.md",
+      "sha256": "a7892afc447db893dff4159114ce6619fc8d6fc7e1812726ec05f593fb648edf"
+    },
+    "artifact_delivery_contract": {
+      "source": "09_GUIAS_COPILOT_ARTEFATOS/00-CONTRATO-ENTREGA-ARTEFATO-FINAL.md",
+      "sha256": "d3bb4eccdc6ac141cd0b6762b980b2827a8eedd7e3bb92232d21b6192d934956"
+    }
+  },
   "mappings": [
     {
       "slug": "agentes-apis-mcp",
       "source_method": "11_GUIAS_OPERACIONAIS_COPILOT_CHAT/12-guia-mestre-agentes-apis-mcp-integracoes.md",
       "bytes": 6162,
-      "sha256": "fa3f5ca2019c61fdd03f1a1c11b3c0b4d2e5f456f274f929d8f974ef4331f691"
+      "sha256": "fa3f5ca2019c61fdd03f1a1c11b3c0b4d2e5f456f274f929d8f974ef4331f691",
+      "requires_artifact_contract": false
     },
     {
       "slug": "artefatos-web",
       "source_method": "11_GUIAS_OPERACIONAIS_COPILOT_CHAT/01-guia-mestre-artefatos-web-visuais-interativos.md",
       "bytes": 8978,
-      "sha256": "e948a9e7c64a9fa5aba72182ddf7670781290e5586c50484e0b7ba19195fde45"
+      "sha256": "e948a9e7c64a9fa5aba72182ddf7670781290e5586c50484e0b7ba19195fde45",
+      "requires_artifact_contract": false
     },
     {
       "slug": "atendimento-suporte",
       "source_method": "11_GUIAS_OPERACIONAIS_COPILOT_CHAT/08-guia-mestre-pessoas-atendimento-conhecimento.md",
       "bytes": 5799,
-      "sha256": "f2584b08c32e9eb2b5d668d0c79df23f9f37061bff6bd4c8a7a8d0bc4a6148cb"
+      "sha256": "f2584b08c32e9eb2b5d668d0c79df23f9f37061bff6bd4c8a7a8d0bc4a6148cb",
+      "requires_artifact_contract": false
+    },
+    {
+      "slug": "cognitive-os",
+      "source_method": "11_GUIAS_OPERACIONAIS_COPILOT_CHAT/16-guia-mestre-cognitive-os-pesquisa-diagnostico-decisao.md",
+      "bytes": 20850,
+      "sha256": "4076efe0927553e9a410a28f259f042d0d57ca97068473050de3812b667fee91",
+      "requires_artifact_contract": false
     },
     {
       "slug": "comparacao-historias",
       "source_method": "11_GUIAS_OPERACIONAIS_COPILOT_CHAT/15-guia-mestre-comparacao-historias-parecer-email-html.md",
       "bytes": 15393,
-      "sha256": "aef586f1c551049c1e43c0b10f20ae6ee8420674daff0634c1390e3d69c6f12f"
+      "sha256": "aef586f1c551049c1e43c0b10f20ae6ee8420674daff0634c1390e3d69c6f12f",
+      "requires_artifact_contract": false
     },
     {
       "slug": "conselho-diretor",
       "source_method": "11_GUIAS_OPERACIONAIS_COPILOT_CHAT/15-guia-mestre-conselho-diretor-avaliacao-decisoes-estrategicas.md",
       "bytes": 22758,
-      "sha256": "3273bf79e9f9d5143391d5b9ec6ea7c68fb05948e031597b3d816e7b4964dbb9"
+      "sha256": "3273bf79e9f9d5143391d5b9ec6ea7c68fb05948e031597b3d816e7b4964dbb9",
+      "requires_artifact_contract": false
     },
     {
       "slug": "contexto-skills",
       "source_method": "11_GUIAS_OPERACIONAIS_COPILOT_CHAT/11-guia-mestre-contexto-instrucoes-automacao-skills-ia.md",
       "bytes": 6335,
-      "sha256": "f87f94a31b9ee8d4d8e0f1553f0851c8658cea5949f9d24bf3838acd02b923a0"
+      "sha256": "f87f94a31b9ee8d4d8e0f1553f0851c8658cea5949f9d24bf3838acd02b923a0",
+      "requires_artifact_contract": false
     },
     {
       "slug": "dados-analytics",
       "source_method": "11_GUIAS_OPERACIONAIS_COPILOT_CHAT/03-guia-mestre-dados-analytics-planilhas-dashboards.md",
       "bytes": 6956,
-      "sha256": "255109507223e85f0a042edda344c98eb2632380d41fe7abfce03493baa7adc8"
+      "sha256": "255109507223e85f0a042edda344c98eb2632380d41fe7abfce03493baa7adc8",
+      "requires_artifact_contract": false
     },
     {
       "slug": "data-stories",
       "source_method": "09_GUIAS_COPILOT_ARTEFATOS/03-guia-mestre-data-stories-interativas.md",
       "bytes": 29631,
-      "sha256": "bbad3462f35f7da76e444aff5910264341028a979b637173bff577892566319a"
+      "sha256": "bbad3462f35f7da76e444aff5910264341028a979b637173bff577892566319a",
+      "requires_artifact_contract": true
     },
     {
       "slug": "documentos-office",
       "source_method": "11_GUIAS_OPERACIONAIS_COPILOT_CHAT/02-guia-mestre-documentos-comunicacao-arquivos-office.md",
       "bytes": 6275,
-      "sha256": "313c1aad17f389a4fa1274907f8268fa35bf66841bbd7907c69fe87e38b448a5"
+      "sha256": "313c1aad17f389a4fa1274907f8268fa35bf66841bbd7907c69fe87e38b448a5",
+      "requires_artifact_contract": false
     },
     {
       "slug": "engenharia-cursos",
       "source_method": "09_GUIAS_COPILOT_ARTEFATOS/16-guia-mestre-metodologia-construcao-cursos.md",
       "bytes": 49703,
-      "sha256": "fbcc2fb61e368f2d1a76b5d3be1430b8634d4d70794daf51bac349bead049c3f"
+      "sha256": "fbcc2fb61e368f2d1a76b5d3be1430b8634d4d70794daf51bac349bead049c3f",
+      "requires_artifact_contract": true
     },
     {
       "slug": "engenharia-software",
       "source_method": "11_GUIAS_OPERACIONAIS_COPILOT_CHAT/09-guia-mestre-engenharia-software-entrega-qualidade.md",
       "bytes": 5998,
-      "sha256": "dd0094cfb896c8972b1a06a4aa11ae073b46b4cc76f9c8d9728b5c015f2aa40e"
+      "sha256": "dd0094cfb896c8972b1a06a4aa11ae073b46b4cc76f9c8d9728b5c015f2aa40e",
+      "requires_artifact_contract": false
     },
     {
       "slug": "experiencias-3d",
       "source_method": "09_GUIAS_COPILOT_ARTEFATOS/14-guia-mestre-experiencias-3d-na-web.md",
       "bytes": 20185,
-      "sha256": "c9a7215a914ea35fdef3220901229272d7d644b861613513ec881c91ade63d69"
+      "sha256": "c9a7215a914ea35fdef3220901229272d7d644b861613513ec881c91ade63d69",
+      "requires_artifact_contract": true
     },
     {
       "slug": "financas-cfo",
       "source_method": "11_GUIAS_OPERACIONAIS_COPILOT_CHAT/07-guia-mestre-financas-cfo-pequenos-negocios.md",
       "bytes": 6190,
-      "sha256": "ae9a07d298dad182a129b8deabf8e2882d5d059f762a688e84a11c6856081fc7"
+      "sha256": "ae9a07d298dad182a129b8deabf8e2882d5d059f762a688e84a11c6856081fc7",
+      "requires_artifact_contract": false
     },
     {
       "slug": "grafo-organizacional",
       "source_method": "09_GUIAS_COPILOT_ARTEFATOS/09-guia-mestre-grafo-cerebro-organizacional.md",
       "bytes": 22457,
-      "sha256": "64b9a7338b27ede9ed3e4a17a38102a078b361c74aebe38381aeba1b9fb3a407"
+      "sha256": "64b9a7338b27ede9ed3e4a17a38102a078b361c74aebe38381aeba1b9fb3a407",
+      "requires_artifact_contract": true
     },
     {
       "slug": "leitor-documentos",
       "source_method": "09_GUIAS_COPILOT_ARTEFATOS/15-guia-mestre-leitor-universal-documentos-experiencia-leitura.md",
       "bytes": 21419,
-      "sha256": "b5ee68f6488b0b8d134e0864750221f719405ec7b70cec2b59ea4ddf91999c21"
+      "sha256": "b5ee68f6488b0b8d134e0864750221f719405ec7b70cec2b59ea4ddf91999c21",
+      "requires_artifact_contract": true
     },
     {
       "slug": "modificadores-qualidade",
       "source_method": "11_GUIAS_OPERACIONAIS_COPILOT_CHAT/14-modificadores-explicacao-aprendizagem-verificacao-adversarial.md",
       "bytes": 3168,
-      "sha256": "37f068027af693c3a2db09f796a662c3cc61f3049ea4f3a5fff21cfbf0eac302"
+      "sha256": "37f068027af693c3a2db09f796a662c3cc61f3049ea4f3a5fff21cfbf0eac302",
+      "requires_artifact_contract": false
     },
     {
       "slug": "operacoes-riscos",
       "source_method": "11_GUIAS_OPERACIONAIS_COPILOT_CHAT/05-guia-mestre-operacoes-processos-riscos-compliance.md",
       "bytes": 6167,
-      "sha256": "b9d766e8d4c9b7e3e89569195f7fa96033ae768ffa1eae465733ea9f829927af"
+      "sha256": "b9d766e8d4c9b7e3e89569195f7fa96033ae768ffa1eae465733ea9f829927af",
+      "requires_artifact_contract": false
     },
     {
       "slug": "paginas-vivas",
       "source_method": "11_GUIAS_OPERACIONAIS_COPILOT_CHAT/13-guia-mestre-paginas-vivas-briefings-governanca-projetos.md",
       "bytes": 6142,
-      "sha256": "5addd5c3db714e5ec52d6c9f08af8f9592f052091d0a66f038702837f1c75484"
+      "sha256": "5addd5c3db714e5ec52d6c9f08af8f9592f052091d0a66f038702837f1c75484",
+      "requires_artifact_contract": false
     },
     {
       "slug": "pesquisa-sintese",
       "source_method": "11_GUIAS_OPERACIONAIS_COPILOT_CHAT/04-guia-mestre-pesquisa-busca-inteligencia-sintese.md",
       "bytes": 6303,
-      "sha256": "0895f05da37eb95fa852c29c3e86968341a8a4067699095d9e6e56e72f6edcda"
+      "sha256": "0895f05da37eb95fa852c29c3e86968341a8a4067699095d9e6e56e72f6edcda",
+      "requires_artifact_contract": false
     },
     {
       "slug": "pessoas-rh",
       "source_method": "11_GUIAS_OPERACIONAIS_COPILOT_CHAT/08-guia-mestre-pessoas-atendimento-conhecimento.md",
       "bytes": 5799,
-      "sha256": "f2584b08c32e9eb2b5d668d0c79df23f9f37061bff6bd4c8a7a8d0bc4a6148cb"
+      "sha256": "f2584b08c32e9eb2b5d668d0c79df23f9f37061bff6bd4c8a7a8d0bc4a6148cb",
+      "requires_artifact_contract": false
     },
     {
       "slug": "plataforma-aprendizagem",
       "source_method": "09_GUIAS_COPILOT_ARTEFATOS/01-guia-mestre-plataforma-aprendizagem-interativa.md",
       "bytes": 65547,
-      "sha256": "3b61c2656b4ba507843a75afef637f79b35c35a9f9382c15b6eb1fd04fd359fa"
+      "sha256": "3b61c2656b4ba507843a75afef637f79b35c35a9f9382c15b6eb1fd04fd359fa",
+      "requires_artifact_contract": false
     },
     {
       "slug": "produto-mercado",
       "source_method": "11_GUIAS_OPERACIONAIS_COPILOT_CHAT/06-guia-mestre-produto-mercado-vendas-marketing.md",
       "bytes": 6052,
-      "sha256": "309f0379c279d5ab60cabddb4d5f44ec0a3480faa77a37a8ad2e5cdf81673032"
+      "sha256": "309f0379c279d5ab60cabddb4d5f44ec0a3480faa77a37a8ad2e5cdf81673032",
+      "requires_artifact_contract": false
     },
     {
       "slug": "seguranca-legado",
       "source_method": "11_GUIAS_OPERACIONAIS_COPILOT_CHAT/10-guia-mestre-seguranca-modernizacao-sistemas-legados.md",
       "bytes": 6105,
-      "sha256": "b8482939de0da0ba758ca1b9f23b2b100c941d82c889e653438c996c5fbb5b1b"
+      "sha256": "b8482939de0da0ba758ca1b9f23b2b100c941d82c889e653438c996c5fbb5b1b",
+      "requires_artifact_contract": false
     },
     {
       "slug": "sites-cinematograficos",
       "source_method": "09_GUIAS_COPILOT_ARTEFATOS/12-guia-mestre-sites-cinematograficos-experiencias-web-animadas.md",
       "bytes": 17109,
-      "sha256": "26ffc225cdd754fc9605fac157dd5cbc9b0ba109e5a3309ffc7eeaa2705716b1"
+      "sha256": "26ffc225cdd754fc9605fac157dd5cbc9b0ba109e5a3309ffc7eeaa2705716b1",
+      "requires_artifact_contract": true
     }
   ]
 }

@@ -1,23 +1,21 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageIntroVisual from '../../components/PageIntroVisual.astro';
-import { guideCategories, guideCompatibility, portableGuides } from '../../data/guides';
-
-const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
-const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
+import GuideCard from '../../components/GuideCard.astro';
+import { featuredGuides, guideCategories, guideCompatibility, portableGuides } from '../../data/guides';
 ---
 <BaseLayout
-  title="Biblioteca de Guias | Filipe Guardia"
-  description="Guias mestres originais em Markdown para uso com ChatGPT, Copilot, Claude e outros assistentes de IA."
+  title="Biblioteca de Métodos para IA | Filipe Guardia"
+  description="Métodos executáveis em Markdown para usar como agentes portáteis em chats de IA ou como Skills quando houver uma versão instalável."
   canonicalPath="/biblioteca.html"
   currentPath="/biblioteca.html"
 >
   <PageIntroVisual
-    eyebrow="Biblioteca de guias"
-    title="Use os <em>guias mestres originais</em>."
-    deck="Os downloads preservam os guias mestres originais do meu repositório de conhecimento. Cada arquivo reúne método, processo, critérios, referências e limites para uma classe de tarefas."
+    eyebrow="Biblioteca de métodos para IA"
+    title="Dê um <em>método de trabalho</em> ao seu assistente."
+    deck="Os mesmos métodos podem ser usados em dois níveis: como agente portátil em um chat comum — inclusive Copilot Chat básico — ou como Skill em ambientes compatíveis. O guia mestre original continua disponível para quem quer estudar ou adaptar o método."
     theme="night"
-    currentLabel="24 entradas · 23 guias mestres únicos · Markdown"
+    currentLabel="25 métodos · Chat portátil · Skills quando disponíveis"
   />
 
   <section class="section guide-explainer-section">
@@ -25,64 +23,74 @@ const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
       <div class="guide-definition-grid">
         <div>
           <span class="section-kicker">O que é isso?</span>
-          <h2>Não é uma ferramenta nova. É uma instrução especializada.</h2>
+          <h2>Não é uma lista de prompts.</h2>
         </div>
         <div class="copy-stack guide-definition-copy">
-          <p>Um guia organiza objetivo, entradas, processo, critérios de qualidade e limites. Ele <strong>não instala capacidades novas</strong> no modelo. Em vez disso, dá ao assistente um modo de trabalho mais específico e repetível.</p>
-          <p>Você pode usar o mesmo arquivo no <strong>ChatGPT, Copilot, Claude</strong> ou em outro assistente que aceite contexto ou instruções em Markdown.</p>
-          <p>Os downloads são cópias dos <strong>guias mestres originais</strong> referenciados no Obsidian. A única duplicidade intencional é Pessoas/RH e Atendimento/Suporte, que compartilham o mesmo guia mestre de origem.</p>
+          <p>Um método define <strong>quando ativar, quais entradas importam, em que ordem trabalhar, o que entregar e como verificar qualidade</strong>. Isso reduz a improvisação do modelo e torna a resposta mais repetível.</p>
+          <p>O <strong>agente portátil</strong> é um único arquivo Markdown para anexar ao chat. Ele combina o método original com um contrato transversal de execução — sem fingir que o assistente ganhou ferramentas que o ambiente não possui.</p>
+          <p>Quando existe uma <strong>Skill oficial</strong>, o mesmo método pode ser instalado de forma modular em hosts compatíveis. O conteúdo de domínio continua vindo da mesma fonte.</p>
         </div>
       </div>
 
-      <ol class="guide-howto" aria-label="Como usar um guia">
-        <li><span>01</span><div><strong>Baixe o guia mestre</strong><p>Anexe o arquivo .md ao chat ou cole o conteúdo nas instruções/contexto do assistente.</p></div></li>
-        <li><span>02</span><div><strong>Faça o pedido normalmente</strong><p>Ex.: “analise esta planilha”, “crie um PRD” ou “revise este código”.</p></div></li>
-        <li><span>03</span><div><strong>O assistente segue o método</strong><p>O guia define como trabalhar, quais evidências pedir, o que entregar e quais limites respeitar.</p></div></li>
+      <ol class="guide-howto" aria-label="Três formas de usar os métodos">
+        <li>
+          <span>01</span>
+          <div>
+            <strong>Modo Chat</strong>
+            <p>Baixe “Ativar no Chat”, anexe ao Copilot Chat, ChatGPT, Claude ou outro assistente e faça seu pedido normalmente.</p>
+          </div>
+        </li>
+        <li>
+          <span>02</span>
+          <div>
+            <strong>Modo Skill</strong>
+            <p>Quando houver uma versão instalável, use a Skill para carregar instruções e referências sob demanda sem despejar o método inteiro no contexto.</p>
+          </div>
+        </li>
+        <li>
+          <span>03</span>
+          <div>
+            <strong>Guia mestre</strong>
+            <p>Baixe o original quando quiser estudar o método completo, entender as referências ou adaptar a abordagem ao seu contexto.</p>
+          </div>
+        </li>
       </ol>
 
-      <p class="guide-compatibility"><strong>Compatibilidade:</strong> {guideCompatibility.join(' · ')}</p>
+      <p class="guide-compatibility"><strong>Modo Chat:</strong> {guideCompatibility.join(' · ')}</p>
     </div>
   </section>
 
-  <section class="section section-tinted guide-catalog-section" id="guias">
+  <section class="section section-tinted guide-catalog-section" id="destaques">
     <div class="editorial-shell">
       <div class="section-head guide-section-head">
         <div>
-          <span class="section-kicker">Escolha o método</span>
-          <h2>24 entradas. Os guias mestres completos, sem template genérico.</h2>
+          <span class="section-kicker">Comece por aqui</span>
+          <h2>10 métodos que mais mudam a qualidade da execução.</h2>
         </div>
-        <p>Não precisa instalar nada. Escolha o guia mais próximo da tarefa, baixe o Markdown e forneça ao assistente junto com o seu pedido.</p>
+        <p>Esta seleção prioriza métodos com problema claro, processo repetível, saída concreta e gates de qualidade. O catálogo completo continua logo abaixo.</p>
+      </div>
+
+      <div class="guide-grid">
+        {featuredGuides.map((guide) => <GuideCard guide={guide} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section guide-catalog-section" id="catalogo-completo">
+    <div class="editorial-shell">
+      <div class="section-head guide-section-head">
+        <div>
+          <span class="section-kicker">Catálogo completo</span>
+          <h2>25 métodos, organizados pelo tipo de trabalho.</h2>
+        </div>
+        <p>Se você já sabe o problema que quer resolver, procure pelo entregável e pelo momento de uso — não pelo nome da tecnologia.</p>
       </div>
 
       {guideCategories.map((category) => (
         <section class="guide-category" aria-labelledby={`guide-category-${category.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}`}>
           <h3 id={`guide-category-${category.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}`}>{category}</h3>
           <div class="guide-grid">
-            {portableGuides.filter((guide) => guide.category === category).map((guide) => {
-              const page = href(`/guias/${guide.slug}.html`);
-              const download = href(`/guias/${guide.slug}.md`);
-              return (
-                <article class="guide-card" data-guide-id={guide.id}>
-                  <div class="guide-card-head">
-                    <span class="guide-id">{guide.id}</span>
-                    <h4>{guide.title}</h4>
-                  </div>
-                  <p class="guide-summary">{guide.summary}</p>
-                  <div class="guide-activation">
-                    <strong>Use quando</strong>
-                    <p>{guide.activateWhen}</p>
-                  </div>
-                  <div class="guide-example">
-                    <strong>Exemplo</strong>
-                    <p>“{guide.examples[0]}”</p>
-                  </div>
-                  <div class="guide-card-actions">
-                    <a class="button guide-open" href={page}>Abrir guia</a>
-                    <a class="text-link guide-download" href={download} download>Baixar guia (.md)</a>
-                  </div>
-                </article>
-              );
-            })}
+            {portableGuides.filter((guide) => guide.category === category).map((guide) => <GuideCard guide={guide} />)}
           </div>
         </section>
       ))}
@@ -92,8 +100,8 @@ const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
   <section class="section guide-footer-note">
     <div class="reading-shell">
       <span class="section-kicker">Como escolher</span>
-      <h2>Comece por um guia principal.</h2>
-      <p class="prose-lead">Se o pedido mistura vários assuntos, escolha primeiro o método que define o entregável principal. Só combine outro guia quando ele realmente mudar o resultado. Isso reduz instruções conflitantes e deixa a execução mais previsível.</p>
+      <h2>Comece pelo método que define o trabalho principal.</h2>
+      <p class="prose-lead">Se um pedido mistura vários assuntos, escolha primeiro o método que define o entregável ou a decisão principal. Combine outro somente quando ele mudar materialmente o resultado. Mais instruções nem sempre significam melhor execução.</p>
     </div>
   </section>
 </BaseLayout>

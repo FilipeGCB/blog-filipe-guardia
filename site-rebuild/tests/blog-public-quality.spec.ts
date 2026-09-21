@@ -41,23 +41,26 @@ test.describe('public quality regressions', () => {
     await expect(page.locator('.page-intro-visual h1')).toHaveText('Série: Dados e operação');
   });
 
-  test('library links to 24 rendered guide pages and keeps Markdown as download', async ({ page }) => {
+  test('library exposes 10 highlights, 25 methods and both Chat/master downloads', async ({ page }) => {
     await page.goto('biblioteca.html', { waitUntil: 'networkidle' });
-    await expect(page.locator('.guide-open')).toHaveCount(24);
-    await expect(page.locator('a.guide-download[download]')).toHaveCount(24);
+    await expect(page.locator('#destaques .guide-card')).toHaveCount(10);
+    await expect(page.locator('#catalogo-completo .guide-card')).toHaveCount(25);
+    await expect(page.locator('#catalogo-completo a.guide-agent-download[download]')).toHaveCount(25);
+    await expect(page.locator('#catalogo-completo a.guide-download[download]')).toHaveCount(25);
 
-    const hrefs = await page.locator('.guide-open').evaluateAll((links) =>
+    const hrefs = await page.locator('#catalogo-completo .guide-open').evaluateAll((links) =>
       links.map((link) => (link as HTMLAnchorElement).getAttribute('href') ?? '')
     );
-    expect(new Set(hrefs).size).toBe(24);
+    expect(new Set(hrefs).size).toBe(25);
 
     for (const href of hrefs) {
       const response = await page.goto(href, { waitUntil: 'networkidle' });
       expect(response?.status(), href).toBeLessThan(400);
       await expect(page.locator('h1')).toHaveCount(1);
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /\/guias\/.+\.html$/);
-      await expect(page.locator('a[download][href$=".md"]')).toHaveCount(1);
-      await expect(page.locator('a[download][href$=".md"]').filter({ hasText: 'Baixar guia mestre' })).toHaveCount(1);
+      await expect(page.locator('a[download][href$=".md"]')).toHaveCount(2);
+      await expect(page.locator('a.guide-agent-download[download]')).toHaveCount(1);
+      await expect(page.locator('a[download]').filter({ hasText: 'Guia mestre original' })).toHaveCount(1);
       await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', /^https:\/\//);
     }
   });

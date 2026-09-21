@@ -13,22 +13,33 @@ const expectedGuides = [...registry.matchAll(/slug:\s*'([^']+)'/g)]
   .map((match) => match[1] + '.md')
   .sort();
 
-test('public library contains exactly 24 master-guide snapshots', () => {
+const stripFrontmatter = (text) => {
+  if (!text.startsWith('---\n')) return text.trim();
+  const end = text.indexOf('\n---\n', 4);
+  return end === -1 ? text.trim() : text.slice(end + 5).trim();
+};
+
+test('public library contains exactly 25 master snapshots and 25 portable chat agents', () => {
   const sourceDir = join(root, 'src', 'content', 'public-guides');
-  const publicDir = join(root, 'public', 'guias');
+  const masterDir = join(root, 'public', 'guias');
+  const agentDir = join(root, 'public', 'agentes');
   const sourceGuides = existsSync(sourceDir)
     ? readdirSync(sourceDir).filter((name) => name.endsWith('.md')).sort()
     : [];
-  const publicGuides = existsSync(publicDir)
-    ? readdirSync(publicDir).filter((name) => name.endsWith('.md')).sort()
+  const publicMasters = existsSync(masterDir)
+    ? readdirSync(masterDir).filter((name) => name.endsWith('.md')).sort()
+    : [];
+  const publicAgents = existsSync(agentDir)
+    ? readdirSync(agentDir).filter((name) => name.endsWith('.md')).sort()
     : [];
 
-  assert.equal(expectedGuides.length, 24);
+  assert.equal(expectedGuides.length, 25);
   assert.deepEqual(sourceGuides, expectedGuides);
-  assert.deepEqual(publicGuides, expectedGuides);
+  assert.deepEqual(publicMasters, expectedGuides);
+  assert.deepEqual(publicAgents, expectedGuides);
 });
 
-test('downloads are byte-for-byte master-guide snapshots, never compact or generic replacements', () => {
+test('master downloads stay byte-for-byte faithful to their source snapshots', () => {
   for (const name of expectedGuides) {
     const source = bytes(join('src', 'content', 'public-guides', name));
     const published = bytes(join('public', 'guias', name));
@@ -38,41 +49,91 @@ test('downloads are byte-for-byte master-guide snapshots, never compact or gener
     assert.ok(source.length >= 3000, name + ' is unexpectedly short for a master guide');
     assert.match(text, /^---\n/);
     assert.match(text, /^shareable:\s*true$/m);
-    assert.match(text, /^source_of_truth:\s*personal_vault$/m);
+    assert.match(text, /^source_of_truth:\s*(?:personal_vault|public_repository)$/m);
     assert.match(text, /^#\s+.+/m);
     assert.doesNotMatch(text, /## Instruções para o assistente|Este Markdown é o \*\*guia em si\*\*/i,
       name + ' contains the former generic blog template');
   }
 });
 
-test('provenance pins every public entry to the original Obsidian source_method and checksum', () => {
+test('portable agents add execution discipline without rewriting the master method', () => {
+  const provenance = JSON.parse(read('src/content/public-guides/PROVENANCE.json'));
+  const portableStandard = stripFrontmatter(read('src/content/guide-contracts/portable-agent-standard.md'));
+  const artifactContract = stripFrontmatter(read('src/content/guide-contracts/artifact-delivery-contract.md'));
+
+  for (const mapping of provenance.mappings) {
+    const master = read(join('src', 'content', 'public-guides', mapping.slug + '.md'));
+    const agent = read(join('public', 'agentes', mapping.slug + '.md'));
+
+    assert.match(agent, /^# Agente Portátil — /);
+    assert.ok(agent.includes(portableStandard), mapping.slug + ': portable standard missing');
+    assert.ok(agent.includes(stripFrontmatter(master)), mapping.slug + ': original master method was not preserved');
+
+    if (mapping.requires_artifact_contract) {
+      assert.ok(agent.includes(artifactContract), mapping.slug + ': artifact delivery contract missing');
+      assert.match(agent, /# Contrato adicional para entrega de artefatos/);
+    }
+  }
+});
+
+test('provenance pins 25 entries, 24 unique source methods and reusable contract hashes', () => {
   const provenance = JSON.parse(read('src/content/public-guides/PROVENANCE.json'));
   assert.equal(provenance.source_repository, 'FilipeGCB/obsidian-notes');
-  assert.equal(provenance.public_entries, 24);
-  assert.equal(provenance.unique_source_methods, 23);
+  assert.equal(provenance.public_entries, 25);
+  assert.equal(provenance.unique_source_methods, 24);
   assert.match(provenance.source_commit, /^[0-9a-f]{40}$/);
-  assert.equal(provenance.mappings.length, 24);
+  assert.equal(provenance.mappings.length, 25);
+  assert.match(provenance.portable_agent_rule, /portable agent standard/i);
 
   for (const mapping of provenance.mappings) {
     assert.match(mapping.source_method, /^(09_GUIAS_COPILOT_ARTEFATOS|11_GUIAS_OPERACIONAIS_COPILOT_CHAT)\/.+\.md$/);
+    assert.equal(typeof mapping.requires_artifact_contract, 'boolean');
     const snapshot = bytes(join('src', 'content', 'public-guides', mapping.slug + '.md'));
     assert.equal(snapshot.length, mapping.bytes);
     assert.equal(sha256(snapshot), mapping.sha256);
   }
+
+  assert.equal(
+    sha256(bytes('src/content/guide-contracts/portable-agent-standard.md')),
+    provenance.contracts.portable_agent_standard.sha256
+  );
+  assert.equal(
+    sha256(bytes('src/content/guide-contracts/artifact-delivery-contract.md')),
+    provenance.contracts.artifact_delivery_contract.sha256
+  );
 
   const people = provenance.mappings.find((item) => item.slug === 'pessoas-rh');
   const support = provenance.mappings.find((item) => item.slug === 'atendimento-suporte');
   assert.equal(people.source_method, support.source_method, 'Pessoas/RH and Atendimento/Suporte must preserve their shared original guide');
 });
 
-test('library identifies the downloads as original master guides', () => {
+test('Cognitive OS guide is public-source based and directly executable in basic chat', () => {
+  const guide = read('src/content/public-guides/cognitive-os.md');
+  assert.match(guide, /^source_of_truth:\s*public_repository$/m);
+  assert.match(guide, /^source_repository:\s*FilipeGCB\/cognitive-os$/m);
+  assert.match(guide, /^source_ref:\s*v1\.4\.0$/m);
+  assert.match(guide, /Contexto antes do problema\. Problema antes da solução/i);
+  assert.match(guide, /## 14\. Roteamento de pesquisa/);
+  assert.match(guide, /## 20\. Próxima prova/);
+  assert.match(guide, /## 21\. Saber parar/);
+  assert.match(guide, /## 29\. Prompt operacional/);
+  assert.match(guide, /## 30\. Como usar no Copilot Chat básico/);
+});
+
+test('library presents two usage modes, 10 highlights and direct task-oriented specs', () => {
   const source = read('src/pages/biblioteca/index.astro');
-  assert.match(source, /guias mestres originais/i);
-  assert.match(source, /23 guias mestres únicos/i);
-  assert.match(source, /ChatGPT/i);
-  assert.match(source, /Copilot/i);
-  assert.match(source, /Claude/i);
-  assert.match(source, /Baixar guia \(\.md\)/i);
+  const card = read('src/components/GuideCard.astro');
+  assert.match(source, /Modo Chat/i);
+  assert.match(source, /Modo Skill/i);
+  assert.match(source, /10 métodos que mais mudam a qualidade/i);
+  assert.match(source, /25 métodos/i);
+  assert.match(card, /O que faz/);
+  assert.match(card, /Use quando/);
+  assert.match(card, /Entrega/);
+  assert.match(card, /Onde usar/);
+  assert.match(card, /Ativar no Chat \(\.md\)/i);
+  assert.match(card, /Guia mestre/i);
+  assert.match(card, /Instalar Skill/i);
   assert.doesNotMatch(source, /00-KERNEL-EXECUCAO\.md/);
   assert.doesNotMatch(source, /PageAgentLauncher/);
 });
