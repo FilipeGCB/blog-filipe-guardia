@@ -1,45 +1,60 @@
-# Filipe Guardia — Cobrança, Dados, Automação e IA
+# Filipe Guardia — Transformação Digital, Sistemas e IA
 
-Este repositório mantém meu **blog e portfólio profissional público**: um currículo vivo que reúne trajetória, projetos, estudos e artigos sobre cobrança, planejamento, dados, transformação digital, produtos e inteligência artificial aplicada.
+Este repositório mantém o blog e portfólio profissional público de Filipe Guardia.
 
-## Acesse o site
+Site público: https://filipegcb.github.io/blog-filipe-guardia/
 
-**[filipegcb.github.io/blog-filipe-guardia](https://filipegcb.github.io/blog-filipe-guardia/)**
+## Arquitetura atual
 
-## Sobre mim
+A fonte canônica do site é `site-rebuild/`, construída com Astro, TypeScript, HTML semântico, CSS local, assets editoriais locais e GitHub Pages.
 
-Atuo desde 2011 em telecomunicações e operações financeiras, com experiência em cobrança B2B, planejamento, dados e governança operacional. Nos últimos anos, ampliei essa base com automação, desenvolvimento assistido por IA, produtos digitais, agentes e arquitetura de soluções.
+Os HTML antigos na raiz e a pasta raiz `artigos/` existem apenas para compatibilidade e preservação de URLs. Não devem ser usados como fonte principal para novas mudanças editoriais.
 
-Meu trabalho parte do conhecimento do processo real: contexto, regras, exceções, riscos e prioridades. A tecnologia entra como meio para transformar necessidades operacionais em processos, automações, protótipos e produtos utilizáveis.
-
-## O que está publicado
-
-- **Trajetória profissional:** experiência, evolução e posicionamento.
-- **Projetos:** iniciativas públicas e privadas descritas no nível adequado, incluindo CFO-IA, Hermes, Presentation Intelligence System e transformação digital aplicada a cobrança e planejamento.
-- **Artigos:** estudos e análises sobre cobrança, crédito, sistemas, agentes, MCP, automação e inteligência artificial.
-- **Biblioteca visual:** experiências com apresentações e comunicação executiva em HTML.
-
-## Projetos privados
-
-Alguns projetos apresentados no site possuem código privado por envolverem produto comercial, infraestrutura pessoal, segurança ou propriedade intelectual. Nesses casos, publico somente contexto, finalidade, estágio e competências demonstradas — sem expor dados pessoais, informações corporativas ou detalhes sensíveis.
-
-## Estrutura do site
+Principais áreas:
 
 ```text
-home.html          Página inicial e artigos
-sobre.html         Trajetória profissional
-projetos.html      Projetos selecionados
-contato.html       Canais de contato
-artigos/           Artigos completos
-styles.css         Estilos principais
-site-enhancements.css
+site-rebuild/src/pages/              páginas Astro
+site-rebuild/src/content/articles/  corpo semântico dos artigos
+site-rebuild/src/data/articles.ts   metadados e ordem editorial
+site-rebuild/src/components/        componentes compartilhados
+site-rebuild/src/styles/            sistema visual e responsividade
+site-rebuild/public/assets/         imagens e figuras locais
+site-rebuild/tests/                 contratos e QA Playwright
+.github/workflows/                  validação e deploy
 ```
 
-O site é estático, construído em HTML e CSS e publicado pelo GitHub Pages.
+## Editar ou publicar
 
-## Navegação rápida
+Leia primeiro:
+- `site-rebuild/README.md`
+- `site-rebuild/docs/AUTOMATED_ARTICLE_PUBLICATION.md`
 
-- [Início](https://filipegcb.github.io/blog-filipe-guardia/)
-- [Projetos](https://filipegcb.github.io/blog-filipe-guardia/projetos.html)
-- [Sobre](https://filipegcb.github.io/blog-filipe-guardia/sobre.html)
-- [Contato](https://filipegcb.github.io/blog-filipe-guardia/contato.html)
+Validação completa:
+
+```bash
+cd site-rebuild
+npm ci
+npm run check
+npm run build
+npm run preserve:legacy
+npm run audit:routes
+npm run test:visual
+```
+
+O workflow `Build and deploy editorial site` bloqueia o deploy se os contratos editoriais, build, rotas ou QA visual multi-viewport falharem.
+
+## Artigo semanal automático
+
+Existe uma automação do ChatGPT aos sábados. Ela publica na arquitetura Astro atual e deve obedecer ao contrato canônico do repositório. Um artigo novo não exige edição manual das listas de QA: os testes descobrem automaticamente o artigo mais recente e todos os artigos registrados em `articles.ts`.
+
+## Princípios
+
+- conteúdo público e útil;
+- nenhuma dependência de imagem externa para o editorial;
+- nenhuma informação confidencial ou credencial;
+- leitura principal funciona sem JavaScript;
+- acessibilidade, foco visível e reduced motion;
+- responsividade validada de mobile até 4K;
+- figuras técnicas nunca podem perder conteúdo lateral;
+- retratos mobile devem preservar o assunto principal;
+- GitHub Pages é o destino canônico.
