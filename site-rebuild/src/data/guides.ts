@@ -18,7 +18,7 @@ export const guideCompatibility = ['Copilot Chat básico', 'ChatGPT', 'Claude', 
 export const portableGuides: PortableGuide[] = [
   {
     id: 'O17', slug: 'cognitive-os', category: 'Pesquisa, decisão & estratégia',
-    title: 'Cognitive OS — Pesquisa, Diagnóstico e Decisão',
+    title: 'Cognitive OS — Pesquisa, Análise e Decisão',
     summary: 'Ajuda a formular a pergunta real, pesquisar só o que pode mudar a decisão, desafiar conclusões e saber quando parar.',
     activateWhen: 'A pergunta exige enquadramento, evidência, diagnóstico, comparação ou decisão — especialmente quando pesquisar mais nem sempre significa decidir melhor.',
     inputs: 'Pergunta ou decisão, contexto, restrições, evidências/fontes disponíveis e alternativas conhecidas.',

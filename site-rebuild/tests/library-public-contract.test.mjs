@@ -109,15 +109,17 @@ test('provenance pins 25 entries, 24 unique source methods and reusable contract
 
 test('Cognitive OS guide is public-source based and directly executable in basic chat', () => {
   const guide = read('src/content/public-guides/cognitive-os.md');
-  assert.match(guide, /^source_of_truth:\s*public_repository$/m);
-  assert.match(guide, /^source_repository:\s*FilipeGCB\/cognitive-os$/m);
-  assert.match(guide, /^source_ref:\s*v1\.4\.0$/m);
+  assert.match(guide, /^origin:\s*cognitive-os-public$/m);
+  assert.match(guide, /^source_project:\s*FilipeGCB\/cognitive-os$/m);
+  assert.match(guide, /^source_version:\s*1\.4\.0$/m);
+  assert.match(guide, /^source_commit:\s*fea0fa6ea765283288b835fec1a8ffc5195f29bb$/m);
   assert.match(guide, /Contexto antes do problema\. Problema antes da solução/i);
-  assert.match(guide, /## 14\. Roteamento de pesquisa/);
-  assert.match(guide, /## 20\. Próxima prova/);
-  assert.match(guide, /## 21\. Saber parar/);
-  assert.match(guide, /## 29\. Prompt operacional/);
-  assert.match(guide, /## 30\. Como usar no Copilot Chat básico/);
+  assert.match(guide, /## Roteamento de pesquisa/);
+  assert.match(guide, /## Capability Discovery/);
+  assert.match(guide, /## Next Proof/);
+  assert.match(guide, /## Stop Discipline/);
+  assert.match(guide, /## Prompt operacional/);
+  assert.match(guide, /## Uso no Copilot Chat básico/);
 });
 
 test('library presents two usage modes, 10 highlights and direct task-oriented specs', () => {

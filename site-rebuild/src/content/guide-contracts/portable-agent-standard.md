@@ -3,8 +3,8 @@ origin: chatgpt
 origem: chatgpt
 date: 2026-09-21
 data: 2026-09-21
-type: execution_contract
-tipo: contrato-de-execucao
+type: execution_standard
+tipo: padrao-de-agente-portatil
 status: active
 privacy: private
 data_class: learning
@@ -14,277 +14,244 @@ shareable: true
 owner: Filipe
 version: v1.0
 versao: v1.0
-tags: [copilot, agente-portatil, chat, skill, contrato, execucao, qualidade]
+tags: [copilot, agente-portatil, markdown, skill, contrato, qa, definition-of-done]
 ---
 
-# Padrão de Agente Portátil para Chats de IA
+# Padrão de Engenharia para Agentes Portáteis em Markdown
 
-## 1. Finalidade
+## Finalidade
 
-Este contrato existe para transformar um guia de método em um **agente portátil em Markdown**.
+Este padrão extrai a engenharia de instrução observada nos guias mais consistentes da biblioteca, especialmente os guias de artefatos e Data Stories.
 
-O objetivo é permitir que uma pessoa use um método especializado mesmo em um ambiente que não oferece criação de agentes, skills persistentes, MCPs ou automações — por exemplo um Copilot Chat corporativo básico.
-
-O agente portátil não adiciona capacidades que o host não possui. Ele adiciona **modo de trabalho, disciplina, sequência, critérios de qualidade e definição de concluído**.
+Ele não substitui nenhum método de domínio. Sua função é definir **como empacotar um método para que um chat de IA limitado consiga executá-lo de forma previsível**, sem transformar todos os guias no mesmo conteúdo.
 
 A regra central é:
 
-> Use o guia como método de execução. Não apenas explique o método; aplique-o ao pedido real do usuário dentro das capacidades realmente disponíveis.
+> Padronizar a engenharia da execução, não o conhecimento do domínio.
 
----
+## Problema que o padrão resolve
 
-## 2. Dois modos de distribuição
+Em um chat básico, o modelo não possui necessariamente:
 
-O mesmo método pode existir em duas embalagens.
+- agente persistente;
+- skill instalável;
+- workflow;
+- memória estruturada;
+- executor externo;
+- testes automáticos;
+- ferramentas especiais.
 
-### Modo Chat
+O Markdown precisa carregar contexto operacional suficiente para reduzir improvisação e conduzir a IA até um resultado utilizável.
 
-Um único arquivo Markdown autocontido para anexar ou colar em um chat.
+## O que um agente portátil precisa conter
 
-Adequado para:
+### 1. Missão
 
-- Copilot Chat básico;
-- ChatGPT sem skill dedicada;
-- Claude sem skill instalada;
-- qualquer assistente que aceite arquivo ou contexto Markdown.
+Definir em uma frase o problema que o método resolve e qual transformação produz.
 
-### Modo Skill
+### 2. Quando ativar e quando não ativar
 
-Pacote estruturado para hosts compatíveis com skills ou agentes.
+O modelo precisa saber reconhecer o caso certo e também evitar ativação indevida.
 
-Pode separar:
+### 3. Entradas mínimas
 
-- instruções de ativação;
-- referências;
-- schemas;
-- scripts;
-- testes;
-- recursos auxiliares.
+Declarar o que é indispensável, o que é desejável e o que fazer quando faltar informação.
 
-O método de domínio deve permanecer equivalente nos dois modos.
+### 4. Contratos intermediários
 
----
+Quando a tarefa for complexa, definir estruturas explícitas para organizar o trabalho antes da entrega.
 
-## 3. Contrato de ativação
+Exemplos:
 
-Ao receber um agente portátil:
-
-1. leia o pedido e os materiais já fornecidos;
-2. identifique a tarefa real antes de aceitar automaticamente a solução sugerida;
-3. use o guia como procedimento dominante;
-4. pergunte apenas quando uma lacuna puder mudar materialmente o resultado;
-5. se a lacuna não for material, declare a premissa e avance;
-6. não peça novamente informação que já esteja disponível;
-7. não invente capacidade, fonte, dado, teste ou resultado.
-
-O usuário pode continuar conversando normalmente. Não é necessário repetir o nome do guia a cada mensagem.
-
----
-
-## 4. Verdade sobre capacidades
-
-O guia não autoriza o assistente a fingir que possui ferramentas.
-
-Antes de depender de uma capacidade, distinguir:
-
-- disponível e realmente utilizável;
-- indisponível;
-- desconhecida.
-
-Exemplos de capacidades:
-
-- busca web;
-- leitura de arquivos;
-- acesso a repositório;
-- execução de código;
-- geração de arquivo;
-- navegador;
-- conectores corporativos;
-- planilhas;
-- banco de dados;
-- testes visuais.
-
-Se a capacidade necessária não estiver disponível:
-
-- use um caminho alternativo quando ele preservar a qualidade;
-- peça o menor insumo adicional necessário;
-- ou declare a limitação objetivamente.
-
-Nunca afirmar que algo foi pesquisado, executado, testado, criado, instalado ou validado sem evidência observável.
-
----
-
-## 5. Entradas e perguntas
-
-Comece pelos materiais existentes.
-
-Quando faltar algo, classifique a lacuna:
-
-- **bloqueante** — impede uma resposta responsável;
-- **material** — pode mudar bastante a conclusão ou o artefato;
-- **não material** — pode ser tratada como premissa explícita.
-
-Faça uma pergunta de alto valor por vez quando necessário.
-
-Não transforme a abertura da tarefa em uma entrevista ritual.
-
----
-
-## 6. Processo
-
-Cada guia define seu próprio processo de domínio. Preserve essa sequência.
-
-Como disciplina transversal:
-
-```text
-entender o objetivo
-→ inspecionar insumos
-→ separar fato de suposição
-→ escolher somente métodos/capacidades necessárias
-→ executar o processo do guia
-→ produzir o entregável real
-→ verificar qualidade
-→ corrigir falhas materiais
-→ encerrar com resultado, limites e próximo passo
-```
-
-Não interromper em planejamento se o pedido e o ambiente permitem concluir o trabalho.
-
----
-
-## 7. Contratos intermediários
-
-Quando o guia definir estruturas como:
-
-- briefing;
 - DecisionSpec;
 - EvidenceSpec;
 - SceneSpec;
-- matriz;
-- checklist;
-- scorecard;
-- inventário;
-- contrato de dados;
-- modelo de estado;
+- matriz de comparação;
+- esquema de dados;
+- checklist de requisitos;
+- mapa de riscos.
 
-trate essas estruturas como **invariantes de execução**, não como documentação decorativa.
+O contrato deve reduzir ambiguidade, não gerar burocracia.
 
-Elas servem para reduzir improvisação e manter consistência entre execuções.
+### 5. Processo obrigatório
 
----
+Definir a sequência causal mínima do método.
 
-## 8. Evidência e confiança
+Exemplo abstrato:
 
-Separar explicitamente quando material:
+```text
+insumos
+→ enquadramento
+→ validação
+→ construção
+→ teste
+→ correção
+→ entrega
+```
 
-- fato/evidência;
-- inferência;
-- hipótese;
-- suposição;
-- preferência;
-- desconhecido;
-- contradição.
+A sequência pode possuir branches, mas o modelo não deve pular diretamente para a aparência ou para a resposta final quando uma etapa anterior sustenta a qualidade.
 
-Não transformar ausência de evidência em certeza.
+### 6. Regras específicas do domínio
 
-Para informação atual, preferir fonte atual e autoritativa quando essa diferença puder mudar a resposta.
+Esta é a parte que deve continuar diferente em cada guia.
 
----
+Exemplos:
 
-## 9. Antipadrões transversais
+- Storytelling with Data em Data Stories;
+- backward design em aprendizagem;
+- reconciliação em finanças;
+- source authority em pesquisa;
+- least privilege em integrações;
+- equivalência em modernização.
+
+### 7. Antipadrões
+
+Incluir comportamentos comuns de LLM que devem ser evitados.
+
+Antipadrão bom é específico e observável.
+
+### 8. Contrato de entrega
+
+Definir exatamente o artefato final esperado.
+
+Não aceitar automaticamente plano, wireframe, pseudocódigo, arquitetura ou exemplo parcial quando o pedido exige resultado executável.
+
+### 9. QA e gates
+
+Converter qualidade abstrata em verificações observáveis.
+
+Um gate só deve existir se sua falha puder mudar materialmente a confiança na entrega.
+
+### 10. Definition of Done
+
+Explicitar quando o agente pode afirmar que terminou.
+
+### 11. Formato de fechamento
+
+A resposta final deve informar o que foi produzido, evidências relevantes, como usar e limitações reais.
+
+### 12. Prompt operacional
+
+Encerrar o guia com uma versão compacta que reforce:
+
+- ordem de execução;
+- invariantes;
+- resultado final;
+- proibições materiais.
+
+A repetição deliberada das invariantes é permitida quando ajuda modelos limitados a preservá-las durante contexto longo.
+
+## Princípios derivados do Data Stories
+
+### Reduzir o espaço de decisão desnecessário
+
+O agente deve escolher onde a escolha agrega valor. O restante deve receber uma gramática clara.
+
+### Transformar princípios em regras operacionais
 
 Evitar:
 
-- começar pela aparência antes de entender o objetivo;
-- produzir resposta genérica ignorando o método;
-- criar funcionalidades fictícias;
-- declarar teste não executado;
-- inventar fonte;
-- esconder limitação;
-- usar tecnologia mais complexa sem necessidade;
-- entregar um plano quando o usuário pediu o resultado;
-- repetir frameworks apenas para parecer rigoroso;
-- continuar pesquisando quando nova informação já não mudará o resultado.
+> faça um bom dashboard.
 
----
+Preferir regras como:
 
-## 10. Artefatos executáveis
+- cada visual responde a uma pergunta;
+- cada cena possui uma mensagem principal;
+- títulos comunicam a mensagem quando ela estiver validada;
+- mobile é redesenhado, não apenas reduzido;
+- interação sem utilidade é removida;
+- funcionalidade visível precisa funcionar.
 
-Quando o pedido envolver HTML, dashboard, site, simulador, código, planilha, apresentação, documento ou outro artefato executável, aplicar adicionalmente:
+### Menor stack suficiente
 
-> O artefato somente está concluído quando o escopo solicitado está implementado, o que é visível funciona de verdade, os testes possíveis foram executados, falhas materiais foram corrigidas ou registradas e existem instruções objetivas de uso.
+Complexidade técnica não é sinal de qualidade.
 
-Não apresentar como funcional:
+Escolher a menor tecnologia capaz de cumprir o resultado e os critérios de aceite.
 
-- botão sem ação;
-- filtro que não altera resultado;
-- cálculo desconectado dos dados;
-- formulário decorativo;
-- navegação sem destino;
-- download que não funciona;
-- integração inexistente;
-- estado fictício.
+### Reforço de invariantes
 
-Escolher a menor stack suficiente.
+Resultado obrigatório, gates, testes e Definition of Done podem repetir a mesma regra em contextos diferentes. Isso é útil quando a repetição reduz regressões do modelo.
 
----
+### Evidência antes de claim
 
-## 11. Gates de qualidade
+Nunca declarar execução, teste, acesso, validação ou pesquisa que não ocorreu de forma observável.
 
-Antes de encerrar, verificar:
+## Dois modos de distribuição
 
-1. **Objetivo** — o pedido real foi atendido?
-2. **Entradas** — os materiais relevantes foram usados?
-3. **Método** — o processo específico do guia foi aplicado?
-4. **Verdade** — fatos, inferências e lacunas estão separados?
-5. **Entrega** — existe resultado utilizável, e não apenas explicação?
-6. **Funcionamento** — quando aplicável, o artefato realmente funciona?
-7. **Teste** — as validações possíveis foram executadas?
-8. **Limites** — o que não foi possível validar está claro?
-9. **Próximo passo** — há uma ação clara ou uma razão explícita para parar?
+### Modo Chat
 
-Falha material em um gate impede declarar conclusão plena.
+Para Copilot Chat básico e outros chats sem skills/agentes instaláveis.
 
----
+Um único Markdown deve ser autocontido o suficiente para:
 
-## 12. Definição de concluído
+1. explicar o método;
+2. instruir a execução;
+3. orientar o uso das capacidades realmente disponíveis;
+4. declarar limitações;
+5. produzir o resultado pedido.
 
-Uma execução está concluída quando:
+### Modo Skill
 
-- o objetivo foi atendido dentro do escopo;
-- o método de domínio foi efetivamente aplicado;
-- o resultado é utilizável;
-- nenhuma capacidade foi simulada;
-- afirmações materiais respeitam as evidências disponíveis;
-- verificações possíveis foram executadas;
-- limitações restantes estão visíveis;
-- evolução futura está separada do que já está pronto.
+Para hosts compatíveis com Agent Skills.
 
----
+Estrutura recomendada:
 
-## 13. Formato da resposta final
+```text
+skill/
+├── SKILL.md
+├── references/
+│   └── metodo-completo.md
+├── schemas/
+├── tests/
+└── resources/ quando necessário
+```
 
-Priorizar:
+O `SKILL.md` deve ser curto e roteável. O método completo permanece em `references/`.
 
-1. resultado;
-2. o que foi produzido ou concluído;
-3. evidências/testes relevantes;
-4. como usar, quando aplicável;
-5. limitações reais;
-6. próximo passo somente se ele for material.
+## Regra de fonte única
 
-A resposta final não substitui um arquivo que deveria ter sido criado.
+Não manter dois métodos divergentes.
 
----
+```text
+método canônico
+├── bundle autocontido para Chat
+└── skill modular para hosts compatíveis
+```
 
-## 14. Regra de preservação do método
+As duas distribuições devem declarar a mesma missão, limites e Definition of Done.
 
-Este contrato **não substitui nem reescreve** o guia mestre de domínio.
+## Critério de publicação
 
-Quando houver conflito:
+Uma habilidade só deve ganhar destaque público quando houver evidência de que ela melhora materialmente pelo menos um destes pontos:
 
-- regras específicas do domínio prevalecem sobre preferências genéricas;
-- regras de verdade sobre capacidade e evidência continuam obrigatórias;
-- regras de segurança e privacidade não podem ser enfraquecidas.
+- qualidade;
+- consistência;
+- completude;
+- redução de erro;
+- rastreabilidade;
+- tempo para chegar ao resultado;
+- capacidade de execução em um host mais limitado.
 
-O objetivo é tornar a execução mais consistente sem homogeneizar métodos diferentes.
+Quantidade de texto não é critério de qualidade.
+
+## Teste recomendado
+
+Para métodos importantes, executar comparação com entradas diferentes:
+
+1. sem guia;
+2. com método completo;
+3. quando relevante, sem contrato de entrega;
+4. quando relevante, sem gates/Definition of Done;
+5. versão compacta.
+
+Avaliar:
+
+- aderência ao método;
+- consistência estrutural;
+- erros;
+- completude;
+- estabilidade do artefato;
+- qualidade do resultado;
+- claims sem evidência.
+
+O objetivo é descobrir quais partes realmente produzem ganho antes de replicá-las pela biblioteca.

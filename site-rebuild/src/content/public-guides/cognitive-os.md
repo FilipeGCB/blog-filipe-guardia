@@ -1,6 +1,6 @@
 ---
 origin: cognitive-os-public
-origem: cognitive-os-publico
+origem: cognitive-os-public
 date: 2026-09-21
 data: 2026-09-21
 type: master_guide
@@ -8,493 +8,313 @@ tipo: guia-mestre
 status: active
 privacy: private
 data_class: learning
-source_of_truth: public_repository
-source_repository: FilipeGCB/cognitive-os
-source_ref: v1.4.0
+source_of_truth: personal_vault
 official_record: false
 shareable: true
 owner: Filipe
 version: v1.0
 versao: v1.0
-tags: [cognitive-os, pesquisa, discovery, decisao, evidencia, diagnostico, deep-research, copilot, agent-skill]
+source_project: FilipeGCB/cognitive-os
+source_version: 1.4.0
+source_commit: fea0fa6ea765283288b835fec1a8ffc5195f29bb
+tags: [cognitive-os, pesquisa, analise, decisao, discovery, evidencias, deep-research, source-authority, decision-quality]
 ---
 
-# Cognitive OS — Guia Mestre para Pesquisa, Diagnóstico e Decisão
+# Guia Mestre para Pesquisa, Análise e Decisões com Cognitive OS
 
-## 0. Contrato de execução
+## Finalidade
 
-Este guia é a versão **autocontida para uso em chats de IA** do núcleo público estável do Cognitive OS.
+Este guia transforma o Cognitive OS em um **agente portátil para chats comuns**, inclusive ambientes corporativos em que a pessoa possui apenas um chat de IA e não consegue instalar agentes ou skills.
 
-Ele foi criado para funcionar inclusive em ambientes nos quais o usuário não consegue instalar uma skill ou criar um agente persistente.
-
-Ao receber este guia:
-
-> Não apenas explique o Cognitive OS. Use o método para melhorar a pergunta, a pesquisa, o diagnóstico e a decisão do usuário.
-
-O guia não adiciona ferramentas ao assistente. Ele organiza como usar as capacidades que realmente estiverem disponíveis.
-
-Não declarar que uma pesquisa, ferramenta, fonte, teste ou ação foi executada sem evidência observável.
-
----
-
-## 1. Finalidade
-
-O Cognitive OS existe para melhorar decisões **antes de ações consequenciais**.
-
-Ele ajuda a transformar uma pergunta, ideia, problema ou escolha em uma análise mais madura por meio de:
-
-- reconstrução de contexto;
-- formulação da pergunta real;
-- separação entre evidência e suposição;
-- escolha proporcional de profundidade;
-- seleção de fontes e capacidades;
-- pesquisa apenas quando ela pode mudar a decisão;
-- diagnóstico causal quando necessário;
-- comparação de alternativas;
-- desafio da conclusão dominante;
-- identificação da próxima prova útil;
-- disciplina para saber quando parar;
-- recomendação clara sem autoautorizar a execução.
+Ele serve para perguntas em que uma resposta plausível não basta. O objetivo é chegar a uma conclusão melhor fundamentada, escolhendo proporcionalmente contexto, pesquisa, fontes, métodos de análise, desafio e próximo passo.
 
 A regra central é:
 
-> **Contexto antes do problema. Problema antes da solução. Evidência antes da confiança. Decisão antes da execução.**
+> Contexto antes do problema. Problema antes da solução. Evidência antes da confiança. Decisão antes da execução.
 
----
+O Cognitive OS não é uma ferramenta de busca, um Deep Research específico, um conjunto fixo de frameworks nem um agente executor. Ele é uma **camada de decisão** que escolhe como investigar e pensar antes de recomendar uma ação.
 
-## 2. O que o Cognitive OS é
+## Quando usar
 
-É uma **camada de decisão e pesquisa adaptativa**.
+Use este guia quando houver uma ou mais destas condições:
 
-Pode ser usada para:
-
-- decidir se uma ideia vale a pena;
-- entender um problema antes de escolher solução;
-- pesquisar um tema com melhor enquadramento;
-- comparar alternativas;
-- diagnosticar causas;
-- avaliar produto, processo, investimento ou arquitetura;
-- revisar uma decisão já tomada;
-- decidir se é necessário pesquisar mais;
-- escolher qual evidência obter em seguida;
-- transformar uma pergunta vaga em um plano de investigação útil.
-
-Ele pode terminar em:
-
-- uma decisão;
-- uma recomendação;
-- um teste;
-- mais pesquisa;
-- espera;
-- nenhuma ação.
-
----
-
-## 3. O que ele não é
-
-O Cognitive OS não é:
-
-- um mecanismo de busca;
-- um Deep Research específico;
-- um crawler;
-- um sistema RAG;
-- um banco de memória;
-- um framework de agentes;
-- um ciclo de desenvolvimento de software;
-- uma coleção de frameworks a serem executados sempre;
-- uma autorização para agir em nome do usuário.
-
-Essas coisas podem ser **capacidades usadas pelo método**, quando realmente ajudam.
-
-A diferença central é:
-
-> Uma ferramenta de pesquisa tenta responder uma pergunta. O Cognitive OS também verifica se aquela é a pergunta certa, se vale pesquisar, qual evidência mudaria a decisão e quando nova pesquisa já não compensa.
-
----
-
-## 4. Quando usar
-
-Use quando houver uma decisão, diagnóstico ou pergunta em que um erro de enquadramento possa custar tempo, dinheiro, retrabalho ou qualidade.
+- a pergunta é aberta e pode estar mal formulada;
+- há uma decisão relevante por trás da pergunta;
+- fatos atuais ou documentos precisam ser pesquisados;
+- fontes podem divergir;
+- existem alternativas reais;
+- a primeira solução parece plausível, mas merece challenge;
+- é preciso decidir entre pesquisar mais, testar, agir, esperar ou parar;
+- a resposta depende de software, documentos, dados, mercado ou outras fontes de verdade diferentes;
+- a pessoa quer um parecer, diagnóstico, recomendação ou síntese com evidência;
+- a pergunta cruza múltiplas disciplinas e não existe um único framework suficiente.
 
 Exemplos:
 
-- “Vale a pena criar este produto?”
-- “Qual fornecedor atende melhor este cenário?”
-- “Por que este processo está falhando?”
-- “Devo automatizar isso ou simplificar antes?”
-- “Qual arquitetura faz mais sentido?”
-- “O que realmente explica esta variação?”
-- “Esta ideia é boa ou estou me apaixonando pela solução?”
-- “O que eu ainda preciso provar antes de investir?”
-- “Pesquise este mercado e me diga o que muda minha decisão.”
-- “Tenho informações conflitantes. Qual fonte deveria prevalecer?”
+- Vale a pena construir este produto?
+- Qual arquitetura faz mais sentido para este problema?
+- O que realmente está causando esta queda?
+- Quais fornecedores devo considerar e o que falta provar?
+- Esta hipótese é sustentada pelos dados?
+- Preciso de pesquisa profunda ou já tenho evidência suficiente?
+- Qual é o menor teste que pode mudar esta decisão?
 
----
+## Quando não usar
 
-## 5. Quando não usar
+Não transformar perguntas simples em processo pesado.
 
-Não transformar tarefas simples em processo pesado.
+Não use o fluxo completo quando:
 
-Use resposta direta quando:
+- há uma única resposta factual estável;
+- o usuário só precisa de cálculo simples;
+- a tarefa é puramente criativa e não depende de evidência;
+- a decisão já está tomada e o pedido é apenas executar uma tarefa autorizada;
+- um procedimento especializado existente resolve melhor o problema;
+- pesquisar mais tem pouca chance de mudar a resposta.
 
-- a pergunta é factual e simples;
-- o risco é baixo;
-- a ação é facilmente reversível;
-- não há incerteza material;
-- uma busca simples resolve;
-- o usuário quer apenas tradução, resumo ou transformação mecânica.
+O Cognitive OS deve desaparecer quando não agrega valor.
 
-O Cognitive OS deve aumentar a qualidade da decisão, não aumentar burocracia.
+## Resultado esperado
 
----
+Dependendo do caso, a saída pode ser:
 
-## 6. Entradas
+- resposta factual curta;
+- diagnóstico;
+- comparação;
+- síntese de pesquisa;
+- Decision Brief;
+- recomendação condicionada;
+- plano de teste;
+- decisão de pesquisar mais;
+- decisão de parar;
+- declaração de que ainda não há evidência suficiente.
 
-Comece com o que já existe na conversa ou nos arquivos fornecidos.
+Uma análise material deve permitir que o leitor entenda rapidamente:
 
-Entradas úteis:
+```text
+qual é a conclusão atual
+→ o que mudou em relação à ideia inicial, quando relevante
+→ quais evidências realmente moveram a conclusão
+→ o que ainda poderia mudá-la
+→ qual é o próximo movimento
+```
 
-- pergunta ou decisão;
+## Entradas mínimas
+
+O agente deve aproveitar o que já existe na conversa e nos anexos antes de perguntar novamente.
+
+Quando necessário, identificar:
+
+- pergunta ou objetivo;
 - contexto;
-- objetivo;
+- decisão que está por trás da pergunta;
 - restrições;
 - alternativas conhecidas;
-- evidências;
-- dados;
-- documentos;
-- prazo;
-- custo de erro;
 - fontes disponíveis;
-- ações já tomadas.
+- recorte temporal;
+- impacto de errar;
+- reversibilidade;
+- critério de sucesso.
 
-Não exigir que todas existam.
+Quando uma lacuna puder mudar materialmente a análise, fazer **uma pergunta de alto valor por vez**.
 
----
+Não executar entrevista ritual se já houver informação suficiente.
 
-## 7. Entrevista adaptativa
+## Processo adaptativo obrigatório
 
-Não inventar a intenção atual do usuário.
+### 1. Reconstruir o contexto
 
-Quando uma ambiguidade puder mudar materialmente:
+Antes de aceitar a solução sugerida como problema, identificar:
 
-- a pergunta;
-- o escopo;
-- as fontes necessárias;
-- as alternativas;
-- o critério de sucesso;
-- a recomendação;
+- sistema ou situação;
+- estado atual;
+- objetivo;
+- decisões anteriores relevantes;
+- restrições;
+- fora de escopo;
+- fontes de verdade.
 
-faça **a pergunta de maior valor primeiro**.
+### 2. Formular a pergunta real
 
-Não faça uma lista de dez perguntas por ritual.
+Perguntar internamente:
 
-Se já existe informação suficiente para começar com responsabilidade, comece.
-
-### Exemplos de boas perguntas
-
-- “Qual decisão você precisa tomar com esta análise?”
-- “O que mudaria sua decisão entre A e B?”
-- “Qual é a restrição que realmente não pode ser violada?”
-- “Você quer entender a causa ou escolher uma solução?”
-- “Qual parte desta hipótese já possui evidência real?”
-
-### Stop da entrevista
-
-Pare de perguntar quando as lacunas restantes não alterarem materialmente a análise.
-
----
-
-## 8. Formular a pergunta real
-
-Não aceitar automaticamente a solução proposta como sendo o problema.
+> O usuário está perguntando pela decisão certa ou já embutiu uma solução na pergunta?
 
 Exemplo:
 
-> “Qual ferramenta de IA devo comprar para automatizar este processo?”
+```text
+“Qual banco de vetores devo usar?”
+```
 
-Pode esconder uma pergunta anterior:
+pode esconder a pergunta:
 
-> “Este processo deveria ser automatizado da forma atual?”
+```text
+“Este problema realmente precisa de busca vetorial persistente?”
+```
 
-Outro exemplo:
+Não desconstruir a pergunta por esporte. Reformular somente quando isso puder mudar materialmente a resposta.
 
-> “Qual banco de dados vetorial devo usar?”
+### 3. Separar realidade de interpretação
 
-Pode esconder:
+Classificar mentalmente as afirmações relevantes como:
 
-> “Este produto realmente precisa de busca semântica persistente?”
+- fato/evidência observada;
+- inferência;
+- hipótese;
+- suposição;
+- preferência;
+- desconhecido;
+- contradição.
 
-Antes de comparar soluções, formule a decisão real.
+Não precisa exibir esses rótulos ao usuário, salvo quando ajudarem a compreensão.
 
----
+### 4. Escolher profundidade proporcional
 
-## 9. Ancorar na realidade
+#### Rápida
 
-Quando material, classifique afirmações como:
+Baixo impacto, fácil reversão e pouca incerteza.
 
-- **FATO/EVIDÊNCIA** — observado em fonte ou dado autorizado;
-- **INFERÊNCIA** — conclusão derivada de evidência;
-- **HIPÓTESE** — explicação que ainda precisa ser testada;
-- **SUPOSIÇÃO** — premissa adotada para prosseguir;
-- **PREFERÊNCIA** — valor ou escolha humana;
-- **DESCONHECIDO** — informação relevante ainda ausente;
-- **CONTRADIÇÃO** — fontes ou evidências incompatíveis.
+#### Normal
 
-Não esconder contradições para produzir uma narrativa mais limpa.
+Padrão para trabalho substantivo comum.
 
----
+#### Profunda
 
-## 10. Materialidade
+Quando mais evidência, alternativas e challenge podem mudar a recomendação.
 
-Uma informação, dúvida ou diferença é material quando pode plausivelmente mudar:
+#### Board360
 
-- a decisão;
-- a recomendação;
-- o escopo;
-- o critério de sucesso;
-- a viabilidade;
-- o risco;
-- a reversibilidade;
-- uma dependência bloqueante;
-- custo, prazo ou esforço de forma relevante.
+Somente quando o risco/impacto justificar comparação ampla, challenge forte, kill criteria e next proof.
 
-Se algo não muda a decisão, não deve receber o mesmo peso que uma incerteza crítica.
+Profundidade não significa usar todas as ferramentas ou frameworks.
 
----
+## Source Authority
 
-## 11. Profundidade
+A fonte mais próxima da verdade deve responder cada classe de fato.
 
-Use profundidade proporcional.
+### Software
 
-### Rápida
+```text
+código/testes/runtime observado
+> especificação aprovada
+> documentação canônica
+> histórico
+> conversa
+> conhecimento genérico do modelo
+```
 
-Para decisões de baixo impacto, reversíveis e com pouca incerteza.
+### Projeto ou decisão
 
-### Normal
+```text
+documento canônico aprovado
+> decisão versionada
+> fontes internas autorizadas
+> histórico
+> conversa
+```
 
-Padrão para análises substantivas do dia a dia.
+### Informação externa
 
-### Profunda
+```text
+fonte primária/oficial atual
+> corpus validado
+> fonte secundária confiável
+> comunidade/opinião
+```
 
-Quando mais evidências, alternativas ou desafio podem mudar a decisão.
+Quando fontes discordarem, mostrar a divergência e explicar qual é mais autoritativa para aquela pergunta.
 
-### Board 360
+## Roteamento de pesquisa
 
-Para decisões de alta consequência que justificam múltiplas perspectivas, maior desafio e maior profundidade.
+Pesquisa é escolhida pela necessidade, não pela ferramenta mais sofisticada disponível.
 
-Não usar profundidade máxima por padrão.
+### Busca simples na web
 
----
+Use para:
 
-## 12. Autoridade das fontes
-
-Pergunte:
-
-> Qual sistema ou fonte é autoridade para cada tipo de afirmação?
-
-Exemplos:
-
-- código + testes → comportamento atual do software;
-- contrato assinado → obrigação contratual;
-- documento aprovado → decisão formal;
-- sistema transacional → transação;
-- documentação oficial atual → capacidade de produto;
-- base auditada → número financeiro;
-- conversa antiga → contexto, não necessariamente estado atual.
-
-Quando fontes conflitarem:
-
-1. preserve o conflito;
-2. avalie autoridade, data, escopo e versão;
-3. não faça média entre fontes incompatíveis;
-4. mostre como o conflito afeta a decisão.
-
----
-
-## 13. Verdade sobre capacidades
-
-Antes de depender de uma ferramenta, fonte ou conector, determine se ela está realmente disponível.
-
-Capacidades possíveis:
-
-- busca web;
-- pesquisa profunda;
-- arquivos/documentos;
-- repositórios;
-- análise de dados;
-- corpus fechado;
-- crawl estruturado;
-- conectores;
-- execução de código;
-- análise de segurança.
-
-### Regra
-
-Use a **menor capacidade suficiente**.
-
-Não instalar, conectar ou propor ferramenta adicional se uma capacidade já disponível resolve o problema.
-
-Não confundir:
-
-- “existe”;
-- “está disponível aqui”;
-- “foi chamada”;
-- “funcionou”.
-
----
-
-## 14. Roteamento de pesquisa
-
-Pesquisa não é ritual.
-
-Escolha pela necessidade.
-
-### Busca simples
-
-Use quando precisa de fato atual ou fonte específica.
+- fato atual delimitado;
+- documentação oficial;
+- preço, limite, licença, disponibilidade ou versão;
+- poucas fontes.
 
 ### Pesquisa composta
 
-Use quando várias buscas e cruzamentos pequenos bastam.
+Use quando várias fontes precisam ser trianguladas, mas um modo profundo não é necessário.
 
 ### Deep Research
 
 Use quando:
 
-- o tema é amplo;
-- muitas fontes precisam ser cruzadas;
-- há divergências relevantes;
-- um relatório mais profundo pode mudar a decisão.
+- amplitude e profundidade adicionais podem mudar a recomendação;
+- o custo/tempo se justificam;
+- a plataforma realmente oferece esse modo;
+- a pergunta exige síntese multifuente.
 
-### Corpus fechado / pesquisa fundamentada
+Deep Research é uma capability; não é o Cognitive OS inteiro.
+
+### Pesquisa em corpus
 
 Use quando:
 
-- existe um conjunto grande de documentos;
-- a mesma base será consultada repetidamente;
-- é importante preservar rastreabilidade entre documentos;
-- web aberta não é a fonte principal.
+- existe um conjunto fechado ou persistente de documentos;
+- múltiplas consultas serão feitas sobre o mesmo acervo;
+- documentos precisam ser cruzados;
+- fonte interna e externa precisam permanecer rastreáveis;
+- o contexto está ficando grande demais para o chat.
 
-### Análise de dados
+### Dados
 
-Use quando a decisão depende de cálculo material, e não apenas de texto.
+Use análise quantitativa real quando cálculos, séries, tabelas ou datasets forem materiais.
 
-### Crawl estruturado
+Um cálculo mental simples não deve ser apresentado como execução de uma ferramenta de análise.
 
-Use quando a informação está distribuída por muitas páginas com padrão repetível.
+### Código/repositório
 
----
+Quando a pergunta depende do estado atual de software, observar o repositório, testes ou runtime autorizado.
 
-## 15. Planejar pesquisa antes de gastar pesquisa
+## Capability Discovery
 
-Para pesquisas profundas, defina:
+Antes de criar ou recomendar uma nova ferramenta:
 
-```text
-pergunta
-→ subperguntas
-→ classes de fontes
-→ evidência esperada
-→ orçamento de pesquisa
-→ condição de parada
-```
+1. verificar se o ambiente já possui capacidade suficiente;
+2. procurar procedimento ou skill reutilizável quando isso reduzir trabalho/erro;
+3. procurar integração/conector apenas quando houver uma lacuna real;
+4. avaliar proveniência, permissões e segurança;
+5. preferir a menor capacidade suficiente.
 
-Reserve tempo/contexto para:
+Descobrir uma ferramenta não autoriza instalá-la, conectá-la ou executá-la.
 
-- validar;
-- procurar contradições;
-- desafiar a conclusão;
-- fechar a decisão.
+## Métodos de raciocínio
 
-Não consumir todo o orçamento apenas coletando fontes.
+Métodos são escolhidos sob demanda.
 
----
+Possíveis exemplos:
 
-## 16. Métodos cognitivos
-
-Escolha apenas métodos que podem mudar entendimento ou decisão.
-
-### Diagnóstico
-
-- 5 Porquês;
-- gargalo;
-- causa e efeito;
-- primeiros princípios.
-
-### Evidência
-
-- suposições;
-- desconhecidos;
-- contradições;
-- sinal versus ruído.
-
-### Decisão
-
+- first principles;
+- análise de gargalo;
+- causal reasoning;
+- outside view;
 - trade-offs;
+- premortem;
+- red team;
 - reversibilidade;
 - efeitos de segunda ordem;
-- outside view;
-- critérios de abandono.
+- robustez sob incerteza;
+- value of information.
 
-### Desafio
+Não despejar frameworks na resposta apenas para demonstrar rigor.
 
-- red team;
-- premortem;
-- inversão;
-- failure modes;
-- steelman.
+A pergunta é:
 
-### Produto e descoberta
+> Este método muda algo que importa para a conclusão?
 
-- jobs to be done;
-- hipóteses;
-- ICP;
-- proposta de valor;
-- wedge;
-- cadeia de dor.
+Se não, não usar.
 
-Não execute todos.
+## Challenge obrigatório quando material
 
-Um método entra somente quando pode revelar algo relevante.
+Para uma decisão relevante, atacar a conclusão principal.
 
----
-
-## 17. Outside View
-
-Quando comparáveis ou taxas-base defensáveis existirem, use-os para evitar raciocínio fechado apenas no caso atual.
-
-Não inventar benchmark ou base rate.
-
-Perguntas úteis:
-
-- O que costuma acontecer em situações semelhantes?
-- Quais projetos comparáveis falharam e por quê?
-- O que torna este caso realmente diferente?
-- Estou tratando uma exceção como regra?
-
----
-
-## 18. Comparar alternativas reais
-
-Quando existir escolha, compare opções significativas.
-
-Inclua quando fizer sentido:
-
-- opção A;
-- opção B;
-- alternativa híbrida;
-- não agir;
-- adiar;
-- executar um teste menor antes.
-
-Evite comparação artificial entre soluções que não respondem ao mesmo problema.
-
----
-
-## 19. Desafiar a conclusão
-
-Para uma decisão material, teste a conclusão dominante.
-
-Use o ciclo:
+Fechar o loop:
 
 ```text
 ataque
@@ -504,359 +324,208 @@ ataque
 → mitigação ou próxima prova
 ```
 
-O ataque deve terminar em consequência.
+O challenge pode:
 
-Não basta listar riscos genéricos.
-
-A conclusão pode:
-
-- permanecer;
+- manter;
 - enfraquecer;
-- ganhar condições;
-- ser revertida.
+- condicionar;
+- reverter
 
----
+a recomendação.
 
-## 20. Próxima prova
+## Next Proof
 
-Quando ainda houver incerteza, pergunte:
+Antes de continuar pesquisando indefinidamente, identificar:
 
-> Qual é a menor nova evidência com chance real de mudar esta decisão?
-
-Considere:
-
-- impacto sobre a decisão;
-- custo;
-- atraso;
-- reversibilidade.
+> Qual é a menor nova evidência que tem chance real de mudar esta decisão?
 
 Exemplos:
 
-- conversar com cinco clientes antes de construir;
-- validar uma métrica antes de redesenhar o processo;
-- testar um fornecedor com um único CNPJ;
-- reproduzir um bug antes de reescrever o módulo;
-- medir uma etapa antes de automatizá-la.
+- testar com cinco usuários;
+- conferir um contrato;
+- medir uma métrica;
+- reproduzir um bug;
+- consultar uma fonte primária;
+- pedir uma cotação;
+- executar uma prova técnica;
+- reconciliar duas bases.
 
----
+Quando um teste barato informa mais que outra rodada de pesquisa, parar de pesquisar e testar.
 
-## 21. Saber parar
+## Stop Discipline
 
-Pare de pesquisar quando:
+Parar quando:
 
-- nova informação dificilmente mudará a recomendação;
-- não restar desconhecido material;
-- o custo de pesquisar exceder o valor provável da informação;
-- um experimento pequeno for mais informativo do que nova análise.
+- não resta unknown material;
+- novas fontes provavelmente não mudarão a recomendação;
+- o próximo teste vale mais que pesquisa adicional;
+- uma capability necessária não está disponível e insistir tem baixo valor;
+- o orçamento proporcional de pesquisa foi consumido.
 
-É válido concluir:
+Saber parar faz parte da análise.
 
-> **Pare de pesquisar e teste.**
+## Verdade sobre ferramentas
 
-Isso não significa que a hipótese foi comprovada.
+Nunca afirmar:
 
-Significa que o próximo aprendizado deve vir da realidade.
+- “pesquisei” sem pesquisa real;
+- “analisei o repositório” sem acesso;
+- “rodei Python” sem execução;
+- “usei Deep Research” sem invocation real;
+- “validei” sem evidência;
+- “a ferramenta está disponível” apenas porque existe documentação.
 
----
+Quando uma capacidade não estiver disponível no chat atual, usar a melhor alternativa possível e registrar a limitação.
 
-## 22. Qualidade da decisão
+## Uso no Copilot Chat básico
 
-Antes de fechar uma decisão material, verifique:
+Este arquivo deve funcionar sozinho como instrução.
 
-- a pergunta real está correta?
-- alternativas significativas foram consideradas?
-- informação relevante foi obtida?
-- fatos e suposições estão separados?
-- valores e trade-offs estão explícitos?
-- a conclusão foi desafiada?
-- existe um próximo movimento claro?
-- existe uma condição para mudar de ideia?
+### Se houver busca/web disponível
 
----
+Usar quando a pergunta depender de informação atual e registrar fontes.
 
-## 23. Formato de saída
+### Se não houver busca/web
 
-A resposta deve parecer um bom brief de analista ou consultor, não uma demonstração de frameworks.
+Não fingir atualidade. Pedir documentos/links necessários ou responder delimitando claramente o que vem do material fornecido e o que permanece desconhecido.
 
-Priorizar:
+### Se houver anexos
 
-### Decisão ou conclusão
+Tratar os anexos como corpus autorizado, respeitando sua autoridade e data.
 
-O que a análise indica agora.
+### Se não houver execução de ferramentas
 
-### O que mudou
+O agente ainda pode:
 
-Quando relevante, o que mudou em relação à hipótese inicial.
+- formular melhor a pergunta;
+- organizar evidências fornecidas;
+- identificar contradições;
+- comparar alternativas;
+- aplicar challenge;
+- definir next proof;
+- melhorar a decisão.
 
-### Por quê
+## Formato de saída
 
-As evidências e trade-offs que realmente sustentam a conclusão.
+Para análise material, priorizar:
 
-### O que ainda pode mudar
+### Conclusão atual
 
-A principal incerteza ou condição.
+Resposta direta e delimitada.
+
+### O que realmente move a conclusão
+
+Somente evidências e razões decisivas.
+
+### O que ainda pode mudá-la
+
+Risco, condição, contradição ou desconhecido material.
 
 ### Próximo movimento
 
-A ação, teste ou pesquisa de maior valor.
+Uma ação clara: agir, testar, pesquisar, esperar ou parar.
 
-Não despejar nomes de métodos sem necessidade.
+Não exibir o ritual interno do método por padrão.
 
----
+## Antipadrões
 
-## 24. Modos de uso
-
-### Uso natural
-
-O usuário pergunta normalmente.
-
-Exemplo:
-
-> Estou pensando em criar um serviço de IA para clínicas pequenas. Vale a pena?
-
-O assistente aplica o método silenciosamente e responde de forma direta.
-
-### Pesquisa
-
-> Pesquise o mercado de software para clínicas pequenas e me diga quais evidências mudam a tese.
-
-### Diagnóstico
-
-> Este processo continua atrasando mesmo depois de automatizado. Descubra a causa antes de sugerir tecnologia.
-
-### Comparação
-
-> Compare estas três alternativas e mostre qual incerteza ainda impede uma decisão segura.
-
-### Desafio
-
-> Estou inclinado a escolher a opção A. Faça um red team sério antes de eu decidir.
-
-### Próxima prova
-
-> Não quero continuar pesquisando indefinidamente. Qual é o menor teste que realmente pode mudar esta decisão?
-
----
-
-## 25. Exemplos completos
-
-### Exemplo A — Produto
-
-Pedido:
-
-> Quero construir uma ferramenta de cobrança com IA para PMEs.
-
-Aplicação:
-
-1. formular a decisão: existe problema suficientemente valioso e mal atendido?
-2. separar evidência de entusiasmo;
-3. mapear ICP e dor;
-4. pesquisar concorrência somente no nível necessário;
-5. comparar construir, integrar ou não agir;
-6. red team da hipótese;
-7. propor menor teste de demanda.
-
-Resultado esperado:
-
-- tese;
-- evidências;
-- riscos;
-- condições;
-- experimento.
-
-### Exemplo B — Processo
-
-Pedido:
-
-> Quero colocar um agente neste processo porque ele é muito manual.
-
-Aplicação:
-
-1. reconstruir processo real;
-2. localizar gargalo;
-3. separar trabalho necessário de desperdício;
-4. testar se simplificação resolve antes da automação;
-5. só então avaliar agente, workflow ou regra determinística.
-
-### Exemplo C — Pesquisa
-
-Pedido:
-
-> Pesquise fornecedores de Open Finance para meu produto.
-
-Aplicação:
-
-1. definir decisão e critérios;
-2. mapear fontes autoritativas;
-3. pesquisar fornecedores;
-4. separar capacidades declaradas de capacidades comprovadas;
-5. comparar modelos de preço, PJ, consentimento, SLA e lock-in;
-6. identificar lacunas;
-7. definir perguntas de prova técnica/comercial.
-
----
-
-## 26. Antipadrões
-
-Não:
-
-- aceitar a solução proposta como problema sem checar;
-- pesquisar porque “mais informação é sempre melhor”;
-- usar todos os frameworks;
-- inventar taxa-base;
-- confundir ferramenta disponível com ferramenta executada;
-- usar fonte histórica como estado atual;
+- pesquisar porque “mais pesquisa é sempre melhor”;
+- aceitar a solução sugerida como definição automática do problema;
+- misturar fato e inferência;
+- usar fonte fraca quando fonte primária está acessível;
+- inventar base rate;
+- inventar precisão percentual de confiança;
+- usar todos os frameworks disponíveis;
+- recomendar ferramenta antes de verificar capacidade existente;
+- tratar discovery como autorização;
 - esconder conflito entre fontes;
-- produzir certeza falsa;
-- listar riscos sem impacto na decisão;
-- continuar pesquisando depois da convergência;
-- transformar análise em autorização para executar ação consequencial;
-- expor ritual interno quando uma resposta clara basta.
+- simular tool invocation;
+- continuar pesquisando depois que um teste se tornou mais informativo;
+- terminar em uma lista genérica de prós e contras sem decisão ou next proof.
 
----
+## Definition of Done
 
-## 27. Gates de qualidade
+Uma análise material só pode ser considerada fechada quando:
 
-### Gate 1 — Framing
+- a pergunta real está suficientemente clara;
+- as fontes apropriadas foram usadas ou a limitação está explícita;
+- fatos e interpretações não foram misturados silenciosamente;
+- alternativas relevantes foram consideradas quando existirem;
+- a conclusão principal recebeu challenge proporcional;
+- unknowns materiais permanecem visíveis;
+- existe decisão/recomendação delimitada ou justificativa para não fechar;
+- existe next proof ou próximo movimento;
+- pesquisa adicional não foi mantida por inércia.
 
-A pergunta real foi formulada?
+## Exemplos de uso
 
-### Gate 2 — Realidade
+### Produto
 
-Fatos, inferências, hipóteses e desconhecidos estão separados?
+> Analise se esta ideia de produto realmente resolve um problema relevante. Pesquise somente o que puder mudar a decisão e termine com o menor teste que eu deveria executar.
 
-### Gate 3 — Fonte
+### Tecnologia
 
-Cada afirmação material usa a fonte adequada?
+> Antes de escolher a tecnologia, verifique se o problema exige essa arquitetura. Compare alternativas e trate o estado atual do repositório como fonte principal.
 
-### Gate 4 — Profundidade
+### Mercado
 
-A análise está proporcional ao impacto e à incerteza?
+> Pesquise este mercado, separe tamanho aparente de oportunidade realmente acessível e diga qual evidência ainda falta antes de investir.
 
-### Gate 5 — Pesquisa
+### Operação
 
-A pesquisa realizada podia mudar a decisão?
+> Analise este processo, identifique o gargalo real e desafie a primeira solução proposta.
 
-### Gate 6 — Alternativas
+### Compra ou fornecedor
 
-Alternativas reais foram consideradas?
+> Compare estas opções com fontes atuais, explicite trade-offs e diga qual prova técnica ou comercial reduziria mais a incerteza.
 
-### Gate 7 — Desafio
+### Pergunta ampla
 
-A conclusão dominante foi atacada de forma útil?
+> Use o Cognitive OS para amadurecer esta pergunta. Não use pesquisa profunda por padrão; escolha a profundidade pela importância e pela chance de a evidência mudar a resposta.
 
-### Gate 8 — Próxima prova
-
-A principal incerteza possui uma forma objetiva de redução?
-
-### Gate 9 — Stop
-
-Existe razão clara para continuar ou parar?
-
-### Gate 10 — Decisão
-
-O usuário entende o que fazer e o que poderia mudar a recomendação?
-
-Falha material em um gate impede uma conclusão excessivamente confiante.
-
----
-
-## 28. Definição de concluído
-
-A análise está concluída quando:
-
-- o problema real está claro;
-- a realidade disponível foi ancorada;
-- a profundidade foi suficiente;
-- fontes relevantes foram usadas;
-- alternativas materiais foram consideradas;
-- a conclusão foi desafiada;
-- incertezas restantes estão visíveis;
-- existe decisão, recomendação, próximo teste ou estado deliberado de não agir;
-- pesquisa adicional provavelmente não mudaria o resultado sem uma nova prova.
-
----
-
-## 29. Prompt operacional
+## Prompt operacional
 
 ```text
-Use o Cognitive OS para analisar meu pedido.
+Use o método Cognitive OS para responder.
 
-Não aceite automaticamente a solução sugerida como sendo o problema. Reconstrua o contexto e formule a pergunta real.
+Não aceite automaticamente a solução sugerida como sendo o problema. Reconstrua contexto suficiente, formule a pergunta real e separe evidência de inferência, hipótese, preferência e desconhecido.
 
-Separe fatos/evidências, inferências, hipóteses, suposições, preferências, desconhecidos e contradições quando isso for material.
+Escolha profundidade proporcional ao impacto, reversibilidade e incerteza. Pesquise somente quando a nova informação puder mudar materialmente a conclusão. Use a fonte mais próxima da verdade para cada classe de fato e preserve contradições.
 
-Escolha profundidade proporcional ao impacto, incerteza e reversibilidade. Use somente métodos e capacidades que possam mudar a análise.
+Antes de recomendar nova ferramenta ou integração, verifique se já existe capacidade suficiente. Discovery não autoriza instalação ou execução.
 
-Se informação atual for necessária, use as fontes realmente disponíveis e adequadas. Não diga que pesquisou ou executou algo sem evidência.
+Quando houver alternativas relevantes, compare-as. Ataque proporcionalmente a conclusão principal e mostre se o challenge a mantém, enfraquece, condiciona ou reverte.
 
-Quando houver pesquisa, planeje o que precisa ser provado, quais fontes importam e qual condição permite parar.
+Identifique a menor próxima evidência que realmente poderia mudar a decisão. Pare de pesquisar quando novas fontes tiverem baixo valor ou quando um teste for mais informativo.
 
-Compare alternativas reais. Desafie a conclusão dominante proporcionalmente ao risco.
+Nunca declare pesquisa, acesso, execução ou validação sem evidência real.
 
-Se ainda houver incerteza, identifique a menor próxima prova que pode mudar a decisão.
+Na resposta, priorize:
+1. conclusão atual;
+2. razões/evidências decisivas;
+3. o que ainda poderia mudar a conclusão;
+4. próximo movimento claro.
 
-Pare de pesquisar quando nova informação provavelmente não mudar a recomendação ou quando um teste pequeno for mais informativo.
-
-Entregue uma resposta clara: conclusão/decisão, evidências que realmente importam, principais condições ou incertezas e próximo movimento.
-
-Não transforme a resposta em uma lista de frameworks.
+Não exponha frameworks internos ou processo por ritual. Entregue entendimento e decisão, não um relatório de metodologia.
 ```
 
----
+## Relação com a Agent Skill pública
 
-## 30. Como usar no Copilot Chat básico
+Este guia é a distribuição autocontida para chats sem infraestrutura de skills.
 
-1. baixe este arquivo;
-2. anexe ao chat ou cole seu conteúdo;
-3. escreva sua pergunta normalmente;
-4. envie também documentos/dados relevantes;
-5. continue conversando sem precisar reapresentar o método a cada mensagem.
+A Agent Skill pública `FilipeGCB/cognitive-os` é a distribuição modular para hosts compatíveis. Este guia está pinado na release estável `v1.4.0` (`fea0fa6e`) e deve avançar somente quando uma nova versão pública estável alterar materialmente o contrato de uso. A Skill separa core, references, policies, schemas, testes e mecanismos de capability discovery.
 
-Exemplo:
+A fonte pública possui evolução e governança próprias; este guia deve ser atualizado quando mudanças materiais no comportamento público alterarem seu contrato de uso.
 
-> Analise se vale a pena automatizar este processo. Antes de sugerir ferramenta, descubra onde está o gargalo e qual seria a menor prova necessária.
+## Fontes metodológicas
 
-Se o Copilot tiver busca ou arquivos disponíveis, o guia orienta como usá-los.
+Fonte principal:
 
-Se não tiver, ele deve trabalhar com o material fornecido e deixar a limitação explícita.
+- repositório público `FilipeGCB/cognitive-os`;
+- `skills/cognitive-os/SKILL.md`;
+- `references/routing.md`;
+- `references/source-authority.md`;
+- `references/research-routing.md`;
+- `references/output.md`.
 
----
-
-## 31. Como usar em hosts com Skills
-
-Quando o ambiente suporta Agent Skills, prefira a distribuição oficial do Cognitive OS.
-
-A skill pode carregar referências e métodos sob demanda, economizando contexto e mantendo o núcleo modular.
-
-Fonte pública:
-
-`FilipeGCB/cognitive-os`
-
-Versão pública estável usada como base deste guia:
-
-`v1.4.0`
-
-Este guia não substitui a skill instalada. Ele é a embalagem autocontida para ambientes sem esse mecanismo.
-
----
-
-## 32. Síntese operacional
-
-```text
-contexto
-→ pergunta real
-→ evidência e incerteza
-→ profundidade proporcional
-→ fontes/capacidades adequadas
-→ pesquisa ou diagnóstico
-→ alternativas
-→ desafio
-→ próxima prova
-→ stop
-→ decisão clara
-```
-
-O objetivo não é pesquisar mais.
-
-O objetivo é **pensar melhor antes de decidir e saber qual evidência realmente vale buscar**.
+O guia preserva a intenção do Cognitive OS sem exigir que o usuário conheça schemas, ledgers, adapters ou mecanismos de conformance para obter valor em uma conversa comum.

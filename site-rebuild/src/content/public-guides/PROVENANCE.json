@@ -1,7 +1,7 @@
 {
   "source_repository": "FilipeGCB/obsidian-notes",
-  "source_branch": "feat/public-portable-agents-library-20260921",
-  "source_commit": "71ff242f9b23215a97745a92ffe3393c1d4d50ed",
+  "source_branch": "feat/cognitive-os-audit-hardening-v1-3",
+  "source_commit": "3adbb9a9b9bca1f3470caccde9da55f1e50ef32e",
   "source_root": "Projetos/formacao-transformacao-digital-ia",
   "public_entries": 25,
   "unique_source_methods": 24,
@@ -10,7 +10,7 @@
   "contracts": {
     "portable_agent_standard": {
       "source": "12_BIBLIOTECA_HABILIDADES_COPILOT/00-PADRAO-AGENTE-PORTATIL.md",
-      "sha256": "a7892afc447db893dff4159114ce6619fc8d6fc7e1812726ec05f593fb648edf"
+      "sha256": "7f106c97b6ce4c74e825e2434b61bb13d39ab263f6115f412302d3914f8d2d45"
     },
     "artifact_delivery_contract": {
       "source": "09_GUIAS_COPILOT_ARTEFATOS/00-CONTRATO-ENTREGA-ARTEFATO-FINAL.md",
@@ -41,9 +41,9 @@
     },
     {
       "slug": "cognitive-os",
-      "source_method": "11_GUIAS_OPERACIONAIS_COPILOT_CHAT/16-guia-mestre-cognitive-os-pesquisa-diagnostico-decisao.md",
-      "bytes": 20850,
-      "sha256": "4076efe0927553e9a410a28f259f042d0d57ca97068473050de3812b667fee91",
+      "source_method": "11_GUIAS_OPERACIONAIS_COPILOT_CHAT/16-guia-mestre-cognitive-os-pesquisa-analise-decisoes.md",
+      "bytes": 16210,
+      "sha256": "e02ddfe6cd1bac28316b74d87be549d71185a73210418e01b00adb366630ee87",
       "requires_artifact_contract": false
     },
     {
