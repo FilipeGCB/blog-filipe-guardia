@@ -19,7 +19,7 @@
       "media": "(max-width: 767px)",
       "outputBase": "public/assets/editorial/portraits/filipe/home/hero-mobile",
       "widths": [480, 768, 819],
-      "aspectRatio": "4:5",
+      "aspectRatio": "3:2",
       "focalPoint": "68% 46%"
     }
   },

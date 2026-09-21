@@ -17,6 +17,6 @@ Forbidden: face regeneration, face restoration, pose change, expression change, 
 Desktop focal point: 64% 48%  
 Mobile focal point: 68% 46%
 
-The uploaded PNG is the visual authority. The repository WebP is only a same-dimension storage normalization; no generative or geometric operation is applied while producing it. The pipeline must preserve the approved face, pose, expression and central composition. Because the source is 1536 × 1024, the site does not fabricate 1920/2560/3840 source detail. Desktop receives deterministic 16:9 derivatives at 960, 1440 and 1536 px. Mobile receives a dedicated 4:5 crop at 480, 768 and 819 px, the largest crop width available without enlargement.
+The uploaded PNG is the visual authority. The repository WebP is only a same-dimension storage normalization; no generative or geometric operation is applied while producing it. The pipeline must preserve the approved face, pose, expression and central composition. Because the source is 1536 × 1024, the site does not fabricate 1920/2560/3840 source detail. Desktop receives deterministic 16:9 derivatives at 960, 1440 and 1536 px. Mobile preserves the full 3:2 photograph at 480, 768 and 819 px, using downscale-only derivatives without pre-cropping.
 
 Responsive derivatives are generated deterministically by `scripts/generate-home-hero.mjs`. The browser receives AVIF/WebP variants selected through `srcset`; the canonical source itself is not shipped directly. No generative image operation is permitted in this pipeline.
