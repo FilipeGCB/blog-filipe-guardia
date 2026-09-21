@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
+import { getSortedArticles } from '../src/data/articles';
 
 const viewports = [
   { name: 'mobile-390', width: 390, height: 844 },
@@ -10,10 +11,12 @@ const viewports = [
   { name: '4k', width: 3840, height: 2160 }
 ];
 
+const latestSlug = getSortedArticles()[0].slug;
+
 const routes = [
   { name: 'home', path: './' },
   { name: 'articles', path: 'artigos.html' },
-  { name: 'article-latest', path: 'artigos/antes-do-agente-de-dados-vem-o-dicionario.html' },
+  { name: 'article-latest', path: `artigos/${latestSlug}.html` },
   { name: 'article-memory', path: 'artigos/a-memoria-da-empresa-nao-pode-morar-na-cabeca-das-pessoas.html' },
   { name: 'article-governance', path: 'artigos/a-ia-que-sabe-quando-parar.html' },
   { name: 'article-system', path: 'artigos/o-modelo-nao-e-o-sistema.html' },
@@ -104,7 +107,7 @@ for (const viewport of viewports) {
 
       expect(metrics.naturalWidth).toBeGreaterThan(0);
       expect(metrics.naturalHeight).toBeGreaterThan(0);
-      expect(metrics.fit).toBe('cover');
+      expect(metrics.fit).toBe(viewport.width <= 767 ? 'contain' : 'cover');
       expect(metrics.naturalRatio).toBeGreaterThan(0.7);
       expect(metrics.naturalRatio).toBeLessThan(2.2);
       expect(metrics.boxRatio).toBeGreaterThan(0.5);
