@@ -1,4 +1,6 @@
 import { getSortedArticles } from '../data/articles';
+import { libraryCollections } from '../data/library';
+import { portableGuides } from '../data/guides';
 
 const site = 'https://filipegcb.github.io/blog-filipe-guardia';
 
@@ -10,6 +12,8 @@ export function GET() {
     '/sobre.html',
     '/projetos.html',
     '/contato.html',
+    ...libraryCollections.map((collection) => `/biblioteca/${collection.slug}.html`),
+    ...portableGuides.map((guide) => `/guias/${guide.slug}.html`),
     ...getSortedArticles().map((article) => `/artigos/${article.slug}.html`)
   ];
   const body = pages.map((path) => `  <url><loc>${site}${path}</loc></url>`).join('\n');

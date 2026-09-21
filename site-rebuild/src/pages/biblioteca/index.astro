@@ -58,6 +58,7 @@ const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
           <h3 id={`guide-category-${category.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}`}>{category}</h3>
           <div class="guide-grid">
             {portableGuides.filter((guide) => guide.category === category).map((guide) => {
+              const page = href(`/guias/${guide.slug}.html`);
               const download = href(`/guias/${guide.slug}.md`);
               return (
                 <article class="guide-card" data-guide-id={guide.id}>
@@ -75,8 +76,8 @@ const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
                     <p>“{guide.examples[0]}”</p>
                   </div>
                   <div class="guide-card-actions">
-                    <a class="button guide-download" href={download} download>Baixar guia (.md)</a>
-                    <a class="text-link" href={download} target="_blank" rel="noopener noreferrer">Ver Markdown →</a>
+                    <a class="button guide-open" href={page}>Abrir guia</a>
+                    <a class="text-link guide-download" href={download} download>Baixar guia (.md)</a>
                   </div>
                 </article>
               );

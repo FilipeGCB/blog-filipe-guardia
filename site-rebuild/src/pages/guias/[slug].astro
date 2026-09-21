@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntroVisual from '../../components/PageIntroVisual.astro';
+import { guideCompatibility, portableGuides, type PortableGuide } from '../../data/guides';
+
+export function getStaticPaths() {
+  return portableGuides.map((guide) => ({
+    params: { slug: guide.slug },
+    props: { guide }
+  }));
+}
+
+interface Props {
+  guide: PortableGuide;
+}
+
+const { guide } = Astro.props;
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
+---
+<BaseLayout
+  title={`${guide.title} | Biblioteca de Guias | Filipe Guardia`}
+  description={guide.summary}
+  canonicalPath={`/guias/${guide.slug}.html`}
+  currentPath="/biblioteca.html"
+>
+  <PageIntroVisual
+    eyebrow={`Guia ${guide.id} · ${guide.category}`}
+    title={guide.title}
+    deck={guide.summary}
+    theme="night"
+    currentLabel="Guia portátil · Markdown"
+  />
+
+  <section class="section guide-detail-section">
+    <div class="reading-shell guide-detail-shell">
+      <div class="guide-detail-block">
+        <span class="section-kicker">Quando usar</span>
+        <h2>Quando este método faz sentido</h2>
+        <p>{guide.activateWhen}</p>
+      </div>
+
+      <div class="guide-detail-block">
+        <span class="section-kicker">Entradas</span>
+        <h2>O que fornecer ao assistente</h2>
+        <p>{guide.inputs}</p>
+      </div>
+
+      <div class="guide-detail-block">
+        <span class="section-kicker">Processo</span>
+        <h2>Como o trabalho deve avançar</h2>
+        <ol class="guide-detail-steps">
+          {guide.process.map((step) => <li>{step}</li>)}
+        </ol>
+      </div>
+
+      <div class="guide-detail-grid">
+        <div class="guide-detail-block">
+          <span class="section-kicker">Entrega</span>
+          <h2>Resultado esperado</h2>
+          <p>{guide.delivery}</p>
+        </div>
+        <div class="guide-detail-block">
+          <span class="section-kicker">Qualidade</span>
+          <h2>Gate de qualidade</h2>
+          <p>{guide.quality}</p>
+        </div>
+      </div>
+
+      <div class="guide-detail-block">
+        <span class="section-kicker">Exemplos</span>
+        <h2>Como pedir</h2>
+        <ul class="guide-example-list">
+          {guide.examples.map((example) => <li>“{example}”</li>)}
+        </ul>
+      </div>
+
+      <aside class="guide-download-panel" aria-label="Baixar o guia completo">
+        <div>
+          <strong>Guia completo em Markdown</strong>
+          <p>O arquivo contém as instruções executáveis completas para fornecer ao ChatGPT, Copilot, Claude ou outro assistente compatível com contexto Markdown.</p>
+          <small>{guideCompatibility.join(' · ')}</small>
+        </div>
+        <div class="guide-download-panel-actions">
+          <a class="button" href={href(`/guias/${guide.slug}.md`)} download>Baixar guia (.md)</a>
+          <a class="button-secondary" href={href('/biblioteca.html')}>Voltar à biblioteca</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

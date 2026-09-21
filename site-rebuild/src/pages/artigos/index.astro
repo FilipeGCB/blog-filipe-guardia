@@ -32,7 +32,7 @@ const ordered = getSortedArticles();
       <div class="archive-list" data-article-grid>
         {ordered.map((article, index) => (
           <div class:list={['archive-row', index === 0 && 'archive-row-lead', index % 2 === 1 && 'archive-row-reverse']} data-archive-row>
-            <ArticleCard article={article} featured={index === 0} />
+            <ArticleCard article={article} featured={index === 0} headingLevel="h2" />
           </div>
         ))}
       </div>
@@ -43,9 +43,12 @@ const ordered = getSortedArticles();
   const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-filter]')];
   const cards = [...document.querySelectorAll<HTMLElement>('[data-article-grid] .article-card')];
   const count = document.querySelector<HTMLElement>('[data-archive-count]');
+  const heading = document.querySelector<HTMLElement>('.page-intro-visual h1');
+  const defaultHeading = heading?.innerHTML ?? '';
+  const defaultTitle = document.title;
   const params = new URLSearchParams(window.location.search);
   const requested = params.get('serie');
-  const applyFilter = (filter: string) => {
+  const applyFilter = (filter: string, updateUrl = false) => {
     let visible = 0;
     cards.forEach((card) => {
       const show = filter === 'all' || card.dataset.series === filter;
@@ -56,7 +59,22 @@ const ordered = getSortedArticles();
     });
     buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.filter === filter)));
     if (count) count.textContent = `${visible} artigo${visible === 1 ? '' : 's'}`;
+
+    if (filter === 'all') {
+      document.title = defaultTitle;
+      if (heading) heading.innerHTML = defaultHeading;
+    } else {
+      document.title = `${filter} — Artigos | Filipe Guardia`;
+      if (heading) heading.textContent = `Série: ${filter}`;
+    }
+
+    if (updateUrl) {
+      const url = new URL(window.location.href);
+      if (filter === 'all') url.searchParams.delete('serie');
+      else url.searchParams.set('serie', filter);
+      history.replaceState({}, '', url);
+    }
   };
-  buttons.forEach((button) => button.addEventListener('click', () => applyFilter(button.dataset.filter || 'all')));
+  buttons.forEach((button) => button.addEventListener('click', () => applyFilter(button.dataset.filter || 'all', true)));
   applyFilter(requested && buttons.some((button) => button.dataset.filter === requested) ? requested : 'all');
 </script>

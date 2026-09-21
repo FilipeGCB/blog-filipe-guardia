@@ -316,6 +316,9 @@ main {
 }
 
 .text-link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
   color: var(--brand);
   font-size: 0.86rem;
   font-weight: 800;
@@ -1092,6 +1095,9 @@ main {
 }
 
 .footer-shell nav a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
   color: rgba(244, 240, 233, 0.84);
   font-size: 0.79rem;
   text-decoration: none;
@@ -2343,7 +2349,7 @@ body {
 }
 
 .article-visual {
-  height: 520px;
+  height: auto;
   border: 0;
   border-radius: 0 0 0 84px;
   background: var(--surface);
@@ -2354,9 +2360,10 @@ body {
 
 .article-visual img,
 .article-visual svg {
+  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
 }
 
 .article-body {
@@ -2430,9 +2437,12 @@ body {
     margin-right: 0;
   }
 
-  .hero-photo,
-  .article-visual {
+  .hero-photo {
     height: 440px;
+  }
+
+  .article-visual {
+    height: auto;
   }
 
   .article-grid-editorial,
@@ -2474,9 +2484,13 @@ body {
     min-height: 330px;
   }
 
-  .hero-photo,
-  .article-visual {
+  .hero-photo {
     height: 330px;
+    border-radius: 0 0 0 46px;
+  }
+
+  .article-visual {
+    height: auto;
     border-radius: 0 0 0 46px;
   }
 
