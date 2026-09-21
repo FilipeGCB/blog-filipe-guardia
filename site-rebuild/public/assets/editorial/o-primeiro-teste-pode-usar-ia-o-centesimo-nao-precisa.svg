@@ -3,8 +3,8 @@
   <desc id="desc">descoberta com IA se transforma em regressão determinística</desc>
   <rect width="1200" height="760" fill="#f4f0e9"/>
   <path d="M0 94H1200M0 650H1200M72 0V760M1128 0V760" stroke="#d9d1c5" stroke-width="1" opacity=".8"/>
-  <circle cx="1024" cy="170" r="184" fill="#7652a8" opacity=".08"/>
-  <circle cx="130" cy="622" r="146" fill="#bb8754" opacity=".08"/>
+  <circle cx="1024" cy="184" r="170" fill="#7652a8" opacity=".08"/>
+  <circle cx="146" cy="614" r="130" fill="#bb8754" opacity=".08"/>
   <text x="86" y="112" fill="#3d235c" font-family="Arial, sans-serif" font-size="18" font-weight="800" letter-spacing="1.6">TESTE INTELIGENTE</text>
   <text x="86" y="143" fill="#6c6670" font-family="Arial, sans-serif" font-size="15" font-weight="650" letter-spacing="1.4">descobrir uma vez · repetir barato</text>
   <text x="86" y="708" fill="#6c6670" font-family="Arial, sans-serif" font-size="13" font-weight="650" letter-spacing="1.5">FILIPE GUARDIA · CADERNO DE SISTEMAS REAIS</text>
