@@ -57,8 +57,9 @@ test.describe('responsive density system', () => {
 
       const renderedRatio = media.width / media.height;
       const renderedImageRatio = image.width / image.height;
-      expect(renderedRatio).toBeCloseTo(0.8, 2);
-      expect(renderedImageRatio).toBeCloseTo(0.8, 2);
+      expect(renderedRatio).toBeCloseTo(3 / 2, 2);
+      expect(renderedImageRatio).toBeCloseTo(3 / 2, 2);
+      expect(image.naturalWidth / image.naturalHeight).toBeCloseTo(3 / 2, 2);
       expect(Math.abs(renderedRatio - renderedImageRatio)).toBeLessThan(0.005);
     });
 
@@ -104,14 +105,15 @@ test.describe('responsive density system', () => {
     });
   }
 
-  test('mobile hero generator and CSS share the same 4:5 contract', async () => {
+  test('mobile hero generator and CSS preserve the full 3:2 source', async () => {
     const { readFileSync } = await import('node:fs');
     const generator = readFileSync('scripts/generate-home-hero.mjs', 'utf8');
     const density = readFileSync('src/styles/responsive-density-system.css', 'utf8');
 
-    expect(generator).toContain('mobileCropWidth = Math.round(mobileCropHeight * 4 / 5)');
-    expect(generator).toContain('height = Math.round(width * 5 / 4)');
-    expect(density).toContain('aspect-ratio: 4 / 5');
+    expect(generator).not.toContain('mobileCropWidth');
+    expect(generator).toContain("fit: 'inside'");
+    expect(density).toContain('aspect-ratio: 3 / 2');
+    expect(density).toContain('object-fit: contain');
   });
 
   test('desktop home preserves editorial scale without becoming an outdoor', async ({ page }) => {
