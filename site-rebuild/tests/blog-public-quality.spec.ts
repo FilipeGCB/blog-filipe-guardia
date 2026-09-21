@@ -56,9 +56,8 @@ test.describe('public quality regressions', () => {
       expect(response?.status(), href).toBeLessThan(400);
       await expect(page.locator('h1')).toHaveCount(1);
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /\/guias\/.+\.html$/);
-      await expect(page.locator('a[download][href$=".md"]')).toHaveCount(2);
-      await expect(page.locator('a[download][href$="/00-KERNEL-EXECUCAO.md"]')).toHaveCount(1);
-      await expect(page.locator('a[download][href$=".md"]').filter({ hasText: 'Baixar guia' })).toHaveCount(1);
+      await expect(page.locator('a[download][href$=".md"]')).toHaveCount(1);
+      await expect(page.locator('a[download][href$=".md"]').filter({ hasText: 'Baixar guia mestre' })).toHaveCount(1);
       await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', /^https:\/\//);
     }
   });

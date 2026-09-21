@@ -1,94 +1,76 @@
+import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
-import { dirname, join, relative, resolve } from 'node:path';
+import { join, relative, resolve } from 'node:path';
 import { portableGuides } from '../src/data/guides.ts';
 
-const supplied = process.argv[2] || process.env.OBSIDIAN_PUBLIC_GUIDES_DIR;
-if (!supplied) {
-  throw new Error('Provide the Obsidian prompts directory as an argument or OBSIDIAN_PUBLIC_GUIDES_DIR.');
-}
+const supplied = process.argv[2] || process.env.OBSIDIAN_GUIDES_ROOT;
+if (!supplied) throw new Error('Provide the formacao-transformacao-digital-ia root via argument or OBSIDIAN_GUIDES_ROOT.');
 
-const sourceDir = resolve(supplied);
-const libraryDir = dirname(sourceDir);
+const root = resolve(supplied);
+const promptsDir = join(root, '12_BIBLIOTECA_HABILIDADES_COPILOT', 'prompts');
 const outputDir = join(process.cwd(), 'src', 'content', 'public-guides');
-const expected = portableGuides.map((guide) => guide.slug + '.md').sort();
-const sourceFiles = (await readdir(sourceDir)).filter((name) => name.endsWith('.md')).sort();
-
-if (JSON.stringify(sourceFiles) !== JSON.stringify(expected)) {
-  throw new Error('Obsidian guide set does not match the 24-guide public registry.');
+const expectedSlugs = portableGuides.map((guide) => guide.slug).sort();
+const promptFiles = (await readdir(promptsDir)).filter((name) => name.endsWith('.md')).sort();
+const promptSlugs = promptFiles.map((name) => name.replace(/\.md$/, '')).sort();
+if (JSON.stringify(expectedSlugs) !== JSON.stringify(promptSlugs)) {
+  throw new Error('Obsidian prompt index does not match the 24 public guide slugs.');
 }
 
-const privateSection = /\n## Bloco obrigatório para HTML do agente Vivo Habilidades\n[\s\S]*?(?=\n## |$)/g;
-const privateLine = /Vivo Habilidades|00-PERFIL-PRIVADO-MARCA-VIVO-HTML\.md|perfil corporativo privado/i;
-const privateAny = /Vivo Habilidades|PERFIL-PRIVADO|data:image|vivo-logo/i;
-const genericAny = /## Instruções para o assistente|Este Markdown é o \*\*guia em si\*\*|## Gate final/i;
-const backtick = String.fromCharCode(96);
-const oldKernel = 'Aplicar ' + backtick + '../00-KERNEL-EXECUCAO.md' + backtick + '.';
-const newKernel = 'Aplicar também [' + backtick + '00-KERNEL-EXECUCAO.md' + backtick + '](./00-KERNEL-EXECUCAO.md).';
-
-const headings = [
-  '## Quando ativar',
-  '## Quando não ativar',
-  '## Entradas mínimas',
-  '## Processo obrigatório',
-  '## Entrega esperada',
-  '## QA e limites',
-  '## Regra de execução',
-  '## Exemplos de pedidos',
-  '## Ajuste da auditoria'
+const sha256 = (buffer) => createHash('sha256').update(buffer).digest('hex');
+const secretPatterns = [
+  /\bsk-(?:proj-)?[A-Za-z0-9_-]{20,}/,
+  /\bgh[psou]_[A-Za-z0-9]{20,}/,
+  /\bAKIA[0-9A-Z]{16}\b/,
+  /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/,
+  /Bearer\s+[A-Za-z0-9._-]{20,}/i
 ];
-
-const sanitize = (markdown, name) => {
-  let text = markdown.replace(/\r\n/g, '\n');
-  text = text.replace(privateSection, '\n');
-  text = text.split('\n').filter((line) => !privateLine.test(line)).join('\n');
-  text = text.replace(oldKernel, newKernel);
-  text = text.replace(/\n{3,}/g, '\n\n').trimEnd() + '\n';
-
-  if (privateAny.test(text)) throw new Error(name + ': private corporate overlay leaked');
-  if (genericAny.test(text)) throw new Error(name + ': generic blog boilerplate detected');
-  for (const heading of headings) {
-    if (!text.includes(heading)) throw new Error(name + ': missing canonical heading ' + heading);
-  }
-  return text;
-};
 
 await rm(outputDir, { recursive: true, force: true });
 await mkdir(outputDir, { recursive: true });
 
-for (const name of expected) {
-  const source = await readFile(join(sourceDir, name), 'utf8');
-  await writeFile(join(outputDir, name), sanitize(source, name), 'utf8');
-}
+const mappings = [];
+for (const slug of expectedSlugs) {
+  const compact = await readFile(join(promptsDir, slug + '.md'), 'utf8');
+  const match = compact.match(/^source_method:\s*(.+)$/m);
+  if (!match) throw new Error(slug + ': source_method missing in Obsidian index');
+  const sourcePath = resolve(root, match[1].trim());
+  const source = await readFile(sourcePath);
+  const text = source.toString('utf8');
 
-const kernel = (await readFile(join(libraryDir, '00-KERNEL-EXECUCAO.md'), 'utf8'))
-  .replace(/\r\n/g, '\n')
-  .trimEnd() + '\n';
-if (privateAny.test(kernel)) throw new Error('Execution kernel contains private corporate material');
-await writeFile(join(outputDir, '00-KERNEL-EXECUCAO.md'), kernel, 'utf8');
+  if (!/^shareable:\s*true$/m.test(text)) throw new Error(slug + ': source guide is not explicitly shareable');
+  if (!/^type:\s*master_guide$/m.test(text) && !/^tipo:\s*guia-mestre$/m.test(text)) {
+    throw new Error(slug + ': source is not marked as a master guide');
+  }
+  for (const pattern of secretPatterns) {
+    if (pattern.test(text)) throw new Error(slug + ': credential-like material detected in source guide');
+  }
+
+  await writeFile(join(outputDir, slug + '.md'), source);
+  mappings.push({
+    slug,
+    source_method: relative(root, sourcePath),
+    bytes: source.length,
+    sha256: sha256(source)
+  });
+}
 
 let sourceCommit = 'unknown';
 let sourceBranch = 'unknown';
-let sourceRoot = 'unknown';
 try {
-  sourceCommit = execFileSync('git', ['-C', sourceDir, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
-  sourceBranch = execFileSync('git', ['-C', sourceDir, 'branch', '--show-current'], { encoding: 'utf8' }).trim();
-  const repoRoot = execFileSync('git', ['-C', sourceDir, 'rev-parse', '--show-toplevel'], { encoding: 'utf8' }).trim();
-  sourceRoot = relative(repoRoot, libraryDir);
+  sourceCommit = execFileSync('git', ['-C', root, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
+  sourceBranch = execFileSync('git', ['-C', root, 'branch', '--show-current'], { encoding: 'utf8' }).trim();
 } catch {}
 
 const provenance = {
   source_repository: 'FilipeGCB/obsidian-notes',
   source_branch: sourceBranch,
   source_commit: sourceCommit,
-  source_root: sourceRoot,
-  public_guides: expected.length,
-  transformation: [
-    'remove explicitly private Vivo HTML/profile overlay',
-    'rewrite kernel link for the standalone public directory',
-    'preserve all remaining canonical guide content'
-  ]
+  source_root: relative(resolve(root, '..', '..'), root),
+  public_entries: mappings.length,
+  unique_source_methods: new Set(mappings.map((item) => item.source_method)).size,
+  publication_rule: 'byte-for-byte copy of each shareable master guide referenced by source_method',
+  mappings
 };
-
 await writeFile(join(outputDir, 'PROVENANCE.json'), JSON.stringify(provenance, null, 2) + '\n', 'utf8');
-console.log('public-guides-import: imported 24 canonical Obsidian guides + execution kernel');
+console.log('public-guides-import: copied ' + mappings.length + ' public entries from ' + provenance.unique_source_methods + ' unique master guides');

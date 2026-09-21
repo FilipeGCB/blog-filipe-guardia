@@ -29,7 +29,7 @@ const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
     title={guide.title}
     deck={guide.summary}
     theme="night"
-    currentLabel="Guia portátil · Markdown"
+    currentLabel="Guia mestre original · Markdown"
   />
 
   <section class="section guide-detail-section">
@@ -78,12 +78,11 @@ const href = (path: string) => `${base}${path.replace(/^\//, '')}`;
       <aside class="guide-download-panel" aria-label="Baixar o guia completo">
         <div>
           <strong>Guia completo em Markdown</strong>
-          <p>Este é o guia canônico público, preservado a partir da biblioteca original. Para executar o método completo fora deste site, forneça também o Kernel Transversal de Execução.</p>
+          <p>O download é uma cópia do guia mestre original referenciado no meu repositório Obsidian, preservado integralmente para uso com assistentes de IA.</p>
           <small>{guideCompatibility.join(' · ')}</small>
         </div>
         <div class="guide-download-panel-actions">
-          <a class="button" href={href(`/guias/${guide.slug}.md`)} download>Baixar guia (.md)</a>
-          <a class="button-secondary" href={href('/guias/00-KERNEL-EXECUCAO.md')} download>Baixar kernel (.md)</a>
+          <a class="button" href={href(`/guias/${guide.slug}.md`)} download>Baixar guia mestre (.md)</a>
           <a class="button-secondary" href={href('/biblioteca.html')}>Voltar à biblioteca</a>
         </div>
       </aside>

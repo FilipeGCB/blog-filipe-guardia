@@ -1,65 +1,227 @@
 ---
-id: O05
-title: Operações, Processos, Riscos e Compliance
-version: v2.0
+origin: chatgpt
+origem: chatgpt
+date: 2026-08-05
+data: 2026-08-05
+type: master_guide
+tipo: guia-mestre
 status: active
-source_method: 11_GUIAS_OPERACIONAIS_COPILOT_CHAT/05-guia-mestre-operacoes-processos-riscos-compliance.md
-html_output: false
+privacy: private
+data_class: learning
+source_of_truth: personal_vault
+official_record: false
+shareable: true
+owner: Filipe
+version: v1.0
+versao: v1.0
+tags: [copilot, operacoes, processos, runbook, riscos, compliance, incidente, governanca]
 ---
 
-# Operações, Processos, Riscos e Compliance
+# Guia Mestre para Operações, Processos, Riscos e Compliance
 
-Reconstrói trabalho real, exceções, controles, responsabilidades e evidências operacionais.
+## Finalidade
 
-## Quando ativar
+Transformar conhecimento operacional disperso em processo executável, capacidade mensurável, runbook, controle, plano de mudança, avaliação de risco e evidência de governança.
 
-- é necessário documentar ou melhorar um processo
-- há exceções, riscos e controles
-- o resultado precisa servir para execução ou auditoria
+## Fontes consolidadas
 
-## Quando não ativar
+- `plugins/negocio/operations.md`;
+- componentes de ADR, incidente, documentação, teste e deploy de `plugins/negocio/engineering.md`;
+- triagem de risco e compliance de `plugins/negocio/legal.md`;
+- escalonamento e base de conhecimento de `plugins/negocio/customer-support.md`.
 
-- o pedido é apenas uma visão conceitual
-- não há acesso a quem executa nem a evidências e isso impede precisão
-- o problema principal é produto ou estratégia comercial
+## Modos
 
-## Entradas mínimas
+- documentar processo;
+- criar procedimento ou runbook;
+- mapear capacidade e demanda;
+- avaliar risco;
+- planejar mudança;
+- preparar auditoria;
+- avaliar fornecedor;
+- responder incidente;
+- produzir post-mortem;
+- otimizar operação;
+- criar relatório de status operacional.
 
-- objetivo do processo
-- atores, etapas e sistemas
-- exceções e riscos
-- evidências, indicadores e controles
+## Processo-base
 
-## Processo obrigatório
+### 1. Definir fronteira
 
-1. reconstruir fluxo real e não apenas fluxo ideal
-2. mapear entradas, decisões, exceções e saídas
-3. definir controles e responsáveis
-4. produzir procedimento, runbook ou matriz
-5. validar com evidências e lacunas
+Identificar início, fim, cliente, produto, evento disparador, entradas, saídas, sistemas, papéis e exceções.
 
-## Entrega esperada
+### 2. Reconstruir o trabalho real
 
-- processo executável
-- RACI, riscos e controles
-- runbook ou procedimento
-- indicadores e governança
+Não documentar apenas o processo ideal. Capturar:
 
-## QA e limites
+- caminho normal;
+- variações;
+- retrabalho;
+- filas;
+- controles paralelos;
+- decisões manuais;
+- dependências;
+- regras implícitas;
+- pontos de falha;
+- conhecimento concentrado.
 
-- cada modo deve usar formato mínimo próprio
-- não confundir política com procedimento
-- marcar regras a validar
+### 3. Modelar
 
-## Regra de execução
+Para cada etapa:
 
-Aplicar também [`00-KERNEL-EXECUCAO.md`](./00-KERNEL-EXECUCAO.md).
+- responsável;
+- entrada;
+- ação;
+- regra;
+- sistema;
+- evidência;
+- prazo;
+- saída;
+- exceção;
+- escalonamento.
 
-## Exemplos de pedidos
+### 4. Medir
 
-- Documente este processo para outra pessoa executar
-- Mapeie riscos e controles desta operação
+Definir volume, tempo, capacidade, produtividade, qualidade, erro, fila, SLA, disponibilidade e custo quando aplicável. Distinguir capacidade teórica, planejada e real.
 
-## Ajuste da auditoria
+### 5. Avaliar risco
 
-Formato mínimo por modo incorporado aos prompts compactos.
+Registrar:
+
+- evento;
+- causa;
+- consequência;
+- probabilidade;
+- impacto;
+- controles atuais;
+- eficácia;
+- risco residual;
+- proprietário;
+- ação;
+- prazo;
+- evidência de conclusão.
+
+### 6. Desenhar controle e governança
+
+Controles devem ser verificáveis. Definir frequência, responsável, evidência, tolerância, reação e revisão.
+
+### 7. Produzir artefato operacional
+
+Escolher o artefato adequado:
+
+- SOP;
+- runbook;
+- matriz RACI;
+- fluxo;
+- registro de risco;
+- plano de capacidade;
+- requisição de mudança;
+- checklist de deploy;
+- pacote de auditoria;
+- relatório de incidente;
+- post-mortem;
+- painel de status.
+
+## Runbook mínimo
+
+1. objetivo e escopo;
+2. pré-requisitos;
+3. acessos;
+4. entradas;
+5. passo a passo;
+6. critérios de decisão;
+7. validações;
+8. exceções;
+9. rollback ou recuperação;
+10. escalonamento;
+11. evidências;
+12. revisão e proprietário.
+
+Uma pessoa habilitada deve conseguir executar sem depender de explicação oral.
+
+## Incidente
+
+Separar:
+
+- detecção;
+- severidade;
+- impacto;
+- contenção;
+- recuperação;
+- comunicação;
+- causa raiz;
+- fatores contribuintes;
+- ações corretivas;
+- ações preventivas;
+- validação posterior.
+
+Post-mortem não deve procurar culpado; deve identificar condição sistêmica e ação verificável.
+
+## Compliance e jurídico
+
+O Copilot pode organizar, comparar com playbook e sinalizar riscos, mas não deve representar parecer jurídico definitivo. Marcar cláusulas, obrigações, exposição, exceções e pontos para revisão autorizada.
+
+## Antipadrões
+
+- fluxo sem exceção;
+- runbook que depende de “bom senso”;
+- RACI com múltiplos accountable;
+- risco sem proprietário;
+- controle sem evidência;
+- mudança sem rollback;
+- capacidade baseada apenas em média;
+- post-mortem com ação vaga;
+- auditoria preparada apenas na véspera;
+- documento que descreve política, mas não execução.
+
+## Contrato de uso direto no Copilot Chat
+
+Este documento deve funcionar quando for colado integralmente no chat. Ao recebê-lo, o Copilot deve:
+
+1. ler os materiais já fornecidos antes de perguntar;
+2. não pedir novamente informação presente na conversa, nos anexos ou nas fontes disponíveis;
+3. perguntar somente o que alterar materialmente a solução;
+4. quando a lacuna não for crítica, declarar a suposição e seguir;
+5. distinguir fato, inferência, hipótese, decisão e recomendação;
+6. executar o método, e não apenas explicá-lo;
+7. entregar o artefato final solicitado, dentro dos limites reais da sessão;
+8. não prometer ferramenta, integração, terminal, conector ou teste que não esteja disponível;
+9. registrar limitações objetivamente e aplicar um plano alternativo sem interromper o trabalho;
+10. não declarar conclusão sem evidência suficiente.
+
+Quando houver geração de arquivo, código, planilha, documento ou HTML, aplicar também o contrato de entrega final já existente na biblioteca de artefatos.
+
+## Como iniciar
+
+Depois de colar este guia, acrescente seu pedido e os materiais disponíveis. O Copilot deve começar por uma leitura silenciosa dos insumos e responder com:
+
+- objetivo interpretado;
+- entregável final;
+- materiais encontrados;
+- lacunas realmente críticas;
+- suposições que serão adotadas;
+- sequência de execução.
+
+Não transformar essa abertura em uma entrevista extensa. Se o trabalho puder começar com segurança, começar.
+
+## Gate final de qualidade
+
+Antes de entregar, verificar:
+
+- o objetivo foi atendido de ponta a ponta;
+- o conteúdo importante dos insumos foi preservado;
+- não há contradição interna;
+- afirmações verificáveis têm base identificável;
+- riscos, exceções e limitações estão explícitos;
+- o formato final é utilizável, não apenas ilustrativo;
+- nenhum recurso visível foi apresentado como funcional sem realmente funcionar;
+- a resposta final informa o que foi produzido, como usar e o que não foi possível validar.
+
+Classificar o resultado como:
+
+- **CONCLUÍDO E VALIDADO**;
+- **CONCLUÍDO COM LIMITAÇÕES**;
+- **PARCIAL**;
+- **BLOQUEADO**.
+
+Nunca usar a primeira classificação sem evidência.
