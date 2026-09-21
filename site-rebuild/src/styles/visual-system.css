@@ -451,8 +451,10 @@
   .hero-home::before {
     top: 0;
     bottom: auto;
-    height: clamp(420px, 68svh, 620px);
-    background: linear-gradient(0deg, rgba(9, 9, 12, 0.62) 0%, transparent 42%);
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    background: linear-gradient(0deg, rgba(9, 9, 12, 0.46) 0%, transparent 36%);
   }
 
   .hero-home-media,
@@ -460,12 +462,21 @@
   .hero-home .hero-photo picture {
     position: relative;
     inset: auto;
-    height: clamp(420px, 68svh, 620px);
+    width: 100%;
+    height: auto;
+  }
+
+  .hero-home .hero-photo,
+  .hero-home .hero-photo picture {
+    aspect-ratio: 3 / 2;
   }
 
   .hero-home .hero-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
     object-fit: contain;
-    object-position: center top;
+    object-position: center;
     background: var(--night-950);
     transform: none !important;
     animation: none !important;
