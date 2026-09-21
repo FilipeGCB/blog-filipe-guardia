@@ -7,6 +7,7 @@ import sharp from 'sharp';
 const manifestUrl = new URL('../src/data/editorialImageManifest.json', import.meta.url);
 const heroCssUrl = new URL('../src/styles/hero-system.css', import.meta.url);
 const heroMasterUrl = new URL('../assets-source/editorial/portraits/filipe/home/hero-approved-master.webp', import.meta.url);
+const heroReadmeUrl = new URL('../assets-source/editorial/portraits/filipe/home/README.md', import.meta.url);
 const manifest = JSON.parse(await readFile(manifestUrl, 'utf8'));
 const heroCss = await readFile(heroCssUrl, 'utf8');
 const expectedHeroSha = 'd61311519543dbc1774d49746d0a10b3f83b9eede45ce1fa0e6fe96321bde88e';
@@ -30,6 +31,7 @@ test('home hero preserves the authoritative source normalization and never fabri
   assert.equal(home.allowUpscale, false);
   assert.deepEqual(home.widths, [960, 1440, 1536]);
   assert.deepEqual(home.mobile?.widths, [480, 768, 819]);
+  assert.equal(home.mobile?.aspectRatio, '3:2');
   assert.equal(home.sourceSha256, expectedHeroSha);
   const master = await readFile(heroMasterUrl);
   const metadata = await sharp(master).metadata();
@@ -38,6 +40,12 @@ test('home hero preserves the authoritative source normalization and never fabri
   assert.equal(metadata.height, 1024);
   assert.equal(master.byteLength, expectedHeroBytes);
   assert.equal(sha256, expectedHeroSha);
+});
+
+test('home hero provenance documents the full 3:2 mobile derivative strategy', async () => {
+  const provenance = await readFile(heroReadmeUrl, 'utf8');
+  assert.match(provenance, /Mobile preserves the full 3:2 photograph/);
+  assert.doesNotMatch(provenance, /dedicated 4:5 crop/);
 });
 
 test('desktop hero stays within the authoritative source density and the visual shell', () => {
