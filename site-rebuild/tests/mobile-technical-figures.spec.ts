@@ -1,26 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
+import { getSortedArticles } from '../src/data/articles';
 
-const articleSlugs = [
-  'ia-nao-se-testa-no-feeling',
-  'local-first-nao-e-apenas-offline',
-  'antes-do-agente-de-dados-vem-o-dicionario',
-  'o-modelo-pode-mudar-a-memoria-precisa-ficar',
-  'a-memoria-da-empresa-nao-pode-morar-na-cabeca-das-pessoas',
-  'documento-nao-e-base-de-conhecimento',
-  'sem-vocabulario-comum-a-ia-nao-entende-a-empresa',
-  'curso-nao-transforma-empresa',
-  'a-ia-que-sabe-quando-parar',
-  'uma-ia-para-cada-tarefa',
-  'o-modelo-nao-e-o-sistema',
-  'mcp-usb-c-inteligencia-artificial',
-  'quando-relatorios-viram-sistemas',
-  'software-em-torno-de-agentes',
-  'ia-nao-comeca-no-prompt',
-  'quando-a-ia-vira-colega-de-trabalho',
-  'da-planilha-ao-agente',
-  'copilot-studio',
-  'pix-parcelado'
-];
+const articleSlugs = getSortedArticles().map((article) => article.slug);
 
 const figureViewports = [
   { name: 'mobile-390', width: 390, height: 844 },
