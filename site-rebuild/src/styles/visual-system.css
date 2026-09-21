@@ -464,9 +464,29 @@
   }
 
   .hero-home .hero-photo img {
-    object-position: var(--image-focal-point-mobile, 68% 46%);
+    object-fit: contain;
+    object-position: center top;
+    background: var(--night-950);
     transform: none !important;
     animation: none !important;
+  }
+
+  .inline-figure,
+  .inline-figure.is-wide {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    transform: none;
+    overflow: visible;
+  }
+
+  .inline-figure img,
+  .inline-figure picture,
+  .inline-figure svg {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
   }
 
   .hero-home-layout {
