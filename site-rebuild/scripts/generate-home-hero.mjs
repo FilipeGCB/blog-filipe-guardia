@@ -52,20 +52,13 @@ const desktop = async (width, format) => {
   else await pipeline.webp({ quality: 94, effort: 6, smartSubsample: true }).toFile(file);
 };
 
-const mobileCropHeight = metadata.height;
-const mobileCropWidth = Math.round(mobileCropHeight * 4 / 5);
-const focalX = Math.round(metadata.width * 0.68);
-const mobileCropLeft = Math.max(
-  0,
-  Math.min(metadata.width - mobileCropWidth, focalX - Math.round(mobileCropWidth * 0.5))
-);
-
+// Mobile preserves the full authoritative 3:2 photograph. Do not pre-crop:
+ // CSS cannot recover content removed by an image derivative.
 const mobile = async (width, format) => {
-  const height = Math.round(width * 5 / 4);
   const pipeline = sharp(sourcePath, { failOn: 'error' })
-    .extract({ left: mobileCropLeft, top: 0, width: mobileCropWidth, height: mobileCropHeight })
-    .resize(width, height, {
-      fit: 'fill',
+    .resize({
+      width,
+      fit: 'inside',
       withoutEnlargement: true,
       kernel: sharp.kernel.lanczos3
     })
