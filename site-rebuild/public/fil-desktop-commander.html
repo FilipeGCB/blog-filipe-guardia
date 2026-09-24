@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fil Desktop Commander — plugin experimental para conectar o ChatGPT a um computador autorizado com autenticação individual." />
+  <meta property="og:title" content="Fil Desktop Commander — Private Beta | Filipe Guardia" />
+  <meta property="og:description" content="Baixe a Private Beta do Fil Desktop Commander e conecte o ChatGPT a um computador autorizado." />
+  <meta property="og:type" content="website" />
+  <title>Fil Desktop Commander — Private Beta | Filipe Guardia</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="site-enhancements.css" />
+  <link rel="stylesheet" href="site-v2.css" />
+  <meta name="author" content="Filipe Guardia" />
+  <meta name="theme-color" content="#2b173d" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://filipegcb.github.io/blog-filipe-guardia/fil-desktop-commander.html" />
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="index.html" aria-label="Filipe Guardia — início">
+        <span class="brand-mark">FG</span>
+        <span class="brand-copy">Filipe Guardia<small>Operação real • Dados • Sistemas • IA</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="projetos.html" aria-current="page">Projetos</a>
+        <a href="index.html#artigos">Artigos</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="contato.html">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <header class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Trilha de navegação">
+          <a href="index.html">Início</a><span>›</span><a href="projetos.html">Projetos</a><span>›</span><span>Fil Desktop Commander</span>
+        </nav>
+        <p class="eyebrow">Private Beta</p>
+        <h1>Fil Desktop Commander</h1>
+        <p class="lead">Um plugin experimental para permitir que o ChatGPT trabalhe em um computador autorizado — arquivos, terminal e fluxos de desenvolvimento — mantendo autenticação e permissões separadas por usuário e dispositivo.</p>
+        <div class="hero-actions">
+          <a class="button" href="downloads/fil-desktop-commander-private-beta-0.1.0.zip" download>Baixar plugin Private Beta ↓</a>
+          <a class="button secondary" href="#instalacao">Como instalar</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="container">
+        <div class="projects-grid">
+          <article class="project-showcase">
+            <span class="status">Versão de teste • acesso controlado</span>
+            <h3>O que esta versão faz</h3>
+            <p>O pacote instala a integração do Fil Desktop Commander no ChatGPT. O download não contém senhas, tokens pessoais nem acesso prévio a qualquer computador.</p>
+            <dl>
+              <dt>Identidade</dt>
+              <dd>Cada pessoa autentica a própria conta.</dd>
+              <dt>Dispositivo</dt>
+              <dd>O acesso depende de um computador explicitamente autorizado para aquela identidade.</dd>
+              <dt>Permissões</dt>
+              <dd>Leitura, escrita, terminal e outras capacidades continuam sujeitas às políticas do servidor e do dispositivo.</dd>
+            </dl>
+          </article>
+
+          <article class="project-showcase">
+            <span class="status">Objetivo do beta</span>
+            <h3>Testar isolamento de contas</h3>
+            <p>Esta distribuição existe primeiro para validar uma segunda conta do ChatGPT em uma Windows VM antes de liberar o uso para outras pessoas.</p>
+            <dl>
+              <dt>Conta A</dt>
+              <dd>Não deve herdar sessão, token ou autorização da Conta B.</dd>
+              <dt>Computadores</dt>
+              <dd>Cada dispositivo deve aparecer apenas para os usuários que receberam autorização.</dd>
+              <dt>Revogação</dt>
+              <dd>O acesso deve poder ser retirado sem reinstalar o plugin.</dd>
+            </dl>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="instalacao" aria-labelledby="instalacao-titulo">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Instalação</p>
+            <h2 id="instalacao-titulo">Como testar no ChatGPT</h2>
+          </div>
+          <p>Use esta versão somente em contas e máquinas de teste autorizadas enquanto o beta estiver em validação.</p>
+        </div>
+        <div class="method-grid">
+          <article class="method-step"><span>01</span><h3>Baixe</h3><p>Faça o download do ZIP desta página sem descompactá-lo.</p></article>
+          <article class="method-step"><span>02</span><h3>Importe</h3><p>No ChatGPT, abra Plugins e importe o pacote baixado.</p></article>
+          <article class="method-step"><span>03</span><h3>Conecte</h3><p>Faça a autenticação usando a conta que será testada.</p></article>
+          <article class="method-step"><span>04</span><h3>Valide</h3><p>Confirme que somente o dispositivo autorizado aparece e responde.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <article class="project-showcase">
+          <span class="status">Aviso de segurança</span>
+          <h3>Não é um acesso genérico ao computador</h3>
+          <p>O plugin é apenas a camada de integração. A autorização efetiva é verificada no servidor MCP e no agente do computador. Instalar o mesmo ZIP em outra conta não concede automaticamente acesso às máquinas de outro usuário.</p>
+          <p><strong>Private Beta:</strong> esta versão ainda está em teste controlado e não deve ser redistribuída como produto público final.</p>
+          <p><strong>Teste atual:</strong> o pacote usa o Secure MCP Tunnel da OpenAI que já atende o ambiente do Filipe. A instalação em uma segunda conta independente é justamente o que está sendo validado nesta versão; se o ChatGPT bloquear o túnel fora do workspace de origem, a próxima versão migrará a conexão para um endpoint MCP HTTPS compartilhável, mantendo OAuth e autorização por usuário/dispositivo.</p>
+          <p><small>Versão do pacote: 0.1.0-beta.1 • SHA-256: <code>5e0408df0cb962b9c1d5c1f0e842864ff5d4cc23153adfc34369083c596ee46c</code></small></p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-shell">
+      <strong>Filipe Guardia</strong>
+      <span>© 2026 • Fil Desktop Commander Private Beta.</span>
+    </div>
+  </footer>
+  <script src="site-config.js" defer></script>
+  <script src="site.js" defer></script>
+</body>
+</html>
