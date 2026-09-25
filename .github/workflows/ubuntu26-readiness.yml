@@ -1,0 +1,31 @@
+name: Ubuntu 26 editorial compatibility (manual + migration PR)
+
+on:
+  pull_request:
+    paths: ['.github/workflows/ubuntu26-readiness.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  editorial:
+    if: github.event_name == 'workflow_dispatch' || github.head_ref == 'chore/ubuntu26-readiness-20260925'
+    runs-on: ubuntu-26.04
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: site-rebuild
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: site-rebuild/package-lock.json
+      - run: npm ci
+      - run: npm run check && npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:visual
