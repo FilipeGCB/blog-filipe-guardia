@@ -1,0 +1,83 @@
+<p>Existe uma diferença importante entre uma automação que funciona e uma automação em que podemos confiar.</p>
+<p>A primeira executa tarefas sem precisar de alguém clicando em cada etapa.</p>
+<p>A segunda também consegue responder uma pergunta desconfortável quando algo dá errado: <strong>o que aconteceu?</strong></p>
+<p>Essa diferença fica mais importante à medida que processos deixam de ser uma sequência visível de telas e passam a envolver APIs, filas, integrações, modelos de inteligência artificial e agentes que tomam decisões.</p>
+<p>Tenho aprendido que automatizar sem criar evidência do caminho é trocar trabalho manual por uma nova forma de dependência: o sistema faz sozinho, mas ninguém consegue explicar sozinho quando ele falha.</p>
+<h2 id="funcionar-nao-basta">1. “Está funcionando” é uma fotografia</h2>
+<p>Imagine uma rotina que recebe uma solicitação, consulta dois sistemas, aplica uma regra e envia uma resposta.</p>
+<p>Hoje ela executou cem vezes. Noventa e oito terminaram bem. Duas não.</p>
+<p>Se o único indicador disponível for “a automação está online”, essas duas falhas quase desaparecem.</p>
+<p>Talvez uma integração tenha demorado demais. Talvez um dado tenha chegado incompleto. Talvez uma tentativa tenha sido repetida. Talvez o resultado tenha sido tecnicamente concluído, mas incorreto para o negócio.</p>
+<p><strong>Disponibilidade não é a mesma coisa que comportamento compreensível.</strong></p>
+<h2 id="observabilidade-nao-e-dashboard">2. Observabilidade não é sinônimo de dashboard</h2>
+<p>Um painel pode ser uma ótima superfície para enxergar um sistema. Mas observabilidade começa antes dele.</p>
+<p><strong>Fato:</strong> a documentação do OpenTelemetry define observabilidade como a capacidade de compreender o estado interno de um sistema examinando suas saídas. Para isso, o software precisa emitir telemetria que possa ser coletada e analisada.</p>
+<p>Isso muda a pergunta.</p>
+<p>Em vez de “qual painel vamos construir?”, começamos por “que evidências o sistema precisa produzir para que alguém consiga entender seu comportamento?”.</p>
+<p><strong>Minha análise:</strong> um dashboard sem boa instrumentação pode ser apenas uma tela bonita mostrando que não sabemos o suficiente.</p>
+<h2 id="tres-perguntas">3. Três sinais respondem perguntas diferentes</h2>
+<p>Uma forma simples de começar é separar três tipos de evidência.</p>
+<ul><li><strong>Métricas:</strong> algo mudou? Quantas execuções ocorreram? Quanto tempo demoraram? Quantas falharam?</li><li><strong>Logs:</strong> que evento aconteceu naquele momento? Qual erro foi registrado? Qual decisão foi tomada?</li><li><strong>Rastros:</strong> por onde uma execução passou? Quanto tempo ficou em cada etapa? Onde o caminho se rompeu?</li></ul>
+<p>O OpenTelemetry trata traces, metrics e logs como sinais de telemetria que podem compartilhar contexto.</p>
+<p>Separadamente, cada um conta uma parte da história. Correlacionados, eles ajudam a reconstruir a execução.</p>
+<h2 id="um-id-muda-tudo">4. Um identificador de execução muda a investigação</h2>
+<p>Considere um processo com cinco etapas.</p>
+<p>Sem correlação, cada serviço pode registrar seu próprio log e cada ferramenta pode mostrar seu próprio número. Para investigar um caso específico, alguém precisa aproximar horários e torcer para encontrar os eventos certos.</p>
+<p>Com um identificador de execução propagado pelo fluxo, a investigação muda.</p>
+<p>É possível perguntar: “mostre tudo o que aconteceu com esta execução”.</p>
+<p>O valor não está no identificador em si. Está na capacidade de ligar eventos que pertencem à mesma história.</p>
+<p>Em sistemas distribuídos, essa ideia aparece nos rastros e no contexto propagado entre componentes. Para processos de negócio, o princípio é igualmente útil: <strong>uma execução precisa deixar um fio que possa ser seguido.</strong></p>
+<h2 id="alerta-nao-e-observabilidade">5. Alerta não é observabilidade</h2>
+<p>Outro erro comum é medir maturidade pelo número de alertas.</p>
+<p>Um sistema pode disparar dezenas de notificações e continuar difícil de entender.</p>
+<p>O livro de Site Reliability Engineering do Google propõe quatro sinais especialmente úteis para serviços: latência, tráfego, erros e saturação. A mesma referência também faz uma distinção importante entre monitoramento de sintomas percebidos externamente e sinais internos do sistema.</p>
+<p><strong>Fato:</strong> monitorar serve para tendências, comparação, alertas, dashboards e investigação retrospectiva — não apenas para chamar alguém quando algo quebra.</p>
+<p>Um bom alerta aponta para uma condição que merece ação. A observabilidade fornece contexto suficiente para investigar essa condição.</p>
+<h2 id="automacoes-negocio">6. Em automações de negócio, o “erro” nem sempre é técnico</h2>
+<p>Uma API pode responder 200 e o processo ainda estar errado.</p>
+<p>Uma mensagem pode ser enviada para a fila correta, mas com informação incompleta.</p>
+<p>Um agente pode concluir uma tarefa sem lançar exceção e escolher uma ação que deveria ter sido encaminhada para revisão.</p>
+<p>Por isso, automações de negócio precisam combinar sinais técnicos com sinais do próprio processo.</p>
+<ul><li>quantas solicitações entraram e quantas chegaram ao fim;</li><li>quantas foram para revisão humana;</li><li>quantas precisaram de nova tentativa;</li><li>quanto tempo ficaram esperando uma dependência;</li><li>quantas terminaram em cada resultado de negócio.</li></ul>
+<p><strong>O sistema pode estar saudável para a infraestrutura e doente para a operação.</strong></p>
+<h2 id="agentes-aumentam-necessidade">7. Agentes aumentam a necessidade de evidência</h2>
+<p>Em um workflow determinístico, conhecemos antecipadamente boa parte do caminho.</p>
+<p>Um agente pode escolher ferramentas, repetir uma tentativa, buscar contexto adicional ou decidir que precisa de aprovação.</p>
+<p>Essa flexibilidade é justamente parte do valor. Também torna insuficiente registrar apenas “começou” e “terminou”.</p>
+<p>Uma execução útil para auditoria precisa preservar, na medida adequada ao risco e à privacidade, quais ferramentas foram acionadas, quais etapas consumiram tempo, onde houve erro, quando ocorreu retry e quando uma decisão saiu do fluxo automático.</p>
+<p>Isso não significa armazenar indiscriminadamente prompts, documentos ou dados sensíveis.</p>
+<p>Observabilidade também precisa de governança: coletar o necessário, proteger o conteúdo sensível e definir retenção.</p>
+<h2 id="painel-depois-instrumentacao">8. O painel vem depois da instrumentação</h2>
+<p>É tentador começar desenhando cards: execuções hoje, taxa de sucesso, tempo médio, status verde.</p>
+<p>Esses números são úteis, mas deveriam nascer de eventos e métricas confiáveis, não de cálculos improvisados na interface.</p>
+<p>Uma arquitetura mais saudável separa as camadas.</p>
+<p>O sistema produz telemetria. Uma camada coleta e organiza. Consultas transformam sinais em indicadores. O painel apresenta as perguntas que precisam ser acompanhadas.</p>
+<p>Essa separação também reduz dependência de uma ferramenta específica. O OpenTelemetry, por exemplo, é deliberadamente agnóstico a fornecedor: instrumentação e coleta não precisam ficar presas ao mesmo backend de visualização.</p>
+<h2 id="exemplo-pratico">9. Um exemplo prático: “falhou” deixa de ser diagnóstico</h2>
+<p>Imagine que uma automação noturna deveria processar mil registros e processou 942.</p>
+<p>Sem observabilidade, a conversa começa assim: “deu erro”.</p>
+<p>Com evidência adequada, a conversa pode começar de outro ponto:</p>
+<p>“A execução 8472 recebeu mil registros. Cinquenta e oito ficaram pendentes na etapa de consulta externa. Quarenta e nove excederam o tempo limite e nove receberam resposta inválida. Duas novas tentativas recuperaram 41 casos. Dezessete seguem pendentes.”</p>
+<p>O problema não desapareceu.</p><p>Mas agora existe uma diferença enorme: <strong>o problema ganhou contorno.</strong></p>
+<p>Isso reduz tempo de diagnóstico, evita repetir testes às cegas e ajuda a decidir se a correção está no código, na integração, na regra ou na capacidade do sistema.</p>
+<h2 id="impacto-pessoas-empresas">10. O impacto para pessoas e empresas</h2>
+<p>Para quem opera, observabilidade reduz a dependência daquele profissional que “sabe onde olhar”.</p>
+<p>Para quem desenvolve, transforma relatos vagos em evidências reproduzíveis.</p>
+<p>Para gestores, separa volume de atividade de qualidade real da operação.</p>
+<p>Para empresas, existe ainda um efeito de continuidade: quanto mais o trabalho é automatizado, menos aceitável fica depender da memória de alguém para explicar o que a própria automação fez.</p>
+<p>Isso conecta observabilidade a algo maior do que infraestrutura. Ela passa a fazer parte da governança do processo.</p>
+<h2 id="o-que-estou-aprendendo">11. O que estou aprendendo</h2>
+<p>Quanto mais sistemas automáticos eu observo, mais uma ideia fica clara: <strong>não basta construir o caminho feliz; é preciso construir também o caminho da explicação.</strong></p>
+<p>No começo, parece desperdício registrar IDs, estados, tempos, tentativas e resultados.</p>
+<p>Até o primeiro problema difícil.</p>
+<p>A partir dali, cada evidência que já existia economiza investigação. E cada evidência que faltava vira uma pergunta que poderia ter sido respondida pelo próprio sistema.</p>
+<p>Tenho passado a considerar observabilidade não como acabamento de engenharia, mas como parte do desenho do produto.</p>
+<h2 id="conclusao">12. Conclusão</h2>
+<p>A automação remove trabalho repetitivo.</p><p>A observabilidade remove parte do mistério que a automação cria.</p>
+<p>Uma diz ao sistema como agir. A outra permite que pessoas entendam como ele agiu.</p>
+<p>À medida que software, integrações e agentes assumem processos maiores, essa segunda capacidade deixa de ser luxo.</p>
+<p><strong>Um sistema realmente autônomo não deveria ser um sistema opaco.</strong></p>
+<p>Ele pode trabalhar sozinho. Mas, quando algo importante acontece, precisa deixar evidência suficiente para que alguém consiga reconstruir a história.</p>
+<p class="article-question"><strong>Pergunta ao leitor:</strong> se uma automação importante da sua empresa falhasse agora, você conseguiria explicar o caminho daquela execução específica — ou apenas descobriria que “alguma coisa deu errado”?</p>
+<h2 id="fontes">Fontes e leitura recomendada</h2>
+<ul><li><a href="https://opentelemetry.io/docs/what-is-opentelemetry/" target="_blank" rel="noopener noreferrer">OpenTelemetry — What is OpenTelemetry?</a></li><li><a href="https://opentelemetry.io/docs/concepts/signals/" target="_blank" rel="noopener noreferrer">OpenTelemetry — Signals</a></li><li><a href="https://sre.google/sre-book/monitoring-distributed-systems/" target="_blank" rel="noopener noreferrer">Google SRE — Monitoring Distributed Systems</a></li></ul>
