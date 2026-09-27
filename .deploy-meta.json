@@ -1,6 +1,6 @@
 {
   "source_repository": "FilipeGCB/blog-filipe-guardia-source",
-  "source_sha": "f979b76c390b66676381b4c60898ce82df5091fa",
-  "source_branch": "fix/blog-dependency-security-20260927",
+  "source_sha": "62e8de40917978272bd502a020cc4d4e15fcd78a",
+  "source_branch": "release/blog-chatgpt-images-20260927",
   "generated_only": true
 }
