@@ -1,6 +1,6 @@
 {
   "source_repository": "FilipeGCB/blog-filipe-guardia-source",
-  "source_sha": "f954b1409f092ad8a3fe0adbd762df5c4f9c381c",
-  "source_branch": "release/blog-cutover-20260927",
+  "source_sha": "f979b76c390b66676381b4c60898ce82df5091fa",
+  "source_branch": "fix/blog-dependency-security-20260927",
   "generated_only": true
 }
