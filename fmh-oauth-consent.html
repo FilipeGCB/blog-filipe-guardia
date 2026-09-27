@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Filipe AI Memory Hub OAuth</title>
+  <style>
+    :root{color-scheme:dark;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0b0d12;color:#eef2ff;padding:24px}
+    main{width:min(620px,100%);border:1px solid #2a3040;border-radius:18px;background:#121620;padding:28px;box-sizing:border-box;box-shadow:0 20px 70px rgba(0,0,0,.35)}
+    h1{margin:0 0 10px;font-size:24px}p{color:#b9c0d0;line-height:1.5}.card{border:1px solid #2a3040;border-radius:12px;padding:16px;margin:16px 0;background:#0e121a}.label{color:#8f9bb3;font-size:12px;text-transform:uppercase;letter-spacing:.08em}.row{margin:8px 0;overflow-wrap:anywhere}input{width:100%;box-sizing:border-box;margin:6px 0 10px;padding:12px;border-radius:10px;border:1px solid #343b4e;background:#0b0f16;color:#fff}button{border:0;border-radius:10px;padding:11px 16px;font-weight:650;cursor:pointer}.primary{background:#e8edff;color:#111522}.secondary{background:#252c3b;color:#eef2ff}.danger{background:#3b2024;color:#ffdadd}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.status{min-height:24px;color:#b9c0d0;margin-top:12px;white-space:pre-wrap}.error{color:#ffb4b4}.ok{color:#a8f0bd}.hidden{display:none}code{color:#c9d2ff}
+  </style>
+</head>
+<body>
+<main>
+  <h1>Filipe AI Memory Hub</h1>
+  <p>Esta página autentica e aprova o acesso OAuth do ChatGPT ao Memory Hub governado. Não há acesso direto ao banco nem promoção automática de memória canônica.</p>
+
+  <section id="login" class="card hidden">
+    <div class="label">Login do proprietário</div>
+    <input id="email" type="email" autocomplete="username" placeholder="E-mail">
+    <input id="password" type="password" autocomplete="current-password" placeholder="Senha">
+    <div class="actions">
+      <button id="signin" class="primary" type="button">Entrar</button>
+      <button id="signup" class="secondary" type="button">Criar conta</button>
+    </div>
+    <p style="font-size:12px">A senha é enviada diretamente do navegador para o Supabase Auth e não passa pelo Memory Hub.</p>
+  </section>
+
+  <section id="consent" class="card hidden">
+    <div class="label">Solicitação OAuth</div>
+    <div class="row"><strong id="clientName">—</strong></div>
+    <div class="row"><span class="label">Client ID</span><br><code id="clientId">—</code></div>
+    <div class="row"><span class="label">Redirect URI</span><br><code id="redirectUri">—</code></div>
+    <div class="row"><span class="label">Escopos</span><br><code id="scopes">—</code></div>
+    <div class="actions">
+      <button id="approve" class="primary" type="button">Autorizar</button>
+      <button id="deny" class="danger" type="button">Negar</button>
+      <button id="forget" class="secondary" type="button">Esquecer login</button>
+    </div>
+  </section>
+
+  <div id="status" class="status">Carregando…</div>
+</main>
+<script>
+const CONFIG={
+  supabaseUrl:'https://wsqumhrcdwgoskolziuy.supabase.co',
+  publishableKey:'sb_publishable_OGHdJszubm0OnYs6tQxswg_5q4sXZJr'
+};
+const authorizationId=new URLSearchParams(location.search).get('authorization_id');
+const authBase=CONFIG.supabaseUrl+'/auth/v1';
+const statusEl=document.getElementById('status');
+const loginEl=document.getElementById('login');
+const consentEl=document.getElementById('consent');
+const tokenKey='fmh_oauth_access_token';
+
+function setStatus(message,kind=''){statusEl.textContent=message||'';statusEl.className='status '+kind}
+function accessToken(){return sessionStorage.getItem(tokenKey)}
+function authHeaders(withJson=true){const headers={apikey:CONFIG.publishableKey};const token=accessToken();if(token)headers.authorization='Bearer '+token;if(withJson)headers['content-type']='application/json';return headers}
+async function authFetch(path,options={}){const response=await fetch(authBase+path,{...options,headers:{...authHeaders(options.body!==undefined),...(options.headers||{})}});let data={};try{data=await response.json()}catch{}if(!response.ok){const message=data.msg||data.message||data.error_description||data.error||('HTTP '+response.status);throw new Error(String(message))}return data}
+async function signIn(){const email=document.getElementById('email').value.trim();const password=document.getElementById('password').value;setStatus('Autenticando…');const data=await authFetch('/token?grant_type=password',{method:'POST',body:JSON.stringify({email,password})});if(!data.access_token)throw new Error('Login sem access token');sessionStorage.setItem(tokenKey,data.access_token);document.getElementById('password').value='';await loadAuthorization()}
+async function signUp(){const email=document.getElementById('email').value.trim();const password=document.getElementById('password').value;setStatus('Criando conta…');const data=await authFetch('/signup',{method:'POST',body:JSON.stringify({email,password})});document.getElementById('password').value='';if(data.access_token){sessionStorage.setItem(tokenKey,data.access_token);await loadAuthorization();return}setStatus('Conta criada. Se a confirmação de e-mail estiver habilitada, confirme o e-mail e depois use Entrar.','ok')}
+async function loadAuthorization(){if(!authorizationId){loginEl.classList.add('hidden');consentEl.classList.add('hidden');setStatus('authorization_id ausente. Inicie a conexão pelo ChatGPT.','error');return}if(!accessToken()){loginEl.classList.remove('hidden');consentEl.classList.add('hidden');setStatus('Entre para revisar a solicitação OAuth.');return}try{const data=await authFetch('/oauth/authorizations/'+encodeURIComponent(authorizationId),{method:'GET'});if(data.redirect_url){location.assign(data.redirect_url);return}document.getElementById('clientName').textContent=data.client?.name||'Cliente OAuth';document.getElementById('clientId').textContent=data.client?.id||'—';document.getElementById('redirectUri').textContent=data.redirect_uri||'—';document.getElementById('scopes').textContent=data.scope||'(nenhum)';loginEl.classList.add('hidden');consentEl.classList.remove('hidden');setStatus('Revise os dados e autorize somente se o cliente for o ChatGPT.','ok')}catch(error){sessionStorage.removeItem(tokenKey);loginEl.classList.remove('hidden');consentEl.classList.add('hidden');setStatus('Sessão inválida ou expirada. Entre novamente. '+error.message,'error')}}
+async function decide(action){setStatus(action==='approve'?'Autorizando…':'Negando…');const data=await authFetch('/oauth/authorizations/'+encodeURIComponent(authorizationId)+'/consent',{method:'POST',body:JSON.stringify({action})});if(!data.redirect_url)throw new Error('Servidor OAuth sem redirect_url');location.assign(data.redirect_url)}
+
+document.getElementById('signin').addEventListener('click',()=>signIn().catch(e=>setStatus(e.message,'error')));
+document.getElementById('signup').addEventListener('click',()=>signUp().catch(e=>setStatus(e.message,'error')));
+document.getElementById('approve').addEventListener('click',()=>decide('approve').catch(e=>setStatus(e.message,'error')));
+document.getElementById('deny').addEventListener('click',()=>decide('deny').catch(e=>setStatus(e.message,'error')));
+document.getElementById('forget').addEventListener('click',()=>{sessionStorage.removeItem(tokenKey);consentEl.classList.add('hidden');loginEl.classList.remove('hidden');setStatus('Login removido desta aba.')});
+loadAuthorization();
+</script>
+</body>
+</html>

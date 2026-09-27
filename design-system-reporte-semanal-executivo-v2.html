@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GUARD.IA — Design System de Reporte Semanal Executivo</title>
+<meta name="description" content="Referência visual e metodológica pública para criação de reportes semanais executivos acumulativos em HTML.">
+<meta name="theme-color" content="#10274b">
+<style>
+:root{
+  --navy-950:#081a34;--navy-900:#10274b;--navy-800:#163661;
+  --blue-700:#2453c5;--blue-600:#3069dc;--blue-100:#e8f0ff;
+  --violet-600:#6c3bd4;--cyan-700:#147e97;
+  --green-700:#08784c;--green-100:#e7f6ef;
+  --amber-700:#a55c00;--amber-100:#fff1db;
+  --red-700:#bf3945;--red-100:#fdebee;
+  --ink:#10213d;--ink-2:#344863;--muted:#667890;
+  --line:#dbe5f1;--line-strong:#c9d6e8;
+  --canvas:#f3f7fc;--surface:#fff;--surface-soft:#f7f9fc;--surface-tint:#eef4ff;
+  --sidebar:290px;--radius-xl:28px;--radius-lg:20px;--radius-md:14px;--radius-sm:10px;
+  --shadow-lg:0 20px 55px rgba(8,26,52,.10);--shadow-sm:0 5px 16px rgba(8,26,52,.05);
+  --font:"Segoe UI Variable","Segoe UI",Arial,sans-serif;--content:1480px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--canvas);color:var(--ink);font-family:var(--font);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none} p{margin:0;color:var(--ink-2)} h1,h2,h3,h4{margin:0;line-height:1.16;letter-spacing:-.02em}
+button{border:0;background:none;font:inherit;color:inherit;cursor:pointer}
+.skip-link{position:absolute;left:18px;top:-60px;z-index:999;background:var(--blue-700);color:#fff;padding:12px 18px;border-radius:10px}
+.skip-link:focus{top:18px}:focus-visible{outline:3px solid #84b0ff;outline-offset:3px}
+.site-shell{max-width:var(--content);margin:auto;padding:24px 24px 60px}
+.hero{position:relative;overflow:hidden;background:linear-gradient(125deg,var(--navy-950),var(--navy-900) 51%,#203e78);color:#fff;border-radius:var(--radius-xl);padding:44px 50px 38px;box-shadow:var(--shadow-lg)}
+.hero:after{content:"";position:absolute;right:-120px;top:-155px;width:530px;height:530px;border-radius:50%;background:radial-gradient(circle,rgba(84,155,255,.30),transparent 63%)}
+.brand{position:relative;z-index:1;display:flex;align-items:center;gap:16px;margin-bottom:42px}
+.brand-mark{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#3674eb,#7441e7);font-weight:700;font-size:19px}
+.brand-name{font-weight:700;letter-spacing:.12em;font-size:15px}.brand-caption{font-size:13px;color:#bdcee9;margin-top:2px}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(500px,1fr) 400px;gap:54px;align-items:end}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:16px;font-size:13px;letter-spacing:.11em;text-transform:uppercase;font-weight:700;color:#93b7ff}
+.eyebrow:before{content:"";width:26px;height:2px;background:#93b7ff}.hero h1{font-size:clamp(38px,4vw,55px);max-width:780px}
+.hero-intro{font-size:19px;color:#d3def0;max-width:700px;margin-top:18px;line-height:1.55}
+.hero-meta{border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:22px 24px;background:rgba(255,255,255,.055);backdrop-filter:blur(4px)}
+.meta-label{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:#90add8;margin-bottom:14px}
+.meta-row{padding:10px 0;border-top:1px solid rgba(255,255,255,.11);display:flex;gap:14px}.meta-row:first-of-type{border-top:0}
+.meta-key{width:110px;color:#9db5dc;font-size:14px}.meta-value{color:#fff;font-size:14px;font-weight:500}
+.hero-rule{position:relative;z-index:1;margin-top:40px;padding:16px 20px;border-radius:14px;background:rgba(52,107,220,.17);border:1px solid rgba(111,166,255,.3);display:flex;align-items:center;gap:14px;font-size:15px;color:#e0e9fa}
+.rule-icon{width:27px;height:27px;border-radius:8px;display:grid;place-items:center;background:#3069dc;font-weight:bold}
+.section{margin-top:30px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);padding:34px 38px;box-shadow:var(--shadow-sm)}
+.section-header{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:26px}.section-header h2{font-size:29px}.section-header p{max-width:640px;font-size:15px}
+.pill{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--blue-700);background:var(--blue-100);margin-bottom:10px}
+.principles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.principle{background:var(--surface-soft);border:1px solid var(--line);border-radius:var(--radius-md);padding:20px}
+.principle-num{font-size:13px;color:var(--blue-700);font-weight:700;margin-bottom:9px}.principle h3{font-size:17px;margin-bottom:9px}.principle p{font-size:14px;line-height:1.48}
+
+/* Portal demonstrativo */
+.prototype-wrap{margin-top:32px;background:var(--canvas);border:1px solid var(--line);border-radius:24px;padding:16px}
+.prototype-label{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:700;padding:2px 4px 14px}
+.report-app{min-height:970px;background:var(--surface);border-radius:19px;overflow:hidden;border:1px solid var(--line);display:grid;grid-template-columns:var(--sidebar) 1fr}
+.report-nav{background:var(--navy-950);color:#d9e4f7;padding:28px 18px;display:flex;flex-direction:column}
+.report-brand{padding:0 12px 23px;border-bottom:1px solid rgba(255,255,255,.12);margin-bottom:24px}.report-brand strong{font-size:17px;color:#fff;display:block;letter-spacing:.06em}.report-brand span{font-size:12px;color:#9ab0d1}
+.nav-label{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#718bb2;padding:0 12px;margin:12px 0 8px;font-weight:700}
+.nav-button{width:100%;text-align:left;padding:12px 12px;border-radius:11px;display:flex;gap:11px;align-items:start;color:#bdcce4;transition:.18s ease;margin:2px 0}
+.nav-button:hover,.nav-button[aria-current="page"]{background:rgba(75,125,227,.18);color:#fff}.nav-button[aria-current="page"]{box-shadow:inset 3px 0 0 #4d86f0}
+.nav-dot{width:8px;height:8px;margin-top:7px;border-radius:50%;background:#59739c;flex:0 0 auto}.nav-button[aria-current="page"] .nav-dot{background:#67a2ff}
+.nav-button-title{display:block;font-weight:600;font-size:14px}.nav-button-sub{display:block;font-size:12px;color:#899fc1;margin-top:2px}
+.nav-spacer{flex:1}.nav-note{padding:15px 12px;border-top:1px solid rgba(255,255,255,.12);font-size:12px;color:#8fa8cf}
+.report-main{padding:0;overflow:hidden}.report-toolbar{height:70px;padding:0 34px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;background:var(--surface)}
+.report-context{font-size:14px;color:var(--muted)}.report-context strong{color:var(--ink)}.toolbar-actions{display:flex;gap:10px}
+.tool-button{border:1px solid var(--line-strong);border-radius:10px;padding:9px 14px;font-size:13px;font-weight:600;color:var(--ink-2);background:#fff}.tool-button.primary{background:var(--blue-700);border-color:var(--blue-700);color:#fff}
+.view{display:none;padding:32px 38px 42px}.view.active{display:block}
+.view-intro{display:flex;justify-content:space-between;gap:24px;align-items:start;margin-bottom:28px}.view-intro h2{font-size:31px;margin:4px 0 8px}.view-intro p{font-size:15px;max-width:665px}
+.status{display:inline-flex;align-items:center;padding:7px 12px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}.status.attention{color:var(--amber-700);background:var(--amber-100)}.status.progress{color:var(--blue-700);background:var(--blue-100)}.status.done{color:var(--green-700);background:var(--green-100)}
+.latest-banner{display:grid;grid-template-columns:1fr 260px;gap:24px;align-items:center;background:linear-gradient(105deg,#eef4ff,#f9fbff);border:1px solid #d6e3fa;border-radius:18px;padding:25px 27px;margin-bottom:25px}
+.latest-banner h3{font-size:22px;margin:8px 0}.latest-banner p{font-size:14px}.banner-tag{font-size:12px;color:var(--blue-700);font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+.banner-stat{border-left:1px solid #d6e3fa;padding-left:24px}.banner-stat strong{font-size:31px;display:block;color:var(--blue-700)}.banner-stat span{font-size:13px;color:var(--muted)}
+.history-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.history-card{border:1px solid var(--line);border-radius:15px;padding:18px 19px;background:var(--surface);display:flex;justify-content:space-between;gap:18px;align-items:start;text-align:left}
+.history-date{font-size:12px;font-weight:700;color:var(--blue-700);text-transform:uppercase;letter-spacing:.07em}.history-card h4{font-size:16px;margin:6px 0 5px}.history-card p{font-size:13px;line-height:1.4}.link-arrow{font-size:18px;color:var(--blue-700);font-weight:700}
+.summary-box{background:var(--surface-tint);border:1px solid #d7e4fb;border-radius:16px;padding:20px 23px;margin-bottom:25px}.summary-box h3{font-size:16px;color:var(--blue-700);margin-bottom:9px}.summary-box p{font-size:15px;line-height:1.55}
+.block{margin-top:26px}.block-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:15px;gap:12px}.block-head h3{font-size:20px}.block-head span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+.activity-list{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}.activity-group{padding:19px 22px;border-bottom:1px solid var(--line)}.activity-group:last-child{border-bottom:0}
+.activity-group-title{font-size:14px;font-weight:700;color:var(--blue-700);margin-bottom:12px;display:flex;justify-content:space-between}
+.activity-row{display:grid;grid-template-columns:190px 1fr 125px;gap:19px;align-items:start;padding:11px 0;border-top:1px dashed #e5ecf5}.activity-row:first-of-type{border-top:0;padding-top:0}
+.activity-name{font-weight:650;font-size:14px;color:var(--ink)}.activity-description{font-size:13.5px;line-height:1.48;color:var(--ink-2)}
+.mini-status{justify-self:end;padding:5px 9px;border-radius:8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}.mini-status.done{color:var(--green-700);background:var(--green-100)}.mini-status.progress{color:var(--blue-700);background:var(--blue-100)}.mini-status.wait{color:var(--amber-700);background:var(--amber-100)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:17px}.kpi{border:1px solid var(--line);border-radius:14px;padding:15px 16px}.kpi label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}.kpi strong{display:block;font-size:23px;letter-spacing:-.03em}.kpi small{font-size:12px;font-weight:600}
+.up{color:var(--red-700)}.down{color:var(--green-700)}.neutral{color:var(--muted)}
+.chart-analysis{display:grid;grid-template-columns:1.05fr .95fr;gap:16px}.chart{border:1px solid var(--line);border-radius:16px;padding:18px 19px;background:var(--surface-soft);margin:0}.chart h4{font-size:14px;margin-bottom:16px}
+.bar-row{display:grid;grid-template-columns:82px 1fr 78px;gap:10px;align-items:center;margin:12px 0;font-size:12px}.bar-track{height:10px;background:#e5edf8;border-radius:10px;overflow:hidden}.bar{height:100%;border-radius:10px;background:var(--blue-600)}.bar.amber{background:#de9333}.bar.cyan{background:var(--cyan-700)}
+.analysis-panel{border:1px solid var(--line);border-radius:16px;padding:18px 20px}.analysis-item{padding:0 0 13px;margin-bottom:13px;border-bottom:1px solid var(--line)}.analysis-item:last-child{border:0;padding:0;margin:0}.analysis-item h4{font-size:13px;color:var(--blue-700);margin-bottom:5px}.analysis-item p{font-size:13.5px;line-height:1.45}
+.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.action{border:1px solid var(--line);border-radius:14px;padding:15px 16px;background:#fff}.action h4{font-size:14px;margin-bottom:7px}.action p{font-size:13px;line-height:1.45}.action-tag{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700;margin-bottom:7px;display:block}
+.anatomy{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.anatomy-card{border:1px solid var(--line);border-radius:16px;padding:20px;background:var(--surface-soft)}.anatomy-card h3{font-size:17px;margin:9px 0}.anatomy-card p{font-size:14px}
+.anatomy-number{width:29px;height:29px;border-radius:9px;background:var(--blue-100);color:var(--blue-700);display:grid;place-items:center;font-weight:700;font-size:13px}
+.rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.do-dont{border:1px solid var(--line);border-radius:18px;overflow:hidden}.do-dont header{padding:16px 20px;font-size:16px;font-weight:700}.do-dont.do header{background:var(--green-100);color:var(--green-700)}.do-dont.dont header{background:var(--red-100);color:var(--red-700)}.do-dont ul{margin:0;padding:17px 22px 20px 40px}.do-dont li{margin:9px 0;color:var(--ink-2);font-size:14px}
+.contract{background:#0d213f;color:#e3ebfa;border-radius:22px;padding:30px 34px;display:grid;grid-template-columns:260px 1fr;gap:34px}.contract h2{font-size:27px;color:#fff}.contract .pill{color:#a9c7ff;background:rgba(55,114,230,.2);margin-bottom:12px}.contract-text h3{font-size:17px;color:#fff;margin:0 0 9px}.contract-text p,.contract-text li{font-size:14px;color:#c3d1e8}.contract-text ul{padding-left:19px;margin:8px 0 20px}.contract-text li{margin:6px 0}
+.tokens{display:grid;grid-template-columns:1fr 1fr;gap:28px}.swatches{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.swatch{width:72px}.color{height:48px;border-radius:10px;margin-bottom:7px;border:1px solid rgba(0,0,0,.08)}.swatch span{font-size:11px;color:var(--muted)}
+.type-demo{margin-top:14px;border:1px solid var(--line);border-radius:15px;padding:18px 20px}.type-demo .big{font-size:27px;font-weight:650;margin-bottom:4px}.type-demo .medium{font-size:18px;font-weight:600;margin-bottom:5px}.type-demo .small{font-size:14px;color:var(--ink-2)}
+.template{border:1px solid var(--line);border-radius:17px;background:var(--surface-soft);padding:24px 26px;white-space:pre-wrap;font-size:14px;color:var(--ink-2)}
+.foot{max-width:var(--content);margin:28px auto 0;padding:0 24px 36px;display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+@media(max-width:1100px){.hero-grid,.rules-grid,.tokens,.contract{grid-template-columns:1fr}.principles,.anatomy{grid-template-columns:repeat(2,1fr)}.report-app{grid-template-columns:1fr}.report-nav{display:none}.mobile-switcher{display:block}.history-grid,.chart-analysis{grid-template-columns:1fr}.replica-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.site-shell{padding:12px}.hero,.section{padding:25px 20px;border-radius:20px}.hero-grid{display:block}.hero-meta{margin-top:25px}.principles,.anatomy,.kpis,.actions{grid-template-columns:1fr}.view{padding:22px 17px}.activity-row{grid-template-columns:1fr;gap:6px}.mini-status{justify-self:start}}
+@page{size:A4 landscape;margin:12mm}
+@media print{body{background:#fff}.site-shell > :not(.prototype-section),.prototype-label,.report-nav,.report-toolbar,.foot{display:none!important}.site-shell{padding:0;max-width:none}.section.prototype-section{border:0;box-shadow:none;padding:0;margin:0}.prototype-wrap{border:0;padding:0;margin:0;background:#fff}.report-app{display:block;border:0;min-height:0}.view{display:none!important;padding:0}.view.active{display:block!important}.block,.summary-box,.kpi,.chart,.analysis-panel,.activity-group{break-inside:avoid}}
+
+.mobile-switcher{display:none;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--surface)}
+.mobile-switcher select{width:100%;padding:11px 12px;border:1px solid var(--line-strong);border-radius:10px;background:#fff;color:var(--ink);font:inherit}
+.week-footer{margin-top:26px;padding:14px 16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;font-size:12px;color:var(--muted)}
+.replica-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.replica-card{border:1px solid var(--line);border-radius:17px;background:var(--surface-soft);padding:21px 22px}
+.replica-card h3{font-size:17px;margin-bottom:10px}
+.replica-card p,.replica-card li{font-size:14px;color:var(--ink-2)}
+.replica-card ul{margin:10px 0 0;padding-left:20px}
+.replica-card li{margin:8px 0}
+.blueprint{margin-top:18px;border-radius:17px;background:#0d213f;color:#d5e3fb;padding:23px 25px;font-size:13px;line-height:1.55;white-space:pre-wrap;overflow:auto}
+
+</style>
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<div class="site-shell">
+<header class="hero" aria-label="Introdução ao padrão de reporte semanal">
+  <div class="brand"><div class="brand-mark" aria-hidden="true">G</div><div><div class="brand-name">GUARD.IA</div><div class="brand-caption">Padrões executivos em HTML</div></div></div>
+  <div class="hero-grid">
+    <div><span class="eyebrow">Design System Público</span><h1>Reporte Semanal Executivo Acumulativo</h1><p class="hero-intro">Padrão visual e metodológico para relatórios semanais detalhados, navegáveis por período e preparados para registrar atividades, projetos, indicadores e análise gerencial.</p></div>
+    <aside class="hero-meta" aria-label="Características do padrão">
+      <div class="meta-label">Contrato do formato</div>
+      <div class="meta-row"><span class="meta-key">Produto</span><span class="meta-value">Portal histórico semanal</span></div>
+      <div class="meta-row"><span class="meta-key">Formato</span><span class="meta-value">HTML único e autocontido</span></div>
+      <div class="meta-row"><span class="meta-key">Leitura</span><span class="meta-value">Vertical e detalhada</span></div>
+      <div class="meta-row"><span class="meta-key">Uso</span><span class="meta-value">Acompanhamento com gestor</span></div>
+    </aside>
+  </div>
+  <div class="hero-rule"><span class="rule-icon" aria-hidden="true">!</span><strong>Regra essencial:</strong>&nbsp; este padrão não é uma apresentação em slides. Ele não deve reduzir atividades complexas a cards superficiais.</div>
+</header>
+<main id="conteudo" tabindex="-1">
+<section class="section" aria-labelledby="principios">
+  <div class="section-header"><div><span class="pill">Fundamentos</span><h2 id="principios">Quatro princípios obrigatórios</h2></div><p>O reporte deve preservar a densidade necessária para prestar contas, registrar avanços e subsidiar a conversa semanal com o gestor.</p></div>
+  <div class="principles">
+    <article class="principle"><div class="principle-num">01 / Histórico</div><h3>Acumulativo</h3><p>Cada nova semana é adicionada ao HTML consolidado, mantendo períodos anteriores navegáveis e imutáveis, salvo correção solicitada.</p></article>
+    <article class="principle"><div class="principle-num">02 / Conteúdo</div><h3>Detalhado</h3><p>Atividades são agrupadas por frente, mas preservam objetivo, avanço, situação, dependências e próximo passo.</p></article>
+    <article class="principle"><div class="principle-num">03 / Análise</div><h3>Gerencial</h3><p>Dashboard e leitura de Contas a Receber aparecem com evidência, impacto, atenção necessária e ações fundamentadas.</p></article>
+    <article class="principle"><div class="principle-num">04 / Uso</div><h3>Consultável</h3><p>Navegação por semanas, leitura vertical confortável e impressão da semana ativa tornam o relatório útil antes e depois da reunião.</p></article>
+  </div>
+</section>
+<section class="section prototype-section" aria-labelledby="prototipo">
+  <div class="section-header"><div><span class="pill">Protótipo navegável</span><h2 id="prototipo">Resultado visual esperado</h2></div><p>Exemplo exclusivamente demonstrativo. Projetos, números e análises abaixo são fictícios e servem apenas como referência de layout e profundidade.</p></div>
+  <div class="prototype-wrap">
+    <div class="prototype-label">Demonstração interativa — clique nas semanas do menu</div>
+    <div class="report-app" aria-label="Exemplo de portal de reporte semanal">
+      <nav class="report-nav" aria-label="Navegação do reporte">
+        <div class="report-brand"><strong>GUARD.IA</strong><span>Reporte semanal</span></div>
+        <div class="nav-label">Navegação</div>
+        <button class="nav-button" type="button" data-view="inicio" aria-current="page"><span class="nav-dot"></span><span><span class="nav-button-title">Início</span><span class="nav-button-sub">Histórico e visão geral</span></span></button>
+        <div class="nav-label">Reportes</div>
+        <button class="nav-button" type="button" data-view="semana-2"><span class="nav-dot"></span><span><span class="nav-button-title">18 a 22/05/2026</span><span class="nav-button-sub">Semana mais recente</span></span></button>
+        <button class="nav-button" type="button" data-view="semana-1"><span class="nav-dot"></span><span><span class="nav-button-title">11 a 15/05/2026</span><span class="nav-button-sub">Histórico</span></span></button>
+        <div class="nav-spacer"></div><div class="nav-note">Modelo público sem dados reais. O HTML final deve preservar todo o histórico semanal.</div>
+      </nav>
+      <div class="report-main">
+        <div class="report-toolbar"><div class="report-context"><strong>Reporte Semanal</strong> &nbsp;/&nbsp; Acompanhamento Executivo</div><div class="toolbar-actions"><button class="tool-button" type="button" id="go-latest">Semana atual</button><button class="tool-button primary" type="button" id="print-active">Imprimir semana</button></div></div>
+        <section class="view history-view active" id="inicio" aria-labelledby="home-title">
+          <div class="view-intro"><div><span class="pill">Histórico consolidado</span><h2 id="home-title">Acompanhamento executivo semanal</h2><p>Registro contínuo das atividades, projetos em andamento, indicadores gerenciais e análises relevantes para acompanhamento com gestor.</p></div><span class="status progress">Atualizado em 22/05/2026</span></div>
+          <article class="latest-banner"><div><div class="banner-tag">Semana mais recente • Exemplo fictício</div><h3>Priorização da governança de dados e monitoramento da carteira</h3><p>A semana concentrou entregas de estruturação de processo, análise de indicadores e alinhamentos para a evolução de uma iniciativa estratégica.</p></div><div class="banner-stat"><strong>4</strong><span>frentes acompanhadas na semana</span></div></article>
+          <div class="block-head"><h3>Semanas registradas</h3><span>Mais recente primeiro</span></div>
+          <div class="history-grid">
+            <button class="history-card" type="button" data-open-view="semana-2"><div><div class="history-date">18 a 22 mai 2026</div><h4>Governança e leitura da carteira</h4><p>Avanços estruturais com pontos de atenção em indicadores.</p></div><span class="link-arrow">→</span></button>
+            <button class="history-card" type="button" data-open-view="semana-1"><div><div class="history-date">11 a 15 mai 2026</div><h4>Diagnóstico e plano de trabalho</h4><p>Definição de escopo, dependências e primeiras análises.</p></div><span class="link-arrow">→</span></button>
+          </div>
+        </section>
+        <section class="view weekly-view" id="semana-2" aria-labelledby="week2-title">
+          <div class="view-intro"><div><span class="pill">Reporte semanal • Exemplo fictício</span><h2 id="week2-title">18 a 22 de maio de 2026</h2><p>Responsável: Profissional responsável &nbsp;•&nbsp; Contexto: Área Financeira / Gestão de Carteira</p></div><span class="status attention">Ponto de atenção</span></div>
+          <article class="summary-box"><h3>Resumo executivo da semana</h3><p>A semana foi dedicada à consolidação do diagnóstico de uma iniciativa de governança, à definição das informações necessárias para evolução operacional e ao acompanhamento dos indicadores da carteira. Houve avanço na estruturação das regras, com dependência de validação técnica para continuidade. Os indicadores demonstrativos apontam concentração de variação em uma carteira específica, que deverá permanecer em acompanhamento.</p></article>
+          <section class="block" aria-labelledby="atividades2"><div class="block-head"><h3 id="atividades2">Atividades, projetos e entregas realizadas</h3><span>Registro detalhado</span></div>
+            <div class="activity-list">
+              <div class="activity-group"><div class="activity-group-title"><span>Projeto estruturante — Governança de Processo</span><span>2 atividades</span></div>
+                <div class="activity-row"><div class="activity-name">Definição de requisitos</div><div class="activity-description">Consolidação das necessidades funcionais para rastreabilidade das regras aplicadas no processo, organizando campos, origens e justificativas necessárias para futura implementação.</div><span class="mini-status done">Concluído</span></div>
+                <div class="activity-row"><div class="activity-name">Validação técnica</div><div class="activity-description">Realizado alinhamento inicial com a equipe técnica para avaliar disponibilidade das fontes e pontos de integração. Aguarda retorno sobre viabilidade de dois campos críticos.</div><span class="mini-status wait">Aguardando</span></div>
+              </div>
+              <div class="activity-group"><div class="activity-group-title"><span>Análises gerenciais</span><span>2 atividades</span></div>
+                <div class="activity-row"><div class="activity-name">Variação de carteira</div><div class="activity-description">Análise da movimentação semanal do saldo vencido por segmento, identificando concentração do aumento demonstrativo na Carteira A e necessidade de abertura por faixa de atraso.</div><span class="mini-status done">Concluído</span></div>
+                <div class="activity-row"><div class="activity-name">Aprofundamento</div><div class="activity-description">Preparação do recorte necessário para comparar o comportamento da carteira por produto e envelhecimento da dívida na próxima rodada de acompanhamento.</div><span class="mini-status progress">Em andamento</span></div>
+              </div>
+            </div>
+          </section>
+          <section class="block" aria-labelledby="car2"><div class="block-head"><h3 id="car2">Contas a Receber — visão da semana</h3><span>Dados fictícios para demonstração</span></div>
+            <div class="kpis"><article class="kpi"><label>Saldo total CAR</label><strong>R$ 128,4 mi</strong><small class="up">↑ 2,8% vs. semana anterior</small></article><article class="kpi"><label>Saldo vencido</label><strong>R$ 41,7 mi</strong><small class="up">↑ R$ 1,9 mi</small></article><article class="kpi"><label>PDD</label><strong>R$ 14,2 mi</strong><small class="neutral">Sem comparação validada</small></article><article class="kpi"><label>Maior impacto</label><strong>Carteira A</strong><small class="up">+ R$ 1,3 mi vencido</small></article></div>
+            <div class="chart-analysis"><figure class="chart" aria-label="Variação do saldo vencido por carteira"><h4>Variação do saldo vencido por carteira — R$ mi</h4><div class="bar-row"><span>Carteira A</span><div class="bar-track"><div class="bar amber" style="width:86%"></div></div><strong>+1,30</strong></div><div class="bar-row"><span>Carteira B</span><div class="bar-track"><div class="bar" style="width:34%"></div></div><strong>+0,51</strong></div><div class="bar-row"><span>Carteira C</span><div class="bar-track"><div class="bar cyan" style="width:16%"></div></div><strong>+0,24</strong></div><div class="bar-row"><span>Carteira D</span><div class="bar-track"><div class="bar" style="width:8%"></div></div><strong>−0,12</strong></div></figure>
+              <div class="analysis-panel"><div class="analysis-item"><h4>Principal leitura</h4><p>O crescimento demonstrativo do saldo vencido está concentrado na Carteira A, responsável pela maior parcela da variação semanal.</p></div><div class="analysis-item"><h4>Ponto de atenção</h4><p>É necessário confirmar se a elevação decorre de entrada pontual de faturamento ou deterioração por faixa de atraso.</p></div><div class="analysis-item"><h4>Acompanhamento recomendado</h4><p>Abrir a variação por aging e produto antes de recomendar qualquer intervenção operacional.</p></div></div>
+            </div>
+          </section>
+          <section class="block" aria-labelledby="passos2"><div class="block-head"><h3 id="passos2">Próximos passos e dependências</h3><span>Semana seguinte</span></div><div class="actions"><article class="action"><span class="action-tag">Próximo passo</span><h4>Aprofundar indicador</h4><p>Abrir variação de saldo vencido por faixa e produto para validar a origem do impacto.</p></article><article class="action"><span class="action-tag">Dependência</span><h4>Retorno técnico</h4><p>Confirmar disponibilidade dos campos necessários à rastreabilidade do processo.</p></article><article class="action"><span class="action-tag">Decisão</span><h4>Validar escopo</h4><p>Alinhar com a gestão quais itens devem compor o primeiro ciclo de implementação.</p></article></div></section>
+        </section>
+        <section class="view weekly-view" id="semana-1" aria-labelledby="week1-title">
+          <div class="view-intro"><div><span class="pill">Reporte semanal • Exemplo fictício</span><h2 id="week1-title">11 a 15 de maio de 2026</h2><p>Responsável: Profissional responsável &nbsp;•&nbsp; Contexto: Área Financeira / Gestão de Carteira</p></div><span class="status done">Concluído</span></div>
+          <article class="summary-box"><h3>Resumo executivo da semana</h3><p>O período concentrou o início do diagnóstico do processo, a organização das premissas de trabalho e a primeira visão dos dados necessários ao acompanhamento executivo. Foram registradas dependências para aprofundamento nas semanas posteriores.</p></article>
+          <section class="block"><div class="block-head"><h3>Atividades e entregas realizadas</h3><span>Registro detalhado</span></div><div class="activity-list"><div class="activity-group"><div class="activity-group-title"><span>Diagnóstico inicial</span><span>2 atividades</span></div><div class="activity-row"><div class="activity-name">Levantamento atual</div><div class="activity-description">Organização das etapas do processo vigente, identificação de fontes e registro das principais limitações para evolução do acompanhamento.</div><span class="mini-status done">Concluído</span></div><div class="activity-row"><div class="activity-name">Plano de análise</div><div class="activity-description">Estruturação dos cortes analíticos necessários para acompanhar saldo, vencido e impactos relevantes ao longo das próximas semanas.</div><span class="mini-status done">Concluído</span></div></div></div></section>
+          <section class="block"><div class="block-head"><h3>Contas a Receber — visão da semana</h3><span>Dados fictícios</span></div><div class="kpis"><article class="kpi"><label>Saldo total CAR</label><strong>R$ 124,9 mi</strong><small class="neutral">Linha de base</small></article><article class="kpi"><label>Saldo vencido</label><strong>R$ 39,8 mi</strong><small class="neutral">Linha de base</small></article><article class="kpi"><label>PDD</label><strong>R$ 14,2 mi</strong><small class="neutral">Linha de base</small></article><article class="kpi"><label>Status da análise</label><strong>Inicial</strong><small class="neutral">Sem tendência calculada</small></article></div></section>
+          <section class="block"><div class="block-head"><h3>Leitura executiva e sequência</h3><span>Registro da semana</span></div><div class="analysis-panel"><div class="analysis-item"><h4>Leitura</h4><p>A semana estabelece a linha de base demonstrativa dos indicadores; qualquer comparação será realizada somente nos períodos seguintes.</p></div><div class="analysis-item"><h4>Próximo passo</h4><p>Aplicar a mesma leitura aos períodos futuros e iniciar acompanhamento das variações relevantes.</p></div></div></section>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="replica">
+  <div class="section-header">
+    <div><span class="pill">Template canônico</span><h2 id="replica">Contrato de réplica fiel para o agente</h2></div>
+    <p>O protótipo acima não é apenas inspiração visual. Ele é o modelo-base obrigatório do HTML final produzido para o usuário.</p>
+  </div>
+  <div class="replica-grid">
+    <article class="replica-card">
+      <h3>O que deve ser preservado</h3>
+      <ul>
+        <li>Mesma identidade GUARD.IA, paleta, tipografia, espaçamentos, bordas, sombras e densidade visual.</li>
+        <li>Mesmo aplicativo interno: menu lateral escuro, toolbar superior, home histórica e páginas semanais verticais.</li>
+        <li>Mesmos componentes: banner da última semana, cards do histórico, lista detalhada de atividades, KPIs, gráfico/análise e próximos passos.</li>
+        <li>Mesmas classes e arquitetura DOM sempre que possível; alterar apenas textos, semanas, indicadores, atividades e gráficos necessários.</li>
+      </ul>
+    </article>
+    <article class="replica-card">
+      <h3>O que não deve aparecer no resultado real</h3>
+      <ul>
+        <li>Não reproduzir esta documentação externa, a introdução do design system, tokens ou regras de exemplo no reporte entregue.</li>
+        <li>O HTML final deve iniciar diretamente pelo aplicativo de reporte, usando <strong>.report-app</strong> como estrutura principal.</li>
+        <li>Não criar uma nova estética, dashboard alternativo, slides, capa ornamental, gradientes diferentes ou componentes fora deste padrão.</li>
+        <li>Não manter dados fictícios: substituir pelo conteúdo informado ou sinalizar [DADO NÃO INFORMADO]/[VALIDAR].</li>
+      </ul>
+    </article>
+  </div>
+  <pre class="blueprint" aria-label="Blueprint obrigatório do HTML final">BLUEPRINT DO RESULTADO REAL
+body
+└── .report-app
+    ├── nav.report-nav
+    │   ├── .report-brand  → GUARD.IA / One Page Semanal
+    │   ├── botão Início
+    │   └── botão para cada semana, da mais recente para a mais antiga
+    └── .report-main
+        ├── .report-toolbar → nome do reporte + ação Semana atual + Imprimir semana
+        ├── section.view.history-view → Home/Histórico
+        │   ├── .view-intro
+        │   ├── .latest-banner
+        │   └── .history-grid
+        └── section.view.weekly-view → uma página por período
+            ├── .view-intro
+            ├── .summary-box
+            ├── .activity-list (detalhada; não resumir em cards)
+            ├── .kpis + .chart-analysis
+            ├── .actions
+            └── .week-footer
+
+REGRA DE GERAÇÃO
+Copie a arquitetura e os componentes deste protótipo. Remova somente a camada documental do Design System e substitua o conteúdo fictício por informações reais. Não redesenhe.</pre>
+</section>
+
+<section class="section" aria-labelledby="estrutura">
+  <div class="section-header"><div><span class="pill">Arquitetura do reporte</span><h2 id="estrutura">Estrutura obrigatória do HTML final</h2></div><p>O agente deve reproduzir esta arquitetura em todo relatório gerado, adaptando o conteúdo às informações reais enviadas.</p></div>
+  <div class="anatomy">
+    <article class="anatomy-card"><div class="anatomy-number">1</div><h3>Home histórica</h3><p>Lista de semanas, última atualização e destaque da semana recente. Porta de entrada para consulta.</p></article>
+    <article class="anatomy-card"><div class="anatomy-number">2</div><h3>Resumo semanal</h3><p>Texto executivo de 3 a 6 linhas, preservando avanços, foco, atenção e direcionamento.</p></article>
+    <article class="anatomy-card"><div class="anatomy-number">3</div><h3>Atividades detalhadas</h3><p>Organização por projetos ou frentes, incluindo descrição, relevância, situação e sequência.</p></article>
+    <article class="anatomy-card"><div class="anatomy-number">4</div><h3>Dashboard CAR</h3><p>Indicadores e visual analítico com fonte clara, sem inventar dados ou usar gráfico decorativo.</p></article>
+    <article class="anatomy-card"><div class="anatomy-number">5</div><h3>Leitura executiva</h3><p>Movimento, impacto, risco ou atenção e ação recomendada somente quando sustentada.</p></article>
+    <article class="anatomy-card"><div class="anatomy-number">6</div><h3>Próximos passos</h3><p>Ações, dependências, decisões aguardadas e assuntos para acompanhamento.</p></article>
+  </div>
+</section>
+<section class="section" aria-labelledby="regras">
+  <div class="section-header"><div><span class="pill">Qualidade de conteúdo</span><h2 id="regras">O que fazer e o que evitar</h2></div><p>O reporte semanal é um registro executivo detalhado, não um resumo decorativo ou uma apresentação de projeto.</p></div>
+  <div class="rules-grid">
+    <article class="do-dont do"><header>Obrigatório</header><ul><li>Preservar histórico das semanas anteriores no HTML consolidado.</li><li>Agrupar atividades por projeto, frente ou objetivo, sem perder o detalhe relevante.</li><li>Registrar situação: concluído, em andamento, dependência, decisão ou próximo passo.</li><li>Produzir análise de indicadores somente com evidências informadas.</li><li>Manter leitura vertical, menu por semana e impressão da semana ativa.</li><li>Marcar lacunas como <strong>[DADO NÃO INFORMADO]</strong> ou <strong>[VALIDAR]</strong>.</li></ul></article>
+    <article class="do-dont dont"><header>Proibido</header><ul><li>Converter o relatório em slides 16:9 ou navegação sequencial por setas.</li><li>Resumir toda a semana em três ou quatro cards genéricos.</li><li>Excluir atividades anteriores ao inserir uma semana nova.</li><li>Inventar resultados, indicadores, causas, decisões ou recomendações.</li><li>Usar visual decorativo em detrimento da informação.</li><li>Modificar histórico aprovado sem solicitação explícita.</li></ul></article>
+  </div>
+</section>
+<section class="section" aria-labelledby="contrato">
+  <div class="contract"><div><span class="pill">Texto para o agente</span><h2 id="contrato">Contrato de geração</h2></div>
+    <div class="contract-text">
+      <section><h3>Finalidade</h3><p>Esta página define o padrão visual e funcional do Reporte Semanal Executivo Acumulativo. O resultado esperado é um portal HTML histórico, vertical e navegável por semanas, destinado ao acompanhamento detalhado de atividades, projetos, indicadores e análises com gestor.</p></section>
+      <section><h3>Regra central</h3><ul><li>Não gerar slides. Não aplicar estrutura de apresentação horizontal.</li><li>Em cada atualização, usar o HTML anterior como base oficial, adicionar ou atualizar somente a semana solicitada e preservar o histórico.</li><li>Atividades devem manter contexto e detalhamento suficiente para explicar o trabalho realizado, não apenas o título.</li><li>Dashboard e análise de Contas a Receber devem refletir somente dados ou imagem fornecidos pelo usuário.</li></ul></section>
+      <section><h3>Entrega técnica</h3><ul><li>Um único arquivo HTML autocontido, com CSS e JavaScript internos, sem bibliotecas, CDNs ou fontes externas.</li><li>Menu navegável, tela inicial histórica, páginas semanais verticais, layout responsivo, acessibilidade mínima e impressão adequada da semana ativa.</li></ul></section>
+    </div>
+  </div>
+</section>
+<section class="section" aria-labelledby="tokens">
+  <div class="section-header"><div><span class="pill">Design tokens</span><h2 id="tokens">Identidade visual consistente</h2></div><p>Aparência corporativa clara, moderna e sóbria, com hierarquia tipográfica e uso semântico de cores.</p></div>
+  <div class="tokens">
+    <article><h3>Paleta recomendada</h3><div class="swatches"><div class="swatch"><div class="color" style="background:#10274b"></div><span>Navio<br>#10274B</span></div><div class="swatch"><div class="color" style="background:#2453c5"></div><span>Primária<br>#2453C5</span></div><div class="swatch"><div class="color" style="background:#6c3bd4"></div><span>Acento<br>#6C3BD4</span></div><div class="swatch"><div class="color" style="background:#08784c"></div><span>Sucesso<br>#08784C</span></div><div class="swatch"><div class="color" style="background:#a55c00"></div><span>Atenção<br>#A55C00</span></div></div></article>
+    <article><h3>Tipografia e hierarquia</h3><div class="type-demo"><div class="big">Título executivo do reporte</div><div class="medium">Seção analítica ou projeto acompanhado</div><div class="small">Texto de descrição com densidade adequada para leitura gerencial e registro semanal.</div></div></article>
+  </div>
+</section>
+<section class="section" aria-labelledby="pedido">
+  <div class="section-header"><div><span class="pill">Entrada esperada</span><h2 id="pedido">Modelo de solicitação semanal</h2></div><p>O agente deve aceitar informação bruta e organizá-la sem remover detalhes importantes ou alterar o histórico.</p></div>
+  <div class="template">Atualize meu Reporte Semanal Executivo Acumulativo usando este padrão público.
+
+HTML consolidado anterior:
+[ANEXAR O ÚLTIMO HTML, exceto na primeira semana]
+
+Período da semana:
+[INFORMAR PERÍODO]
+
+Atividades, projetos, entregas, reuniões, pendências e decisões:
+[COLAR O REGISTRO BRUTO DA SEMANA]
+
+Dashboard ou dados de Contas a Receber:
+[ANEXAR IMAGEM OU INFORMAR INDICADORES E ANÁLISE]
+
+Destaques para meu gestor:
+[INFORMAR, QUANDO HOUVER]
+
+Preserve as semanas anteriores, crie ou atualize apenas o período indicado e entregue um único HTML completo, navegável e pronto para apresentação.</div>
+</section>
+</main>
+</div>
+<footer class="foot"><span>GUARD.IA — Design System de Reporte Semanal Executivo</span><span>Página pública genérica • Sem dados corporativos reais</span></footer>
+<script>
+(function(){
+  const buttons=Array.from(document.querySelectorAll('[data-view]'));
+  const links=Array.from(document.querySelectorAll('[data-open-view]'));
+  const views=Array.from(document.querySelectorAll('.view'));
+  views.forEach(v=>v.setAttribute('tabindex','-1'));
+  const skip=document.querySelector('.skip-link'); const main=document.getElementById('conteudo');
+  if(skip && main){ skip.addEventListener('click',()=>setTimeout(()=>main.focus(),0)); }
+  function show(id){
+    views.forEach(v=>v.classList.toggle('active',v.id===id));
+    buttons.forEach(b=>b.setAttribute('aria-current',b.dataset.view===id?'page':'false'));
+    const target=document.getElementById(id); if(target) target.focus({preventScroll:true});
+    if(mobileView) mobileView.value=id;
+  }
+  buttons.forEach(b=>b.addEventListener('click',()=>show(b.dataset.view)));
+  links.forEach(b=>b.addEventListener('click',()=>show(b.dataset.openView)));
+  document.getElementById('go-latest').addEventListener('click',()=>show('semana-2'));
+})();
+</script>
+</body>
+</html>

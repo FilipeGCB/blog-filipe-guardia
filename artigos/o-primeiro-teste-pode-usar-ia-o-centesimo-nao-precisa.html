@@ -1,0 +1,216 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><meta name="theme-color" content="#17151b"><meta name="author" content="Filipe Guardia"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="description" content="IA é excelente para explorar o desconhecido. Depois que o comportamento esperado foi descoberto, boa parte da homologação pode virar regressão determinística, mais barata e repetível."><link rel="canonical" href="https://filipegcb.github.io/blog-filipe-guardia/artigos/o-primeiro-teste-pode-usar-ia-o-centesimo-nao-precisa.html"><meta property="og:title" content="O primeiro teste pode usar IA. O centésimo não precisa. | Filipe Guardia"><meta property="og:description" content="IA é excelente para explorar o desconhecido. Depois que o comportamento esperado foi descoberto, boa parte da homologação pode virar regressão determinística, mais barata e repetível."><meta property="og:type" content="article"><meta property="og:url" content="https://filipegcb.github.io/blog-filipe-guardia/artigos/o-primeiro-teste-pode-usar-ia-o-centesimo-nao-precisa.html"><meta property="og:site_name" content="Filipe Guardia"><meta property="og:image" content="https://filipegcb.github.io/blog-filipe-guardia/assets/editorial/o-primeiro-teste-pode-usar-ia-o-centesimo-nao-precisa.svg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://filipegcb.github.io/blog-filipe-guardia/assets/editorial/o-primeiro-teste-pode-usar-ia-o-centesimo-nao-precisa.svg"><link rel="icon" type="image/png" href="/blog-filipe-guardia/favicon.png"><title>O primeiro teste pode usar IA. O centésimo não precisa. | Filipe Guardia</title><link rel="stylesheet" href="/blog-filipe-guardia/_astro/BaseLayout.DVC2mAc2.css"></head><body><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header" data-astro-cid-fzpbxy5g><div class="nav-shell" data-astro-cid-fzpbxy5g><a class="brand" href="/blog-filipe-guardia/" aria-label="Filipe Guardia — início" data-astro-cid-fzpbxy5g><span class="brand-mark guardia-brand-mark" aria-hidden="true" data-astro-cid-fzpbxy5g><img class="guardia-brand-static" src="/blog-filipe-guardia/assets/brand/guardia-g-hq.webp" alt="" width="299" height="395" data-astro-cid-fzpbxy5g><video class="guardia-brand-intro" autoplay muted playsinline preload="auto" aria-hidden="true" data-astro-cid-fzpbxy5g><source src="/blog-filipe-guardia/assets/brand/guardia-lockup-intro-hq.webm" type="video/webm" data-astro-cid-fzpbxy5g></video></span><span class="brand-copy" data-astro-cid-fzpbxy5g><span data-astro-cid-fzpbxy5g>Filipe Guardia</span><small data-astro-cid-fzpbxy5g>B2X · Transformação Digital · IA</small></span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Abrir menu" data-astro-cid-fzpbxy5g><span data-astro-cid-fzpbxy5g></span><span data-astro-cid-fzpbxy5g></span><span data-astro-cid-fzpbxy5g></span></button><nav id="site-navigation" class="site-nav" aria-label="Navegação principal" data-astro-cid-fzpbxy5g><a href="/blog-filipe-guardia/" data-astro-cid-fzpbxy5g>Início</a><a href="/blog-filipe-guardia/artigos.html" data-astro-cid-fzpbxy5g>Artigos</a><a href="/blog-filipe-guardia/projetos.html" data-astro-cid-fzpbxy5g>Projetos</a><a href="/blog-filipe-guardia/biblioteca.html" data-astro-cid-fzpbxy5g>Biblioteca</a><a href="/blog-filipe-guardia/sobre.html" data-astro-cid-fzpbxy5g>Sobre</a><a href="/blog-filipe-guardia/contato.html" data-astro-cid-fzpbxy5g>Contato</a></nav></div></header><script type="module">var e=document.querySelector(`.site-header`),t=e?.querySelector(`.nav-toggle`),n=e?.querySelector(`.site-nav`),r=e?.querySelector(`.brand`),i=r?.querySelector(`.guardia-brand-intro`),a=window.matchMedia(`(prefers-reduced-motion: reduce)`),o=()=>{t?.setAttribute(`aria-expanded`,`false`),n?.classList.remove(`is-open`),document.body.classList.remove(`menu-open`)};t?.addEventListener(`click`,()=>{let e=t.getAttribute(`aria-expanded`)!==`true`;t.setAttribute(`aria-expanded`,String(e)),n?.classList.toggle(`is-open`,e),document.body.classList.toggle(`menu-open`,e)}),n?.addEventListener(`click`,e=>{e.target.closest(`a`)&&o()}),document.addEventListener(`keydown`,e=>{e.key===`Escape`&&o()});var s=!1,c=()=>{s||(s=!0,r?.classList.add(`brand-intro-settled`),r?.classList.remove(`brand-intro-active`,`brand-intro-settling`),i?.pause())};i?.addEventListener(`timeupdate`,()=>{i.currentTime>=3.3&&r?.classList.add(`brand-intro-settling`)}),i?.addEventListener(`ended`,c),i?.addEventListener(`error`,c),a.addEventListener?.(`change`,e=>{e.matches&&c()}),window.setTimeout(c,6200),(async()=>{if(!r||!i||a.matches){c();return}r.classList.add(`brand-intro-active`),i.currentTime=0;try{await i.play()}catch{c()}})();</script><main id="conteudo"><header class="article-hero article-hero-night" data-scroll-article><div class="visual-shell article-hero-grid"><div class="article-hero-copy"><div class="article-meta"><span>Qualidade e engenharia de IA</span><span>·</span><time datetime="2026-09-12">12 de setembro de 2026</time><span>·</span><span>Leitura de 10 min</span></div><h1 class="article-title">O primeiro teste pode usar IA. O centésimo não precisa.</h1><p class="article-deck">IA é excelente para explorar o desconhecido. Depois que o comportamento esperado foi descoberto, boa parte da homologação pode virar regressão determinística, mais barata e repetível.</p><div class="article-actions"><a class="button-secondary" href="/blog-filipe-guardia/artigos.html">Voltar ao arquivo</a><span class="meta-label">homologação · regressão · automação</span></div></div><figure class="editorial-frame article-visual article-scroll-media"><img src="/blog-filipe-guardia/assets/editorial/o-primeiro-teste-pode-usar-ia-o-centesimo-nao-precisa.svg" alt="Um agente de inteligência artificial explora um fluxo e transforma o aprendizado em uma sequência de testes determinísticos de regressão." loading="eager" decoding="async"></figure></div></header><div class="editorial-shell article-body-shell"><aside class="article-aside"><nav aria-label="Sumário do artigo"><strong>Neste artigo</strong><ol class="toc"><li><a href="#explorar-e-repetir">1. Explorar e repetir são problemas diferentes</a></li><li><a href="#descoberta-vira-regressao">2. O melhor resultado de um teste inteligente pode ser um teste barato</a></li><li><a href="#visual-nao-significa-ia-sempre">3. Teste visual não significa chamar um modelo a cada tela</a></li><li><a href="#evidencia-sob-demanda">4. Evidência também pode ser produzida sob demanda</a></li><li><a href="#windows-tambem-tem-estrutura">5. Aplicações Windows também podem expor uma estrutura para automação</a></li><li><a href="#quando-pixel-importa">6. Ainda existem situações em que o pixel importa</a></li><li><a href="#piramide-homologacao">7. Uma pirâmide simples ajuda a decidir onde gastar inteligência</a></li><li><a href="#erro-vira-teste">8. Um erro encontrado pela IA deveria poder virar memória de regressão</a></li><li><a href="#humanos-e-ia">9. A homologação humana também muda</a></li><li><a href="#impacto-custo">10. O impacto no custo pode ser maior do que parece</a></li><li><a href="#impacto-produto">11. O impacto para o produto é ainda mais importante</a></li><li><a href="#aprendizado">12. O que estou aprendendo</a></li><li><a href="#conclusao">13. Conclusão</a></li><li><a href="#fontes">Fontes e leitura recomendada</a></li></ol></nav></aside><article class="article-content reading-shell"><p>Existe uma forma cara de usar inteligência artificial para testar software.</p>
+<p>Ela funciona assim: a cada nova versão, um agente abre o sistema, olha a tela, decide onde clicar, interpreta o que aconteceu, tira evidências e raciocina novamente sobre cada passo.</p>
+<p>Na primeira vez, isso pode ser excelente.</p>
+<p>Na centésima, talvez seja desperdício.</p>
+<p>Quanto mais tenho estudado homologação de software com IA, mais uma ideia tem ficado clara para mim:</p>
+<p><strong>a inteligência artificial é muito valiosa para descobrir o teste. Depois que o comportamento esperado ficou conhecido, boa parte dele pode virar automação determinística.</strong></p>
+<p>Isso não reduz o papel da IA.</p>
+<p>Coloca a IA onde ela produz mais valor.</p>
+
+<h2 id="explorar-e-repetir">1. Explorar e repetir são problemas diferentes</h2>
+<p>Na primeira homologação de uma funcionalidade, existe incerteza.</p>
+<p>O botão está no lugar certo? O fluxo faz sentido? Existe uma mensagem confusa? Uma janela inesperada aparece? O usuário consegue concluir a tarefa?</p>
+<p>Nesse momento, um agente com capacidade visual e de raciocínio pode ser muito útil porque consegue lidar com situações que não foram previstas em um roteiro rígido.</p>
+<p>Mas imagine que o fluxo foi aprovado:</p>
+<ul>
+  <li>abrir o cadastro;</li>
+  <li>preencher três campos;</li>
+  <li>salvar;</li>
+  <li>confirmar que o registro aparece na lista;</li>
+  <li>verificar que o total foi atualizado.</li>
+</ul>
+<p>Na próxima versão, eu ainda preciso que uma IA redescubra cada botão?</p>
+<p>Talvez não.</p>
+<p>O problema deixou de ser descoberta e passou a ser repetição.</p>
+
+<figure class="editorial-frame inline-figure"><img src="/blog-filipe-guardia/assets/editorial/figures/o-primeiro-teste-pode-usar-ia-o-centesimo-nao-precisa.svg" alt="Fluxo editorial em três etapas: explorar com IA, formalizar o aprendizado e repetir com testes determinísticos." loading="lazy" decoding="async"><figcaption>A inteligência explora onde existe incerteza; a automação preserva o que já foi aprendido.</figcaption></figure><h2 id="descoberta-vira-regressao">2. O melhor resultado de um teste inteligente pode ser um teste barato</h2>
+<p>Quando um agente encontra um caminho válido, aquele caminho pode virar um ativo.</p>
+<p>Seletores podem ser registrados. Estados esperados podem ser descritos. Imagens de referência podem ser preservadas. Dados de entrada podem ser fixados. Regras de aprovação podem ser transformadas em asserções.</p>
+<p>A partir daí, o sistema não precisa raciocinar novamente sobre tudo.</p>
+<p>Ele pode executar:</p>
+<ul>
+  <li>ações conhecidas;</li>
+  <li>comparações objetivas;</li>
+  <li>validações de estado;</li>
+  <li>testes de regressão;</li>
+  <li>captura de evidência apenas quando algo divergir.</li>
+</ul>
+<p><strong>Análise:</strong> a primeira execução produz conhecimento. Uma boa engenharia transforma esse conhecimento em automação reutilizável.</p>
+
+<h2 id="visual-nao-significa-ia-sempre">3. Teste visual não significa chamar um modelo a cada tela</h2>
+<p>Existe uma confusão comum entre teste visual e teste feito por inteligência artificial.</p>
+<p>Uma imagem pode ser validada de forma completamente determinística.</p>
+<p><strong>Fato:</strong> o Playwright possui comparação visual nativa. Na primeira execução, ele pode gerar uma imagem de referência. Nas seguintes, compara a captura atual com essa referência e permite configurar tolerâncias de diferença.</p>
+<p>A própria documentação alerta que renderização pode variar entre sistema operacional, versão, hardware e configurações, razão pela qual recomenda manter consistente o ambiente em que as imagens de referência são produzidas e comparadas.</p>
+<p>Isso é importante porque transforma uma pergunta subjetiva — “a tela ainda parece igual?” — em uma comparação repetível.</p>
+<p>A IA pode entrar depois, se a diferença realmente precisar de interpretação.</p>
+
+<h2 id="evidencia-sob-demanda">4. Evidência também pode ser produzida sob demanda</h2>
+<p>Outro custo escondido em homologações automatizadas é registrar tudo o tempo todo.</p>
+<p>Vídeo, screenshot, log, trace, análise visual e explicação detalhada de cada passo parecem seguros.</p>
+<p>Mas evidência excessiva também custa processamento, armazenamento e tempo de análise.</p>
+<p><strong>Fato:</strong> a documentação do Playwright recomenda, para integração contínua, capturar trace na primeira repetição de um teste que falhou. O modo de trace permanente é explicitamente descrito como pesado em desempenho.</p>
+<p>Existe uma lógica interessante aí.</p>
+<p>Se o teste passou, talvez baste guardar o resultado.</p>
+<p>Se falhou, aí sim vale abrir a caixa-preta: screenshots, snapshots, chamadas, rede e sequência de ações.</p>
+<p><strong>Minha leitura:</strong> observabilidade útil não é registrar o máximo possível. É conseguir aumentar a evidência quando aparece uma anomalia.</p>
+
+<h2 id="windows-tambem-tem-estrutura">5. Aplicações Windows também podem expor uma estrutura para automação</h2>
+<p>Quando pensamos em um programa <code>.exe</code>, é fácil imaginar que um robô só consegue operá-lo olhando pixels e simulando o mouse.</p>
+<p>Não precisa ser assim.</p>
+<p>O Windows possui há anos a camada UI Automation, ou UIA, que permite inspecionar elementos da interface e interagir com controles de forma estruturada.</p>
+<p><strong>Fato atual:</strong> a documentação recente da Microsoft para o <code>winapp ui</code> descreve comandos para inspecionar e automatizar interfaces Windows e diz explicitamente que eles podem ser usados por agentes de IA e desenvolvedores para teste, depuração e automação. O recurso trabalha com WPF, WinForms, Win32, Electron e WinUI 3.</p>
+<p>Isso muda a economia do teste.</p>
+<p>Em vez de perguntar a um modelo visual “onde está o botão Salvar?” toda vez, um teste pode localizar um elemento por propriedades estruturadas e acioná-lo diretamente.</p>
+
+<h2 id="quando-pixel-importa">6. Ainda existem situações em que o pixel importa</h2>
+<p>Automação estruturada não substitui completamente a visão.</p>
+<p>Um botão pode existir na árvore de acessibilidade e ainda estar visualmente cortado.</p>
+<p>Um texto pode estar correto e aparecer sobre outro componente.</p>
+<p>Uma janela pode abrir no tamanho errado.</p>
+<p>Um gráfico pode carregar os dados certos e ficar ilegível.</p>
+<p>Por isso, uma estratégia madura combina camadas.</p>
+<ul>
+  <li><strong>estrutura:</strong> o elemento existe e responde;</li>
+  <li><strong>regra:</strong> o resultado funcional está correto;</li>
+  <li><strong>visual:</strong> a apresentação permanece aceitável;</li>
+  <li><strong>IA:</strong> situações novas, ambíguas ou difíceis de codificar recebem interpretação.</li>
+</ul>
+<p>O erro é usar a camada mais cara para resolver todas as perguntas.</p>
+
+<h2 id="piramide-homologacao">7. Uma pirâmide simples ajuda a decidir onde gastar inteligência</h2>
+<p>Eu gosto de imaginar a homologação em quatro níveis.</p>
+<p>Na base estão os testes baratos e repetíveis: regras, funções, APIs, banco, contratos e estados conhecidos.</p>
+<p>Acima deles ficam os fluxos automatizados de interface.</p>
+<p>Depois vêm comparações visuais e cenários menos previsíveis.</p>
+<p>No topo entra a exploração inteligente: um agente navegando como usuário, descobrindo problemas novos e fazendo julgamento contextual.</p>
+<p>Quanto mais alto o nível, menor deveria ser a quantidade de casos executados o tempo todo.</p>
+<p>Não porque o topo seja menos importante.</p>
+<p>Porque ele é mais caro e mais valioso justamente quando investiga aquilo que a base ainda não sabe testar.</p>
+
+<h2 id="erro-vira-teste">8. Um erro encontrado pela IA deveria poder virar memória de regressão</h2>
+<p>Imagine que um agente descubra um problema estranho.</p>
+<p>Ao editar um lançamento e voltar para a tela anterior, o total não é recalculado.</p>
+<p>Na primeira vez, talvez tenha sido necessário raciocínio visual para perceber a inconsistência.</p>
+<p>Depois de entender o defeito, a equipe já sabe:</p>
+<ul>
+  <li>qual sequência provoca o erro;</li>
+  <li>qual estado deveria aparecer;</li>
+  <li>qual número precisa mudar;</li>
+  <li>qual evidência confirma a correção.</li>
+</ul>
+<p>Esse caso pode virar um teste de regressão.</p>
+<p>Se ele continuar dependendo de uma IA generalista para ser redescoberto a cada versão, a organização está pagando repetidamente para reaprender o mesmo problema.</p>
+<p><strong>O bug corrigido deveria deixar duas coisas: código melhor e um teste que impeça sua volta.</strong></p>
+
+<h2 id="humanos-e-ia">9. A homologação humana também muda</h2>
+<p>Automatizar mais não significa remover pessoas da homologação.</p>
+<p>Significa parar de gastar atenção humana com repetição mecânica.</p>
+<p>Um usuário real continua sendo excelente para perceber:</p>
+<ul>
+  <li>fluxos confusos;</li>
+  <li>fricção que o teste não mede;</li>
+  <li>linguagem pouco natural;</li>
+  <li>necessidades que não estavam na especificação;</li>
+  <li>problemas de confiança.</li>
+</ul>
+<p>O agente pode explorar antes e depois.</p>
+<p>Os testes determinísticos protegem o que já foi aprendido.</p>
+<p>E a pessoa usa seu tempo no que ainda exige julgamento de produto.</p>
+
+<h2 id="impacto-custo">10. O impacto no custo pode ser maior do que parece</h2>
+<p>Em testes com agentes, token é apenas uma parte do custo.</p>
+<p>Também existem tempo de máquina, ambiente Windows, screenshots, vídeos, transferência de arquivos, armazenamento de evidências, reexecuções e análise de falhas.</p>
+<p>Se cada teste simples exigir que um modelo observe cinco telas e decida cinco ações, um conjunto grande cresce rapidamente.</p>
+<p>Quando os fluxos estáveis migram para automação convencional, a IA pode ser reservada para:</p>
+<ul>
+  <li>novas funcionalidades;</li>
+  <li>exploração livre;</li>
+  <li>mudanças visuais relevantes;</li>
+  <li>falhas que os testes existentes não explicam;</li>
+  <li>triagem de evidências depois de uma quebra.</li>
+</ul>
+<p><strong>Análise:</strong> economizar em homologação não é simplesmente usar um modelo menor. É reduzir a quantidade de raciocínio que precisa acontecer de novo.</p>
+
+<h2 id="impacto-produto">11. O impacto para o produto é ainda mais importante</h2>
+<p>Existe um ganho que vai além de custo.</p>
+<p>Quando descobertas viram testes, o produto começa a acumular memória sobre seus próprios comportamentos.</p>
+<p>A equipe passa a saber quais fluxos são críticos, quais bugs já aconteceram, quais telas são sensíveis, quais invariantes precisam permanecer e quais evidências demonstram que uma versão está saudável.</p>
+<p>Isso reduz a dependência da memória de quem homologou a versão anterior.</p>
+<p>Também permite fazer mudanças maiores com mais segurança.</p>
+<p>O conjunto de testes funciona como uma descrição executável de parte do que o produto promete fazer.</p>
+
+<h2 id="aprendizado">12. O que estou aprendendo</h2>
+<p>Eu costumava olhar para agentes de homologação pensando principalmente em uma pergunta: qual modelo consegue testar melhor?</p>
+<p>Hoje acho que a pergunta mais útil é outra:</p>
+<p><strong>qual parte deste teste ainda precisa de inteligência?</strong></p>
+<p>Se o agente já descobriu o caminho, talvez o caminho possa virar script.</p>
+<p>Se uma imagem já foi aprovada, talvez ela possa virar baseline.</p>
+<p>Se um erro já foi explicado, talvez ele possa virar regressão.</p>
+<p>Se um fluxo só falha em casos imprevisíveis, aí sim faz sentido manter exploração inteligente.</p>
+<p>Essa mudança de mentalidade aproxima IA de engenharia.</p>
+<p>O objetivo deixa de ser mostrar que um agente consegue clicar em tudo.</p>
+<p>Passa a ser construir um sistema de qualidade que <strong>aprende uma vez e reaproveita o aprendizado</strong>.</p>
+
+<h2 id="conclusao">13. Conclusão</h2>
+<p>A inteligência artificial abriu uma possibilidade poderosa: testar software sem precisar antecipar cada passo do usuário em um roteiro rígido.</p>
+<p>Mas isso não significa que todo teste precise permanecer inteligente para sempre.</p>
+<p>Exploração e regressão cumprem papéis diferentes.</p>
+<p>A IA é excelente para navegar o desconhecido, interpretar exceções e encontrar padrões que ainda não viraram regra.</p>
+<p>A automação determinística é excelente para repetir aquilo que já sabemos que não pode quebrar.</p>
+<p>Os dois lados se completam.</p>
+<p><strong>O primeiro teste pode usar IA para descobrir como validar o produto. O centésimo deveria aproveitar tudo o que os noventa e nove anteriores já ensinaram.</strong></p>
+<p class="article-question"><strong>Pergunta ao leitor:</strong> quantos testes da sua empresa ainda usam inteligência, tempo humano ou processamento caro para redescobrir comportamentos que já poderiam ter virado regressões automáticas?</p>
+
+<h2 id="fontes">Fontes e leitura recomendada</h2>
+<ul>
+  <li><a href="https://playwright.dev/docs/test-snapshots" target="_blank" rel="noopener noreferrer">Playwright — Visual comparisons</a></li>
+  <li><a href="https://playwright.dev/docs/trace-viewer" target="_blank" rel="noopener noreferrer">Playwright — Trace Viewer</a></li>
+  <li><a href="https://learn.microsoft.com/en-us/windows/apps/dev-tools/winapp-cli/ui-automation" target="_blank" rel="noopener noreferrer">Microsoft Learn — WinApp CLI UI automation</a></li>
+  <li><a href="https://learn.microsoft.com/en-us/windows/apps/develop/testing/" target="_blank" rel="noopener noreferrer">Microsoft Learn — Testing Windows App SDK and WinUI 3 apps</a></li>
+</ul>
+<footer class="article-bottom"><a href="/blog-filipe-guardia/artigos/agentes-estao-virando-infraestrutura.html">← Agentes estão virando infraestrutura: por que o harness importa tanto quanto o modelo</a><a href="/blog-filipe-guardia/artigos/ia-nao-se-testa-no-feeling.html">IA não se testa no feeling: por que evals viraram parte do produto →</a></footer></article></div></main><footer class="site-footer"><div class="footer-shell"><div><strong>Filipe Guardia</strong><p>B2X, Transformação Digital, dados, sistemas e inteligência artificial aplicada.</p></div><nav aria-label="Links profissionais"><a href="/blog-filipe-guardia/artigos.html">Artigos</a><a href="/blog-filipe-guardia/projetos.html">Projetos</a><a href="https://github.com/FilipeGCB" target="_blank" rel="noopener noreferrer">GitHub</a><a href="/blog-filipe-guardia/contato.html">Contato</a></nav><small>© 2026 · Conteúdo autoral de Filipe Guardia.</small></div></footer></body></html><script>
+  (() => {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.documentElement.classList.add('motion-ready');
+    const revealTargets = [...document.querySelectorAll('[data-motion-reveal]')];
+
+    if (reduced || !('IntersectionObserver' in window)) {
+      revealTargets.forEach((target) => target.classList.add('is-inview'));
+    } else {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-inview');
+            observer.unobserve(entry.target);
+          });
+        },
+        { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
+      );
+      revealTargets.forEach((target) => observer.observe(target));
+    }
+
+    const supportsScrollTimeline = Boolean(window.CSS?.supports?.('animation-timeline: scroll()'));
+    const hero = document.querySelector('[data-scroll-hero]');
+    const heroMedia = hero?.querySelector('.scroll-hero-media');
+
+    if (hero && heroMedia && !reduced && !supportsScrollTimeline) {
+      let frame = 0;
+      const updateHero = () => {
+        frame = 0;
+        const bounds = hero.getBoundingClientRect();
+        const travel = Math.max(bounds.height, window.innerHeight);
+        const progress = Math.min(1, Math.max(0, (window.innerHeight * 0.2 - bounds.top) / travel));
+        heroMedia.style.setProperty('--hero-progress', progress.toFixed(3));
+      };
+      const requestHeroUpdate = () => {
+        if (frame) return;
+        frame = window.requestAnimationFrame(updateHero);
+      };
+      window.addEventListener('scroll', requestHeroUpdate, { passive: true });
+      window.addEventListener('resize', requestHeroUpdate);
+      updateHero();
+    }
+  })();
+</script>

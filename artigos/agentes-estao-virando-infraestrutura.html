@@ -1,0 +1,140 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><meta name="theme-color" content="#17151b"><meta name="author" content="Filipe Guardia"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="description" content="A nova geração de plataformas está tirando do código da aplicação tarefas como sessões, contexto, ferramentas, aprovações e execução longa. Isso muda onde está o valor de um produto com IA."><link rel="canonical" href="https://filipegcb.github.io/blog-filipe-guardia/artigos/agentes-estao-virando-infraestrutura.html"><meta property="og:title" content="Agentes estão virando infraestrutura: por que o harness importa tanto quanto o modelo | Filipe Guardia"><meta property="og:description" content="A nova geração de plataformas está tirando do código da aplicação tarefas como sessões, contexto, ferramentas, aprovações e execução longa. Isso muda onde está o valor de um produto com IA."><meta property="og:type" content="article"><meta property="og:url" content="https://filipegcb.github.io/blog-filipe-guardia/artigos/agentes-estao-virando-infraestrutura.html"><meta property="og:site_name" content="Filipe Guardia"><meta property="og:image" content="https://filipegcb.github.io/blog-filipe-guardia/assets/editorial/agentes-estao-virando-infraestrutura.svg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://filipegcb.github.io/blog-filipe-guardia/assets/editorial/agentes-estao-virando-infraestrutura.svg"><link rel="icon" type="image/png" href="/blog-filipe-guardia/favicon.png"><title>Agentes estão virando infraestrutura: por que o harness importa tanto quanto o modelo | Filipe Guardia</title><link rel="stylesheet" href="/blog-filipe-guardia/_astro/BaseLayout.DVC2mAc2.css"></head><body><a class="skip-link" href="#conteudo">Pular para o conteúdo</a><header class="site-header" data-astro-cid-fzpbxy5g><div class="nav-shell" data-astro-cid-fzpbxy5g><a class="brand" href="/blog-filipe-guardia/" aria-label="Filipe Guardia — início" data-astro-cid-fzpbxy5g><span class="brand-mark guardia-brand-mark" aria-hidden="true" data-astro-cid-fzpbxy5g><img class="guardia-brand-static" src="/blog-filipe-guardia/assets/brand/guardia-g-hq.webp" alt="" width="299" height="395" data-astro-cid-fzpbxy5g><video class="guardia-brand-intro" autoplay muted playsinline preload="auto" aria-hidden="true" data-astro-cid-fzpbxy5g><source src="/blog-filipe-guardia/assets/brand/guardia-lockup-intro-hq.webm" type="video/webm" data-astro-cid-fzpbxy5g></video></span><span class="brand-copy" data-astro-cid-fzpbxy5g><span data-astro-cid-fzpbxy5g>Filipe Guardia</span><small data-astro-cid-fzpbxy5g>B2X · Transformação Digital · IA</small></span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Abrir menu" data-astro-cid-fzpbxy5g><span data-astro-cid-fzpbxy5g></span><span data-astro-cid-fzpbxy5g></span><span data-astro-cid-fzpbxy5g></span></button><nav id="site-navigation" class="site-nav" aria-label="Navegação principal" data-astro-cid-fzpbxy5g><a href="/blog-filipe-guardia/" data-astro-cid-fzpbxy5g>Início</a><a href="/blog-filipe-guardia/artigos.html" data-astro-cid-fzpbxy5g>Artigos</a><a href="/blog-filipe-guardia/projetos.html" data-astro-cid-fzpbxy5g>Projetos</a><a href="/blog-filipe-guardia/biblioteca.html" data-astro-cid-fzpbxy5g>Biblioteca</a><a href="/blog-filipe-guardia/sobre.html" data-astro-cid-fzpbxy5g>Sobre</a><a href="/blog-filipe-guardia/contato.html" data-astro-cid-fzpbxy5g>Contato</a></nav></div></header><script type="module">var e=document.querySelector(`.site-header`),t=e?.querySelector(`.nav-toggle`),n=e?.querySelector(`.site-nav`),r=e?.querySelector(`.brand`),i=r?.querySelector(`.guardia-brand-intro`),a=window.matchMedia(`(prefers-reduced-motion: reduce)`),o=()=>{t?.setAttribute(`aria-expanded`,`false`),n?.classList.remove(`is-open`),document.body.classList.remove(`menu-open`)};t?.addEventListener(`click`,()=>{let e=t.getAttribute(`aria-expanded`)!==`true`;t.setAttribute(`aria-expanded`,String(e)),n?.classList.toggle(`is-open`,e),document.body.classList.toggle(`menu-open`,e)}),n?.addEventListener(`click`,e=>{e.target.closest(`a`)&&o()}),document.addEventListener(`keydown`,e=>{e.key===`Escape`&&o()});var s=!1,c=()=>{s||(s=!0,r?.classList.add(`brand-intro-settled`),r?.classList.remove(`brand-intro-active`,`brand-intro-settling`),i?.pause())};i?.addEventListener(`timeupdate`,()=>{i.currentTime>=3.3&&r?.classList.add(`brand-intro-settling`)}),i?.addEventListener(`ended`,c),i?.addEventListener(`error`,c),a.addEventListener?.(`change`,e=>{e.matches&&c()}),window.setTimeout(c,6200),(async()=>{if(!r||!i||a.matches){c();return}r.classList.add(`brand-intro-active`),i.currentTime=0;try{await i.play()}catch{c()}})();</script><main id="conteudo"><header class="article-hero article-hero-night" data-scroll-article><div class="visual-shell article-hero-grid"><div class="article-hero-copy"><div class="article-meta"><span>Sistemas e agentes</span><span>·</span><time datetime="2026-09-14">14 de setembro de 2026</time><span>·</span><span>Leitura de 10 min</span></div><h1 class="article-title">Agentes estão virando infraestrutura: por que o harness importa tanto quanto o modelo</h1><p class="article-deck">A nova geração de plataformas está tirando do código da aplicação tarefas como sessões, contexto, ferramentas, aprovações e execução longa. Isso muda onde está o valor de um produto com IA.</p><div class="article-actions"><a class="button-secondary" href="/blog-filipe-guardia/artigos.html">Voltar ao arquivo</a><span class="meta-label">agentes · harness · arquitetura</span></div></div><figure class="editorial-frame article-visual article-scroll-media"><img src="/blog-filipe-guardia/assets/editorial/agentes-estao-virando-infraestrutura.svg" alt="Um modelo se conecta a uma camada de harness que organiza sessão, contexto, ferramentas, aprovações e execução antes de alcançar o trabalho real." loading="eager" decoding="async"></figure></div></header><div class="editorial-shell article-body-shell"><aside class="article-aside"><nav aria-label="Sumário do artigo"><strong>Neste artigo</strong><ol class="toc"><li><a href="#modelo-nao-carrega-o-trabalho">1. O modelo não carrega o trabalho sozinho</a></li><li><a href="#harness-vira-camada">2. O harness está virando uma camada própria</a></li><li><a href="#infraestrutura-nao-significa-caixa-preta">3. Infraestrutura não deveria significar caixa-preta</a></li><li><a href="#workflow-e-agente-nao-sao-a-mesma-coisa">4. Workflow e agente não são a mesma coisa</a></li><li><a href="#onde-fica-o-valor">5. Se o loop vira commodity, onde fica o valor?</a></li><li><a href="#lock-in-muda-de-lugar">6. O risco de lock-in também muda de lugar</a></li><li><a href="#agentes-longos-exigem-operacao">7. Agentes longos exigem pensamento operacional</a></li><li><a href="#o-que-eu-faria-hoje">8. O que eu faria ao desenhar um agente hoje</a></li><li><a href="#conclusao">9. Conclusão</a></li><li><a href="#fontes">Fontes e leitura recomendada</a></li></ol></nav></aside><article class="article-content reading-shell"><p>Durante muito tempo, construir um agente de inteligência artificial parecia significar juntar três coisas: um modelo, um prompt e algumas ferramentas.</p>
+<p>Essa visão está ficando pequena.</p>
+<p>Em 10 de setembro de 2026, a OpenAI colocou em beta público uma Agents API que trata o <em>harness</em> — a camada que coordena contexto, ferramentas, sessões e execução — como infraestrutura gerenciada. Poucas semanas antes, a Microsoft reorganizou seu Agent Framework em torno de conceitos parecidos: agentes, workflows e um <em>agent harness</em> para tarefas longas.</p>
+<p>O detalhe técnico importa menos do que o movimento.</p>
+<p><strong>O agente está deixando de ser apenas um loop escrito dentro da aplicação. Ele está virando uma camada de infraestrutura.</strong></p>
+
+<h2 id="modelo-nao-carrega-o-trabalho">1. O modelo não carrega o trabalho sozinho</h2>
+<p>Um modelo recebe contexto, produz uma resposta e pode decidir chamar uma ferramenta. Isso é poderoso, mas não resolve sozinho o problema de executar trabalho real por vários minutos, horas ou até dias.</p>
+<p>Quem mantém o estado da tarefa? Quem compacta o contexto quando ele cresce? Quem registra o que já foi feito? Quem decide se uma ferramenta precisa de aprovação? Quem recupera uma execução interrompida? Quem disponibiliza arquivos e ambiente de código?</p>
+<p>Essas perguntas não são sobre inteligência do modelo. São sobre engenharia de execução.</p>
+<p>É exatamente aí que aparece o <em>harness</em>: a estrutura que envolve o modelo e transforma chamadas isoladas em um processo que consegue continuar trabalhando.</p>
+
+<figure class="editorial-frame inline-figure"><img src="/blog-filipe-guardia/assets/editorial/figures/agentes-estao-virando-infraestrutura.svg" alt="Quatro camadas de um agente operacional: modelo, harness, produto e governança, e trabalho real." loading="lazy" decoding="async"><figcaption>O modelo raciocina; o harness sustenta a execução; o produto define regras; o trabalho produz efeitos reais.</figcaption></figure><h2 id="harness-vira-camada">2. O harness está virando uma camada própria</h2>
+<p><strong>Fato:</strong> ao anunciar a Agents API, a OpenAI descreveu uma infraestrutura que gerencia orquestração de sessões, compactação de contexto e recuperação, além de permitir sessões duráveis e ambientes onde agentes podem trabalhar com arquivos e executar código.</p>
+<p>A Microsoft usa uma definição muito semelhante em seu Agent Framework. Na documentação, o <em>agent harness</em> é a estrutura de runtime que conduz chamadas de modelo e de ferramentas, mantém estado e contexto, aplica políticas de aprovação e ajuda o agente a avançar em tarefas de várias etapas.</p>
+<p>Isso muda a arquitetura mental.</p>
+<p>Antes, era comum pensar:</p>
+<ul>
+  <li>minha aplicação chama o modelo;</li>
+  <li>o modelo escolhe uma ferramenta;</li>
+  <li>meu código executa;</li>
+  <li>o ciclo se repete.</li>
+</ul>
+<p>Agora existe uma camada intermediária cada vez mais explícita que pode assumir boa parte desse ciclo.</p>
+
+<h2 id="infraestrutura-nao-significa-caixa-preta">3. Infraestrutura não deveria significar caixa-preta</h2>
+<p>Ter um harness pronto não elimina a necessidade de entender o que acontece dentro dele.</p>
+<p>Na verdade, quanto mais trabalho um agente executa, mais importantes ficam quatro perguntas: o que ele viu, por que tomou uma decisão, qual ferramenta usou e qual estado deixou para a próxima etapa.</p>
+<p>Um harness útil precisa facilitar observabilidade, não escondê-la.</p>
+<p><strong>Minha leitura:</strong> o mercado tende a separar duas coisas que antes ficavam misturadas. A infraestrutura genérica cuida de sessão, contexto, execução e recuperação. O produto continua responsável por regras, permissões, dados, critérios de sucesso e experiência do usuário.</p>
+<p>Essa separação é saudável porque evita que cada equipe reconstrua do zero a mesma máquina de orquestração.</p>
+
+<h2 id="workflow-e-agente-nao-sao-a-mesma-coisa">4. Workflow e agente não são a mesma coisa</h2>
+<p>Outra consequência dessa evolução é ficar mais claro quando uma etapa precisa de autonomia e quando deveria ser determinística.</p>
+<p>A documentação do Microsoft Agent Framework define workflows como caminhos explícitos e inspecionáveis que coordenam código, agentes, estado, eventos e entrada humana. Eles podem usar grafos, checkpoints e etapas bem definidas.</p>
+<p>Isso é diferente de entregar todo o processo para um modelo decidir dinamicamente.</p>
+<p>Se uma regra é conhecida, ela pode continuar sendo regra. Se uma aprovação é obrigatória, ela pode continuar sendo uma fronteira explícita. Se uma sequência precisa ser auditável, um workflow pode expressá-la melhor do que um agente livre.</p>
+<p><strong>Um sistema maduro não tenta transformar tudo em agente. Ele combina autonomia onde existe incerteza com fluxo determinístico onde existe obrigação.</strong></p>
+
+<h2 id="onde-fica-o-valor">5. Se o loop vira commodity, onde fica o valor?</h2>
+<p>Quando fornecedores começam a oferecer sessões, memória operacional, ferramentas, sandboxes e execução longa como infraestrutura, escrever o loop básico do agente deixa de ser um grande diferencial.</p>
+<p>O valor sobe uma camada.</p>
+<ul>
+  <li><strong>contexto:</strong> quais dados o agente recebe e com qual qualidade;</li>
+  <li><strong>ferramentas:</strong> quais ações ele realmente consegue executar;</li>
+  <li><strong>governança:</strong> o que pode fazer sozinho e o que exige confirmação;</li>
+  <li><strong>conhecimento:</strong> quais regras e conceitos do domínio ele entende;</li>
+  <li><strong>avaliação:</strong> como sabemos se o resultado foi bom;</li>
+  <li><strong>produto:</strong> como a pessoa acompanha, corrige e confia no trabalho.</li>
+</ul>
+<p>É aí que empresas diferentes continuam produzindo sistemas muito diferentes mesmo quando usam o mesmo modelo e o mesmo runtime.</p>
+
+<h2 id="lock-in-muda-de-lugar">6. O risco de lock-in também muda de lugar</h2>
+<p>Infraestrutura gerenciada reduz trabalho, mas cria uma pergunta arquitetural importante: quanto do comportamento do agente está preso ao runtime escolhido?</p>
+<p>Se memória, políticas de aprovação, arquivos, estados de sessão e formato das ferramentas só existem dentro de uma plataforma, trocar de fornecedor pode ficar mais difícil do que trocar apenas de modelo.</p>
+<p>Por isso, vale separar o que é conhecimento do negócio do que é mecanismo de execução.</p>
+<p>Instruções críticas, políticas, contratos de ferramentas, dados persistentes e evidências deveriam ter representação clara fora da memória efêmera de um agente.</p>
+<p><strong>Análise:</strong> a portabilidade do futuro não será apenas “consigo trocar de LLM?”. Será também “consigo trocar de harness sem perder meu processo?”.</p>
+
+<h2 id="agentes-longos-exigem-operacao">7. Agentes longos exigem pensamento operacional</h2>
+<p>Uma tarefa que dura dois segundos pode simplesmente falhar e ser repetida.</p>
+<p>Uma tarefa que trabalha por uma hora, altera arquivos, chama sistemas externos e acumula estado precisa de outra disciplina.</p>
+<p>Ela precisa lidar com retomada, idempotência, limites de custo, expiração de credenciais, cancelamento, isolamento, logs e artefatos intermediários.</p>
+<p>O anúncio da OpenAI chama atenção justamente para tarefas longas e para ambientes de execução gerenciados ou conectados pelo desenvolvedor. A Microsoft, por sua vez, coloca checkpoints, estado, observabilidade e interação humana entre as capacidades de workflows.</p>
+<p>O agente começa a se parecer menos com uma chamada de API e mais com um pequeno processo operacional.</p>
+
+<h2 id="o-que-eu-faria-hoje">8. O que eu faria ao desenhar um agente hoje</h2>
+<p>Eu começaria menos pelo modelo e mais por cinco decisões.</p>
+<ol>
+  <li><strong>Qual trabalho precisa continuar entre etapas?</strong> Isso define sessão e estado.</li>
+  <li><strong>Quais ações têm efeito real?</strong> Isso define ferramentas, permissões e aprovações.</li>
+  <li><strong>O que deve ser determinístico?</strong> Isso define workflows, regras e validações.</li>
+  <li><strong>Que evidência precisa sobreviver à execução?</strong> Isso define logs, checkpoints e artefatos.</li>
+  <li><strong>O que precisa permanecer portátil?</strong> Isso define onde guardar conhecimento, memória e contratos.</li>
+</ol>
+<p>Só depois eu escolheria até onde delegar a infraestrutura para um harness gerenciado.</p>
+<p>Esse raciocínio evita dois extremos: reconstruir tudo por conta própria sem necessidade ou terceirizar tanto que ninguém mais entende o sistema.</p>
+
+<h2 id="conclusao">9. Conclusão</h2>
+<p>Os modelos continuam evoluindo rapidamente, mas a engenharia ao redor deles está amadurecendo de forma igualmente importante.</p>
+<p>A chegada de runtimes de agentes mais completos mostra que o setor está transformando em infraestrutura aquilo que antes cada equipe implementava manualmente: sessões, contexto, ferramentas, execução, recuperação e supervisão.</p>
+<p>Isso tende a acelerar o desenvolvimento.</p>
+<p>Também muda a pergunta central.</p>
+<p>Em vez de perguntar apenas “qual modelo devo usar?”, passa a fazer sentido perguntar:</p>
+<p><strong>qual parte do meu sistema é inteligência, qual parte é infraestrutura e qual parte é conhecimento do negócio que eu não posso perder?</strong></p>
+<p>Talvez essa separação seja uma das etapas necessárias para agentes deixarem de ser demonstrações impressionantes e virarem software operacional de verdade.</p>
+<p class="article-question"><strong>Pergunta ao leitor:</strong> se você trocasse hoje o modelo e o runtime do seu agente, quanto do conhecimento e do processo continuaria sendo seu?</p>
+
+<h2 id="fontes">Fontes e leitura recomendada</h2>
+<ul>
+  <li><a href="https://openai.com/index/introducing-the-agents-api/" target="_blank" rel="noopener noreferrer">OpenAI — Introducing the Agents API (10 set. 2026)</a></li>
+  <li><a href="https://learn.microsoft.com/en-us/agent-framework/concepts/harness" target="_blank" rel="noopener noreferrer">Microsoft Learn — Agent Harness</a></li>
+  <li><a href="https://learn.microsoft.com/en-us/agent-framework/concepts/workflows/" target="_blank" rel="noopener noreferrer">Microsoft Learn — Workflow concepts</a></li>
+  <li><a href="https://learn.microsoft.com/en-us/agent-framework/overview/" target="_blank" rel="noopener noreferrer">Microsoft Learn — Microsoft Agent Framework overview</a></li>
+</ul>
+<footer class="article-bottom"><a href="/blog-filipe-guardia/artigos/antes-de-automatizar-com-ia-simplifique-o-processo.html">← Antes de automatizar com IA, simplifique o processo</a><a href="/blog-filipe-guardia/artigos/o-primeiro-teste-pode-usar-ia-o-centesimo-nao-precisa.html">O primeiro teste pode usar IA. O centésimo não precisa. →</a></footer></article></div></main><footer class="site-footer"><div class="footer-shell"><div><strong>Filipe Guardia</strong><p>B2X, Transformação Digital, dados, sistemas e inteligência artificial aplicada.</p></div><nav aria-label="Links profissionais"><a href="/blog-filipe-guardia/artigos.html">Artigos</a><a href="/blog-filipe-guardia/projetos.html">Projetos</a><a href="https://github.com/FilipeGCB" target="_blank" rel="noopener noreferrer">GitHub</a><a href="/blog-filipe-guardia/contato.html">Contato</a></nav><small>© 2026 · Conteúdo autoral de Filipe Guardia.</small></div></footer></body></html><script>
+  (() => {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.documentElement.classList.add('motion-ready');
+    const revealTargets = [...document.querySelectorAll('[data-motion-reveal]')];
+
+    if (reduced || !('IntersectionObserver' in window)) {
+      revealTargets.forEach((target) => target.classList.add('is-inview'));
+    } else {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-inview');
+            observer.unobserve(entry.target);
+          });
+        },
+        { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
+      );
+      revealTargets.forEach((target) => observer.observe(target));
+    }
+
+    const supportsScrollTimeline = Boolean(window.CSS?.supports?.('animation-timeline: scroll()'));
+    const hero = document.querySelector('[data-scroll-hero]');
+    const heroMedia = hero?.querySelector('.scroll-hero-media');
+
+    if (hero && heroMedia && !reduced && !supportsScrollTimeline) {
+      let frame = 0;
+      const updateHero = () => {
+        frame = 0;
+        const bounds = hero.getBoundingClientRect();
+        const travel = Math.max(bounds.height, window.innerHeight);
+        const progress = Math.min(1, Math.max(0, (window.innerHeight * 0.2 - bounds.top) / travel));
+        heroMedia.style.setProperty('--hero-progress', progress.toFixed(3));
+      };
+      const requestHeroUpdate = () => {
+        if (frame) return;
+        frame = window.requestAnimationFrame(updateHero);
+      };
+      window.addEventListener('scroll', requestHeroUpdate, { passive: true });
+      window.addEventListener('resize', requestHeroUpdate);
+      updateHero();
+    }
+  })();
+</script>

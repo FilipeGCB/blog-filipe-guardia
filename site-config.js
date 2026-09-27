@@ -1,0 +1,75 @@
+/* Complete apenas os campos desejados. Campos vazios não aparecem no site. */
+window.SITE_CONFIG = Object.freeze({
+  siteName: "Filipe Guardia",
+  tagline: "Operação real • Dados • Sistemas • IA",
+  baseUrl: "https://filipegcb.github.io/blog-filipe-guardia/",
+  githubUrl: "https://github.com/FilipeGCB",
+  linkedinUrl: "",
+  email: "filipeguardia@gmail.com",
+  whatsappUrl: "https://wa.me/5511970641955",
+  telegramUrl: "https://t.me/+5511970641955?profile",
+  phone: "+5511970641955",
+  phoneLabel: "+55 11 97064-1955",
+  formspreeEndpoint: "https://formspree.io/f/mjkdlljg",
+  socialImage: "",
+  analyticsId: "",
+  pageAgent: {
+    enabled: true,
+    mode: "demo",
+    label: "Explorar o site com IA",
+    description: "Peça ao agente para localizar artigos, projetos ou informações nesta página.",
+    notice: "Recurso experimental: ao ativar, o conteúdo visível da página e suas instruções podem ser processados pelo serviço externo de demonstração do PageAgent.",
+    scriptUrl: "https://cdn.jsdelivr.net/npm/page-agent@1.8.1/dist/iife/page-agent.demo.js"
+  },
+  projectEvidence: {
+    "Cognitive OS": {
+      metric: "Agent Skill público · v1.4",
+      summary: "Decisão estruturada antes da execução.",
+      demoUrl: "https://github.com/FilipeGCB/cognitive-os",
+      demoLabel: "Abrir repositório"
+    },
+    "Fil-Harness": {
+      metric: "Control plane público",
+      summary: "Agentes executam; política e evidência controlam autoridade.",
+      demoUrl: "https://github.com/FilipeGCB/fil-harness",
+      demoLabel: "Abrir repositório"
+    },
+    "Visual Presentation Studio": {
+      metric: "Sistema visual público",
+      summary: "Construção, render, inspeção e QA de narrativas visuais.",
+      demoUrl: "https://github.com/FilipeGCB/visual-presentation-studio-public",
+      demoLabel: "Abrir repositório"
+    },
+    "Guard.IA Live": {
+      metric: "Copiloto de reuniões público",
+      summary: "Captions, contexto local e assistência em tempo real.",
+      demoUrl: "https://github.com/FilipeGCB/guardia-live",
+      demoLabel: "Abrir repositório"
+    }
+  }
+});
+
+(() => {
+  if (!window.SITE_CONFIG.pageAgent?.enabled || document.querySelector("script[data-site-page-agent-loader]")) return;
+
+  const currentScript = document.currentScript;
+  const loader = document.createElement("script");
+  loader.src = currentScript?.src
+    ? new URL("page-agent-loader.js", currentScript.src).href
+    : "page-agent-loader.js";
+  loader.async = false;
+  loader.dataset.sitePageAgentLoader = "true";
+  document.head.appendChild(loader);
+})();
+
+(() => {
+  if (document.querySelector("script[data-site-hero-portrait]")) return;
+  const currentScript = document.currentScript;
+  const portrait = document.createElement("script");
+  portrait.src = currentScript?.src
+    ? new URL("hero-portrait.js", currentScript.src).href
+    : "hero-portrait.js";
+  portrait.async = false;
+  portrait.dataset.siteHeroPortrait = "true";
+  document.head.appendChild(portrait);
+})();
